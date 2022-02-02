@@ -1,0 +1,148 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap-theme.css" />
+    <None Include="wwwroot\css\bootstrap-theme.css.map" />
+    <None Include="wwwroot\css\bootstrap-theme.min.css" />
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\bootstrap.css.map" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\fontAwesome.css" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.eot" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.svg" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.ttf" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.woff" />
+    <None Include="wwwroot\css\hero-slider.css" />
+    <None Include="wwwroot\css\owl-carousel.css" />
+    <None Include="wwwroot\css\site.css" />
+    <None Include="wwwroot\css\templatemo-style.css" />
+    <None Include="wwwroot\favicon.ico" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\img\banner-bg.jpg" />
+    <None Include="wwwroot\img\blog_item_01.jpg" />
+    <None Include="wwwroot\img\blog_item_02.jpg" />
+    <None Include="wwwroot\img\blog_item_03.jpg" />
+    <None Include="wwwroot\img\blog_item_04.jpg" />
+    <None Include="wwwroot\img\blog_post_01.jpg" />
+    <None Include="wwwroot\img\blog_post_02.jpg" />
+    <None Include="wwwroot\img\blog_post_03.jpg" />
+    <None Include="wwwroot\img\blog_post_04.jpg" />
+    <None Include="wwwroot\img\book-bg.jpg" />
+    <None Include="wwwroot\img\book_left_image.jpg" />
+    <None Include="wwwroot\img\breakfast_item.jpg" />
+    <None Include="wwwroot\img\breakfast_menu.jpg" />
+    <None Include="wwwroot\img\close.png" />
+    <None Include="wwwroot\img\cook_01.jpg" />
+    <None Include="wwwroot\img\cook_02.jpg" />
+    <None Include="wwwroot\img\cook_breakfast.png" />
+    <None Include="wwwroot\img\cook_dessert.png" />
+    <None Include="wwwroot\img\cook_dinner.png" />
+    <None Include="wwwroot\img\cook_lunch.png" />
+    <None Include="wwwroot\img\dinner_item.jpg" />
+    <None Include="wwwroot\img\dinner_menu.jpg" />
+    <None Include="wwwroot\img\heading-bg.jpg" />
+    <None Include="wwwroot\img\loading.gif" />
+    <None Include="wwwroot\img\lunch_item.jpg" />
+    <None Include="wwwroot\img\lunch_menu.jpg" />
+    <None Include="wwwroot\img\next.png" />
+    <None Include="wwwroot\img\prev.png" />
+    <None Include="wwwroot\img\signup-bg.jpg" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\plugins.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\vendor\bootstrap.js" />
+    <None Include="wwwroot\js\vendor\bootstrap.min.js" />
+    <None Include="wwwroot\js\vendor\jquery-1.11.2.min.js" />
+    <None Include="wwwroot\js\vendor\modernizr-2.8.3-respond-1.4.2.min.js" />
+    <None Include="wwwroot\js\vendor\npm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\lib\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataBase.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataBase.db-shm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DataBase.db-wal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
