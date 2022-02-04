@@ -1,10 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
-});
-
 builder.Services.AddTransient<IFoodRepository, FoodRepository>();
 builder.Services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
 builder.Services.AddTransient<IFoodFacadeService, FoodFacadeService>();

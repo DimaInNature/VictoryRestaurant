@@ -1,46 +1,22 @@
-﻿namespace VictoryRestaurant.Web.Data.Repositories;
+﻿using Newtonsoft.Json;
+
+namespace VictoryRestaurant.Web.Data.Repositories;
 
 public class FoodRepository : IFoodRepository
 {
-    private readonly ApplicationContext _context;
-
-    public FoodRepository(ApplicationContext context)
+    public async Task<IEnumerable<FoodEntity>> GetAllByFoodType(FoodType type)
     {
-        _context = context;
+        using var httpClient = new HttpClient();
+        using var response = await httpClient.GetAsync(requestUri: $"https://localhost:7059/Foods/Search/Type/{type}");
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<List<FoodEntity>>(value: apiResponse) ?? new();
     }
 
-    public async Task AddFoodAsync(FoodEntity foodItem)
+    public async Task<FoodEntity> GetFoodByFootTypeAsync(FoodType type)
     {
-        await _context.Foods.AddAsync(foodItem);
-        await _context.SaveChangesAsync();
+        using var httpClient = new HttpClient();
+        using var response = await httpClient.GetAsync(requestUri: $"https://localhost:7059/Foods/Type/{type}");
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<FoodEntity>(value: apiResponse);
     }
-
-    public IEnumerable<FoodEntity> GetAll() => _context.Foods;
-
-    public async Task DeleteFood(FoodEntity foodItem)
-    {
-        _context.Foods.Attach(foodItem);
-        _context.Foods.Remove(foodItem);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<FoodEntity> GetFoodById(int id) =>
-       await _context.Foods.FirstOrDefaultAsync(food => food.Id == id);
-
-    public async Task UpdateFood(FoodEntity foodItem) =>
-        await Task.Run(() =>
-        {
-            _context.Foods.Update(
-                new()
-                {
-                    Id = foodItem.Id,
-                    CostInUSD = foodItem.CostInUSD,
-                    CreatedDate = foodItem.CreatedDate,
-                    Description = foodItem.Description,
-                    ImagePath = foodItem.ImagePath,
-                    Name = foodItem.Name,
-                    Type = foodItem.Type
-                });
-            return _context.SaveChanges();
-        });
 }

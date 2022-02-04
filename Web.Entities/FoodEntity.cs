@@ -1,7 +1,9 @@
 ﻿namespace VictoryRestaurant.Web.Entities;
 
-public class FoodEntity : BaseEntity
+public class FoodEntity
 {
+    public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public double CostInUSD { get; set; }

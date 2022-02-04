@@ -15,19 +15,6 @@ public static class PostMapper
         }
         : throw new ArgumentNullException($"{nameof(PostMapper)},{nameof(postItem)}");
 
-    public static Post ToDomain(this PostModel postModel) =>
-        postModel is not null ? new()
-        {
-            Title = postModel.Title,
-            Description = postModel.Description,
-            PublishedDate = postModel.PublishedDate,
-            Text = postModel.Text,
-            Category = postModel.Category,
-            HeadingImagePath = postModel.HeadingImagePath,
-            Author = postModel.Author
-        }
-        : throw new ArgumentNullException($"{nameof(PostMapper)},{nameof(postModel)}");
-
     public static Post ToDomain(this PostEntity postModel) =>
        postModel is not null ? new()
        {

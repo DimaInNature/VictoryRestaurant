@@ -2,9 +2,6 @@
 
 public interface IFoodRepository
 {
-    Task AddFoodAsync(FoodEntity foodItem);
-    Task UpdateFood(FoodEntity foodItem);
-    Task DeleteFood(FoodEntity foodItem);
-    Task<FoodEntity> GetFoodById(int id);
-    IEnumerable<FoodEntity> GetAll();
+    Task<IEnumerable<FoodEntity>> GetAllByFoodType(FoodType type);
+    Task<FoodEntity> GetFoodByFootTypeAsync(FoodType type);
 }

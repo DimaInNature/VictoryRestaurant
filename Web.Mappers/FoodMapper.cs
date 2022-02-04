@@ -12,17 +12,6 @@ public static class FoodMapper
         }
         : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodItem)}");
 
-    public static Food ToDomain(this FoodModel foodModel) =>
-        foodModel is not null ? new()
-        {
-            Name = foodModel.Name,
-            Description = foodModel.Description,
-            CostInUSD = foodModel.CostInUSD,
-            ImagePath = foodModel.ImagePath,
-            Type = foodModel.Type
-        }
-        : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodModel)}");
-
     public static Food ToDomain(this FoodEntity foodModel) =>
        foodModel is not null ? new()
        {
@@ -33,4 +22,17 @@ public static class FoodMapper
            Type = foodModel.Type
        }
        : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodModel)}");
+
+    public static async Task<Food> ToDomain(this Task<FoodEntity> foodModel) => await
+      foodModel is not null ? new Food()
+      {
+          Name = foodModel.Result.Name,
+          Description = foodModel.Result.Description,
+          CostInUSD = foodModel.Result.CostInUSD,
+          ImagePath = foodModel.Result.ImagePath,
+          Type = foodModel.Result.Type,
+          Id = foodModel.Result.Id,
+          CreatedDate = foodModel.Result.CreatedDate
+      }
+      : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodModel)}");
 }

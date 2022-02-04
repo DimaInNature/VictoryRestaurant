@@ -1,4 +1,7 @@
-﻿namespace VictoryRestaurant.Web.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using VictoryRestaurant.API.Entities;
+
+namespace VictoryRestaurant.API;
 
 public class ApplicationContext : DbContext
 {
@@ -9,13 +12,11 @@ public class ApplicationContext : DbContext
     }
 
     public DbSet<FoodEntity> Foods => Set<FoodEntity>();
-    public DbSet<PostEntity> Posts => Set<PostEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<FoodEntity>().HasIndex(food => food.Id).IsUnique();
         modelBuilder.Entity<FoodEntity>().HasData(GetFoods());
-        modelBuilder.Entity<PostEntity>().HasIndex(post => post.Id).IsUnique();
 
         base.OnModelCreating(modelBuilder);
     }
@@ -34,6 +35,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 1,
+                CreatedDate = DateTime.Now,
                 Name = "Kale Chips Art Party",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -45,6 +47,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 2,
+                CreatedDate = DateTime.Now,
                 Name = "Drink Vinegar Prism",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -56,6 +59,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 3,
+                CreatedDate = DateTime.Now,
                 Name = "Taiyaki Gastro Tousled",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -72,6 +76,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 4,
+                CreatedDate = DateTime.Now,
                 Name = "Mumble Ditch Corn",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -83,6 +88,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 5,
+                CreatedDate = DateTime.Now,
                 Name = "Wayfare Lomo Core",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -94,6 +100,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 6,
+                CreatedDate = DateTime.Now,
                 Name = "Taiyaki Gastro Tousled",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -110,6 +117,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 7,
+                CreatedDate = DateTime.Now,
                 Name = "Meal Apples Almonds",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -121,6 +129,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 8,
+                CreatedDate = DateTime.Now,
                 Name = "Ditch Corn Art",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon
@@ -132,6 +141,7 @@ public class ApplicationContext : DbContext
             new()
             {
                 Id = 9,
+                CreatedDate = DateTime.Now,
                 Name = "Kale Chips Art Party",
                 Description = @"Dreamcatcher squid ennui cliche chicharros
                     nes echo small batch jean shorts hexagon

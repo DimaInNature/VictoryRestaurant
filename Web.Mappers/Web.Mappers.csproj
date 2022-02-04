@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Web.Domain\Web.Domain.csproj" />
     <ProjectReference Include="..\Web.Entities\Web.Entities.csproj" />
-    <ProjectReference Include="..\Web.Models\Web.Models.csproj" />
   </ItemGroup>
 
 </Project>

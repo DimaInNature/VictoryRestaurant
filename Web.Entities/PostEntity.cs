@@ -1,7 +1,9 @@
 ﻿namespace VictoryRestaurant.Web.Entities;
 
-public class PostEntity : BaseEntity
+public class PostEntity
 {
+    public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
     public string Title { get; set; }
     public string HeadingImagePath { get; set; }
     public PostCategories Category { get; set; }

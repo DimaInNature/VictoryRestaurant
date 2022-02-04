@@ -1,4 +1,6 @@
-﻿namespace VictoryRestaurant.Web.Services.Foods;
+﻿using VictoryRestaurant.Web.Enums;
+
+namespace VictoryRestaurant.Web.Services.Foods;
 
 public class FoodRepositoryService : IFoodRepositoryService
 {
@@ -9,28 +11,11 @@ public class FoodRepositoryService : IFoodRepositoryService
         _repository = repository;
     }
 
-    public async void AddFood(Food foodItem)
-    {
-        await _repository.AddFoodAsync(foodItem.ToEntity());
-    }
-
-    public async void DeleteFood(Food foodItem)
-    {
-        await _repository.DeleteFood(foodItem.ToEntity());
-    }
-
-    public IEnumerable<Food> GetAll() =>
+    public async Task<IEnumerable<Food>> GetAllByFoodType(FoodType type) =>
         new List<Food>()
-        .Concat(_repository.GetAll()
-            .Select(x => x.ToDomain()));
+        .Concat(_repository.GetAllByFoodType(type)
+            .Result.Select(x => x.ToDomain()));
 
-    public Food GetFoodById(int id)
-    {
-        return _repository.GetFoodById(id).Result.ToDomain();
-    }
-
-    public void UpdateFood(Food foodItem)
-    {
-        _repository.UpdateFood(foodItem.ToEntity());
-    }
+    public async Task<Food> GetFoodByFootType(FoodType type) =>
+        await _repository.GetFoodByFootTypeAsync(type).ToDomain();
 }

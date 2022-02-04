@@ -14,16 +14,16 @@ public class HomeController : Controller
     }
 
     [HttpGet("")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        ViewBag.WeeklyBreakfastFood = _foodsService
-            .GetFirstFood(predicate: food => food.Type is FoodType.Breakfast);
+        ViewBag.WeeklyBreakfastFood = await _foodsService
+            .GetFoodByFootType(type: FoodType.Breakfast);
 
-        ViewBag.WeeklyLunchFood = _foodsService
-            .GetFirstFood(predicate: food => food.Type is FoodType.Lunch);
+        ViewBag.WeeklyLunchFood = await _foodsService
+           .GetFoodByFootType(type: FoodType.Lunch);
 
-        ViewBag.WeeklyDinnerFood = _foodsService
-            .GetFirstFood(predicate: food => food.Type is FoodType.Dinner);
+        ViewBag.WeeklyDinnerFood = await _foodsService
+            .GetFoodByFootType(type: FoodType.Dinner);
 
         return View(viewName: "Index");
     }

@@ -1,10 +1,9 @@
-﻿namespace VictoryRestaurant.Web.Services.Abstract.Foods;
+﻿using VictoryRestaurant.Web.Enums;
+
+namespace VictoryRestaurant.Web.Services.Abstract.Foods;
 
 public interface IFoodRepositoryService
 {
-    void AddFood(Food foodItem);
-    void UpdateFood(Food foodItem);
-    void DeleteFood(Food foodItem);
-    Food GetFoodById(int id);
-    IEnumerable<Food> GetAll();
+    Task<IEnumerable<Food>> GetAllByFoodType(FoodType type);
+    Task<Food> GetFoodByFootType(FoodType type);
 }
