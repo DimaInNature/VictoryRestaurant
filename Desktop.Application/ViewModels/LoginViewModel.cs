@@ -1,15 +1,10 @@
-﻿using Desktop.Core.MVVM.Command;
-using Desktop.Core.MVVM.ViewModel;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Windows.Input;
-
-namespace VictoryRestaurant.Desktop.Presentation.ViewModels;
+﻿namespace VictoryRestaurant.Desktop.Presentation.ViewModels;
 
 public class LoginViewModel : BaseViewModel
 {
     public LoginViewModel()
     {
+        InitializeCommands();
         SetViewCondition();
     }
 
@@ -160,48 +155,24 @@ public class LoginViewModel : BaseViewModel
 
     #region Commands
 
-    //private bool CanExecuteLogin(object obj) =>
-    //    StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
+    private bool CanExecuteLogin(object obj) =>
+        StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
 
     private void ExecuteLogin(object obj)
     {
-        //User authorizedUser = new(login: EnterUserLogin,
-        //    password: Password);
+        new MainView().Show();
 
-        //bool authIsSuccessfull = _userFacadeService
-        //    .Authorize(user: authorizedUser);
-
-        //if (authIsSuccessfull)
-        //{
-        //    new MainView().Show();
-
-        //    (obj as LoginView)?.Close();
-        //}
-        //else
-        //    MessageBox.Show(messageBoxText: "Пользователя с таким логином не существует",
-        //                caption: "Ошибка", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+        (obj as LoginView)?.Close();
     }
 
-    //private bool CanExecuteRegistration(object obj) =>
-    //    StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
+    private bool CanExecuteRegistration(object obj) =>
+        StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
 
     private void ExecuteRegistration(object obj)
     {
-        //User registerUser = new(login: CreateUserLogin,
-        //    password: RegisterPassword);
+        new MainView().Show();
 
-        //bool registerIsSuccessfull =
-        //    _userFacadeService.Register(userItem: registerUser);
-
-        //if (registerIsSuccessfull)
-        //{
-        //    new MainView().Show();
-
-        //    (obj as LoginView)?.Close();
-        //}
-        //else
-        //    MessageBox.Show(messageBoxText: "Пользователь с таким логином уже существует",
-        //        caption: "Ошибка", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+        (obj as LoginView)?.Close();
     }
 
     private static void CloseApplication(object obj) =>
@@ -218,11 +189,11 @@ public class LoginViewModel : BaseViewModel
 
     private void InitializeCommands()
     {
-        //LoginCommand = new RelayCommand(executeAction: ExecuteLogin,
-        //    canExecuteFunc: CanExecuteLogin);
+        LoginCommand = new RelayCommand(executeAction: ExecuteLogin,
+            canExecuteFunc: CanExecuteLogin);
 
-        //RegistrationCommand = new RelayCommand(executeAction: ExecuteRegistration,
-        //    canExecuteFunc: CanExecuteRegistration);
+        RegistrationCommand = new RelayCommand(executeAction: ExecuteRegistration,
+            canExecuteFunc: CanExecuteRegistration);
 
         CloseApplicationCommand = new RelayCommand(executeAction: CloseApplication);
     }

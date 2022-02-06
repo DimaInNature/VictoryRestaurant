@@ -8,6 +8,10 @@ public static class FoodMapper
             Name = foodItem.Name,
             Description = foodItem.Description,
             CostInUSD = foodItem.CostInUSD,
+            RelativeImagePath = foodItem.RelativeImagePath,
+            ImagePath = foodItem.ImagePath,
+            CreatedDate = foodItem.CreatedDate,
+            Id = foodItem.Id,
             Type = foodItem.Type
         }
         : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodItem)}");
@@ -15,10 +19,13 @@ public static class FoodMapper
     public static Food ToDomain(this FoodEntity foodModel) =>
        foodModel is not null ? new()
        {
+           Id = foodModel.Id,
+           CreatedDate = foodModel.CreatedDate,
            Name = foodModel.Name,
            Description = foodModel.Description,
            CostInUSD = foodModel.CostInUSD,
            ImagePath = foodModel.ImagePath,
+           RelativeImagePath = foodModel.RelativeImagePath,
            Type = foodModel.Type
        }
        : throw new ArgumentNullException($"{nameof(FoodMapper)},{nameof(foodModel)}");
@@ -30,6 +37,7 @@ public static class FoodMapper
           Description = foodModel.Result.Description,
           CostInUSD = foodModel.Result.CostInUSD,
           ImagePath = foodModel.Result.ImagePath,
+          RelativeImagePath = foodModel.Result.RelativeImagePath,
           Type = foodModel.Result.Type,
           Id = foodModel.Result.Id,
           CreatedDate = foodModel.Result.CreatedDate

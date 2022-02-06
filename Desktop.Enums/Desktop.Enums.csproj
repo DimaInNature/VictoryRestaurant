@@ -6,8 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Desktop.Enums\Desktop.Enums.csproj" />
-  </ItemGroup>
-
 </Project>

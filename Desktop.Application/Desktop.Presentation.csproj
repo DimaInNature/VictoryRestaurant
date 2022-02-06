@@ -44,10 +44,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
+    <ProjectReference Include="..\Desktop.Data\Desktop.Data.csproj" />
+    <ProjectReference Include="..\Desktop.Services\Desktop.Services.csproj" />
   </ItemGroup>
 
 </Project>

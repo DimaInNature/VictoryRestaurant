@@ -1,7 +1,4 @@
-﻿using Desktop.Presentation.Views;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using VictoryRestaurant.Desktop.Presentation.ViewModels;
+﻿using Desktop.Presentation.ViewModels.UserControls;
 
 namespace VictoryRestaurant.Desktop.Presentation;
 
@@ -19,21 +16,19 @@ public partial class App : Application
 
         ServiceProvider = serviceCollection.BuildServiceProvider();
 
-        var startupWindow = new LoginView
-        {
-            DataContext = ServiceProvider.GetService<LoginViewModel>()
-        };
-
-        startupWindow.Show();
+        new LoginView().Show();
     }
 
     private void ConfigureServices(IServiceCollection services)
     {
-
+        services.AddScoped<IFoodRepository, FoodRepository>();
+        services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
     }
 
     private void ConfigureViewModels(IServiceCollection services)
     {
         services.AddTransient<LoginViewModel>();
+        services.AddTransient<MainViewModel>();
+        services.AddTransient<FoodViewModel>();
     }
 }

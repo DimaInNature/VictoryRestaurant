@@ -1,13 +1,16 @@
-﻿namespace VictoryRestaurant.Web.Entities;
+﻿using Desktop.Enums;
+using System;
 
-public class FoodEntity
+namespace Desktop.Models;
+
+public class Food
 {
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public double CostInUSD { get; set; }
-    public string ImagePath { get; set; }
     public string RelativeImagePath { get; set; }
+    public string ImagePath { get; set; }
     public FoodType Type { get; set; }
 }

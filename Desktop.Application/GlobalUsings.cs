@@ -1,1 +1,16 @@
-﻿global using System.Windows;
+﻿global using Desktop.Core;
+global using Desktop.Core.MVVM.Command;
+global using Desktop.Core.MVVM.ViewModel;
+global using Desktop.Data.Repositories;
+global using Desktop.Data.Repositories.Abstract;
+global using Desktop.Presentation.ViewModels;
+global using Desktop.Presentation.Views;
+global using Desktop.Services.Abstract.Repositories;
+global using Desktop.Services.Repositories;
+global using Microsoft.Extensions.DependencyInjection;
+global using System;
+global using System.Runtime.InteropServices;
+global using System.Security;
+global using System.Windows;
+global using System.Windows.Input;
+global using VictoryRestaurant.Desktop.Presentation.ViewModels;

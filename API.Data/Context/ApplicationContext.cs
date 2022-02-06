@@ -37,36 +37,33 @@ public class ApplicationContext : DbContext
                 Id = 1,
                 CreatedDate = DateTime.Now,
                 Name = "Kale Chips Art Party",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 4.50,
                 Type = FoodType.Breakfast,
-                ImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
+                RelativeImagePath = "~/img/breakfast_item.jpg"
             },
             new()
             {
                 Id = 2,
                 CreatedDate = DateTime.Now,
                 Name = "Drink Vinegar Prism",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 7.25,
                 Type = FoodType.Breakfast,
-                ImagePath = "~/img/lunch_item.jpg"
+                ImagePath = "https://localhost:7129/img/lunch_item.jpg",
+                RelativeImagePath = "~/img/lunch_item.jpg"
             },
             new()
             {
                 Id = 3,
                 CreatedDate = DateTime.Now,
                 Name = "Taiyaki Gastro Tousled",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.50,
                 Type = FoodType.Breakfast,
-                ImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
+                RelativeImagePath = "~/img/dinner_item.jpg"
             },
 
             #endregion
@@ -78,36 +75,33 @@ public class ApplicationContext : DbContext
                 Id = 4,
                 CreatedDate = DateTime.Now,
                 Name = "Mumble Ditch Corn",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 6.50,
                 Type = FoodType.Lunch,
-                ImagePath = "~/img/lunch_item.jpg"
+                ImagePath = "https://localhost:7129/img/lunch_item.jpg",
+                RelativeImagePath = "~/img/lunch_item.jpg"
             },
             new()
             {
                 Id = 5,
                 CreatedDate = DateTime.Now,
                 Name = "Wayfare Lomo Core",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.75,
                 Type = FoodType.Lunch,
-                ImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
+                RelativeImagePath = "~/img/breakfast_item.jpg"
             },
             new()
             {
                 Id = 6,
                 CreatedDate = DateTime.Now,
                 Name = "Taiyaki Gastro Tousled",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.50,
                 Type = FoodType.Lunch,
-                ImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
+                RelativeImagePath = "~/img/breakfast_item.jpg"
             },
 
             #endregion
@@ -119,36 +113,33 @@ public class ApplicationContext : DbContext
                 Id = 7,
                 CreatedDate = DateTime.Now,
                 Name = "Meal Apples Almonds",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 8.25,
                 Type = FoodType.Dinner,
-                ImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
+                RelativeImagePath = "~/img/dinner_item.jpg"
             },
             new()
             {
                 Id = 8,
                 CreatedDate = DateTime.Now,
                 Name = "Ditch Corn Art",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 12.50,
                 Type = FoodType.Dinner,
-                ImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
+                RelativeImagePath = "~/img/dinner_item.jpg"
             },
             new()
             {
                 Id = 9,
                 CreatedDate = DateTime.Now,
                 Name = "Kale Chips Art Party",
-                Description = @"Dreamcatcher squid ennui cliche chicharros
-                    nes echo small batch jean shorts hexagon
-                    street art knausgaard wolf...",
+                Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.00,
                 Type = FoodType.Dinner,
-                ImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
+                RelativeImagePath = "~/img/breakfast_item.jpg"
             },
 
             #endregion
