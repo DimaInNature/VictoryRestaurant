@@ -40,8 +40,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 4.50,
                 Type = FoodType.Breakfast,
-                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
-                RelativeImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
             new()
             {
@@ -51,8 +50,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 7.25,
                 Type = FoodType.Breakfast,
-                ImagePath = "https://localhost:7129/img/lunch_item.jpg",
-                RelativeImagePath = "~/img/lunch_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/lunch_item.jpg"
             },
             new()
             {
@@ -62,8 +60,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.50,
                 Type = FoodType.Breakfast,
-                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
-                RelativeImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
 
             #endregion
@@ -78,8 +75,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 6.50,
                 Type = FoodType.Lunch,
-                ImagePath = "https://localhost:7129/img/lunch_item.jpg",
-                RelativeImagePath = "~/img/lunch_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/lunch_item.jpg"
             },
             new()
             {
@@ -89,8 +85,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.75,
                 Type = FoodType.Lunch,
-                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
-                RelativeImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
             new()
             {
@@ -100,8 +95,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.50,
                 Type = FoodType.Lunch,
-                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
-                RelativeImagePath = "~/img/breakfast_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
 
             #endregion
@@ -116,8 +110,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 8.25,
                 Type = FoodType.Dinner,
-                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
-                RelativeImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
             new()
             {
@@ -127,8 +120,7 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 12.50,
                 Type = FoodType.Dinner,
-                ImagePath = "https://localhost:7129/img/dinner_item.jpg",
-                RelativeImagePath = "~/img/dinner_item.jpg"
+                ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
             new()
             {
@@ -138,9 +130,8 @@ public class ApplicationContext : DbContext
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.00,
                 Type = FoodType.Dinner,
-                ImagePath = "https://localhost:7129/img/breakfast_item.jpg",
-                RelativeImagePath = "~/img/breakfast_item.jpg"
-            },
+                ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
+            }
 
             #endregion
         };

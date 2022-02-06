@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\breakfast_item.jpg" />
+    <Content Remove="wwwroot\img\dinner_item.jpg" />
+    <Content Remove="wwwroot\img\lunch_item.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\foods\breakfast_item.jpg" />
+    <None Include="wwwroot\img\foods\dinner_item.jpg" />
+    <None Include="wwwroot\img\foods\lunch_item.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />

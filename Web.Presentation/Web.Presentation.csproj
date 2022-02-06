@@ -44,7 +44,6 @@
     <None Include="wwwroot\img\blog_post_04.jpg" />
     <None Include="wwwroot\img\book-bg.jpg" />
     <None Include="wwwroot\img\book_left_image.jpg" />
-    <None Include="wwwroot\img\breakfast_item.jpg" />
     <None Include="wwwroot\img\breakfast_menu.jpg" />
     <None Include="wwwroot\img\close.png" />
     <None Include="wwwroot\img\cook_01.jpg" />
@@ -53,11 +52,9 @@
     <None Include="wwwroot\img\cook_dessert.png" />
     <None Include="wwwroot\img\cook_dinner.png" />
     <None Include="wwwroot\img\cook_lunch.png" />
-    <None Include="wwwroot\img\dinner_item.jpg" />
     <None Include="wwwroot\img\dinner_menu.jpg" />
     <None Include="wwwroot\img\heading-bg.jpg" />
     <None Include="wwwroot\img\loading.gif" />
-    <None Include="wwwroot\img\lunch_item.jpg" />
     <None Include="wwwroot\img\lunch_menu.jpg" />
     <None Include="wwwroot\img\next.png" />
     <None Include="wwwroot\img\prev.png" />

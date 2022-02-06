@@ -25,7 +25,7 @@
                 Name="ScrollGrid"
                 Background="Transparent"
                 HorizontalScrollBarVisibility="Disabled"
-                VerticalScrollBarVisibility="Disabled">
+                VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
                     <StackPanel Margin="20,0" Orientation="Vertical">
                         <ItemsControl ItemsSource="{Binding Foods}">

@@ -39,5 +39,7 @@ void Configure(WebApplication app)
         app.UseSwaggerUI();
     }
 
+    app.UseStaticFiles();
+
     app.UseHttpsRedirection();
 }
