@@ -1,10 +1,4 @@
-﻿using Desktop.Enums;
-using Desktop.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Desktop.Data.Repositories.Abstract;
+﻿namespace Desktop.Data.Repositories.Abstract;
 
 public interface IFoodRepository : IDisposable
 {

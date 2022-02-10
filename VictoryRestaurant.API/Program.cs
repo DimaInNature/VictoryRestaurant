@@ -1,6 +1,3 @@
-using API.Services.Abstract.Repositories;
-using API.Services.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
 
 RegisterServices(services: builder.Services);

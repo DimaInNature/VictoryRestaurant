@@ -27,8 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API.Data\API.Data.csproj" />
-    <ProjectReference Include="..\API.Entities\API.Entities.csproj" />
-    <ProjectReference Include="..\API.Enums\API.Enums.csproj" />
     <ProjectReference Include="..\API.Services\API.Services.csproj" />
   </ItemGroup>
 

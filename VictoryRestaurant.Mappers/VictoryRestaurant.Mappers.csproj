@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.Entities\Web.Entities.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Entities\VictoryRestaurant.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,4 @@
-﻿using API.Data.Repositories.Abstract;
-using API.Services.Abstract.Repositories;
-using VictoryRestaurant.API;
-using VictoryRestaurant.API.Entities;
-
-namespace API.Services.Repositories;
+﻿namespace API.Services.Repositories;
 
 public class FoodRepositoryService : IFoodRepositoryService
 {

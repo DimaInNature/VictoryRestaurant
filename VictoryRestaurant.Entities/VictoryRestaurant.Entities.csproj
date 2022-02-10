@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VictoryRestaurant.Enums\VictoryRestaurant.Enums.csproj" />
+  </ItemGroup>
+
 </Project>

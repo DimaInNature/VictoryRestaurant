@@ -1,9 +1,4 @@
-﻿using Desktop.Enums;
-using Desktop.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Desktop.Services.Abstract.Repositories;
+﻿namespace Desktop.Services.Abstract.Repositories;
 
 public interface IFoodRepositoryService
 {

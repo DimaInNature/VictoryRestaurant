@@ -1,6 +1,4 @@
-﻿using VictoryRestaurant.Web.Enums;
-
-namespace VictoryRestaurant.Web.Services.Abstract.Foods;
+﻿namespace VictoryRestaurant.Web.Services.Abstract.Foods;
 
 public interface IFoodRepositoryService
 {

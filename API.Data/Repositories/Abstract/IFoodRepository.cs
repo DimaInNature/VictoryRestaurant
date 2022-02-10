@@ -1,7 +1,4 @@
-﻿using VictoryRestaurant.API;
-using VictoryRestaurant.API.Entities;
-
-namespace API.Data.Repositories.Abstract;
+﻿namespace API.Data.Repositories.Abstract;
 
 public interface IFoodRepository : IDisposable
 {
