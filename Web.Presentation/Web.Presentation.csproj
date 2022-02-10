@@ -20,7 +20,6 @@
     <None Include="wwwroot\css\fonts\flexslider-icon.woff" />
     <None Include="wwwroot\css\hero-slider.css" />
     <None Include="wwwroot\css\owl-carousel.css" />
-    <None Include="wwwroot\css\site.css" />
     <None Include="wwwroot\css\templatemo-style.css" />
     <None Include="wwwroot\favicon.ico" />
     <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
@@ -34,14 +33,6 @@
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
     <None Include="wwwroot\img\banner-bg.jpg" />
-    <None Include="wwwroot\img\blog_item_01.jpg" />
-    <None Include="wwwroot\img\blog_item_02.jpg" />
-    <None Include="wwwroot\img\blog_item_03.jpg" />
-    <None Include="wwwroot\img\blog_item_04.jpg" />
-    <None Include="wwwroot\img\blog_post_01.jpg" />
-    <None Include="wwwroot\img\blog_post_02.jpg" />
-    <None Include="wwwroot\img\blog_post_03.jpg" />
-    <None Include="wwwroot\img\blog_post_04.jpg" />
     <None Include="wwwroot\img\book-bg.jpg" />
     <None Include="wwwroot\img\book_left_image.jpg" />
     <None Include="wwwroot\img\breakfast_menu.jpg" />

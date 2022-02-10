@@ -1,141 +1,184 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Victory - Blog page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/css/fontAwesome.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/css/bootstrap-theme.min.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/css/hero-slider.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/css/owl-carousel.css")" rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/css/templatemo-style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/fontAwesome.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/bootstrap-theme.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/hero-slider.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/owl-carousel.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/templatemo-style.css")" rel="stylesheet" type="text/css" />
 
-        <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet"
+    >
 
-        <script asp-src-include="~/js/**/*.js"></script>
- 
-    </head>
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    >
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="/js/vendor/bootstrap.min.js"></script>
+
+    <script src="/js/plugins.js"></script>
+
+    <script src="/js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            // navigation click actions
+             $('.scroll-link').on('click', function(event)
+             {
+                 event.preventDefault();
+                 var sectionID = $(this).attr("data-id");
+                 scrollToID('#' + sectionID, 750);
+             });
+             // scroll to top action
+             $('.scroll-top').on('click', function(event)
+             {
+                 event.preventDefault();
+                 $('html, body').animate({scrollTop:0}, 'slow');
+             });
+             // mobile nav toggle
+             $('#nav-toggle').on('click', function (event)
+             {
+                 event.preventDefault();
+                 $('#main-nav').toggleClass("open");
+             });
+             });
+
+             // scroll function
+             function scrollToID(id, speed)
+             {
+                 var offSet = 0;
+                 var targetOffset = $(id).offset().top - offSet;
+                 var mainNav = $('#main-nav');
+                 $('html,body').animate({scrollTop:targetOffset}, speed);
+                 if (mainNav.hasClass("open"))
+                 {
+                     mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+                     mainNav.removeClass("open");
+                 }
+             }
+             
+             if (typeof console === "undefined")
+             {
+                 console =
+                 {
+                     log: function() { }
+                 };
+             }
+    </script>
+
+</head>
 
 <body>
+
     <div class="header">
         <div class="container">
+
             <a href="#" class="navbar-brand scroll-top">Victory</a>
+
             <nav class="navbar navbar-inverse" role="navigation">
+
                 <div class="navbar-header">
+
                     <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
                 </div>
+
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
 
-                        <li>@Html.ActionLink(
-                            linkText: "Home",
+                        <li>
+                            @Html.ActionLink(
+                            linkText: "Главная",
                             actionName: "Index",
-                            controllerName: "Home")</li>
+                            controllerName: "Home")
+                        </li>
 
-                        <li>@Html.ActionLink(
-                            linkText: "Our Menus",
+                        <li>
+                            @Html.ActionLink(
+                            linkText: "Меню",
                             actionName: "Index",
-                            controllerName: "Menu")</li>
+                            controllerName: "Menu")
+                        </li>
 
-                        <li>@Html.ActionLink(
-                            linkText: "Blog Entries",
+                        <li>
+                            @Html.ActionLink(
+                            linkText: "Связаться с нами",
                             actionName: "Index",
-                            controllerName: "Blog")</li>
+                            controllerName: "Contact")
+                        </li>
 
-                        <li>@Html.ActionLink(
-                            linkText: "Contact US",
-                            actionName: "Index",
-                            controllerName: "Contact")</li>
                     </ul>
+
                 </div>
+
                 <!--/.navbar-collapse-->
+
             </nav>
+
             <!--/.navbar-->
+
         </div>
+
         <!--/.container-->
+
     </div>
+
     <!--/.header-->
 
-   @RenderBody()
+    @RenderBody()
 
     <footer>
         <div class="container">
+
             <div class="row">
+
                 <div class="col-md-4">
-                    <p>Copyright &copy; 2020 Victory Template</p>
+
+                    <p>&copy; @DateTime.Now.Year
+                        <a href="https://templatemo.com/tm-507-victory"> Victory</a>
+                         by 
+                        <a href="https://github.com/DimaInNature"> DimaInNature</a>
+                    </p>
                 </div>
+
                 <div class="col-md-4">
+
                     <ul class="social-icons">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+
+                        <li><a href="https://github.com/DimaInNature" target="_blank"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://vk.com/feed" target="_blank"><i class="fa fa-vk"></i></a></li>
+                        <li><a href="https://telegram.org/" target="_blank"><i class="fa fa-telegram"></i></a></li>
+
                     </ul>
+
                 </div>
-                <div class="col-md-4">
-                    <p>Design: TemplateMo</p>
-                </div>
+
             </div>
+
         </div>
+
     </footer>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-    <script src="/js/vendor/bootstrap.min.js"></script>
-
-    <script src="/js/plugins.js"></script>
-    <script src="/js/main.js"></script>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-        // navigation click actions 
-        $('.scroll-link').on('click', function(event){
-            event.preventDefault();
-            var sectionID = $(this).attr("data-id");
-            scrollToID('#' + sectionID, 750);
-        });
-        // scroll to top action
-        $('.scroll-top').on('click', function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop:0}, 'slow');         
-        });
-        // mobile nav toggle
-        $('#nav-toggle').on('click', function (event) {
-            event.preventDefault();
-            $('#main-nav').toggleClass("open");
-        });
-    });
-    // scroll function
-    function scrollToID(id, speed){
-        var offSet = 0;
-        var targetOffset = $(id).offset().top - offSet;
-        var mainNav = $('#main-nav');
-        $('html,body').animate({scrollTop:targetOffset}, speed);
-        if (mainNav.hasClass("open")) {
-            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
-            mainNav.removeClass("open");
-        }
-    }
-    if (typeof console === "undefined") {
-        console = {
-            log: function() { }
-        };
-    }
-    </script>
 </body>
 </html>
