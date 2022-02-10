@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Desktop.Models\Desktop.Models.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj" />
   </ItemGroup>
 
 </Project>

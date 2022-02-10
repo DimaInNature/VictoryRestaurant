@@ -1,6 +1,4 @@
-﻿using API.Services.Abstract.Repositories;
-
-namespace VictoryRestaurant.API.Apis;
+﻿namespace VictoryRestaurant.API.Apis;
 
 public class FoodApi : IApi
 {

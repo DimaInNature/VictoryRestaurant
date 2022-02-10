@@ -1,6 +1,6 @@
-﻿using VictoryRestaurant.Web.Enums;
+﻿using VictoryRestaurant.Enums.Food;
 
-namespace VictoryRestaurant.Web.Domain;
+namespace VictoryRestaurant.Domain;
 
 public class Food
 {

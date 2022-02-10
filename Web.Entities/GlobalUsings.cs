@@ -1,1 +1,0 @@
-﻿global using VictoryRestaurant.Web.Enums;

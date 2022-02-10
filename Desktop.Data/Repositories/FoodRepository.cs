@@ -1,13 +1,4 @@
-﻿using Desktop.Data.Repositories.Abstract;
-using Desktop.Enums;
-using Desktop.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace Desktop.Data.Repositories;
+﻿namespace Desktop.Data.Repositories;
 
 public class FoodRepository : IFoodRepository
 {

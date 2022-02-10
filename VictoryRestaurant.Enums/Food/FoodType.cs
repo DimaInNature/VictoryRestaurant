@@ -1,4 +1,4 @@
-﻿namespace Desktop.Enums;
+﻿namespace VictoryRestaurant.Enums.Food;
 
 public enum FoodType
 {

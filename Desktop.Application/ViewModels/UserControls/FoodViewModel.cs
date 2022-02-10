@@ -1,6 +1,6 @@
-﻿using Desktop.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using VictoryRestaurant.Domain;
 
 namespace Desktop.Presentation.ViewModels.UserControls;
 

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Desktop.Core;
+﻿namespace Desktop.Core;
 
 public static class StringHelper
 {

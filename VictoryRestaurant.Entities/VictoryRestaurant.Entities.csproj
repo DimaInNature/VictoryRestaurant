@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\API.Enums\API.Enums.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Enums\VictoryRestaurant.Enums.csproj" />
   </ItemGroup>
 
 </Project>

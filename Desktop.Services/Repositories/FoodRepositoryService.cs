@@ -1,11 +1,4 @@
-﻿using Desktop.Data.Repositories.Abstract;
-using Desktop.Enums;
-using Desktop.Models;
-using Desktop.Services.Abstract.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Desktop.Services.Repositories;
+﻿namespace Desktop.Services.Repositories;
 
 public class FoodRepositoryService : IFoodRepositoryService
 {

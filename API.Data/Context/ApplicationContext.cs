@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VictoryRestaurant.API.Entities;
-
-namespace VictoryRestaurant.API;
+﻿namespace VictoryRestaurant.API;
 
 public class ApplicationContext : DbContext
 {

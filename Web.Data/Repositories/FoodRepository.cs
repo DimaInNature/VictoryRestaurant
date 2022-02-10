@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace VictoryRestaurant.Web.Data.Repositories;
+﻿namespace VictoryRestaurant.Web.Data.Repositories;
 
 public class FoodRepository : IFoodRepository
 {

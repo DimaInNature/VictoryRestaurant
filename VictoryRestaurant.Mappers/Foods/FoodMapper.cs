@@ -1,4 +1,4 @@
-﻿namespace VictoryRestaurant.Web.Mappers;
+﻿namespace VictoryRestaurant.Mappers.Foods;
 
 public static class FoodMapper
 {

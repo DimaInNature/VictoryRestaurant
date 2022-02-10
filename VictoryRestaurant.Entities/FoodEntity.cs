@@ -1,9 +1,8 @@
-﻿using Desktop.Enums;
-using System;
+﻿using VictoryRestaurant.Enums.Food;
 
-namespace Desktop.Models;
+namespace VictoryRestaurant.Entities;
 
-public class Food
+public class FoodEntity
 {
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }

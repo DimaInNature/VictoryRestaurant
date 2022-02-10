@@ -1,7 +1,4 @@
-﻿using VictoryRestaurant.API;
-using VictoryRestaurant.API.Entities;
-
-namespace API.Services.Abstract.Repositories;
+﻿namespace API.Services.Abstract.Repositories;
 
 public interface IFoodRepositoryService
 {

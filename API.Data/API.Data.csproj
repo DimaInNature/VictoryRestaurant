@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\API.Entities\API.Entities.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Entities\VictoryRestaurant.Entities.csproj" />
   </ItemGroup>
 
 </Project>
