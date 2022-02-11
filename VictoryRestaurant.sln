@@ -55,13 +55,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8562448C-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0FC1C777-6E3D-42FB-AC78-D8B2868B335B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictoryRestaurant.Enums", "VictoryRestaurant.Enums\VictoryRestaurant.Enums.csproj", "{4B349A21-D7A3-447E-B48E-6B5EDBDB5430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VictoryRestaurant.Enums", "VictoryRestaurant.Enums\VictoryRestaurant.Enums.csproj", "{4B349A21-D7A3-447E-B48E-6B5EDBDB5430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictoryRestaurant.Entities", "VictoryRestaurant.Entities\VictoryRestaurant.Entities.csproj", "{C663DB0B-ECC8-4F61-85D9-4E95AB48739C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VictoryRestaurant.Entities", "VictoryRestaurant.Entities\VictoryRestaurant.Entities.csproj", "{C663DB0B-ECC8-4F61-85D9-4E95AB48739C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictoryRestaurant.Domain", "VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj", "{CCB38381-78C9-4658-B4A4-628428F67003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VictoryRestaurant.Domain", "VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj", "{CCB38381-78C9-4658-B4A4-628428F67003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictoryRestaurant.Mappers", "VictoryRestaurant.Mappers\VictoryRestaurant.Mappers.csproj", "{1660185C-BF2C-42AA-A11D-378A8EC943DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VictoryRestaurant.Mappers", "VictoryRestaurant.Mappers\VictoryRestaurant.Mappers.csproj", "{1660185C-BF2C-42AA-A11D-378A8EC943DC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CCB38381-78C9-4658-B4A4-628428F67003} = {CCB38381-78C9-4658-B4A4-628428F67003}
 	EndProjectSection

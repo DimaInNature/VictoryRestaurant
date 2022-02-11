@@ -2,6 +2,6 @@
 
 public interface IFoodRepositoryService
 {
-    Task<IEnumerable<Food>> GetAllByFoodType(FoodType type);
-    Task<Food> GetFoodByFootType(FoodType type);
+    Task<IEnumerable<Food>> GetAllByFoodTypeAsync(FoodType type);
+    Task<Food> GetFoodByFootTypeAsync(FoodType type);
 }

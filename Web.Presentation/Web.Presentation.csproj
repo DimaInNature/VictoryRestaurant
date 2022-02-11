@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\error_food.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\bootstrap-theme.css" />
     <None Include="wwwroot\css\bootstrap-theme.css.map" />
     <None Include="wwwroot\css\bootstrap-theme.min.css" />
@@ -43,6 +47,7 @@
     <None Include="wwwroot\img\cook_dinner.png" />
     <None Include="wwwroot\img\cook_lunch.png" />
     <None Include="wwwroot\img\dinner_menu.jpg" />
+    <None Include="wwwroot\img\error_food.jpg" />
     <None Include="wwwroot\img\heading-bg.jpg" />
     <None Include="wwwroot\img\loading.gif" />
     <None Include="wwwroot\img\lunch_menu.jpg" />

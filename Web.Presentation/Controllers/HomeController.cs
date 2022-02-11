@@ -7,7 +7,8 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IFoodFacadeService _foodsService;
 
-    public HomeController(ILogger<HomeController> logger, IFoodFacadeService foodsService)
+    public HomeController(ILogger<HomeController> logger,
+        IFoodFacadeService foodsService)
     {
         _logger = logger;
         _foodsService = foodsService;
@@ -17,13 +18,13 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         ViewBag.WeeklyBreakfastFood = await _foodsService
-            .GetFoodByFootType(type: FoodType.Breakfast);
+                .GetFoodByFootTypeAsync(type: FoodType.Breakfast);
 
         ViewBag.WeeklyLunchFood = await _foodsService
-           .GetFoodByFootType(type: FoodType.Lunch);
+           .GetFoodByFootTypeAsync(type: FoodType.Lunch);
 
         ViewBag.WeeklyDinnerFood = await _foodsService
-            .GetFoodByFootType(type: FoodType.Dinner);
+            .GetFoodByFootTypeAsync(type: FoodType.Dinner);
 
         return View(viewName: "Index");
     }

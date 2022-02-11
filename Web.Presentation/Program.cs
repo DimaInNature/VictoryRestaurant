@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddTransient<IFoodRepository, FoodRepository>();
+builder.Services.AddSingleton<IFoodRepository, FoodRepository>();
 builder.Services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
 builder.Services.AddTransient<IFoodFacadeService, FoodFacadeService>();
 
