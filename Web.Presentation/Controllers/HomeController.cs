@@ -1,4 +1,8 @@
-﻿namespace VictoryRestaurant.Web.Presentation.Controllers;
+﻿using System.Net.NetworkInformation;
+using Victory.Restaurant.Services.Server;
+using VictoryRestaurant.Domain;
+
+namespace VictoryRestaurant.Web.Presentation.Controllers;
 
 [Route("/")]
 [Route("Home")]
@@ -6,9 +10,12 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IFoodFacadeService _foodsService;
+    private readonly ServerHTTPClientService _httpClientService;
 
-    public HomeController(ILogger<HomeController> logger, IFoodFacadeService foodsService)
+    public HomeController(ILogger<HomeController> logger,
+        IFoodFacadeService foodsService, ServerHTTPClientService httpClientService)
     {
+        _httpClientService = httpClientService;
         _logger = logger;
         _foodsService = foodsService;
     }
@@ -16,14 +23,32 @@ public class HomeController : Controller
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {
-        ViewBag.WeeklyBreakfastFood = await _foodsService
-            .GetFoodByFootType(type: FoodType.Breakfast);
+        try
+        {
+            var replyStatus = await _httpClientService.Ping();
 
-        ViewBag.WeeklyLunchFood = await _foodsService
-           .GetFoodByFootType(type: FoodType.Lunch);
+            if (replyStatus is IPStatus.Success)
+            {
+                ViewBag.WeeklyBreakfastFood = await _foodsService
+                .GetFoodByFootType(type: FoodType.Breakfast);
 
-        ViewBag.WeeklyDinnerFood = await _foodsService
-            .GetFoodByFootType(type: FoodType.Dinner);
+                ViewBag.WeeklyLunchFood = await _foodsService
+                   .GetFoodByFootType(type: FoodType.Lunch);
+
+                ViewBag.WeeklyDinnerFood = await _foodsService
+                    .GetFoodByFootType(type: FoodType.Dinner);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(message: $"HomeController {ex.Message}");
+
+            ViewBag.WeeklyBreakfastFood = new Food();
+
+            ViewBag.WeeklyLunchFood = new Food();
+
+            ViewBag.WeeklyDinnerFood = new Food();
+        }
 
         return View(viewName: "Index");
     }
