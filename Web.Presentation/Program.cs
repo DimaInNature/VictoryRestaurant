@@ -1,8 +1,12 @@
+using Web.Services.Foods;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IFoodRepository, FoodRepository>();
 builder.Services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
 builder.Services.AddTransient<IFoodFacadeService, FoodFacadeService>();
+
+builder.Services.AddTransient<FoodRepositoryServiceLoggerDecorator>();
 
 builder.Services.AddControllersWithViews();
 

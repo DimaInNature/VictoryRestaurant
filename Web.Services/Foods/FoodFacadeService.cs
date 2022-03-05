@@ -2,9 +2,9 @@
 
 public class FoodFacadeService : IFoodFacadeService
 {
-    private readonly IFoodRepositoryService _repositoryService;
+    private readonly FoodRepositoryServiceLoggerDecorator _repositoryService;
 
-    public FoodFacadeService(IFoodRepositoryService repositoryService)
+    public FoodFacadeService(FoodRepositoryServiceLoggerDecorator repositoryService)
     {
         _repositoryService = repositoryService;
     }
