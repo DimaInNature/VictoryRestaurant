@@ -122,6 +122,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj" />
     <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
   </ItemGroup>
 

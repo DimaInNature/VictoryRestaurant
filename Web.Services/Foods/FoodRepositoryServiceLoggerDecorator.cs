@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace Web.Services.Foods;
+﻿namespace Web.Services.Foods;
 
 public class FoodRepositoryServiceLoggerDecorator
 {

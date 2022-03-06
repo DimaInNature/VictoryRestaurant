@@ -9,11 +9,15 @@ public class ApplicationContext : DbContext
     }
 
     public DbSet<FoodEntity> Foods => Set<FoodEntity>();
+    public DbSet<BookingEntity> Bookings => Set<BookingEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<FoodEntity>().HasIndex(food => food.Id).IsUnique();
         modelBuilder.Entity<FoodEntity>().HasData(GetFoods());
+
+        modelBuilder.Entity<BookingEntity>().HasIndex(booking => booking.Id).IsUnique();
+        modelBuilder.Entity<BookingEntity>().HasData(GetBookings());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -133,4 +137,6 @@ public class ApplicationContext : DbContext
             #endregion
         };
     }
+
+    private List<BookingEntity> GetBookings() => new();
 }

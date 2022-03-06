@@ -3,13 +3,10 @@
 [Route("Menu")]
 public class MenuController : Controller
 {
-    private readonly ILogger<MenuController> _logger;
     private readonly IFoodFacadeService _foodService;
 
-    public MenuController(ILogger<MenuController> logger,
-        IFoodFacadeService foodService)
+    public MenuController(IFoodFacadeService foodService)
     {
-        _logger = logger;
         _foodService = foodService;
     }
 

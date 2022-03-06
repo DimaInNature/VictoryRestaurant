@@ -4,14 +4,14 @@
 [Route("Home")]
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
     private readonly IFoodFacadeService _foodsService;
+    private readonly IBookingFacaceService _bookingService;
 
-    public HomeController(ILogger<HomeController> logger,
-        IFoodFacadeService foodsService)
+    public HomeController(IFoodFacadeService foodsService,
+        IBookingFacaceService bookingService)
     {
-        _logger = logger;
         _foodsService = foodsService;
+        _bookingService = bookingService;
     }
 
     [HttpGet("")]

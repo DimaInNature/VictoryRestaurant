@@ -1,6 +1,12 @@
 ﻿global using Microsoft.AspNetCore.Mvc;
+global using VictoryRestaurant.Domain;
 global using VictoryRestaurant.Enums.Food;
 global using VictoryRestaurant.Web.Data.Repositories;
 global using VictoryRestaurant.Web.Data.Repositories.Abstract;
 global using VictoryRestaurant.Web.Services.Abstract.Foods;
 global using VictoryRestaurant.Web.Services.Foods;
+global using Web.Data.Repositories;
+global using Web.Data.Repositories.Abstract;
+global using Web.Services.Abstract.Bookings;
+global using Web.Services.Bookings;
+global using Web.Services.Foods;

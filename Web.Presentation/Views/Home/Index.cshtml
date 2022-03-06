@@ -15,7 +15,7 @@
                     <h2>Victory</h2>
                     <p class="text-muted lead">Только самые вкусные и изысканные блюда со всей Азии.</p>
                     <div class="primary-button">
-                        <a href="#" class="scroll-link" data-id="book-table">Забронировать столик</a>
+                        <a href="" class="scroll-link" data-id="book-table">Забронировать столик</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         </div>
                         <span>или</span>
                         <div class="primary-white-button">
-                            <a href="#" class="scroll-link" data-id="book-table">Сделать заказ</a>
+                            <a href="" class="scroll-link" data-id="book-table">Сделать заказ</a>
                         </div>
                     </div>
                 </div>
@@ -116,56 +116,56 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="right-info">
                         <h4>Бронирование</h4>
-                        <form id="form-submit" action="" method="get">
+                        <form id="form-submit" action="~/Bookings" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <select required name='day' onchange='this.form.()'>
+                                        <select required name='dayOfWeek' onchange='this.form.()'>
                                             <option value="">Выберите день</option>
-                                            <option value="Monday">Понедельник</option>
-                                            <option value="Tuesday">Вторник</option>
-                                            <option value="Wednesday">Среда</option>
-                                            <option value="Thursday">Четверг</option>
-                                            <option value="Friday">Пятница</option>
-                                            <option value="Saturday">Суббота</option>
-                                            <option value="Sunday">Воскресенье</option>
+                                            <option value="0">Понедельник</option>
+                                            <option value="1">Вторник</option>
+                                            <option value="2">Среда</option>
+                                            <option value="3">Четверг</option>
+                                            <option value="4">Пятница</option>
+                                            <option value="5">Суббота</option>
+                                            <option value="6">Воскресенье</option>
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <select required name='hour' onchange='this.form.()'>
+                                        <select required name='time' onchange='this.form.()'>
                                             <option value="">Выберите время</option>
-                                            <option value="10-00">10:00</option>
-                                            <option value="12-00">12:00</option>
-                                            <option value="14-00">14:00</option>
-                                            <option value="16-00">16:00</option>
-                                            <option value="18-00">18:00</option>
-                                            <option value="20-00">20:00</option>
-                                            <option value="22-00">22:00</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="12:00">12:00</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="22:00">22:00</option>
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <input name="name" type="name" class="form-control" id="name" placeholder="Ваше имя" required="">
+                                        <input name="name" type="name" class="form-control" id="Name" placeholder="Ваше имя" required="">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <input name="phone" type="phone" class="form-control" id="phone" placeholder="Телефон" required="">
+                                        <input name="phone" type="phone" class="form-control" id="Phone" placeholder="Телефон" required="">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <select required class="person" name='persons' onchange='this.form.()'>
+                                        <select required class="person" name='personCount' onchange='this.form.()'>
                                             <option value="">Сколько людей?</option>
-                                            <option value="1-Person">1 человек</option>
-                                            <option value="2-Persons">2 человека</option>
-                                            <option value="3-Persons">3 человека</option>
-                                            <option value="4-Persons">4 человека</option>
-                                            <option value="5-Persons">5 человек</option>
-                                            <option value="6-Persons">6 человек</option>
+                                            <option value="1">1 человек</option>
+                                            <option value="2">2 человека</option>
+                                            <option value="3">3 человека</option>
+                                            <option value="4">4 человека</option>
+                                            <option value="5">5 человек</option>
+                                            <option value="6">6 человек</option>
                                         </select>
                                     </fieldset>
                                 </div>
