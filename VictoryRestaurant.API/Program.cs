@@ -28,8 +28,12 @@ void RegisterServices(IServiceCollection services)
     services.AddScoped<IBookingRepository, BookingRepository>();
     services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
 
+    services.AddScoped<IContactMessageRepository, ContactMessageRepository>();
+    services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
+
     services.AddTransient<IApi, FoodApi>();
     services.AddTransient<IApi, BookingApi>();
+    services.AddTransient<IApi, ContactMessageApi>();
 }
 
 void Configure(WebApplication app)

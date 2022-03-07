@@ -1,4 +1,4 @@
-﻿namespace Web.Presentation.Controllers;
+﻿namespace Web.Presentation.Controllers.API;
 
 public class BookingController : Controller
 {

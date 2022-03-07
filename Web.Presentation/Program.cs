@@ -8,8 +8,13 @@ builder.Services.AddSingleton<IBookingRepository, BookingRepository>();
 builder.Services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
 builder.Services.AddTransient<IBookingFacaceService, BookingFacadeService>();
 
+builder.Services.AddSingleton<IContactMessageRepository, ContactMessageRepository>();
+builder.Services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
+builder.Services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
+
 builder.Services.AddTransient<FoodRepositoryServiceLoggerDecorator>();
 builder.Services.AddTransient<BookingRepositoryServiceLoggerDecorator>();
+builder.Services.AddTransient<ContactMessageRepositoryServiceLoggerDecorator>();
 
 builder.Services.AddControllersWithViews();
 

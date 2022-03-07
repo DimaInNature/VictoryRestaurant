@@ -10,6 +10,7 @@ public class ApplicationContext : DbContext
 
     public DbSet<FoodEntity> Foods => Set<FoodEntity>();
     public DbSet<BookingEntity> Bookings => Set<BookingEntity>();
+    public DbSet<ContactMessageEntity> ContactMessages => Set<ContactMessageEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -18,6 +19,9 @@ public class ApplicationContext : DbContext
 
         modelBuilder.Entity<BookingEntity>().HasIndex(booking => booking.Id).IsUnique();
         modelBuilder.Entity<BookingEntity>().HasData(GetBookings());
+
+        modelBuilder.Entity<ContactMessageEntity>().HasIndex(contactMessage => contactMessage.Id).IsUnique();
+        modelBuilder.Entity<ContactMessageEntity>().HasData(GetContactMessages());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -139,4 +143,6 @@ public class ApplicationContext : DbContext
     }
 
     private List<BookingEntity> GetBookings() => new();
+
+    private List<ContactMessageEntity> GetContactMessages() => new();
 }

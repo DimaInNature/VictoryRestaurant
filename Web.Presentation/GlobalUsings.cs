@@ -8,5 +8,7 @@ global using VictoryRestaurant.Web.Services.Foods;
 global using Web.Data.Repositories;
 global using Web.Data.Repositories.Abstract;
 global using Web.Services.Abstract.Bookings;
+global using Web.Services.Abstract.Messages;
 global using Web.Services.Bookings;
 global using Web.Services.Foods;
+global using Web.Services.Messages;
