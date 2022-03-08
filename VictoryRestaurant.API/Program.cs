@@ -31,9 +31,13 @@ void RegisterServices(IServiceCollection services)
     services.AddScoped<IContactMessageRepository, ContactMessageRepository>();
     services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
 
+    services.AddScoped<IMailSubscriberRepository, MailSubscriberRepository>();
+    services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRepositoryService>();
+
     services.AddTransient<IApi, FoodApi>();
     services.AddTransient<IApi, BookingApi>();
     services.AddTransient<IApi, ContactMessageApi>();
+    services.AddTransient<IApi, MailSubscriberApi>();
 }
 
 void Configure(WebApplication app)

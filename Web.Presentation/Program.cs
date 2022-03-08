@@ -12,9 +12,14 @@ builder.Services.AddSingleton<IContactMessageRepository, ContactMessageRepositor
 builder.Services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
 builder.Services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
 
+builder.Services.AddTransient<IMailSubscriberRepository, MailSubscriberRepository>();
+builder.Services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRepositoryService>();
+builder.Services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
+
 builder.Services.AddTransient<FoodRepositoryServiceLoggerDecorator>();
 builder.Services.AddTransient<BookingRepositoryServiceLoggerDecorator>();
 builder.Services.AddTransient<ContactMessageRepositoryServiceLoggerDecorator>();
+builder.Services.AddTransient<MailSubscriberRepositoryServiceLoggerDecorator>();
 
 builder.Services.AddControllersWithViews();
 
