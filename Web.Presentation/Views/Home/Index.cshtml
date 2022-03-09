@@ -189,7 +189,11 @@
                     <h2>Скачайте наше приложение прямо на Ваш компьютер</h2>
                 </div>
                 <div class="primary-white-button">
-                    <a href="#">Скачать</a>
+                    @Html.ActionLink(
+                        linkText: "Скачать",
+                        actionName: "Download",
+                        controllerName: "Download",
+                        routeValues: new { fileName = "client.jpg" })
                 </div>
             </div>
         </div>
