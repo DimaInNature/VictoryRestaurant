@@ -8,47 +8,55 @@
 <body>
 
     <section class="page-heading">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-md-12">
                     <h1>Свяжитесь с нами</h1>
                     <p>Задайте нам Ваши вопросы и мы обязательно на них ответим.</p>
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <section class="contact-us">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-md-6">
+
                     <div class="section-heading">
                         <h2>Написать нам</h2>
                     </div>
-                    <form id="contact" action="~/ContactMessages" method="post">
+
+                    <form asp-action="CreateContactMessage" asp-controller="ContactMessage" asp-antiforgery="true">
+
                         <div class="row">
+
                             <div class="col-md-6">
-                                <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Имя" required="">
-                                </fieldset>
-                                <fieldset>
-                                    <input name="email" type="text" class="form-control" id="email" placeholder="Электронная почта" required="">
-                                </fieldset>
-                                <fieldset>
-                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Телефон" required="">
-                                </fieldset>
+                                <input name="name" type="text" class="form-control" placeholder="Имя" required="">
+                                <input name="email" type="text" class="form-control" placeholder="Электронная почта" required="">
+                                <input name="phone" type="text" class="form-control" placeholder="Телефон" required="">
                             </div>
+
                             <div class="col-md-6">
-                                <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Ваше сообщение" required=""></textarea>
-                                </fieldset>
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="btn">Отправить</button>
-                                </fieldset>
+                                <textarea name="message" rows="6" class="form-control" placeholder="Ваше сообщение" required=""></textarea>
+                                <button type="submit" class="btn">Отправить</button>
                             </div>
+
                         </div>
+
                     </form>
+
                 </div>
+
                 <div class="col-md-6">
                     <div class="section-heading contact-info">
                         <h2>Информация</h2>
@@ -56,13 +64,19 @@
                             <br><br><em>ул. Кирова д. 19, <br>г.Астрахань 414000</em></p>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <section class="map">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-md-12">
                     <div id="map">
                         <iframe
@@ -75,9 +89,13 @@
                         </iframe>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
 </body>
+
 </html>
