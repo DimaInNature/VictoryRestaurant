@@ -30,32 +30,40 @@ public class BookingApi : IApi
             .WithTags("Deleters");
     }
 
-    private async Task<IResult> GetAll(IBookingRepositoryService repository)
+    private async Task<IResult> GetAll(IBookingFacadeService repository)
         => Results.Ok(await repository.GetBookingsAsync());
 
-    private async Task<IResult> GetById(int id, IBookingRepositoryService repository)
+    private async Task<IResult> GetById(int id, IBookingFacadeService repository)
         => await repository.GetBookingAsync(bookingId: id) is BookingEntity booking
         ? Results.Ok(booking)
         : Results.NotFound();
 
-    private async Task<IResult> Create([FromBody] BookingEntity booking, IBookingRepositoryService repository)
+    private async Task<IResult> Create([FromBody] BookingEntity booking,
+        IBookingFacadeService repository)
     {
         await repository.InsertBookingAsync(booking);
+
         await repository.SaveAsync();
+
         return Results.Created($"/Bookings/{booking.Id}", booking);
     }
 
-    private async Task<IResult> Put([FromBody] BookingEntity booking, IBookingRepositoryService repository)
+    private async Task<IResult> Put([FromBody] BookingEntity booking,
+        IBookingFacadeService repository)
     {
         await repository.UpdateBookingAsync(booking);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 
-    private async Task<IResult> Delete(int id, IBookingRepositoryService repository)
+    private async Task<IResult> Delete(int id, IBookingFacadeService repository)
     {
         await repository.DeleteBookingAsync(id);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 }

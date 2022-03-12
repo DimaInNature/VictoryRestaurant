@@ -2,13 +2,20 @@
 
 public class BookingFacadeService : IBookingFacaceService
 {
-    private readonly BookingRepositoryServiceLoggerDecorator _repositoryService;
+    private readonly BookingRepositoryServiceLoggerDecorator _repository;
+    private readonly ICacheService<Booking> _cache;
 
-    public BookingFacadeService(BookingRepositoryServiceLoggerDecorator repositoryService)
+    public BookingFacadeService(ICacheService<Booking> cache,
+        BookingRepositoryServiceLoggerDecorator repositoryService)
     {
-        _repositoryService = repositoryService;
+        _repository = repositoryService;
+        _cache = cache;
     }
 
-    public async Task InsertBookingAsync(Booking booking) =>
-        await _repositoryService.InsertBookingAsync(booking);
+    public async Task InsertBookingAsync(Booking booking)
+    {
+        await _repository.InsertBookingAsync(booking);
+
+        _cache.Set(key: booking.Id, value: booking);
+    }
 }

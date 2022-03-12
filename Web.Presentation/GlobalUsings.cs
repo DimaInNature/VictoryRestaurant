@@ -1,4 +1,8 @@
 ﻿global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.ResponseCompression;
+global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using System.IO.Compression;
 global using VictoryRestaurant.Domain;
 global using VictoryRestaurant.Enums.Food;
 global using VictoryRestaurant.Web.Data.Repositories;
@@ -8,6 +12,7 @@ global using VictoryRestaurant.Web.Services.Foods;
 global using Web.Data.Repositories;
 global using Web.Data.Repositories.Abstract;
 global using Web.Services.Abstract.Bookings;
+global using Web.Services.Abstract.Cache;
 global using Web.Services.Abstract.Messages;
 global using Web.Services.Abstract.Subscribers;
 global using Web.Services.Bookings;

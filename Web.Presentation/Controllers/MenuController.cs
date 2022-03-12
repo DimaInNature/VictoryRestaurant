@@ -10,6 +10,7 @@ public class MenuController : Controller
         _foodService = foodService;
     }
 
+    [ResponseCache(CacheProfileName = "Caching")]
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {

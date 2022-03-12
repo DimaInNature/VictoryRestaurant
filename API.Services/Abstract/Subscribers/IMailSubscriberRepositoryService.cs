@@ -1,6 +1,6 @@
-﻿namespace API.Data.Repositories.Abstract;
+﻿namespace API.Services.Abstract.Subscribers;
 
-public interface IMailSubscriberRepository : IDisposable
+public interface IMailSubscriberRepositoryService
 {
     Task<List<MailSubscriberEntity>> GetMailSubscribersAsync();
     Task<MailSubscriberEntity> GetMailSubscriberAsync(int mailSubscriberId);

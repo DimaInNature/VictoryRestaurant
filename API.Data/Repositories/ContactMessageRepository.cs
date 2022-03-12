@@ -3,6 +3,7 @@
 public class ContactMessageRepository : IContactMessageRepository
 {
     private readonly ApplicationContext _context;
+    private bool _disposed = false;
 
     public ContactMessageRepository(ApplicationContext context)
     {
@@ -21,6 +22,7 @@ public class ContactMessageRepository : IContactMessageRepository
     public async Task UpdateContactMessageAsync(ContactMessageEntity contactMessage)
     {
         var contactMessageFromDb = await _context.ContactMessages.FindAsync(new object[] { contactMessage.Id });
+
         if (contactMessageFromDb is null) return;
 
         contactMessageFromDb.Id = contactMessage.Id;
@@ -33,27 +35,26 @@ public class ContactMessageRepository : IContactMessageRepository
     public async Task DeleteContactMessageAsync(int contactMessageId)
     {
         var contactMessageFromDb = await _context.ContactMessages.FindAsync(new object[] { contactMessageId });
+
         if (contactMessageFromDb is null) return;
+
         _context.ContactMessages.Remove(contactMessageFromDb);
     }
 
-    public async Task SaveAsync() => await _context.SaveChangesAsync();
-
-    private bool _disposed = false;
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (_disposed is false)
-        {
-            if (disposing)
-                _context.Dispose();
-        }
-        _disposed = true;
-    }
+    public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
 
     public void Dispose()
     {
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed is false)
+            if (disposing)
+                _context.Dispose();
+
+        _disposed = true;
     }
 }

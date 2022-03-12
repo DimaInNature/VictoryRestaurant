@@ -14,6 +14,7 @@ public class HomeController : Controller
         _bookingService = bookingService;
     }
 
+    [ResponseCache(CacheProfileName = "Caching")]
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {

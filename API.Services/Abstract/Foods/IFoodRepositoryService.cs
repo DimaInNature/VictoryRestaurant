@@ -1,4 +1,4 @@
-﻿namespace API.Services.Abstract.Repositories;
+﻿namespace API.Services.Abstract.Foods;
 
 public interface IFoodRepositoryService
 {
@@ -10,5 +10,5 @@ public interface IFoodRepositoryService
     Task InsertFoodAsync(FoodEntity food);
     Task UpdateFoodAsync(FoodEntity food);
     Task DeleteFoodAsync(int foodId);
-    Task SaveAsync();
+    Task<int> SaveAsync();
 }

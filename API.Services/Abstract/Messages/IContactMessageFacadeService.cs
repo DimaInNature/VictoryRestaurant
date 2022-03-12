@@ -1,6 +1,6 @@
-﻿namespace API.Data.Repositories.Abstract;
+﻿namespace API.Services.Abstract.Messages;
 
-public interface IContactMessageRepository : IDisposable
+public interface IContactMessageFacadeService
 {
     Task<List<ContactMessageEntity>> GetContactMessagesAsync();
     Task<ContactMessageEntity> GetContactMessageAsync(int contactMessageId);

@@ -1,4 +1,4 @@
-﻿namespace API.Services.Repositories;
+﻿namespace API.Services.Foods;
 
 public class FoodRepositoryService : IFoodRepositoryService
 {
@@ -33,6 +33,6 @@ public class FoodRepositoryService : IFoodRepositoryService
     public async Task UpdateFoodAsync(FoodEntity food) =>
         await _repository.UpdateFoodAsync(food);
 
-    public async Task SaveAsync() =>
+    public async Task<int> SaveAsync() =>
         await _repository.SaveAsync();
 }

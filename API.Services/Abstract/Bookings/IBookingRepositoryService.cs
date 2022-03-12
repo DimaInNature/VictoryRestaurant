@@ -1,4 +1,4 @@
-﻿namespace API.Services.Abstract.Repositories;
+﻿namespace API.Services.Abstract.Bookings;
 
 public interface IBookingRepositoryService
 {
@@ -7,5 +7,5 @@ public interface IBookingRepositoryService
     Task InsertBookingAsync(BookingEntity booking);
     Task UpdateBookingAsync(BookingEntity booking);
     Task DeleteBookingAsync(int bookingId);
-    Task SaveAsync();
+    Task<int> SaveAsync();
 }

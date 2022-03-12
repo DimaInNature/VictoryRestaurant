@@ -30,34 +30,40 @@ public class ContactMessageApi : IApi
             .WithTags("Deleters");
     }
 
-    private async Task<IResult> GetAll(IContactMessageRepositoryService repository)
+    private async Task<IResult> GetAll(IContactMessageFacadeService repository)
         => Results.Ok(await repository.GetContactMessagesAsync());
 
-    private async Task<IResult> GetById(int id, IContactMessageRepositoryService repository)
+    private async Task<IResult> GetById(int id, IContactMessageFacadeService repository)
         => await repository.GetContactMessageAsync(contactMessageId: id) is ContactMessageEntity contactMessage
         ? Results.Ok(contactMessage)
         : Results.NotFound();
 
     private async Task<IResult> Create([FromBody] ContactMessageEntity contactMessage,
-        IContactMessageRepositoryService repository)
+        IContactMessageFacadeService repository)
     {
         await repository.InsertContactMessageAsync(contactMessage);
+
         await repository.SaveAsync();
+
         return Results.Created($"/ContactMessages/{contactMessage.Id}", contactMessage);
     }
 
     private async Task<IResult> Put([FromBody] ContactMessageEntity contactMessage,
-        IContactMessageRepositoryService repository)
+        IContactMessageFacadeService repository)
     {
         await repository.UpdateContactMessageAsync(contactMessage);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 
-    private async Task<IResult> Delete(int id, IContactMessageRepositoryService repository)
+    private async Task<IResult> Delete(int id, IContactMessageFacadeService repository)
     {
         await repository.DeleteContactMessageAsync(id);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 }

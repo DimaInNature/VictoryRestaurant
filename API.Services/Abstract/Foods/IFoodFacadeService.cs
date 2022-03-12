@@ -1,6 +1,6 @@
-﻿namespace API.Data.Repositories.Abstract;
+﻿namespace API.Services.Abstract.Foods;
 
-public interface IFoodRepository : IDisposable
+public interface IFoodFacadeService
 {
     Task<List<FoodEntity>> GetFoodsAsync();
     Task<List<FoodEntity>> GetFoodsAsync(string name);

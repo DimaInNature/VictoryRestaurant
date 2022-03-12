@@ -1,6 +1,6 @@
-﻿namespace API.Data.Repositories.Abstract;
+﻿namespace API.Services.Abstract.Bookings;
 
-public interface IBookingRepository : IDisposable
+public interface IBookingFacadeService
 {
     Task<List<BookingEntity>> GetBookingsAsync();
     Task<BookingEntity> GetBookingAsync(int bookingId);

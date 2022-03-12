@@ -1,4 +1,4 @@
-﻿namespace API.Services.Abstract.Repositories;
+﻿namespace API.Services.Abstract.Messages;
 
 public interface IContactMessageRepositoryService
 {
@@ -7,5 +7,5 @@ public interface IContactMessageRepositoryService
     Task InsertContactMessageAsync(ContactMessageEntity contactMessage);
     Task UpdateContactMessageAsync(ContactMessageEntity contactMessage);
     Task DeleteContactMessageAsync(int bookingId);
-    Task SaveAsync();
+    Task<int> SaveAsync();
 }

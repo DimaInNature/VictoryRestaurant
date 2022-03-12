@@ -30,34 +30,41 @@ public class MailSubscriberApi : IApi
             .WithTags("Deleters");
     }
 
-    private async Task<IResult> GetAll(IMailSubscriberRepositoryService repository)
+    private async Task<IResult> GetAll(IMailSubscriberFacadeService repository)
         => Results.Ok(await repository.GetMailSubscribersAsync());
 
-    private async Task<IResult> GetById(int id, IMailSubscriberRepositoryService repository)
+    private async Task<IResult> GetById(int id, IMailSubscriberFacadeService repository)
         => await repository.GetMailSubscriberAsync(mailSubscriberId: id) is MailSubscriberEntity mailSubscriber
         ? Results.Ok(mailSubscriber)
         : Results.NotFound();
 
     private async Task<IResult> Create([FromBody] MailSubscriberEntity mailSubscriber,
-        IMailSubscriberRepositoryService repository)
+        IMailSubscriberFacadeService repository)
     {
         await repository.InsertMailSubscriberAsync(mailSubscriber);
+
         await repository.SaveAsync();
+
         return Results.Created($"/MailSubscribers/{mailSubscriber.Id}", mailSubscriber);
     }
 
     private async Task<IResult> Put([FromBody] MailSubscriberEntity mailSubscriber,
-        IMailSubscriberRepositoryService repository)
+        IMailSubscriberFacadeService repository)
     {
         await repository.UpdateMailSubscriberAsync(mailSubscriber);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 
-    private async Task<IResult> Delete(int id, IMailSubscriberRepositoryService repository)
+    private async Task<IResult> Delete(int id,
+        IMailSubscriberFacadeService repository)
     {
         await repository.DeleteMailSubscriberAsync(id);
+
         await repository.SaveAsync();
+
         return Results.NoContent();
     }
 }

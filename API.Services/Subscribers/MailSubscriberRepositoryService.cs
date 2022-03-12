@@ -1,4 +1,4 @@
-﻿namespace API.Services.Repositories;
+﻿namespace API.Services.Subscribers;
 
 public class MailSubscriberRepositoryService : IMailSubscriberRepositoryService
 {
@@ -24,5 +24,5 @@ public class MailSubscriberRepositoryService : IMailSubscriberRepositoryService
     public async Task DeleteMailSubscriberAsync(int mailSubscriberId) =>
         await _repository.DeleteMailSubscriberAsync(mailSubscriberId);
 
-    public async Task SaveAsync() => await _repository.SaveAsync();
+    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

@@ -1,4 +1,4 @@
-﻿namespace API.Services.Repositories;
+﻿namespace API.Services.Bookings;
 
 public class BookingRepositoryService : IBookingRepositoryService
 {
@@ -24,5 +24,5 @@ public class BookingRepositoryService : IBookingRepositoryService
     public async Task DeleteBookingAsync(int bookingId) =>
         await _repository.DeleteBookingAsync(bookingId);
 
-    public async Task SaveAsync() => await _repository.SaveAsync();
+    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

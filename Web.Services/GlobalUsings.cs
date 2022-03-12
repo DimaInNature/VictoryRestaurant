@@ -1,4 +1,5 @@
-﻿global using Microsoft.Extensions.Logging;
+﻿global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.Logging;
 global using VictoryRestaurant.Domain;
 global using VictoryRestaurant.Enums.Food;
 global using VictoryRestaurant.Mappers.Bookings;
@@ -9,6 +10,7 @@ global using VictoryRestaurant.Web.Data.Repositories.Abstract;
 global using VictoryRestaurant.Web.Services.Abstract.Foods;
 global using Web.Data.Repositories.Abstract;
 global using Web.Services.Abstract.Bookings;
+global using Web.Services.Abstract.Cache;
 global using Web.Services.Abstract.Messages;
 global using Web.Services.Abstract.Subscribers;
 global using Web.Services.Foods;

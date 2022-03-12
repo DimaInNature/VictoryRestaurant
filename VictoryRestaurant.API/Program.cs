@@ -22,17 +22,28 @@ void RegisterServices(IServiceCollection services)
         options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
     });
 
+    services.AddMemoryCache();
+    services.TryAdd(descriptor: ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
+
     services.AddScoped<IFoodRepository, FoodRepository>();
     services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
+    services.AddTransient<ICacheService<FoodEntity>, FoodMemoryCacheService>();
+    services.AddTransient<IFoodFacadeService, FoodFacadeService>();
 
     services.AddScoped<IBookingRepository, BookingRepository>();
     services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
+    services.AddTransient<ICacheService<BookingEntity>, BookingMemoryCacheService>();
+    services.AddTransient<IBookingFacadeService, BookingFacadeService>();
 
     services.AddScoped<IContactMessageRepository, ContactMessageRepository>();
     services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
+    services.AddTransient<ICacheService<ContactMessageEntity>, ContactMessageMemoryCacheService>();
+    services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
 
     services.AddScoped<IMailSubscriberRepository, MailSubscriberRepository>();
     services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRepositoryService>();
+    services.AddTransient<ICacheService<MailSubscriberEntity>, MailSubscriberMemoryCacheService>();
+    services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
 
     services.AddTransient<IApi, FoodApi>();
     services.AddTransient<IApi, BookingApi>();

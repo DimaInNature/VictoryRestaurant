@@ -1,4 +1,4 @@
-﻿namespace API.Services.Repositories;
+﻿namespace API.Services.ContactMessages;
 
 public class ContactMessageRepositoryService : IContactMessageRepositoryService
 {
@@ -24,5 +24,5 @@ public class ContactMessageRepositoryService : IContactMessageRepositoryService
     public async Task DeleteContactMessageAsync(int bookingId) =>
         await _repository.DeleteContactMessageAsync(bookingId);
 
-    public async Task SaveAsync() => await _repository.SaveAsync();
+    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }
