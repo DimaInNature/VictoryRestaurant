@@ -27,8 +27,8 @@ void RegisterServices(IServiceCollection services)
 
     services.AddSingleton<ITokenService, TokenService>();
 
-    builder.Services.AddAuthorization();
-    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    services.AddAuthorization();
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
         {
             options.TokenValidationParameters = new()
