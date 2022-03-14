@@ -12,6 +12,7 @@ public class ApplicationContext : DbContext
     public DbSet<BookingEntity> Bookings => Set<BookingEntity>();
     public DbSet<ContactMessageEntity> ContactMessages => Set<ContactMessageEntity>();
     public DbSet<MailSubscriberEntity> MailSubscribers => Set<MailSubscriberEntity>();
+    public DbSet<UserEntity> Users => Set<UserEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +27,9 @@ public class ApplicationContext : DbContext
 
         modelBuilder.Entity<MailSubscriberEntity>().HasIndex(mailSubscriber => mailSubscriber.Id).IsUnique();
         modelBuilder.Entity<MailSubscriberEntity>().HasData(GetMailSubscribers());
+
+        modelBuilder.Entity<UserEntity>().HasIndex(user => user.Id).IsUnique();
+        modelBuilder.Entity<UserEntity>().HasData(GetUsers());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -151,4 +155,14 @@ public class ApplicationContext : DbContext
     private List<ContactMessageEntity> GetContactMessages() => new();
 
     private List<MailSubscriberEntity> GetMailSubscribers() => new();
+
+    private List<UserEntity> GetUsers() => new()
+    {
+        new()
+        {
+            Id = 1,
+            Login = "Admin",
+            Password = "Root"
+        }
+    };
 }

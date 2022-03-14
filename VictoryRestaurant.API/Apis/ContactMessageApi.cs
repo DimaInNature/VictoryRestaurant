@@ -30,14 +30,17 @@ public class ContactMessageApi : IApi
             .WithTags("Deleters");
     }
 
+    [Authorize]
     private async Task<IResult> GetAll(IContactMessageFacadeService repository)
         => Results.Ok(await repository.GetContactMessagesAsync());
 
+    [Authorize]
     private async Task<IResult> GetById(int id, IContactMessageFacadeService repository)
         => await repository.GetContactMessageAsync(contactMessageId: id) is ContactMessageEntity contactMessage
         ? Results.Ok(contactMessage)
         : Results.NotFound();
 
+    [AllowAnonymous]
     private async Task<IResult> Create([FromBody] ContactMessageEntity contactMessage,
         IContactMessageFacadeService repository)
     {
@@ -48,6 +51,7 @@ public class ContactMessageApi : IApi
         return Results.Created($"/ContactMessages/{contactMessage.Id}", contactMessage);
     }
 
+    [Authorize]
     private async Task<IResult> Put([FromBody] ContactMessageEntity contactMessage,
         IContactMessageFacadeService repository)
     {
@@ -58,6 +62,7 @@ public class ContactMessageApi : IApi
         return Results.NoContent();
     }
 
+    [Authorize]
     private async Task<IResult> Delete(int id, IContactMessageFacadeService repository)
     {
         await repository.DeleteContactMessageAsync(id);

@@ -1,3 +1,6 @@
+using Web.Services.Abstract.Authorization;
+using Web.Services.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMemoryCache();
@@ -26,6 +29,8 @@ builder.Services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRe
 builder.Services.AddTransient<MailSubscriberRepositoryServiceLoggerDecorator>();
 builder.Services.AddTransient<ICacheService<MailSubscriber>, MailSubscriberMemoryCacheService>();
 builder.Services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
+
+builder.Services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
 builder.Services.AddResponseCompression(options => options.EnableForHttps = true);
 

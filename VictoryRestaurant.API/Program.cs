@@ -25,6 +25,25 @@ void RegisterServices(IServiceCollection services)
     services.AddMemoryCache();
     services.TryAdd(descriptor: ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
 
+    services.AddSingleton<ITokenService, TokenService>();
+
+    builder.Services.AddAuthorization();
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new()
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    key: Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            };
+        });
+
     services.AddScoped<IFoodRepository, FoodRepository>();
     services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
     services.AddTransient<ICacheService<FoodEntity>, FoodMemoryCacheService>();
@@ -45,14 +64,24 @@ void RegisterServices(IServiceCollection services)
     services.AddTransient<ICacheService<MailSubscriberEntity>, MailSubscriberMemoryCacheService>();
     services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
 
+    services.AddScoped<IUserRepository, UserRepository>();
+    services.AddTransient<IUserRepositoryService, UserRepositoryService>();
+    services.AddTransient<ICacheService<UserEntity>, UserMemoryCacheService>();
+    services.AddTransient<IUserFacadeService, UserFacadeService>();
+
     services.AddTransient<IApi, FoodApi>();
     services.AddTransient<IApi, BookingApi>();
     services.AddTransient<IApi, ContactMessageApi>();
     services.AddTransient<IApi, MailSubscriberApi>();
+    services.AddTransient<IApi, UserApi>();
+    services.AddSingleton<IApi, AuthorizationApi>();
 }
 
 void Configure(WebApplication app)
 {
+    app.UseAuthentication();
+    app.UseAuthorization();
+
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();

@@ -1,9 +1,15 @@
 ﻿global using API.Data.Repositories.Abstract;
+global using API.Services.Abstract.Authorization;
 global using API.Services.Abstract.Bookings;
 global using API.Services.Abstract.Cache;
 global using API.Services.Abstract.Foods;
 global using API.Services.Abstract.Messages;
 global using API.Services.Abstract.Subscribers;
+global using API.Services.Abstract.Users;
 global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.IdentityModel.Tokens;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;
 global using VictoryRestaurant.Entities;
 global using VictoryRestaurant.Enums.Food;

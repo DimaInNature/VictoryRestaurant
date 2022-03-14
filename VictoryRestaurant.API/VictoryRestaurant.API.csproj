@@ -19,15 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\API.Data\API.Data.csproj" />
     <ProjectReference Include="..\API.Services\API.Services.csproj" />
+    <ProjectReference Include="..\VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj" />
   </ItemGroup>
 
 </Project>
