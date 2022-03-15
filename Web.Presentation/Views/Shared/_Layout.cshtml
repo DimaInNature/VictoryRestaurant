@@ -8,9 +8,7 @@
     <link rel="shortcut icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png" >
     <link rel="icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png" >
 
-    <link asp-href-include="~/css/**/*.css" asp-append-version="true" rel="stylesheet" type="text/css"/>
-
-    <link 
+     <link 
         href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
         rel="stylesheet"
     >
@@ -19,7 +17,9 @@
         href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
         rel="stylesheet"
     >
- 
+
+    <link asp-href-include="~/css/**/*.css" asp-append-version="true" rel="stylesheet" type="text/css"/>
+    
     <script 
         src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
     </script>
@@ -31,53 +31,6 @@
     </script>
 
     <script asp-src-include="~/js/**/*.js" asp-append-version="true"></script>
- 
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            // navigation click actions
-             $('.scroll-link').on('click', function(event)
-             {
-                 event.preventDefault();
-                 var sectionID = $(this).attr("data-id");
-                 scrollToID('#' + sectionID, 750);
-             });
-             // scroll to top action
-             $('.scroll-top').on('click', function(event)
-             {
-                 event.preventDefault();
-                 $('html, body').animate({scrollTop:0}, 'slow');
-             });
-             // mobile nav toggle
-             $('#nav-toggle').on('click', function (event)
-             {
-                 event.preventDefault();
-                 $('#main-nav').toggleClass("open");
-             });
-             });
-
-             // scroll function
-             function scrollToID(id, speed)
-             {
-                 var offSet = 0;
-                 var targetOffset = $(id).offset().top - offSet;
-                 var mainNav = $('#main-nav');
-                 $('html,body').animate({scrollTop:targetOffset}, speed);
-                 if (mainNav.hasClass("open"))
-                 {
-                     mainNav.css("height", "1px").removeClass("in").addClass("collapse");
-                     mainNav.removeClass("open");
-                 }
-             }
-             
-             if (typeof console === "undefined")
-             {
-                 console =
-                 {
-                     log: function() { }
-                 };
-             }
-    </script>
 
 </head>
 
@@ -114,6 +67,11 @@
                         <li>
                             <a asp-action="Index" asp-controller="Contact">Связаться с нами</a>
                         </li>
+                        <li>
+                             <div class="primary-button">
+                                 <a href="#popup" class="popup-link" id="open-popup">Вход</a>
+                             </div>
+                        </li>
                     </ul>
                 </div>
 
@@ -130,6 +88,22 @@
     </div>
 
     <!--/.header-->
+
+    <div class="popup" id="popup">
+        <div class="pop-up-container">
+            <div class="popup-body" id="popup-body">
+                <p>Вход</p>
+                <form>
+                    <input class="form-control" type="text" placeholder="Логин"/>
+                    <input class="form-control" type="text" placeholder="Пароль" />
+                    <button>Войти</button>
+                </form>
+                <a href="#" class="popup-close close-popup" id="popup-close">&#10006;</a>
+            </div>
+        </div>
+    </div>
+
+     <!--/.popup-->
 
     @RenderBody()
 
