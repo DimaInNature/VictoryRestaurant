@@ -20,6 +20,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Microsoft.IdentityModel.Tokens;
+global using System.Security.Claims;
 global using System.Text;
 global using VictoryRestaurant.API;
 global using VictoryRestaurant.API.Apis;

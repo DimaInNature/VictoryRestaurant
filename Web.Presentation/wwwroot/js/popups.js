@@ -1,12 +1,60 @@
-﻿window.addEventListener("load", () => {
+﻿const popupLinks = document.querySelectorAll('.popup-link');
+const body = document.querySelector('body');
+const lockPadding = document.querySelectorAll('.lock-padding');
 
-    const popupLinks = document.querySelectorAll('.popup-link');
-    const body = document.querySelector('body');
-    const lockPadding = document.querySelectorAll('.lock-padding');
+let unlock = true;
 
-    let unlock = true;
+const timeout = 500;
 
-    const timeout = 500;
+function popupClose(popupActive, doUnlock = true) {
+    if (unlock) {
+        popupActive.classList.remove('open');
+        if (doUnlock)
+            bodyUnlock();
+    }
+}
+
+function popupOpen(currentPopup) {
+    if (currentPopup && unlock) {
+        const popupActive = document.querySelector('.popup.open');
+        if (popupActive)
+            popupClose(popupActive, false);
+        else
+            bodyLock();
+
+        currentPopup.classList.add('open');
+        currentPopup.addEventListener("click", (e) => {
+            if (!e.target.closest('.popup-body'))
+                popupClose(e.target.closest('.popup'));
+        });
+    }
+}
+
+function bodyLock() {
+
+    body.classList.add('lock');
+
+    unlock = false;
+    setTimeout(() => {
+        unlock = true;
+    }, timeout);
+}
+
+function bodyUnlock() {
+    setTimeout(() => {
+        lockPadding.forEach(x => x.style.paddingRight = '0px');
+        body.style.paddingRight = '0px';
+        body.classList.remove('lock');
+    }, timeout);
+
+    unlock = false;
+
+    setTimeout(() => {
+        unlock = true;
+    }, timeout);
+}
+
+window.addEventListener("load", () => {
 
     if (popupLinks.length > 0) {
         for (let i = 0; i < popupLinks.length; i++) {
@@ -27,55 +75,6 @@
             e.preventDefault();
         }));
     }
-
-    function popupOpen(currentPopup) {
-        if (currentPopup && unlock) {
-            const popupActive = document.querySelector('.popup.open');
-            if (popupActive)
-                popupClose(popupActive, false);
-            else
-                bodyLock();
-            
-            currentPopup.classList.add('open');
-            currentPopup.addEventListener("click", (e) => {
-                if (!e.target.closest('.popup-body'))
-                    popupClose(e.target.closest('.popup'));
-            });
-        }
-    }
-
-    function popupClose(popupActive, doUnlock = true) {
-        if (unlock) {
-            popupActive.classList.remove('open');
-            if (doUnlock)
-                bodyUnlock();
-        }
-    }
-
-    function bodyLock() {
-      
-        body.classList.add('lock');
-
-        unlock = false;
-        setTimeout(() => {
-            unlock = true;
-        }, timeout);
-    }
-
-    function bodyUnlock() {
-        setTimeout(() => {
-            lockPadding.forEach(x => x.style.paddingRight = '0px');
-            body.style.paddingRight = '0px';
-            body.classList.remove('lock');
-        }, timeout);
-
-        unlock = false;
-
-        setTimeout(() => {
-            unlock = true;
-        }, timeout);
-    }
-
     this.document.addEventListener('keydown', (e) => {
         if (e.which === 27) {
             const popupActive = document.querySelector('.popup.open');

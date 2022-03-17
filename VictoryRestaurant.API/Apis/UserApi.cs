@@ -9,10 +9,20 @@ public class UserApi : IApi
             .WithName("GetAllUsers")
             .WithTags("Getters");
 
-        app.MapGet(pattern: "/Users/{id}", handler: GetById)
+        //app.MapGet(pattern: "/Users/{id}", handler: GetById)
+        //   .Produces<UserEntity>(StatusCodes.Status200OK)
+        //   .WithName("GetUser")
+        //   .WithTags("Getters");
+
+        app.MapGet(pattern: "/Users/{login}", handler: GetByLogin)
            .Produces<UserEntity>(StatusCodes.Status200OK)
-           .WithName("GetUser")
+           .WithName("GetUserByLogin")
            .WithTags("Getters");
+
+        app.MapGet(pattern: "/Users/{login}And{password}", handler: GetByLoginAndPassword)
+          .Produces<UserEntity>(StatusCodes.Status200OK)
+          .WithName("GetUserByLoginAndPassword")
+          .WithTags("Getters");
 
         app.MapPost(pattern: "/Users", handler: Create)
             .Accepts<UserEntity>("application/json")
@@ -30,7 +40,7 @@ public class UserApi : IApi
             .WithTags("Deleters");
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAll(IUserFacadeService repository)
         => Results.Ok(await repository.GetUsersAsync());
 
@@ -40,7 +50,20 @@ public class UserApi : IApi
         ? Results.Ok(user)
         : Results.NotFound();
 
-    [Authorize]
+    [AllowAnonymous]
+    private async Task<IResult> GetByLogin(string login, IUserFacadeService repository)
+        => await repository.GetUserAsync(login: login) is UserEntity user
+        ? Results.Ok(user)
+        : Results.NotFound();
+
+    [AllowAnonymous]
+    private async Task<IResult> GetByLoginAndPassword(string login,
+        string password, IUserFacadeService repository) =>
+        await repository.GetUserAsync(login: login, password: password) is UserEntity user
+        ? Results.Ok(user)
+        : Results.NotFound();
+
+    [AllowAnonymous]
     private async Task<IResult> Create([FromBody] UserEntity user,
         IUserFacadeService repository)
     {

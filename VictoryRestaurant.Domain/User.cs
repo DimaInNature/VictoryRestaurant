@@ -1,14 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using VictoryRestaurant.Enums.User;
 
 namespace VictoryRestaurant.Domain;
 
 public class User
 {
     public int Id { get; set; }
-
-    [Required]
-    public string Login { get; set; } = string.Empty;
-
-    [Required]
-    public string Password { get; set; } = string.Empty;
+    public string Login { get; set; }
+    public string Password { get; set; }
+    public UserRole Role { get; set; }
 }

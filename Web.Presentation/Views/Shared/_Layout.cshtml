@@ -5,32 +5,24 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png" >
-    <link rel="icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png" >
+    <link rel="shortcut icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png">
+    <link rel="icon" href="https://www.vogue.ru/verso/static/vogue-ru/assets/favicon.ico" type="image/png">
 
-     <link 
-        href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+          rel="stylesheet">
 
-    <link asp-href-include="~/css/**/*.css" asp-append-version="true" rel="stylesheet" type="text/css"/>
-    
-    <script 
-        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    <link asp-href-include="~/css/**/*.css" asp-append-version="true" rel="stylesheet" type="text/css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
     </script>
 
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous">
     </script>
-
-    <script asp-src-include="~/js/**/*.js" asp-append-version="true"></script>
 
 </head>
 
@@ -62,15 +54,20 @@
                             <a asp-action="Index" asp-controller="Home">Главная</a>
                         </li>
                         <li>
-                            <a asp-action="Index" asp-controller="Menu">Меню</a>
+                           <a asp-action="Index" asp-controller="Menu">Меню</a>
                         </li>
                         <li>
                             <a asp-action="Index" asp-controller="Contact">Связаться с нами</a>
                         </li>
-                        <li>
-                             <div class="primary-button">
-                                 <a href="#popup" class="popup-link" id="open-popup">Вход</a>
-                             </div>
+                        <li id="logInShowPopupButton">
+                            <div class="primary-button">
+                                <a href="#popup" class="popup-link" id="open-popup">Вход</a>
+                            </div>
+                        </li>
+                        <li id="logOutButton" style="display: none">
+                            <div class="primary-button">
+                                <a href="#" class="popup-link">Выход</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -91,20 +88,45 @@
 
     <div class="popup" id="popup">
         <div class="pop-up-container">
-            <div class="popup-body" id="popup-body">
+            <div class="popup-body">
                 <p>Вход</p>
                 <form>
-                    <input class="form-control" type="text" placeholder="Логин"/>
-                    <input class="form-control" type="text" placeholder="Пароль" />
-                    <button>Войти</button>
+
+                    <input id="login" name="login" class="form-control" type="text" placeholder="Логин" required="" />
+                    <input id="password" name="password" class="form-control" type="password" required="" />
+
+                    <button id="logInSubmit">Войти</button>
                 </form>
-                <a href="#" class="popup-close close-popup" id="popup-close">&#10006;</a>
+
+                <div class="primary-button">
+                    <a href="#popup_2" class="popup-link">Регистрация</a>
+                </div>
+                <a href="#" class="popup-close close-popup">&#10006;</a>
             </div>
         </div>
     </div>
 
-     <!--/.popup-->
+    <div class="popup" id="popup_2">
+        <div class="pop-up-container">
+            <div class="popup-body">
+                <p>Регистрация</p>
+                <form>
 
+                    <input name="login" class="form-control" type="text" placeholder="Логин" required="" />
+                    <input name="password" class="form-control" type="text" placeholder="Пароль" required="" />
+
+                    <button>Зарегистрироваться</button>
+                </form>
+
+                <div class="primary-button">
+                    <a href="#popup" class="popup-link">Вход</a>
+                </div>
+                <a href="#" class="popup-close close-popup">&#10006;</a>
+            </div>
+        </div>
+    </div>
+
+    <!--/.popup-->
     @RenderBody()
 
     <footer>
@@ -114,9 +136,10 @@
 
                 <div class="col-md-4">
 
-                    <p>&copy; @DateTime.Now.Year
+                    <p>
+                        &copy; @DateTime.Now.Year
                         <a href="https://templatemo.com/tm-507-victory"> Victory</a>
-                         by 
+                        by
                         <a href="https://github.com/DimaInNature"> DimaInNature</a>
                     </p>
                 </div>
@@ -148,6 +171,8 @@
         </div>
 
     </footer>
+
+      <script asp-src-include="~/js/**/*.js" asp-append-version="true"></script>
 
 </body>
 

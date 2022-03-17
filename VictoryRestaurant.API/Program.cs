@@ -4,16 +4,18 @@ RegisterServices(services: builder.Services);
 
 var app = builder.Build();
 
-Configure(app: app);
-
 // Register All Api's
 app.Services.GetServices<IApi>().ToList()
     .ForEach(x => x?.Register(app));
+
+Configure(app: app);
 
 app.Run();
 
 void RegisterServices(IServiceCollection services)
 {
+    services.AddCors();
+
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
@@ -26,6 +28,15 @@ void RegisterServices(IServiceCollection services)
     services.TryAdd(descriptor: ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
 
     services.AddSingleton<ITokenService, TokenService>();
+
+    //services.AddCors(options =>
+    //{
+    //    options.AddPolicy(name: "_myAllowSpecificOrigins",
+    //        builder =>
+    //        {
+    //            builder.WithOrigins("https://localhost:7129/");
+    //        });
+    //});
 
     services.AddAuthorization();
     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -73,14 +84,13 @@ void RegisterServices(IServiceCollection services)
     services.AddTransient<IApi, BookingApi>();
     services.AddTransient<IApi, ContactMessageApi>();
     services.AddTransient<IApi, MailSubscriberApi>();
-    services.AddTransient<IApi, UserApi>();
+    services.AddSingleton<IApi, UserApi>();
     services.AddSingleton<IApi, AuthorizationApi>();
 }
 
 void Configure(WebApplication app)
 {
-    app.UseAuthentication();
-    app.UseAuthorization();
+    app.UseCors(builder => builder.AllowAnyOrigin());
 
     if (app.Environment.IsDevelopment())
     {
@@ -88,7 +98,10 @@ void Configure(WebApplication app)
         app.UseSwaggerUI();
     }
 
+    app.UseHttpsRedirection();
+
     app.UseStaticFiles();
 
-    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
 }

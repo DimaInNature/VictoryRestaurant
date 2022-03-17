@@ -16,9 +16,11 @@ public class UserRepository : IUserRepository
     public async Task<UserEntity> GetUserAsync(int userId) =>
          await _context.Users.FindAsync(new object[] { userId });
 
-    public async Task<UserEntity> GetUserAsync(UserEntity user) =>
-        await _context.Users.FirstOrDefaultAsync(
-            u => string.Equals(u.Login, user.Login) && string.Equals(u.Password, user.Password));
+    public async Task<UserEntity> GetUserAsync(string login) =>
+         await _context.Users.FirstOrDefaultAsync(user => user.Login == login);
+
+    public async Task<UserEntity> GetUserAsync(string login, string password) =>
+        await _context.Users.FirstOrDefaultAsync(user => user.Login == login && user.Password == password);
 
     public async Task InsertUserAsync(UserEntity user) =>
          await _context.Users.AddAsync(user);

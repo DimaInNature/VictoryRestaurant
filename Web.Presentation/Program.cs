@@ -1,4 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 RegisterServices(services: builder.Services);
 
@@ -35,6 +40,12 @@ void RegisterServices(IServiceCollection services)
     services.AddTransient<ICacheService<MailSubscriber>, MailSubscriberMemoryCacheService>();
     services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
 
+    services.AddSingleton<IUserRepository, UserRepository>();
+    services.AddTransient<IUserRepositoryService, UserRepositoryService>();
+    services.AddTransient<UserRepositoryServiceLoggerDecorator>();
+    services.AddTransient<ICacheService<User>, UserMemoryCacheService>();
+    services.AddTransient<IUserFacadeService, UserFacadeService>();
+
     services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
     services.AddResponseCompression(options => options.EnableForHttps = true);
@@ -43,6 +54,31 @@ void RegisterServices(IServiceCollection services)
     {
         options.Level = CompressionLevel.Optimal;
     });
+
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                   .AddJwtBearer(options =>
+                   {
+                       options.RequireHttpsMetadata = false;
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+                           // укзывает, будет ли валидироваться издатель при валидации токена
+                           ValidateIssuer = true,
+                           // строка, представляющая издателя
+                           ValidIssuer = "Victory",
+
+                           // будет ли валидироваться потребитель токена
+                           ValidateAudience = true,
+                           // установка потребителя токена
+                           ValidAudience = "Victory",
+                           // будет ли валидироваться время существования
+                           ValidateLifetime = true,
+
+                           // установка ключа безопасности
+                           IssuerSigningKey = new SymmetricSecurityKey(key: Encoding.ASCII.GetBytes("VictoryKey-11111111111111111111111111")),
+                           // валидация ключа безопасности
+                           ValidateIssuerSigningKey = true,
+                       };
+                   });
 
     services.AddControllersWithViews(options =>
     {
@@ -77,7 +113,9 @@ void Configure(IApplicationBuilder app)
 
     app.UseRouting();
 
+    app.UseAuthentication();
     app.UseAuthorization();
+
 }
 
 app.MapControllerRoute(

@@ -162,7 +162,15 @@ public class ApplicationContext : DbContext
         {
             Id = 1,
             Login = "Admin",
-            Password = "Root"
+            Password = "Root",
+            Role = UserRole.Admin
+        },
+        new()
+        {
+            Id = 2,
+            Login = "User",
+            Password = "Root",
+            Role = UserRole.User
         }
     };
 }

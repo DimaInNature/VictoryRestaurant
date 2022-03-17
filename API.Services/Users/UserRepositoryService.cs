@@ -12,8 +12,11 @@ public class UserRepositoryService : IUserRepositoryService
     public async Task<List<UserEntity>> GetUsersAsync() =>
         await _repository.GetUsersAsync();
 
-    public async Task<UserEntity> GetUserAsync(UserEntity user) =>
-        await _repository.GetUserAsync(user);
+    public async Task<UserEntity> GetUserAsync(string login) =>
+        await _repository.GetUserAsync(login);
+
+    public async Task<UserEntity> GetUserAsync(string login, string password) =>
+        await _repository.GetUserAsync(login, password);
 
     public async Task<UserEntity> GetUserAsync(int userId) =>
         await _repository.GetUserAsync(userId);

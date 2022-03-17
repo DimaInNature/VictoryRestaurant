@@ -15,16 +15,19 @@ public class UserFacadeService : IUserFacadeService
     public async Task<List<UserEntity>> GetUsersAsync() =>
         await _repository.GetUsersAsync();
 
-    public async Task<UserEntity> GetUserAsync(UserEntity user)
+    public async Task<UserEntity> GetUserAsync(string login)
     {
-        if (_cache.TryGet(user.Id, out user))
-            return user;
-        else
-        {
-            user = await _repository.GetUserAsync(user);
+        var user = await _repository.GetUserAsync(login);
 
-            return _cache.Set(key: user.Id, value: user);
-        }
+        //return _cache.Set(key: user.Id, value: user);
+        return user;
+    }
+
+    public async Task<UserEntity> GetUserAsync(string login, string password)
+    {
+        var user = await _repository.GetUserAsync(login, password);
+
+        return _cache.Set(key: user.Id, value: user);
     }
 
     public async Task<UserEntity> GetUserAsync(int userId)
