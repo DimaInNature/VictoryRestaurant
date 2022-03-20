@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Food>
+
+<section class="@ViewBag.FoodTypeLower-menu">
+    
+    <div class="container">
+        
+        <div class="row">
+            
+            <div class="col-md-10 col-md-offset-1">
+                
+                <div class="@ViewBag.FoodTypeLower-menu-content">
+                    
+                    <div class="row">
+
+                        @if(ViewBag.Side == DisplaySide.Right)
+                        {
+                            <div class="col-md-5">
+                                
+                                <div class="left-image">
+                                    <img src="@Url.Content($@"~/img/{@ViewBag.FoodTypeLower}_menu.jpg")" alt="Food"/> 
+                                </div>
+                                
+                            </div>
+                        }
+                        
+                        <div class="col-md-7">
+
+                            <h2>На @ViewBag.FoodTypeMessage</h2>
+                            
+                            <div id="owl-@ViewBag.FoodTypeLower" class="owl-carousel owl-theme">
+                                
+                                @foreach(var food in Model)
+                                {
+                                    <div class="item col-md-12">
+
+                                        <div class="food-item">
+
+                                            <img src="@Url.Content(@food.ImagePath)" alt=""/>
+                                            <div class="price">
+                                                @String.Format(
+                                                    format:"${1,-5:0.00}",
+                                                    arg0:"{1,10:0.00}",
+                                                    arg1: food.CostInUSD).Replace(",",".")    
+                                            </div>
+                                            <div class="text-content">
+                                                <h4>@food.Name</h4>
+                                                <p>@food.Description</p>     
+                                            </div>
+                                            
+                                        </div>
+
+                                       </div>
+                                    }
+                                    
+                             </div>
+                             
+                         </div>
+
+                           @if(ViewBag.Side == DisplaySide.Left)
+                           {
+                               <div class="col-md-5">
+                                   
+                                   <div class="left-image">
+                                       <img src="@Url.Content($@"~/img/{@ViewBag.FoodTypeLower}_menu.jpg")" alt="Food"/>   
+                                   </div>
+                                   
+                               </div>
+                           }
+                         
+                     </div>
+                     
+                 </div>
+                 
+             </div>
+             
+         </div>
+         
+     </div>
+     
+ </section>

@@ -10,11 +10,11 @@ public class MailSubscriberController : Controller
     }
 
     [HttpPost("/MailSubscribers")]
-    public async Task<IActionResult> CreateMailSubscriber(string email)
+    public async Task<IActionResult> CreateMailSubscriber(string mail)
     {
         MailSubscriber mailSubscriber = new()
         {
-            Mail = email
+            Mail = mail
         };
 
         await _mailSubscriberService.InsertMailSubscriberAsync(mailSubscriber);

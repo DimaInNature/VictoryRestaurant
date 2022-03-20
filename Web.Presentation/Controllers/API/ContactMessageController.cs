@@ -11,11 +11,11 @@ public class ContactMessageController : Controller
 
     [HttpPost("/ContactMessages")]
     public async Task<IActionResult> CreateContactMessage(string name,
-        string phone, string email, string message)
+        string phone, string mail, string message)
     {
         ContactMessage contactMessage = new()
         {
-            Mail = email,
+            Mail = mail,
             Message = message,
             Name = name,
             Phone = phone

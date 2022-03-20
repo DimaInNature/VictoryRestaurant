@@ -30,7 +30,7 @@ public class MailSubscriberApi : IApi
             .WithTags("Deleters");
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAll(IMailSubscriberFacadeService repository)
         => Results.Ok(await repository.GetMailSubscribersAsync());
 

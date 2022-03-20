@@ -1,0 +1,50 @@
+﻿@model ContactMessage
+
+<section class="contact-us">
+    
+    <div class="container">
+        
+        <div class="row">
+            
+            <div class="col-md-6">
+                
+                <div class="section-heading">
+                    <h2>Написать нам</h2>  
+                </div>
+                
+                <form asp-action="CreateContactMessage" asp-controller="ContactMessage" asp-antiforgery="true">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <input class="form-control" asp-for=Name type="text" placeholder="Имя" required="">
+                            <input class="form-control" asp-for=Mail type="email" placeholder="Электронная почта" required="">
+                            <input class="form-control" asp-for=Phone type="text" placeholder="Телефон" required="">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <textarea class="form-control" asp-for=Message rows="6" placeholder="Ваше сообщение" required=""></textarea>
+                            <button type="submit" class="btn">Отправить</button>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <div class="col-md-6">
+                
+                <div class="section-heading contact-info">
+                    <h2>Информация</h2>
+                    <p>Если Вам не удалось с нами связаться. Вы можете подойти к нашему администратору по адресу:
+                        <br><br><em>@CompanyInfoConfiguration.Address, <br>@CompanyInfoConfiguration.City @CompanyInfoConfiguration.DeliveryIndex</em></p>   
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</section>

@@ -14,8 +14,7 @@ public class MenuController : Controller
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {
-        ViewBag.BreakfastFoods = await _foodService
-            .GetAllByFoodTypeAsync(type: FoodType.Breakfast);
+
 
         ViewBag.LunchFoods = await _foodService
             .GetAllByFoodTypeAsync(type: FoodType.Lunch);

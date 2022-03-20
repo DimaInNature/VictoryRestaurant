@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API.Data\API.Data.csproj" />
+    <ProjectReference Include="..\API.IoC\API.IoC.csproj" />
     <ProjectReference Include="..\API.Services\API.Services.csproj" />
     <ProjectReference Include="..\VictoryRestaurant.Domain\VictoryRestaurant.Domain.csproj" />
   </ItemGroup>

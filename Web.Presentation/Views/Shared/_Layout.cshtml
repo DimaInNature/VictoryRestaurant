@@ -27,152 +27,16 @@
 </head>
 
 <body>
-
-    <div class="header">
-
-        <div class="container">
-
-            <a href="#" class="navbar-brand scroll-top">Victory</a>
-
-            <nav class="navbar navbar-inverse" role="navigation">
-
-                <div class="navbar-header">
-
-                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-                <!--/.navbar-header-->
-                <div id="main-nav" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Home">Главная</a>
-                        </li>
-                        <li>
-                           <a asp-action="Index" asp-controller="Menu">Меню</a>
-                        </li>
-                        <li>
-                            <a asp-action="Index" asp-controller="Contact">Связаться с нами</a>
-                        </li>
-                        <li id="logInShowPopupButton">
-                            <div class="primary-button">
-                                <a href="#popup" class="popup-link" id="open-popup">Вход</a>
-                            </div>
-                        </li>
-                        <li id="logOutButton" style="display: none">
-                            <div class="primary-button">
-                                <a href="#" class="popup-link">Выход</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!--/.navbar-collapse-->
-
-            </nav>
-
-            <!--/.navbar-->
-
-        </div>
-
-        <!--/.container-->
-
-    </div>
-
-    <!--/.header-->
-
-    <div class="popup" id="popup">
-        <div class="pop-up-container">
-            <div class="popup-body">
-                <p>Вход</p>
-                <form>
-
-                    <input id="login" name="login" class="form-control" type="text" placeholder="Логин" required="" />
-                    <input id="password" name="password" class="form-control" type="password" required="" />
-
-                    <button id="logInSubmit">Войти</button>
-                </form>
-
-                <div class="primary-button">
-                    <a href="#popup_2" class="popup-link">Регистрация</a>
-                </div>
-                <a href="#" class="popup-close close-popup">&#10006;</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup" id="popup_2">
-        <div class="pop-up-container">
-            <div class="popup-body">
-                <p>Регистрация</p>
-                <form>
-
-                    <input name="login" class="form-control" type="text" placeholder="Логин" required="" />
-                    <input name="password" class="form-control" type="text" placeholder="Пароль" required="" />
-
-                    <button>Зарегистрироваться</button>
-                </form>
-
-                <div class="primary-button">
-                    <a href="#popup" class="popup-link">Вход</a>
-                </div>
-                <a href="#" class="popup-close close-popup">&#10006;</a>
-            </div>
-        </div>
-    </div>
-
-    <!--/.popup-->
+    
+    @await Html.PartialAsync("_Menu")
+    
+    @await Html.PartialAsync("_Login")
+    
     @RenderBody()
-
-    <footer>
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-4">
-
-                    <p>
-                        &copy; @DateTime.Now.Year
-                        <a href="https://templatemo.com/tm-507-victory"> Victory</a>
-                        by
-                        <a href="https://github.com/DimaInNature"> DimaInNature</a>
-                    </p>
-                </div>
-
-                <div class="col-md-4">
-
-                    <ul class="social-icons">
-                        <li>
-                            <a href="https://github.com/DimaInNature" target="_blank">
-                                <i class="fa fa-github"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://vk.com/feed" target="_blank">
-                                <i class="fa fa-vk"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://telegram.org/" target="_blank">
-                                <i class="fa fa-telegram"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-      <script asp-src-include="~/js/**/*.js" asp-append-version="true"></script>
+    
+    @await Html.PartialAsync("_Footer")
+    
+    <script asp-src-include="~/js/**/*.js" asp-append-version="true"></script>
 
 </body>
 

@@ -30,7 +30,7 @@ public class BookingApi : IApi
             .WithTags("Deleters");
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAll(IBookingFacadeService repository)
         => Results.Ok(await repository.GetBookingsAsync());
 

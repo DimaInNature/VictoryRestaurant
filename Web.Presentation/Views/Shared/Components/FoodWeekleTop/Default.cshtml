@@ -1,0 +1,86 @@
+﻿<section class="featured-food">
+    
+    <div class="container">
+        
+        <div class="row">
+
+            <div class="heading">
+                <h2>Топ недели</h2>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            
+            <div class="col-md-4">
+                
+                <div class="food-item">
+
+                    <h2>Завтрак</h2>
+                    <img src="@Url.Content(@ViewBag.WeeklyBreakfastFood.ImagePath)" alt="" />
+
+                    <div class="price">
+                        @String.Format(
+                            format:"${1,-5:0.00}",
+                            arg0:"{1,10:0.00}",
+                            arg1: ViewBag.WeeklyBreakfastFood.CostInUSD).Replace(",",".")                       
+                    </div>
+
+                    <div class="text-content">
+                        <h4>@ViewBag.WeeklyBreakfastFood.Name</h4>
+                        <p>@ViewBag.WeeklyBreakfastFood.Description</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="col-md-4">
+                
+                <div class="food-item">
+
+                    <h2>Обед</h2>
+                    <img src="@Url.Content(@ViewBag.WeeklyLunchFood.ImagePath)" alt="" />
+
+                    <div class="price">
+                        @String.Format(
+                            format:"${1,-5:0.00}",
+                            arg0:"{1,10:0.00}",
+                            arg1: ViewBag.WeeklyLunchFood.CostInUSD).Replace(",",".")
+                    </div>
+                    
+                    <div class="text-content">
+                        <h4>@ViewBag.WeeklyLunchFood.Name</h4>
+                        <p>@ViewBag.WeeklyLunchFood.Description</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="col-md-4">
+                
+                <div class="food-item">
+
+                    <h2>Ужин</h2>
+                    <img src="@Url.Content(@ViewBag.WeeklyDinnerFood.ImagePath)" alt="" />
+                    <div class="price">
+                        @String.Format(
+                            format:"${1,-5:0.00}",
+                            arg0:"{1,10:0.00}",
+                            arg1: ViewBag.WeeklyDinnerFood.CostInUSD).Replace(",",".") 
+                    </div>
+                    <div class="text-content">
+                        <h4>@ViewBag.WeeklyDinnerFood.Name</h4>
+                        <p>@ViewBag.WeeklyDinnerFood.Description</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</section>

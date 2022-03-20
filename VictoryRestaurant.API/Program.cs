@@ -16,92 +16,42 @@ void RegisterServices(IServiceCollection services)
 {
     services.AddCors();
 
+    // Minimal API
     services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
 
-    services.AddDbContext<ApplicationContext>(options =>
-    {
-        options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
-    });
+    // Setting DBContext
+    services.AddDatabaseConfiguration(builder);
 
-    services.AddMemoryCache();
-    services.TryAdd(descriptor: ServiceDescriptor.Singleton<IMemoryCache, MemoryCache>());
+    // Cache
+    services.AddCacheConfiguration();
 
-    services.AddSingleton<ITokenService, TokenService>();
+    // Auth
+    services.AddAuthenticationConfiguration(builder);
 
-    //services.AddCors(options =>
-    //{
-    //    options.AddPolicy(name: "_myAllowSpecificOrigins",
-    //        builder =>
-    //        {
-    //            builder.WithOrigins("https://localhost:7129/");
-    //        });
-    //});
+    // Swagger
+    services.AddSwaggerConfiguration();
 
-    services.AddAuthorization();
-    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new()
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                ValidAudience = builder.Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    key: Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-            };
-        });
+    // .NET Native DI Abstraction
+    services.AddDependencyInjectionConfiguration();
 
-    services.AddScoped<IFoodRepository, FoodRepository>();
-    services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
-    services.AddTransient<ICacheService<FoodEntity>, FoodMemoryCacheService>();
-    services.AddTransient<IFoodFacadeService, FoodFacadeService>();
-
-    services.AddScoped<IBookingRepository, BookingRepository>();
-    services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
-    services.AddTransient<ICacheService<BookingEntity>, BookingMemoryCacheService>();
-    services.AddTransient<IBookingFacadeService, BookingFacadeService>();
-
-    services.AddScoped<IContactMessageRepository, ContactMessageRepository>();
-    services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
-    services.AddTransient<ICacheService<ContactMessageEntity>, ContactMessageMemoryCacheService>();
-    services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
-
-    services.AddScoped<IMailSubscriberRepository, MailSubscriberRepository>();
-    services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRepositoryService>();
-    services.AddTransient<ICacheService<MailSubscriberEntity>, MailSubscriberMemoryCacheService>();
-    services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
-
-    services.AddScoped<IUserRepository, UserRepository>();
-    services.AddTransient<IUserRepositoryService, UserRepositoryService>();
-    services.AddTransient<ICacheService<UserEntity>, UserMemoryCacheService>();
-    services.AddTransient<IUserFacadeService, UserFacadeService>();
-
-    services.AddTransient<IApi, FoodApi>();
-    services.AddTransient<IApi, BookingApi>();
-    services.AddTransient<IApi, ContactMessageApi>();
-    services.AddTransient<IApi, MailSubscriberApi>();
-    services.AddSingleton<IApi, UserApi>();
-    services.AddSingleton<IApi, AuthorizationApi>();
+    // API
+    services.AddAPIConfiguration();
 }
 
 void Configure(WebApplication app)
 {
-    app.UseCors(builder => builder.AllowAnyOrigin());
-
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-
     app.UseHttpsRedirection();
+
+    app.UseCors(cors =>
+    {
+        cors.AllowAnyHeader();
+        cors.AllowAnyMethod();
+        cors.AllowAnyOrigin();
+    });
 
     app.UseStaticFiles();
 
-    app.UseAuthentication();
-    app.UseAuthorization();
+    app.UseAuthenticationConfiguration();
+
+    app.UseSwaggerSetup();
 }
