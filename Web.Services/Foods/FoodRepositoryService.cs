@@ -3,19 +3,21 @@
 public class FoodRepositoryService : IFoodRepositoryService
 {
     private readonly IFoodRepository _repository;
+    private readonly IMapper _mapper;
 
-    public FoodRepositoryService(IFoodRepository repository)
+    public FoodRepositoryService(IMapper mapper,
+        IFoodRepository repository)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Food>> GetAllByFoodTypeAsync(FoodType type) =>
         new List<Food>()
-        .Concat(_repository.GetAllByFoodType(type)
-            .Result.Select(x => x.ToDomain()));
+        .Concat(second: _repository.GetAllByFoodType(type)
+            .Result.Select(food => _mapper.Map<Food>(source: food)));
 
     public async Task<Food> GetFoodByFootTypeAsync(FoodType type) =>
-        await _repository
-        .GetFoodByFootTypeAsync(type)
-        .ToDomain();
+        _mapper.Map<Food>(
+            source: await _repository.GetFoodByFootTypeAsync(type));
 }

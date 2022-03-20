@@ -22,6 +22,9 @@ void RegisterServices(IServiceCollection services)
     // Setting DBContext
     services.AddDatabaseConfiguration(builder);
 
+    // AutoMapper Settings
+    services.AddAutoMapperConfiguration();
+
     // Cache
     services.AddCacheConfiguration();
 

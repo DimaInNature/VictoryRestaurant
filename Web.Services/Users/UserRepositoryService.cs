@@ -3,18 +3,24 @@
 public class UserRepositoryService : IUserRepositoryService
 {
     private readonly IUserRepository _repository;
+    private readonly IMapper _mapper;
 
-    public UserRepositoryService(IUserRepository repository)
+    public UserRepositoryService(IMapper mapper,
+        IUserRepository repository)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<User> GetUserAsync(string login) =>
-        await _repository.GetUserAsync(login).ToDomain();
+        _mapper.Map<User>(
+            source: await _repository.GetUserAsync(login));
 
     public async Task<User> GetUserAsync(string login, string password) =>
-        await _repository.GetUserAsync(login, password).ToDomain();
+        _mapper.Map<User>(
+            source: await _repository.GetUserAsync(login, password));
 
     public async Task InsertUserAsync(User user) =>
-        await _repository.InsertUserAsync(user.ToEntity());
+        await _repository.InsertUserAsync(
+            user: _mapper.Map<UserEntity>(source: user));
 }

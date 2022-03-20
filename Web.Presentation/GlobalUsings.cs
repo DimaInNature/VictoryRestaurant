@@ -8,6 +8,7 @@ global using System.IO.Compression;
 global using System.Text;
 global using VictoryRestaurant.Domain;
 global using VictoryRestaurant.Enums.Food;
+global using VictoryRestaurant.Mappers.Profiles;
 global using VictoryRestaurant.Web.Services.Abstract.Foods;
 global using Web.Enums.Views.Options;
 global using Web.IoC.Injectors;

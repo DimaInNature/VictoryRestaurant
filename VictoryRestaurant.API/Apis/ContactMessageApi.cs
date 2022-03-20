@@ -30,7 +30,7 @@ public class ContactMessageApi : IApi
             .WithTags("Deleters");
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAll(IContactMessageFacadeService repository)
         => Results.Ok(await repository.GetContactMessagesAsync());
 

@@ -27,6 +27,9 @@ void RegisterServices(IServiceCollection services)
             });
     });
 
+    // AutoMapper Settings
+    services.AddAutoMapperConfiguration();
+
     // Cache
     services.AddCacheConfiguration();
 
