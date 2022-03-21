@@ -34,7 +34,7 @@ public class BookingApi : IApi
     private async Task<IResult> GetAll(IBookingFacadeService repository)
         => Results.Ok(await repository.GetBookingsAsync());
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetById(int id, IBookingFacadeService repository)
         => await repository.GetBookingAsync(bookingId: id) is BookingEntity booking
         ? Results.Ok(booking)
@@ -51,7 +51,7 @@ public class BookingApi : IApi
         return Results.Created($"/Bookings/{booking.Id}", booking);
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Put([FromBody] BookingEntity booking,
         IBookingFacadeService repository)
     {
@@ -62,7 +62,7 @@ public class BookingApi : IApi
         return Results.NoContent();
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Delete(int id, IBookingFacadeService repository)
     {
         await repository.DeleteBookingAsync(id);

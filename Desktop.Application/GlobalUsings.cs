@@ -1,12 +1,12 @@
 ﻿global using Desktop.Core;
 global using Desktop.Core.MVVM.Command;
 global using Desktop.Core.MVVM.ViewModel;
-global using Desktop.Data.Repositories;
-global using Desktop.Data.Repositories.Abstract;
+global using Desktop.IoC.Injectors;
+global using Desktop.Presentation.Configurations;
 global using Desktop.Presentation.ViewModels;
+global using Desktop.Presentation.ViewModels.UserControls;
 global using Desktop.Presentation.Views;
-global using Desktop.Services.Abstract.Repositories;
-global using Desktop.Services.Repositories;
+global using Desktop.Services.Abstract.Foods;
 global using Microsoft.Extensions.DependencyInjection;
 global using System;
 global using System.Collections.Generic;

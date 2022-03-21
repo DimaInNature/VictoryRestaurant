@@ -34,7 +34,7 @@ public class MailSubscriberApi : IApi
     private async Task<IResult> GetAll(IMailSubscriberFacadeService repository)
         => Results.Ok(await repository.GetMailSubscribersAsync());
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetById(int id, IMailSubscriberFacadeService repository)
         => await repository.GetMailSubscriberAsync(mailSubscriberId: id) is MailSubscriberEntity mailSubscriber
         ? Results.Ok(mailSubscriber)
@@ -51,7 +51,7 @@ public class MailSubscriberApi : IApi
         return Results.Created($"/MailSubscribers/{mailSubscriber.Id}", mailSubscriber);
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Put([FromBody] MailSubscriberEntity mailSubscriber,
         IMailSubscriberFacadeService repository)
     {
@@ -62,7 +62,7 @@ public class MailSubscriberApi : IApi
         return Results.NoContent();
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Delete(int id,
         IMailSubscriberFacadeService repository)
     {

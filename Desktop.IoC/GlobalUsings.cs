@@ -1,0 +1,13 @@
+﻿global using Desktop.Data.Repositories;
+global using Desktop.Data.Repositories.Abstract;
+global using Desktop.Services.Abstract.Bookings;
+global using Desktop.Services.Abstract.Foods;
+global using Desktop.Services.Abstract.Messages;
+global using Desktop.Services.Abstract.Subscribers;
+global using Desktop.Services.Abstract.Users;
+global using Desktop.Services.Bookings;
+global using Desktop.Services.Foods;
+global using Desktop.Services.Messages;
+global using Desktop.Services.Subscribers;
+global using Desktop.Services.Users;
+global using Microsoft.Extensions.DependencyInjection;

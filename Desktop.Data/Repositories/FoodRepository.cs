@@ -2,6 +2,8 @@
 
 public class FoodRepository : IFoodRepository
 {
+    private bool _disposed = false;
+
     public async Task<List<Food>> GetFoodsAsync()
     {
         using var httpClient = new HttpClient();
@@ -10,7 +12,7 @@ public class FoodRepository : IFoodRepository
         return JsonConvert.DeserializeObject<List<Food>>(value: apiResponse) ?? new();
     }
 
-    public async Task<IEnumerable<Food>> GetAllByFoodType(FoodType type)
+    public async Task<List<Food>> GetAllByFoodType(FoodType type)
     {
         using var httpClient = new HttpClient();
         using var response = await httpClient.GetAsync(requestUri: $"https://localhost:7059/Foods/Search/Type/{type}");
@@ -26,21 +28,18 @@ public class FoodRepository : IFoodRepository
         return JsonConvert.DeserializeObject<Food>(value: apiResponse);
     }
 
-    private bool _disposed = false;
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (_disposed is false)
-        {
-            if (disposing)
-                Dispose();
-        }
-        _disposed = true;
-    }
-
     public void Dispose()
     {
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed is false)
+            if (disposing)
+                Dispose();
+
+        _disposed = true;
     }
 }

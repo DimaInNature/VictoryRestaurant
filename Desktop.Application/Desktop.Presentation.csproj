@@ -50,6 +50,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
     <ProjectReference Include="..\Desktop.Data\Desktop.Data.csproj" />
+    <ProjectReference Include="..\Desktop.IoC\Desktop.IoC.csproj" />
     <ProjectReference Include="..\Desktop.Services\Desktop.Services.csproj" />
   </ItemGroup>
 

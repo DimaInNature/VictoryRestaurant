@@ -47,11 +47,11 @@ public class FoodApi : IApi
             .WithTags("Deleters");
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAll(IFoodFacadeService repository)
         => Results.Ok(await repository.GetFoodsAsync());
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetById(int id, IFoodFacadeService repository) =>
         await repository.GetFoodAsync(foodId: id) is FoodEntity food
         ? Results.Ok(food)
@@ -63,7 +63,7 @@ public class FoodApi : IApi
         ? Results.Ok(food)
         : Results.NotFound();
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> GetAllByName(string query, IFoodFacadeService repository)
         => await repository.GetFoodsAsync(query) is IEnumerable<FoodEntity> foods
         ? Results.Ok(foods)
@@ -75,7 +75,7 @@ public class FoodApi : IApi
         ? Results.Ok(foods)
         : Results.NotFound(Array.Empty<FoodEntity>());
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Create([FromBody] FoodEntity food,
         IFoodFacadeService repository)
     {
@@ -86,7 +86,7 @@ public class FoodApi : IApi
         return Results.Created($"/Foods/{food.Id}", food);
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Put([FromBody] FoodEntity food,
         IFoodFacadeService repository)
     {
@@ -97,7 +97,7 @@ public class FoodApi : IApi
         return Results.NoContent();
     }
 
-    [Authorize]
+    [AllowAnonymous]
     private async Task<IResult> Delete(int id,
         IFoodFacadeService repository)
     {

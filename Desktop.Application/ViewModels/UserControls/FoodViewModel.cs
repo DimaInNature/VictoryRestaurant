@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using VictoryRestaurant.Domain;
-
-namespace Desktop.Presentation.ViewModels.UserControls;
+﻿namespace Desktop.Presentation.ViewModels.UserControls;
 
 public class FoodViewModel : BaseViewModel
 {
-    private readonly IFoodRepositoryService _foodRepository;
+    private readonly IFoodFacadeService _foodRepository;
 
-    public FoodViewModel(IFoodRepositoryService foodRepository)
+    public FoodViewModel(IFoodFacadeService foodRepository)
     {
         _foodRepository = foodRepository;
+
         Task.Run(InitializeData);
     }
 
@@ -18,18 +15,19 @@ public class FoodViewModel : BaseViewModel
 
     #region Data
 
-    public IEnumerable<Food> Foods
+    public List<Food> Foods
     {
         get => _foods;
         set
         {
             if (value is not null)
                 _foods = value;
+
             OnPropertyChanged(nameof(Foods));
         }
     }
 
-    private IEnumerable<Food> _foods;
+    private List<Food> _foods = new();
 
     #endregion
 

@@ -1,5 +1,10 @@
 ﻿global using Desktop.Data.Repositories.Abstract;
-global using Desktop.Services.Abstract.Repositories;
+global using Desktop.Services.Abstract.Bookings;
+global using Desktop.Services.Abstract.Foods;
+global using Desktop.Services.Abstract.Messages;
+global using Desktop.Services.Abstract.Subscribers;
+global using Desktop.Services.Abstract.Users;
+global using System;
 global using System.Collections.Generic;
 global using System.Threading.Tasks;
 global using VictoryRestaurant.Domain;
