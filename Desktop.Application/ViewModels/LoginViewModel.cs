@@ -2,8 +2,12 @@
 
 public class LoginViewModel : BaseViewModel
 {
-    public LoginViewModel()
+    private readonly IUserFacadeService _userService;
+
+    public LoginViewModel(IUserFacadeService userService)
     {
+        _userService = userService;
+
         InitializeCommands();
         SetViewCondition();
     }
@@ -158,8 +162,31 @@ public class LoginViewModel : BaseViewModel
     private bool CanExecuteLogin(object obj) =>
         StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
 
-    private void ExecuteLogin(object obj)
+    private async void ExecuteLogin(object obj)
     {
+        var user = await _userService.GetUserAsync(
+            login: EnterUserLogin,
+            password: Password);
+
+        if (user is null)
+        {
+            MessageBox.Show(messageBoxText: "Такого пользователя не существует.",
+                caption: "Ошибка авторизации", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        if (user.Role is not UserRole.Admin)
+        {
+            MessageBox.Show(
+                messageBoxText: "У вас нет права доступа.",
+                caption: "Система безопасности",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
         new MainView().Show();
 
         (obj as LoginView)?.Close();
@@ -168,9 +195,29 @@ public class LoginViewModel : BaseViewModel
     private bool CanExecuteRegistration(object obj) =>
         StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
 
-    private void ExecuteRegistration(object obj)
+    private async void ExecuteRegistration(object obj)
     {
-        new MainView().Show();
+        if (await _userService.GetUserAsync(login: CreateUserLogin) is not null)
+        {
+            MessageBox.Show(
+                messageBoxText: "Пользователь уже существует.",
+                caption: "Ошибка регистрации",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        User user = new()
+        {
+            Login = CreateUserLogin,
+            Password = RegisterPassword,
+            Role = UserRole.User
+        };
+
+        await _userService.InsertUserAsync(user);
+
+        new MainView(user).Show();
 
         (obj as LoginView)?.Close();
     }

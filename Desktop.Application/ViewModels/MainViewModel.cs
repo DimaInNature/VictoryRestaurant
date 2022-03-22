@@ -1,6 +1,4 @@
-﻿using Desktop.Presentation.Views.UserControls;
-
-namespace Desktop.Presentation.ViewModels;
+﻿namespace Desktop.Presentation.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
@@ -60,6 +58,8 @@ public class MainViewModel : BaseViewModel
     private Visibility _menuIsVisible;
 
     #endregion
+
+    public User ActiveUser { get; set; }
 
     #endregion
 

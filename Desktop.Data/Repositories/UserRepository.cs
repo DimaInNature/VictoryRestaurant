@@ -6,20 +6,40 @@ public class UserRepository : IUserRepository
 {
     private bool _disposed = false;
 
-    public async Task<List<User>> GetUsersAsync()
+    public async Task<List<User>?> GetUsersAsync()
     {
         using var httpClient = new HttpClient();
-        using var response = await httpClient.GetAsync(requestUri: "https://localhost:7059/Users");
+
+        using var response = await httpClient.GetAsync(
+            requestUri: "https://localhost:7059/Users");
+
         string apiResponse = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<List<User>>(value: apiResponse) ?? new();
+
+        return JsonConvert.DeserializeObject<List<User>>(value: apiResponse);
     }
 
-    public async Task<User> GetUserAsync(string login, string password)
+    public async Task<User?> GetUserAsync(string login)
     {
         using var httpClient = new HttpClient();
-        using var response = await httpClient.GetAsync(requestUri: $"https://localhost:7059/{login}And{password}");
+
+        using var response = await httpClient.GetAsync(
+            requestUri: $"https://localhost:7059/Users/Login/{login}");
+
         string apiResponse = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<User>(value: apiResponse) ?? new();
+
+        return JsonConvert.DeserializeObject<User>(value: apiResponse);
+    }
+
+    public async Task<User?> GetUserAsync(string login, string password)
+    {
+        using var httpClient = new HttpClient();
+
+        using var response = await httpClient.GetAsync(
+            requestUri: $"https://localhost:7059/Users/Login/{login}/Password/{password}");
+
+        string apiResponse = await response.Content.ReadAsStringAsync();
+
+        return JsonConvert.DeserializeObject<User>(value: apiResponse);
     }
 
     public async Task InsertUserAsync(User user)

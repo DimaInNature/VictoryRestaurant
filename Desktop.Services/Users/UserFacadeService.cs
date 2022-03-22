@@ -12,6 +12,9 @@ public sealed class UserFacadeService : IUserFacadeService
     public async Task<List<User>> GetUsersAsync() =>
         await _repository.GetUsersAsync();
 
+    public async Task<User?> GetUserAsync(string login) =>
+        await _repository.GetUserAsync(login);
+
     public async Task<User?> GetUserAsync(string login, string password) =>
         await _repository.GetUserAsync(login, password);
 

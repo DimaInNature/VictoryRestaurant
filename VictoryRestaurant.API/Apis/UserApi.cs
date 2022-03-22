@@ -14,12 +14,12 @@ public class UserApi : IApi
         //   .WithName("GetUser")
         //   .WithTags("Getters");
 
-        app.MapGet(pattern: "/Users/{login}", handler: GetByLogin)
+        app.MapGet(pattern: "/Users/Login/{login}", handler: GetByLogin)
            .Produces<UserEntity>(StatusCodes.Status200OK)
            .WithName("GetUserByLogin")
            .WithTags("Getters");
 
-        app.MapGet(pattern: "/Users/{login}And{password}", handler: GetByLoginAndPassword)
+        app.MapGet(pattern: "/Users/Login/{login}/Password/{password}", handler: GetByLoginAndPassword)
           .Produces<UserEntity>(StatusCodes.Status200OK)
           .WithName("GetUserByLoginAndPassword")
           .WithTags("Getters");

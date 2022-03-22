@@ -8,7 +8,7 @@ public static class NativeInjectorBootStrapper
         services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
         services.AddTransient<FoodRepositoryServiceLoggerDecorator>();
         services.AddTransient<ICacheService<Food>, FoodMemoryCacheService>();
-        services.AddTransient<IFoodFacadeService, FoodFacadeService>();
+        services.AddSingleton<IFoodFacadeService, FoodFacadeService>();
 
         services.AddSingleton<IBookingRepository, BookingRepository>();
         services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();

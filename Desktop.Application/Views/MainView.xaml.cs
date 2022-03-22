@@ -1,9 +1,4 @@
-﻿using Desktop.Presentation.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Input;
-using VictoryRestaurant.Desktop.Presentation;
-
-namespace Desktop.Presentation.Views;
+﻿namespace Desktop.Presentation.Views;
 
 public partial class MainView : Window
 {
@@ -11,7 +6,13 @@ public partial class MainView : Window
     {
         InitializeComponent();
         DataContext = (Application.Current as App)?
-                .ServiceProvider.GetService<MainViewModel>();
+                .ServiceProvider?.GetService<MainViewModel>();
+    }
+
+    public MainView(User activeUser) : this()
+    {
+        var vm = DataContext as MainViewModel ?? new MainViewModel();
+        vm.ActiveUser = activeUser;
     }
 
     private void WindowDragMove(object sender, MouseButtonEventArgs e)

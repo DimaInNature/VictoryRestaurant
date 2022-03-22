@@ -12,6 +12,10 @@ public sealed class UserRepositoryService : IUserRepositoryService
     public async Task<List<User>> GetUsersAsync() =>
         await _repository.GetUsersAsync() ?? new();
 
+    public async Task<User?> GetUserAsync(string login) =>
+        await _repository.GetUserAsync(
+            login: login ?? string.Empty);
+
     public async Task<User?> GetUserAsync(string login, string password) =>
         await _repository.GetUserAsync(
             login: login ?? string.Empty,

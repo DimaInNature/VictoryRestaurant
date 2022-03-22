@@ -27,6 +27,8 @@ public class UserFacadeService : IUserFacadeService
     {
         var user = await _repository.GetUserAsync(login, password);
 
+        if (user is null) return null;
+
         return _cache.Set(key: user.Id, value: user);
     }
 
