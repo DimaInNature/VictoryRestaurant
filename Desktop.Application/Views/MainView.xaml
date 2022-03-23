@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:Desktop.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="ThisWindow"
-    Title="Notebook"
+    Title="Victory - Главная"
     Width="800"
     Height="600"
     AllowsTransparency="True"
@@ -35,63 +35,46 @@
 
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="HomeMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
-        </EventTrigger>
-
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region View-->
+        <!--#region Foods-->
 
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ViewMenuRadioButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="FoodsMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
-        </EventTrigger>
-
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region Create-->
+        <!--#region Users-->
 
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="CreateMenuRadioButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="UsersMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
-        </EventTrigger>
-
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region Delete-->
+        <!--#region Bookings-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource ShowDeletePanel}" />
-        </EventTrigger>
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="DeleteMenuRadioButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="BookingsMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region Settings-->
+        <!--#region Mail subscribers-->
 
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="SettingsMenuRadioButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="MailSubscribersMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
+        <!--#endregion-->
+
+        <!--#region Contact messages-->
+
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ContactMessagesMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
         </EventTrigger>
 
         <!--#endregion-->
@@ -120,6 +103,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
@@ -132,19 +116,19 @@
                         Height="45"
                         Margin="20,5,0,0"
                         HorizontalAlignment="Left"
-                        Command="{Binding UpdateDataCollectionCommand}"
                         Style="{DynamicResource MenuButtonShow}"
                         Visibility="Visible" />
 
                 </Grid>
 
                 <Button
+                    x:Name="CloseApplicationButton"
                     Grid.Column="2"
                     Width="35"
                     Height="35"
                     Margin="0,0,20,0"
                     HorizontalAlignment="Right"
-                    Command="{Binding CloseApplicationCommand}"
+                    Click="CloseApplicationButton_Click"
                     Style="{DynamicResource ControlButtonCloseStyle}"
                     Visibility="Visible" />
 
@@ -172,12 +156,13 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
@@ -185,158 +170,93 @@
                     x:Name="HomeMenuRadioButton"
                     Grid.Row="1"
                     Width="180"
-                    Height="25"
+                    Height="35"
                     Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
                     Panel.ZIndex="3"
-                    Command="{Binding ShowMenuPageCommand}"
-                    Content="Home"
+                    Click="HomeMenuRadioButton_Click"
+                    Command="{Binding ShowHomePageCommand}"
+                    Content="Главная"
+                    IsChecked="True"
                     Style="{DynamicResource MenuRadioButtonStyle}" />
 
                 <RadioButton
-                    x:Name="ViewMenuRadioButton"
+                    x:Name="FoodsMenuRadioButton"
                     Grid.Row="2"
                     Width="180"
-                    Height="25"
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
+                    Height="35"
+                    Margin="10,0,5,0"
+                    HorizontalAlignment="Right"
                     Panel.ZIndex="3"
-                    Command="{Binding ShowFoodPageCommand}"
+                    Click="FoodsMenuRadioButton_Click"
+                    Command="{Binding ShowFoodsPageCommand}"
                     Content="Меню"
                     Style="{DynamicResource MenuRadioButtonStyle}" />
 
                 <RadioButton
-                    x:Name="CreateMenuRadioButton"
+                    x:Name="UsersMenuRadioButton"
                     Grid.Row="3"
                     Width="180"
-                    Height="25"
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
+                    Height="35"
+                    Margin="10,0,5,0"
+                    HorizontalAlignment="Right"
                     Panel.ZIndex="3"
-                    Command="{Binding ShowBlogPageCommand}"
-                    Content="Блог"
+                    Click="UsersMenuRadioButton_Click"
+                    Command="{Binding ShowUsersPageCommand}"
+                    Content="Пользователи"
                     Style="{DynamicResource MenuRadioButtonStyle}" />
 
                 <RadioButton
-                    x:Name="DeleteMenuRadioButton"
+                    x:Name="BookingsMenuRadioButton"
                     Grid.Row="4"
                     Width="180"
-                    Height="25"
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
+                    Height="35"
+                    Margin="10,0,5,0"
+                    HorizontalAlignment="Right"
                     Panel.ZIndex="3"
-                    Command="{Binding ShowOrderPageCommand}"
+                    Click="BookingsMenuRadioButton_Click"
+                    Command="{Binding ShowBookingsPageCommand}"
                     Content="Заказы"
                     Style="{DynamicResource MenuRadioButtonStyle}" />
 
                 <RadioButton
-                    x:Name="SettingsMenuRadioButton"
+                    x:Name="MailSubscribersMenuRadioButton"
                     Grid.Row="5"
                     Width="180"
-                    Height="25"
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
+                    Height="35"
+                    Margin="10,0,5,0"
+                    HorizontalAlignment="Right"
                     Panel.ZIndex="3"
-                    Command="{Binding ShowSettingsPageCommand}"
-                    Content="Настройки"
+                    Click="MailSubscribersMenuRadioButton_Click"
+                    Command="{Binding ShowMailSubscribersPageCommand}"
+                    Content="Подписчики"
+                    Style="{DynamicResource MenuRadioButtonStyle}" />
+
+                <RadioButton
+                    x:Name="ContactMessagesMenuRadioButton"
+                    Grid.Row="6"
+                    Width="180"
+                    Height="35"
+                    Margin="10,0,5,0"
+                    HorizontalAlignment="Right"
+                    Panel.ZIndex="3"
+                    Click="ContactMessagesMenuRadioButton_Click"
+                    Command="{Binding ShowContactMessagesPageCommand}"
+                    Content="Сообщения"
                     Style="{DynamicResource MenuRadioButtonStyle}" />
 
                 <Button
                     x:Name="LogoutMenuButton"
-                    Grid.Row="6"
+                    Grid.Row="7"
                     Width="180"
-                    Height="25"
+                    Height="35"
                     Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
                     Panel.ZIndex="3"
-                    Command="{Binding LogoutCommand}"
+                    Click="LogoutMenuButton_Click"
                     CommandParameter="{Binding ElementName=ThisWindow}"
                     Content="Выйти"
                     Style="{DynamicResource MenuUserExitButton}" />
 
             </Grid>
-
-            <!--#endregion-->
-
-            <!--#region Panels-->
-
-            <!--#region Delete-->
-
-            <Border
-                x:Name="DeleteMenuPanel"
-                Grid.Row="0"
-                Grid.RowSpan="2"
-                Margin="0,0,300,0"
-                Panel.ZIndex="2"
-                Background="White"
-                CornerRadius="20"
-                Opacity="0"
-                Visibility="Collapsed">
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="300" />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Background="Transparent" Column="0" />
-
-                    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
-
-                        <StackPanel Orientation="Vertical">
-
-                            <ListBox
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                ItemsSource="{Binding Notes, Mode=TwoWay}"
-                                SelectedItem="{Binding SelectedDeleteNote, Mode=TwoWay}">
-
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseLeftButtonUp">
-                                        <i:InvokeCommandAction Command="{Binding SelectDeleteItemCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-
-                                        <Border
-                                            Width="250"
-                                            Height="40"
-                                            Margin="10,0,10,0"
-                                            Background="{DynamicResource AccentColor}"
-                                            CornerRadius="10">
-
-                                            <Grid>
-
-                                                <TextBlock
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    FontSize="20"
-                                                    Foreground="{DynamicResource ItemForeground}"
-                                                    Style="{DynamicResource TextBlockStyle}"
-                                                    Text="{Binding Title}" />
-
-                                            </Grid>
-
-                                        </Border>
-
-                                    </DataTemplate>
-
-                                </ListBox.ItemTemplate>
-
-                            </ListBox>
-
-                        </StackPanel>
-
-                    </ScrollViewer>
-
-                </Grid>
-
-            </Border>
-
-            <!--#endregion-->
 
             <!--#endregion-->
 
@@ -358,6 +278,7 @@
                 Height="30"
                 Margin="200,-20,0,0"
                 HorizontalAlignment="Left"
+                Panel.ZIndex="1"
                 Style="{DynamicResource MenuButtonClose}"
                 Visibility="Collapsed" />
 
@@ -379,10 +300,11 @@
                         </Grid.RowDefinitions>
 
                         <Button
-                            x:Name="HomeCreateOrderButton"
+                            x:Name="FoodsButton"
                             Grid.Row="0"
                             Margin="15"
-                            Command="{Binding ShowFoodPageCommand}"
+                            Click="FoodsButton_Click"
+                            Command="{Binding ShowFoodsPageCommand}"
                             Content="Меню"
                             FontSize="70"
                             Style="{DynamicResource HomeButtonStyle}" />
@@ -393,33 +315,47 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                                 <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <Button
-                                x:Name="HomeViewOrderButton"
+                                x:Name="UsersButton"
                                 Grid.Column="0"
                                 Margin="15,0,5,15"
-                                Command="{Binding ShowBlogPageCommand}"
-                                Content="Блог"
-                                FontSize="30"
+                                Click="UsersButton_Click"
+                                Command="{Binding ShowUsersPageCommand}"
+                                Content="Пользователи"
+                                FontSize="25"
                                 Style="{DynamicResource HomeButtonStyle}" />
 
                             <Button
-                                x:Name="HomeDeleteOrderButton"
+                                x:Name="BookingsButton"
                                 Grid.Column="1"
                                 Margin="15,0,5,15"
-                                Command="{Binding ShowOrderPageCommand}"
+                                Click="BookingsButton_Click"
+                                Command="{Binding ShowBookingsPageCommand}"
                                 Content="Заказы"
                                 FontSize="30"
                                 Style="{DynamicResource HomeButtonStyle}" />
 
                             <Button
-                                x:Name="HomeSettingsOrderButton"
+                                x:Name="MailSubscribersButton"
                                 Grid.Column="2"
                                 Margin="15,0,15,15"
-                                Command="{Binding ShowSettingsPageCommand}"
-                                Content="Настройки"
-                                FontSize="30"
+                                Click="MailSubscribersButton_Click"
+                                Command="{Binding ShowMailSubscribersPageCommand}"
+                                Content="Подписчики"
+                                FontSize="27"
+                                Style="{DynamicResource HomeButtonStyle}" />
+
+                            <Button
+                                x:Name="ContactMessagesButton"
+                                Grid.Column="3"
+                                Margin="15,0,15,15"
+                                Click="ContactMessagesButton_Click"
+                                Command="{Binding ShowContactMessagesPageCommand}"
+                                Content="Сообщения"
+                                FontSize="27"
                                 Style="{DynamicResource HomeButtonStyle}" />
 
                         </Grid>
@@ -443,6 +379,5 @@
         </Grid>
 
     </Border>
-
 
 </Window>

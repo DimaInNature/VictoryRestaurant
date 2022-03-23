@@ -1,24 +1,25 @@
 ﻿namespace VictoryRestaurant.Desktop.Presentation.ViewModels;
 
-public class LoginViewModel : BaseViewModel
+internal sealed class LoginViewModel
+    : BaseViewModel, ILoginViewModel
 {
-    private readonly IUserFacadeService _userService;
+    #region Members
 
-    public LoginViewModel(IUserFacadeService userService)
-    {
-        _userService = userService;
+    #region Commands
 
-        InitializeCommands();
-        SetViewCondition();
-    }
+    public ICommand? LoginCommand { get; private set; }
 
-    #region Properties
+    public ICommand? RegistrationCommand { get; private set; }
 
-    #region Login
+    #endregion
+
+    #region Areas
+
+    #region Authorization
 
     public string EnterUserLogin
     {
-        get => _enterUserLogin;
+        get => _enterUserLogin ?? string.Empty;
         set
         {
             _enterUserLogin = string.IsNullOrWhiteSpace(value)
@@ -28,46 +29,37 @@ public class LoginViewModel : BaseViewModel
         }
     }
 
-    private string _enterUserLogin;
-
     public SecureString SecurePassword
     {
-        get => _securePassword;
+        get => _securePassword ?? new();
         set
         {
             _securePassword = value;
+
             OnPropertyChanged(nameof(SecurePassword));
             OnPropertyChanged(nameof(Password));
         }
     }
 
-    private SecureString _securePassword;
-
     public unsafe string Password
     {
         [SecurityCritical]
-        get => SecurePassword is null
-            ? string.Empty
-            : new string(value: (char*)(void*)Marshal.SecureStringToBSTR(s: SecurePassword));
+        get => new(value: (char*)(void*)Marshal.SecureStringToBSTR(s: SecurePassword));
         [SecurityCritical]
         set
         {
             if (value is null)
                 value = string.Empty;
 
-            using (SecureString secureString = new SecureString())
+            using (SecureString secureString = new())
             {
-                for (int i = 0; i < value.Length; i++)
-                {
-                    secureString.AppendChar(c: value[i]);
-                }
+                foreach (char c in value)
+                    secureString.AppendChar(c);
             }
             _password = value;
             IsPasswordWatermarkVisible = string.IsNullOrEmpty(_password);
         }
     }
-
-    private string _password;
 
     #endregion
 
@@ -75,7 +67,7 @@ public class LoginViewModel : BaseViewModel
 
     public string CreateUserLogin
     {
-        get => _createUserLogin;
+        get => _createUserLogin ?? string.Empty;
         set
         {
             _createUserLogin = string.IsNullOrWhiteSpace(value)
@@ -85,11 +77,9 @@ public class LoginViewModel : BaseViewModel
         }
     }
 
-    private string _createUserLogin;
-
     public SecureString SecureRegisterPassword
     {
-        get => _secureRegisterPassword;
+        get => _secureRegisterPassword ?? new();
         set
         {
             _secureRegisterPassword = value;
@@ -97,11 +87,9 @@ public class LoginViewModel : BaseViewModel
         }
     }
 
-    private SecureString _secureRegisterPassword;
-
     public string RegisterPassword
     {
-        get => _registerPassword;
+        get => _registerPassword ?? string.Empty;
         set
         {
             _registerPassword = value;
@@ -109,19 +97,7 @@ public class LoginViewModel : BaseViewModel
         }
     }
 
-    private string _registerPassword;
-
     #endregion
-
-    #region Commands
-
-    public ICommand LoginCommand { get; private set; }
-
-    public ICommand RegistrationCommand { get; private set; }
-
-    public ICommand CloseApplicationCommand { get; private set; }
-
-    public ICommand RecoverCommand { get; private set; }
 
     #endregion
 
@@ -133,12 +109,12 @@ public class LoginViewModel : BaseViewModel
         set
         {
             if (value.Equals(_isPasswordWatermarkVisible)) return;
+
             _isPasswordWatermarkVisible = value;
+
             OnPropertyChanged(nameof(IsPasswordWatermarkVisible));
         }
     }
-
-    private bool _isPasswordWatermarkVisible;
 
     public bool IsRegisterPasswordWatermarkVisible
     {
@@ -146,21 +122,53 @@ public class LoginViewModel : BaseViewModel
         set
         {
             if (value.Equals(_isRegisterPasswordWatermarkVisible)) return;
+
             _isRegisterPasswordWatermarkVisible = value;
+
             OnPropertyChanged(nameof(IsRegisterPasswordWatermarkVisible));
         }
     }
 
-    private bool _isRegisterPasswordWatermarkVisible;
+    #endregion
+
+    #region Private
+
+    private string? _enterUserLogin;
+
+    private SecureString? _securePassword;
+
+    private string? _password;
+
+    private string? _createUserLogin;
+
+    private SecureString? _secureRegisterPassword;
+
+    private string? _registerPassword;
+
+    private bool _isPasswordWatermarkVisible = true;
+
+    private bool _isRegisterPasswordWatermarkVisible = true;
+
+    #endregion
+
+    #region Dependencies
+
+    private readonly IUserFacadeService _userService;
 
     #endregion
 
     #endregion
 
-    #region Commands
+    public LoginViewModel(IUserFacadeService userService)
+    {
+        _userService = userService;
 
-    private bool CanExecuteLogin(object obj) =>
-        StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
+        InitializeCommands();
+    }
+
+    #region Command Logic
+
+    #region Execute
 
     private async void ExecuteLogin(object obj)
     {
@@ -192,9 +200,6 @@ public class LoginViewModel : BaseViewModel
         (obj as LoginView)?.Close();
     }
 
-    private bool CanExecuteRegistration(object obj) =>
-        StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
-
     private async void ExecuteRegistration(object obj)
     {
         if (await _userService.GetUserAsync(login: CreateUserLogin) is not null)
@@ -217,22 +222,26 @@ public class LoginViewModel : BaseViewModel
 
         await _userService.InsertUserAsync(user);
 
-        new MainView(user).Show();
+        new MainView(activeUser: user).Show();
 
         (obj as LoginView)?.Close();
     }
 
-    private static void CloseApplication(object obj) =>
-        Application.Current.Shutdown();
+    #endregion
+
+    #region Can Execute
+
+    private bool CanExecuteLogin(object obj) =>
+        StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
+
+    private bool CanExecuteRegistration(object obj) =>
+        StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
 
     #endregion
 
-    #region Methods
+    #endregion
 
-    private void SetViewCondition()
-    {
-        IsPasswordWatermarkVisible = IsRegisterPasswordWatermarkVisible = true;
-    }
+    #region Other Logic
 
     private void InitializeCommands()
     {
@@ -241,8 +250,6 @@ public class LoginViewModel : BaseViewModel
 
         RegistrationCommand = new RelayCommand(executeAction: ExecuteRegistration,
             canExecuteFunc: CanExecuteRegistration);
-
-        CloseApplicationCommand = new RelayCommand(executeAction: CloseApplication);
     }
 
     #endregion

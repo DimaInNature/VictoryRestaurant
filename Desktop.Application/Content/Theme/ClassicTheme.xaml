@@ -508,9 +508,6 @@
 
     <Style x:Key="ControlButtonStyle" TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Height" Value="18" />
-        <Setter Property="Width" Value="22" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 
     <!--#endregion-->
@@ -565,20 +562,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="1.5*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock
-                            x:Name="TextB"
-                            Grid.Row="1"
-                            FontFamily="{TemplateBinding FontFamily}"
-                            Foreground="{TemplateBinding Foreground}"
-                            Text="Выйти" />
-
-                    </Grid>
+                    <TextBlock
+                        x:Name="TextB"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Text="Выйти" />
 
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -687,19 +677,12 @@
                 <ControlTemplate TargetType="Button">
 
                     <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
 
-                            <ContentPresenter
-                                Grid.Column="1"
-                                Margin="-10,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Content}" />
-                        </Grid>
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}" />
+
                     </Border>
 
                 </ControlTemplate>
@@ -788,19 +771,12 @@
                 <ControlTemplate TargetType="RadioButton">
 
                     <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
 
-                            <ContentPresenter
-                                Grid.Column="1"
-                                Margin="-10,0,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Content}" />
-                        </Grid>
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}" />
+
                     </Border>
 
                 </ControlTemplate>
@@ -1145,7 +1121,7 @@
             <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
         </ObjectAnimationUsingKeyFrames>
 
-        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Exit" Storyboard.TargetProperty="(UIElement.Visibility)">
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseApplicationButton" Storyboard.TargetProperty="(UIElement.Visibility)">
             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
             <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
         </ObjectAnimationUsingKeyFrames>

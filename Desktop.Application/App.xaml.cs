@@ -1,6 +1,6 @@
 ﻿namespace VictoryRestaurant.Desktop.Presentation;
 
-public partial class App : Application
+public sealed partial class App : Application
 {
     public IServiceProvider? ServiceProvider { get; private set; }
 

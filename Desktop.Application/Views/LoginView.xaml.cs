@@ -1,20 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Input;
-using VictoryRestaurant.Desktop.Presentation;
-using VictoryRestaurant.Desktop.Presentation.ViewModels;
+﻿namespace Desktop.Presentation.Views;
 
-namespace Desktop.Presentation.Views;
-
-public partial class LoginView : Window
+sealed partial class LoginView : Window
 {
+    private LoginViewModel ViewModel => (LoginViewModel)DataContext;
+
     public LoginView()
     {
         InitializeComponent();
-        DataContext = (Application.Current as App)?
-               .ServiceProvider.GetService<LoginViewModel>();
-    }
 
-    private LoginViewModel ViewModel => (LoginViewModel)DataContext;
+        DataContext = (Application.Current as App)?
+               .ServiceProvider?.GetService<ILoginViewModel>();
+    }
 
     private void WindowDragMove(object sender, MouseButtonEventArgs e)
     {
@@ -29,4 +25,7 @@ public partial class LoginView : Window
     private void RegisterPasswordPasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e) =>
         (ViewModel.RegisterPassword, ViewModel.SecureRegisterPassword) =
         (RegisterPasswordPasswordBox.Password, RegisterPasswordPasswordBox.SecurePassword);
+
+    private void CloseApplicationButton_Click(object sender, RoutedEventArgs e) =>
+        Application.Current.Shutdown();
 }

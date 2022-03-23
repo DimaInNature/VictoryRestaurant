@@ -1,17 +1,27 @@
 ﻿namespace Desktop.Presentation.ViewModels;
 
-public class MainViewModel : BaseViewModel
+internal sealed class MainViewModel
+    : BaseViewModel, IMainViewModel
 {
-    public MainViewModel()
-    {
-        InitializeCommands();
-    }
+    #region Members
 
-    #region Properties
+    #region Commands
+
+    public ICommand? ShowHomePageCommand { get; private set; }
+
+    public ICommand? ShowFoodsPageCommand { get; private set; }
+
+    public ICommand? ShowUsersPageCommand { get; private set; }
+
+    public ICommand? ShowBookingsPageCommand { get; private set; }
+
+    public ICommand? ShowMailSubscribersPageCommand { get; private set; }
+
+    public ICommand? ShowContactMessagesPageCommand { get; private set; }
+
+    #endregion
 
     #region View
-
-    #region Frame
 
     public Visibility FrameVisibility
     {
@@ -23,14 +33,13 @@ public class MainViewModel : BaseViewModel
         }
     }
 
-    private Visibility _frameVisibility;
-
     public object? FrameSource
     {
         get => _frameSource;
         set
         {
             _frameSource = value;
+
             OnPropertyChanged(nameof(FrameSource));
 
             MenuIsVisible = value switch
@@ -40,10 +49,6 @@ public class MainViewModel : BaseViewModel
             };
         }
     }
-
-    private object _frameSource;
-
-    #endregion
 
     public Visibility MenuIsVisible
     {
@@ -55,89 +60,74 @@ public class MainViewModel : BaseViewModel
         }
     }
 
+    #endregion
+
+    #region Propeties
+
+    public User? ActiveUser { get; set; }
+
+    #endregion
+
+    #region Private
+
+    private Visibility _frameVisibility;
+
+    private object? _frameSource;
+
     private Visibility _menuIsVisible;
 
     #endregion
 
-    public User ActiveUser { get; set; }
-
     #endregion
 
-    #region Commands
-
-    public ICommand ShowMenuPageCommand { get; private set; }
-
-    public ICommand ShowFoodPageCommand { get; private set; }
-
-    public ICommand ShowBlogPageCommand { get; private set; }
-
-    public ICommand ShowOrderPageCommand { get; private set; }
-
-    public ICommand ShowSettingsPageCommand { get; private set; }
-
-    public ICommand LogoutCommand { get; private set; }
-
-    public ICommand CloseApplicationCommand { get; private set; }
-
-    #endregion
+    public MainViewModel()
+    {
+        InitializeCommands();
+    }
 
     #region Command Logic
 
     #region Execute
 
-    private void ExecuteShowFoodPage(object obj)
-    {
-        FrameSource = new FoodView();
-    }
+    private void ExecuteShowFoodsPage(object obj) =>
+        FrameSource = new FoodsView();
 
-    private void ExecuteShowMenuPage(object obj)
-    {
+    private void ExecuteShowHomePage(object obj) =>
         FrameSource = null;
-    }
 
-    private void ExecuteShowOrderPage(object obj)
-    {
+    private void ExecuteShowBookingsPage(object obj) =>
+        FrameSource = new BookingsView();
 
-    }
+    private void ExecuteShowUsersPage(object obj) =>
+        FrameSource = new UsersView();
 
-    private void ExecuteShowBlogPage(object obj)
-    {
+    private void ExecuteShowMailSubscribersPage(object obj) =>
+        FrameSource = new MailSubscribersView();
 
-    }
-
-    private void ExecuteShowSettingsPage(object obj)
-    {
-
-    }
-
-    private static void ExecuteCloseApplication(object obj) =>
-      Application.Current.Shutdown();
-
-    private void ExecuteLogout(object obj)
-    {
-        new LoginView().Show();
-
-        (obj as MainView)?.Close();
-    }
+    private void ExecuteShowContactMessagesPage(object obj) =>
+        FrameSource = new ContactMessagesView();
 
     #endregion
 
-    #region CanExecute
+    #region Can Execute
 
-    private bool CanExecuteShowMenuPage(object obj) =>
+    private bool CanExecuteShowHomePage(object obj) =>
         !(FrameSource is null && MenuIsVisible is Visibility.Visible);
 
-    private bool CanExecuteShowFoodPage(object obj) =>
-        (FrameSource is not FoodView);
+    private bool CanExecuteShowFoodsPage(object obj) =>
+        FrameSource is not FoodsView;
 
-    private bool CanExecuteShowOrderPage(object obj) =>
-        true;
+    private bool CanExecuteShowBookingsPage(object obj) =>
+        FrameSource is not BookingsView;
 
-    private bool CanExecuteShowBlogPage(object obj) =>
-       true;
+    private bool CanExecuteShowUsersPage(object obj) =>
+        FrameSource is not UsersView;
 
-    private bool CanExecuteShowSettingsPage(object obj) =>
-        true;
+    private bool CanExecuteShowMailSubscribersPage(object obj) =>
+        FrameSource is not MailSubscribersView;
+
+    private bool CanExecuteShowContactMessagesPage(object obj) =>
+        FrameSource is not ContactMessagesView;
 
     #endregion
 
@@ -147,24 +137,23 @@ public class MainViewModel : BaseViewModel
 
     private void InitializeCommands()
     {
-        ShowMenuPageCommand = new RelayCommand(executeAction: ExecuteShowMenuPage,
-            canExecuteFunc: CanExecuteShowMenuPage);
+        ShowHomePageCommand = new RelayCommand(executeAction: ExecuteShowHomePage,
+            canExecuteFunc: CanExecuteShowHomePage);
 
-        ShowFoodPageCommand = new RelayCommand(executeAction: ExecuteShowFoodPage,
-            canExecuteFunc: CanExecuteShowFoodPage);
+        ShowFoodsPageCommand = new RelayCommand(executeAction: ExecuteShowFoodsPage,
+            canExecuteFunc: CanExecuteShowFoodsPage);
 
-        ShowOrderPageCommand = new RelayCommand(executeAction: ExecuteShowOrderPage,
-            canExecuteFunc: CanExecuteShowOrderPage);
+        ShowUsersPageCommand = new RelayCommand(executeAction: ExecuteShowUsersPage,
+           canExecuteFunc: CanExecuteShowUsersPage);
 
-        ShowBlogPageCommand = new RelayCommand(executeAction: ExecuteShowBlogPage,
-            canExecuteFunc: CanExecuteShowBlogPage);
+        ShowBookingsPageCommand = new RelayCommand(executeAction: ExecuteShowBookingsPage,
+            canExecuteFunc: CanExecuteShowBookingsPage);
 
-        ShowSettingsPageCommand = new RelayCommand(executeAction: ExecuteShowSettingsPage,
-            canExecuteFunc: CanExecuteShowSettingsPage);
+        ShowMailSubscribersPageCommand = new RelayCommand(executeAction: ExecuteShowMailSubscribersPage,
+            canExecuteFunc: CanExecuteShowMailSubscribersPage);
 
-        LogoutCommand = new RelayCommand(executeAction: ExecuteLogout);
-
-        CloseApplicationCommand = new RelayCommand(executeAction: ExecuteCloseApplication);
+        ShowContactMessagesPageCommand = new RelayCommand(executeAction: ExecuteShowContactMessagesPage,
+            canExecuteFunc: CanExecuteShowContactMessagesPage);
     }
 
     #endregion

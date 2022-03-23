@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Desktop.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="ThisWindow"
-    Title="Авторизация"
+    Title="Victory - Вход"
     Width="800"
     Height="500"
     Background="Transparent"
@@ -172,7 +172,7 @@
                 FontSize="36"
                 Foreground="{DynamicResource ItemForeground}"
                 Style="{DynamicResource TextBlockStyle}"
-                Text="Notebook"
+                Text="Victory"
                 TextAlignment="Center" />
 
             <TextBlock
@@ -356,15 +356,15 @@
         <!--#endregion-->
 
         <Button
-            x:Name="Exit"
+            x:Name="CloseApplicationButton"
             Width="20"
             Height="20"
             Margin="0,5,10,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Command="{Binding CloseApplicationCommand}"
+            Click="CloseApplicationButton_Click"
             Style="{DynamicResource ControlButtonCloseStyle}" />
 
     </Grid>
-
 
 </Window>
