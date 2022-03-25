@@ -2,33 +2,28 @@
 
 public class UserRepositoryService : IUserRepositoryService
 {
-    private readonly IUserRepository _repository;
+    private readonly IMediator _mediator;
 
-    public UserRepositoryService(IUserRepository repository)
-    {
-        _repository = repository;
-    }
+    public UserRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<List<UserEntity>> GetUsersAsync() =>
-        await _repository.GetUsersAsync();
+    public async Task<List<UserEntity>?> GetUserListAsync() =>
+        await _mediator.Send(request: new GetUserListQuery());
 
-    public async Task<UserEntity> GetUserAsync(string login) =>
-        await _repository.GetUserAsync(login);
+    public async Task<UserEntity?> GetUserAsync(int userId) =>
+         await _mediator.Send(request: new GetUserByIdQuery(id: userId));
 
-    public async Task<UserEntity> GetUserAsync(string login, string password) =>
-        await _repository.GetUserAsync(login, password);
+    public async Task<UserEntity?> GetUserAsync(string login) =>
+         await _mediator.Send(request: new GetUserByLoginQuery(login: login));
 
-    public async Task<UserEntity> GetUserAsync(int userId) =>
-        await _repository.GetUserAsync(userId);
+    public async Task<UserEntity?> GetUserAsync(string login, string password) =>
+        await _mediator.Send(request: new GetUserByLoginAndPasswordQuery(login: login, password: password));
 
-    public async Task InsertUserAsync(UserEntity user) =>
-        await _repository.InsertUserAsync(user);
+    public async Task CreateAsync(UserEntity user) =>
+         await _mediator.Send(request: new CreateUserCommand(user: user));
 
-    public async Task UpdateUserAsync(UserEntity user) =>
-        await _repository.UpdateUserAsync(user);
+    public async Task UpdateAsync(UserEntity user) =>
+        await _mediator.Send(request: new UpdateUserCommand(user: user));
 
-    public async Task DeleteUserAsync(int userId) =>
-        await _repository.DeleteUserAsync(userId);
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
+    public async Task DeleteAsync(int userId) =>
+        await _mediator.Send(request: new DeleteUserCommand(id: userId));
 }

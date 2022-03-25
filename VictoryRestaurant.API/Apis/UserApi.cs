@@ -42,7 +42,7 @@ public class UserApi : IApi
 
     [AllowAnonymous]
     private async Task<IResult> GetAll(IUserFacadeService repository)
-        => Results.Ok(await repository.GetUsersAsync());
+        => Results.Ok(await repository.GetUserListAsync());
 
     [AllowAnonymous]
     private async Task<IResult> GetById(int id, IUserFacadeService repository)
@@ -67,9 +67,7 @@ public class UserApi : IApi
     private async Task<IResult> Create([FromBody] UserEntity user,
         IUserFacadeService repository)
     {
-        await repository.InsertUserAsync(user);
-
-        await repository.SaveAsync();
+        await repository.CreateAsync(user);
 
         return Results.Created($"/Users/{user.Id}", user);
     }
@@ -78,9 +76,7 @@ public class UserApi : IApi
     private async Task<IResult> Put([FromBody] UserEntity user,
         IUserFacadeService repository)
     {
-        await repository.UpdateUserAsync(user);
-
-        await repository.SaveAsync();
+        await repository.UpdateAsync(user);
 
         return Results.NoContent();
     }
@@ -89,9 +85,7 @@ public class UserApi : IApi
     private async Task<IResult> Delete(int id,
         IUserFacadeService repository)
     {
-        await repository.DeleteUserAsync(id);
-
-        await repository.SaveAsync();
+        await repository.DeleteAsync(id);
 
         return Results.NoContent();
     }

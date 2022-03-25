@@ -6,7 +6,7 @@ public class AuthorizationApi : IApi
     {
         //// Get token
         app.MapPost("/Token", [AllowAnonymous] async (HttpContext context,
-            ITokenService tokenService, IUserRepository repository) =>
+            ITokenService tokenService, IUserRepositoryService repository) =>
         {
             UserEntity user = new()
             {
@@ -37,7 +37,7 @@ public class AuthorizationApi : IApi
         });
     }
 
-    private async Task<ClaimsIdentity> GetIdentity(string login, string password, IUserRepository _userService)
+    private async Task<ClaimsIdentity> GetIdentity(string login, string password, IUserRepositoryService _userService)
     {
         UserEntity user = await _userService.GetUserAsync(login: login, password: password);
         if (user is not null)
@@ -48,7 +48,7 @@ public class AuthorizationApi : IApi
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
             };
             ClaimsIdentity claimsIdentity =
-            new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+            new(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
             return claimsIdentity;
         }

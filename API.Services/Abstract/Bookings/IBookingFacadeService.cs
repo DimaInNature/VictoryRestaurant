@@ -2,10 +2,9 @@
 
 public interface IBookingFacadeService
 {
-    Task<List<BookingEntity>> GetBookingsAsync();
+    Task<List<BookingEntity>> GetBookingListAsync();
     Task<BookingEntity> GetBookingAsync(int bookingId);
-    Task InsertBookingAsync(BookingEntity booking);
-    Task UpdateBookingAsync(BookingEntity booking);
-    Task DeleteBookingAsync(int bookingId);
-    Task<int> SaveAsync();
+    Task CreateAsync(BookingEntity booking);
+    Task UpdateAsync(BookingEntity booking);
+    Task DeleteAsync(int bookingId);
 }

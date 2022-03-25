@@ -2,37 +2,31 @@
 
 public class FoodRepositoryService : IFoodRepositoryService
 {
-    private readonly IFoodRepository _repository;
+    private readonly IMediator _mediator;
 
-    public FoodRepositoryService(IFoodRepository repository)
-    {
-        _repository = repository;
-    }
+    public FoodRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task DeleteFoodAsync(int foodId) =>
-        await _repository.DeleteFoodAsync(foodId);
+    public async Task<List<FoodEntity>?> GetFoodListAsync() =>
+        await _mediator.Send(request: new GetFoodListQuery());
 
-    public async Task<FoodEntity> GetFoodAsync(int foodId) =>
-        await _repository.GetFoodAsync(foodId);
+    public async Task<FoodEntity?> GetFoodAsync(int foodId) =>
+       await _mediator.Send(request: new GetFoodByIdQuery(id: foodId));
 
-    public async Task<FoodEntity> GetFoodByFootTypeAsync(FoodType type) =>
-        await _repository.GetFoodByFootTypeAsync(type);
+    public async Task<List<FoodEntity>?> GetFoodListAsync(string name) =>
+        await _mediator.Send(request: new GetFoodListByNameQuery(name: name));
 
-    public async Task<List<FoodEntity>> GetFoodsAsync() =>
-        await _repository.GetFoodsAsync();
+    public async Task<List<FoodEntity>?> GetFoodListAsync(FoodType type) =>
+        await _mediator.Send(request: new GetFoodListByTypeQuery(type: type));
 
-    public async Task<List<FoodEntity>> GetFoodsAsync(string name) =>
-        await _repository.GetFoodsAsync(name);
+    public async Task<FoodEntity?> GetFoodAsync(FoodType type) =>
+        await _mediator.Send(request: new GetFoodByTypeQuery(type: type));
 
-    public async Task<List<FoodEntity>> GetFoodsAsync(FoodType type) =>
-        await _repository.GetFoodsAsync(type);
+    public async Task CreateAsync(FoodEntity food) =>
+        await _mediator.Send(request: new CreateFoodCommand(food: food));
 
-    public async Task InsertFoodAsync(FoodEntity food) =>
-        await _repository.InsertFoodAsync(food);
+    public async Task UpdateAsync(FoodEntity food) =>
+        await _mediator.Send(request: new UpdateFoodCommand(food: food));
 
-    public async Task UpdateFoodAsync(FoodEntity food) =>
-        await _repository.UpdateFoodAsync(food);
-
-    public async Task<int> SaveAsync() =>
-        await _repository.SaveAsync();
+    public async Task DeleteAsync(int foodId) =>
+        await _mediator.Send(request: new DeleteFoodCommand(id: foodId));
 }

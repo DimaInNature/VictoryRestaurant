@@ -12,14 +12,14 @@ public class FoodFacadeService : IFoodFacadeService
         _cache = cache;
     }
 
-    public async Task<List<FoodEntity>> GetFoodsAsync() =>
-        await _repository.GetFoodsAsync();
+    public async Task<List<FoodEntity>> GetFoodListAsync() =>
+        await _repository.GetFoodListAsync();
 
-    public async Task<List<FoodEntity>> GetFoodsAsync(string name) =>
-        await _repository.GetFoodsAsync(name: name);
+    public async Task<List<FoodEntity>> GetFoodListAsync(string name) =>
+        await _repository.GetFoodListAsync(name: name);
 
-    public async Task<List<FoodEntity>> GetFoodsAsync(FoodType type) =>
-        await _repository.GetFoodsAsync(type: type);
+    public async Task<List<FoodEntity>> GetFoodListAsync(FoodType type) =>
+        await _repository.GetFoodListAsync(type: type);
 
     public async Task<FoodEntity> GetFoodAsync(int foodId)
     {
@@ -33,34 +33,34 @@ public class FoodFacadeService : IFoodFacadeService
         }
     }
 
-    public async Task<FoodEntity> GetFoodByFootTypeAsync(FoodType type)
+    public async Task<FoodEntity?> GetFoodAsync(FoodType type)
     {
-        FoodEntity food = await _repository.GetFoodByFootTypeAsync(type: type);
+        FoodEntity food = await _repository.GetFoodAsync(type: type);
+
+        if (food is null) return null;
 
         return _cache.Set(key: food.Id, value: food);
     }
 
-    public async Task InsertFoodAsync(FoodEntity food)
+    public async Task CreateAsync(FoodEntity food)
     {
-        await _repository.InsertFoodAsync(food);
+        await _repository.CreateAsync(food);
 
         _cache.Set(key: food.Id, value: food);
     }
 
-    public async Task UpdateFoodAsync(FoodEntity food)
+    public async Task UpdateAsync(FoodEntity food)
     {
-        await _repository.UpdateFoodAsync(food);
+        await _repository.UpdateAsync(food);
 
         _cache.Set(key: food.Id, value: food);
     }
 
-    public async Task DeleteFoodAsync(int foodId)
+    public async Task DeleteAsync(int foodId)
     {
-        await _repository.DeleteFoodAsync(foodId);
+        await _repository.DeleteAsync(foodId);
 
         if (_cache.TryGet(key: foodId, out _))
             _cache.Remove(key: foodId);
     }
-
-    public Task<int> SaveAsync() => _repository.SaveAsync();
 }

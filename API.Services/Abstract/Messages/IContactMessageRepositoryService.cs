@@ -2,10 +2,9 @@
 
 public interface IContactMessageRepositoryService
 {
-    Task<List<ContactMessageEntity>> GetContactMessagesAsync();
-    Task<ContactMessageEntity> GetContactMessageAsync(int contactMessageId);
-    Task InsertContactMessageAsync(ContactMessageEntity contactMessage);
-    Task UpdateContactMessageAsync(ContactMessageEntity contactMessage);
-    Task DeleteContactMessageAsync(int bookingId);
-    Task<int> SaveAsync();
+    Task<List<ContactMessageEntity>?> GetContactMessageListAsync();
+    Task<ContactMessageEntity?> GetContactMessageAsync(int contactMessageId);
+    Task CreateAsync(ContactMessageEntity contactMessage);
+    Task UpdateAsync(ContactMessageEntity contactMessage);
+    Task DeleteAsync(int bookingId);
 }

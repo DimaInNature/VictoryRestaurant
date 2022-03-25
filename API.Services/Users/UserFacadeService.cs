@@ -12,8 +12,8 @@ public class UserFacadeService : IUserFacadeService
         _cache = cache;
     }
 
-    public async Task<List<UserEntity>> GetUsersAsync() =>
-        await _repository.GetUsersAsync();
+    public async Task<List<UserEntity>> GetUserListAsync() =>
+        await _repository.GetUserListAsync();
 
     public async Task<UserEntity> GetUserAsync(string login)
     {
@@ -44,27 +44,25 @@ public class UserFacadeService : IUserFacadeService
         }
     }
 
-    public async Task InsertUserAsync(UserEntity user)
+    public async Task CreateAsync(UserEntity user)
     {
-        await _repository.InsertUserAsync(user);
+        await _repository.CreateAsync(user);
 
         _cache.Set(key: user.Id, value: user);
     }
 
-    public async Task UpdateUserAsync(UserEntity user)
+    public async Task UpdateAsync(UserEntity user)
     {
-        await _repository.UpdateUserAsync(user);
+        await _repository.UpdateAsync(user);
 
         _cache.Set(key: user.Id, value: user);
     }
 
-    public async Task DeleteUserAsync(int userId)
+    public async Task DeleteAsync(int userId)
     {
-        await _repository.DeleteUserAsync(userId);
+        await _repository.DeleteAsync(userId);
 
         if (_cache.TryGet(key: userId, out _))
             _cache.Remove(key: userId);
     }
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

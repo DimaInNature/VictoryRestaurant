@@ -1,6 +1,4 @@
-﻿global using API.Data.Repositories;
-global using API.Data.Repositories.Abstract;
-global using API.Services.Abstract.Bookings;
+﻿global using API.Services.Abstract.Bookings;
 global using API.Services.Abstract.Cache;
 global using API.Services.Abstract.Foods;
 global using API.Services.Abstract.Messages;

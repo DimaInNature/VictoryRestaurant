@@ -12,8 +12,8 @@ public class ContactMessageFacadeService : IContactMessageFacadeService
         _cache = cache;
     }
 
-    public async Task<List<ContactMessageEntity>> GetContactMessagesAsync() =>
-        await _repository.GetContactMessagesAsync();
+    public async Task<List<ContactMessageEntity>> GetContactMessageListAsync() =>
+        await _repository.GetContactMessageListAsync();
 
     public async Task<ContactMessageEntity> GetContactMessageAsync(int contactMessageId)
     {
@@ -27,27 +27,25 @@ public class ContactMessageFacadeService : IContactMessageFacadeService
         }
     }
 
-    public async Task InsertContactMessageAsync(ContactMessageEntity contactMessage)
+    public async Task CreateAsync(ContactMessageEntity contactMessage)
     {
-        await _repository.InsertContactMessageAsync(contactMessage);
+        await _repository.CreateAsync(contactMessage);
 
         _cache.Set(key: contactMessage.Id, value: contactMessage);
     }
 
-    public async Task UpdateContactMessageAsync(ContactMessageEntity contactMessage)
+    public async Task UpdateAsync(ContactMessageEntity contactMessage)
     {
-        await _repository.UpdateContactMessageAsync(contactMessage);
+        await _repository.UpdateAsync(contactMessage);
 
         _cache.Set(key: contactMessage.Id, value: contactMessage);
     }
 
-    public async Task DeleteContactMessageAsync(int contactMessageId)
+    public async Task DeleteAsync(int contactMessageId)
     {
-        await _repository.DeleteContactMessageAsync(contactMessageId);
+        await _repository.DeleteAsync(contactMessageId);
 
         if (_cache.TryGet(key: contactMessageId, out _))
             _cache.Remove(key: contactMessageId);
     }
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

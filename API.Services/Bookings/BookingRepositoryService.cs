@@ -2,27 +2,22 @@
 
 public class BookingRepositoryService : IBookingRepositoryService
 {
-    private readonly IBookingRepository _repository;
+    private readonly IMediator _mediator;
 
-    public BookingRepositoryService(IBookingRepository repository)
-    {
-        _repository = repository;
-    }
+    public BookingRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<List<BookingEntity>> GetBookingsAsync() =>
-       await _repository.GetBookingsAsync();
+    public async Task<List<BookingEntity>?> GetBookingListAsync() =>
+        await _mediator.Send(request: new GetBookingListQuery());
 
-    public async Task<BookingEntity> GetBookingAsync(int bookingId) =>
-         await _repository.GetBookingAsync(bookingId);
+    public async Task<BookingEntity?> GetBookingAsync(int bookingId) =>
+        await _mediator.Send(request: new GetBookingByIdQuery(id: bookingId));
 
-    public async Task InsertBookingAsync(BookingEntity booking) =>
-        await _repository.InsertBookingAsync(booking);
+    public async Task CreateAsync(BookingEntity booking) =>
+        await _mediator.Send(request: new CreateBookingCommand(booking: booking));
 
-    public async Task UpdateBookingAsync(BookingEntity booking) =>
-        await _repository.UpdateBookingAsync(booking);
+    public async Task UpdateAsync(BookingEntity booking) =>
+        await _mediator.Send(request: new UpdateBookingCommand(booking: booking));
 
-    public async Task DeleteBookingAsync(int bookingId) =>
-        await _repository.DeleteBookingAsync(bookingId);
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
+    public async Task DeleteAsync(int bookingId) =>
+        await _mediator.Send(request: new DeleteBookingCommand(id: bookingId));
 }

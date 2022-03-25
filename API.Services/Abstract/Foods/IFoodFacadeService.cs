@@ -2,13 +2,12 @@
 
 public interface IFoodFacadeService
 {
-    Task<List<FoodEntity>> GetFoodsAsync();
-    Task<List<FoodEntity>> GetFoodsAsync(string name);
-    Task<List<FoodEntity>> GetFoodsAsync(FoodType type);
+    Task<List<FoodEntity>> GetFoodListAsync();
+    Task<List<FoodEntity>> GetFoodListAsync(string name);
+    Task<List<FoodEntity>> GetFoodListAsync(FoodType type);
     Task<FoodEntity> GetFoodAsync(int foodId);
-    Task<FoodEntity> GetFoodByFootTypeAsync(FoodType type);
-    Task InsertFoodAsync(FoodEntity food);
-    Task UpdateFoodAsync(FoodEntity food);
-    Task DeleteFoodAsync(int foodId);
-    Task<int> SaveAsync();
+    Task<FoodEntity?> GetFoodAsync(FoodType type);
+    Task CreateAsync(FoodEntity food);
+    Task UpdateAsync(FoodEntity food);
+    Task DeleteAsync(int foodId);
 }

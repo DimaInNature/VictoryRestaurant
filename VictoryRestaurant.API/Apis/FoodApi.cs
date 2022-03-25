@@ -49,7 +49,7 @@ public class FoodApi : IApi
 
     [AllowAnonymous]
     private async Task<IResult> GetAll(IFoodFacadeService repository)
-        => Results.Ok(await repository.GetFoodsAsync());
+        => Results.Ok(await repository.GetFoodListAsync());
 
     [AllowAnonymous]
     private async Task<IResult> GetById(int id, IFoodFacadeService repository) =>
@@ -59,19 +59,19 @@ public class FoodApi : IApi
 
     [AllowAnonymous]
     private async Task<IResult> GetFirstByFoodType(FoodType type, IFoodFacadeService repository) =>
-        await repository.GetFoodByFootTypeAsync(type: type) is FoodEntity food
+        await repository.GetFoodAsync(type: type) is FoodEntity food
         ? Results.Ok(food)
         : Results.NotFound();
 
     [AllowAnonymous]
     private async Task<IResult> GetAllByName(string query, IFoodFacadeService repository)
-        => await repository.GetFoodsAsync(query) is IEnumerable<FoodEntity> foods
+        => await repository.GetFoodListAsync(query) is IEnumerable<FoodEntity> foods
         ? Results.Ok(foods)
         : Results.NotFound(Array.Empty<FoodEntity>());
 
     [AllowAnonymous]
     private async Task<IResult> GetAllByFoodType(FoodType type, IFoodFacadeService repository)
-        => await repository.GetFoodsAsync(type) is IEnumerable<FoodEntity> foods
+        => await repository.GetFoodListAsync(type) is IEnumerable<FoodEntity> foods
         ? Results.Ok(foods)
         : Results.NotFound(Array.Empty<FoodEntity>());
 
@@ -79,9 +79,7 @@ public class FoodApi : IApi
     private async Task<IResult> Create([FromBody] FoodEntity food,
         IFoodFacadeService repository)
     {
-        await repository.InsertFoodAsync(food);
-
-        await repository.SaveAsync();
+        await repository.CreateAsync(food);
 
         return Results.Created($"/Foods/{food.Id}", food);
     }
@@ -90,9 +88,7 @@ public class FoodApi : IApi
     private async Task<IResult> Put([FromBody] FoodEntity food,
         IFoodFacadeService repository)
     {
-        await repository.UpdateFoodAsync(food);
-
-        await repository.SaveAsync();
+        await repository.UpdateAsync(food);
 
         return Results.NoContent();
     }
@@ -101,9 +97,7 @@ public class FoodApi : IApi
     private async Task<IResult> Delete(int id,
         IFoodFacadeService repository)
     {
-        await repository.DeleteFoodAsync(id);
-
-        await repository.SaveAsync();
+        await repository.DeleteAsync(id);
 
         return Results.NoContent();
     }

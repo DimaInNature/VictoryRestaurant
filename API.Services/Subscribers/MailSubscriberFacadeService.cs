@@ -12,8 +12,8 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
         _cache = cache;
     }
 
-    public async Task<List<MailSubscriberEntity>> GetMailSubscribersAsync() =>
-        await _repository.GetMailSubscribersAsync();
+    public async Task<List<MailSubscriberEntity>> GetMailSubscriberListAsync() =>
+        await _repository.GetMailSubscriberListAsync();
 
     public async Task<MailSubscriberEntity> GetMailSubscriberAsync(int mailSubscriberId)
     {
@@ -27,27 +27,25 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
         }
     }
 
-    public async Task InsertMailSubscriberAsync(MailSubscriberEntity mailSubscriber)
+    public async Task CreateAsync(MailSubscriberEntity mailSubscriber)
     {
-        await _repository.InsertMailSubscriberAsync(mailSubscriber);
+        await _repository.CreateAsync(mailSubscriber);
 
         _cache.Set(key: mailSubscriber.Id, value: mailSubscriber);
     }
 
-    public async Task UpdateMailSubscriberAsync(MailSubscriberEntity mailSubscriber)
+    public async Task UpdateAsync(MailSubscriberEntity mailSubscriber)
     {
-        await _repository.UpdateMailSubscriberAsync(mailSubscriber);
+        await _repository.UpdateAsync(mailSubscriber);
 
         _cache.Set(key: mailSubscriber.Id, value: mailSubscriber);
     }
 
-    public async Task DeleteMailSubscriberAsync(int mailSubscriberId)
+    public async Task DeleteAsync(int mailSubscriberId)
     {
-        await _repository.DeleteMailSubscriberAsync(mailSubscriberId);
+        await _repository.DeleteAsync(mailSubscriberId);
 
         if (_cache.TryGet(key: mailSubscriberId, out _))
             _cache.Remove(key: mailSubscriberId);
     }
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

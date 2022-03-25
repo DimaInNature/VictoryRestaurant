@@ -12,8 +12,8 @@ public class BookingFacadeService : IBookingFacadeService
         _cache = cache;
     }
 
-    public async Task<List<BookingEntity>> GetBookingsAsync() =>
-        await _repository.GetBookingsAsync();
+    public async Task<List<BookingEntity>> GetBookingListAsync() =>
+        await _repository.GetBookingListAsync();
 
     public async Task<BookingEntity> GetBookingAsync(int bookingId)
     {
@@ -27,27 +27,25 @@ public class BookingFacadeService : IBookingFacadeService
         }
     }
 
-    public async Task InsertBookingAsync(BookingEntity booking)
+    public async Task CreateAsync(BookingEntity booking)
     {
-        await _repository.InsertBookingAsync(booking);
+        await _repository.CreateAsync(booking);
 
         _cache.Set(key: booking.Id, value: booking);
     }
 
-    public async Task UpdateBookingAsync(BookingEntity booking)
+    public async Task UpdateAsync(BookingEntity booking)
     {
-        await _repository.UpdateBookingAsync(booking);
+        await _repository.UpdateAsync(booking);
 
         _cache.Set(key: booking.Id, value: booking);
     }
 
-    public async Task DeleteBookingAsync(int bookingId)
+    public async Task DeleteAsync(int bookingId)
     {
-        await _repository.DeleteBookingAsync(bookingId);
+        await _repository.DeleteAsync(bookingId);
 
         if (_cache.TryGet(key: bookingId, out _))
             _cache.Remove(key: bookingId);
     }
-
-    public async Task<int> SaveAsync() => await _repository.SaveAsync();
 }

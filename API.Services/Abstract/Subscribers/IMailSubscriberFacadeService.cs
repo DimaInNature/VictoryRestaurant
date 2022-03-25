@@ -2,10 +2,9 @@
 
 public interface IMailSubscriberFacadeService
 {
-    Task<List<MailSubscriberEntity>> GetMailSubscribersAsync();
+    Task<List<MailSubscriberEntity>> GetMailSubscriberListAsync();
     Task<MailSubscriberEntity> GetMailSubscriberAsync(int mailSubscriberId);
-    Task InsertMailSubscriberAsync(MailSubscriberEntity mailSubscriber);
-    Task UpdateMailSubscriberAsync(MailSubscriberEntity mailSubscriber);
-    Task DeleteMailSubscriberAsync(int mailSubscriberId);
-    Task<int> SaveAsync();
+    Task CreateAsync(MailSubscriberEntity mailSubscriber);
+    Task UpdateAsync(MailSubscriberEntity mailSubscriber);
+    Task DeleteAsync(int mailSubscriberId);
 }

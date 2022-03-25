@@ -39,6 +39,9 @@ void RegisterServices(IServiceCollection services)
 
     // API
     services.AddAPIConfiguration();
+
+    // MediatR
+    services.AddMediatRConfiguration();
 }
 
 void Configure(WebApplication app)
