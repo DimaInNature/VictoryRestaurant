@@ -9,18 +9,12 @@ public sealed class BookingFacadeService : IBookingFacadeService
         _repository = repository;
     }
 
-    public async Task<List<Booking>> GetBookingsAsync() =>
-        await _repository.GetBookingsAsync();
+    public async Task<List<Booking>> GetBookingListAsync() =>
+        await _repository.GetBookingListAsync();
 
     public async Task<Booking?> GetBookingAsync(int bookingId) =>
         await _repository.GetBookingAsync(bookingId);
 
-    public async Task InsertBookingAsync(Booking booking) =>
-        await _repository.InsertBookingAsync(booking);
-
-    public async Task UpdateBookingAsync(Booking booking) =>
-        await _repository.UpdateBookingAsync(booking);
-
-    public async Task DeleteBookingAsync(int bookingId) =>
-        await _repository.DeleteBookingAsync(bookingId);
+    public async Task DeleteAsync(int bookingId) =>
+        await _repository.DeleteAsync(bookingId);
 }

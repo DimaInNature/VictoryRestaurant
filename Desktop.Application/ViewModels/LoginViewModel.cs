@@ -154,14 +154,17 @@ internal sealed class LoginViewModel
     #region Dependencies
 
     private readonly IUserFacadeService _userService;
+    private readonly UserSessionService _sessionService;
 
     #endregion
 
     #endregion
 
-    public LoginViewModel(IUserFacadeService userService)
+    public LoginViewModel(IUserFacadeService userService,
+        UserSessionService sessionService)
     {
         _userService = userService;
+        _sessionService = sessionService;
 
         InitializeCommands();
     }
@@ -184,7 +187,7 @@ internal sealed class LoginViewModel
             return;
         }
 
-        if (user.Role is not UserRole.Admin)
+        if (user.Role is UserRole.User)
         {
             MessageBox.Show(
                 messageBoxText: "У вас нет права доступа.",
@@ -194,6 +197,8 @@ internal sealed class LoginViewModel
 
             return;
         }
+
+        await _sessionService.StartSession(activeUser: user);
 
         new MainView().Show();
 
@@ -217,12 +222,14 @@ internal sealed class LoginViewModel
         {
             Login = CreateUserLogin,
             Password = RegisterPassword,
-            Role = UserRole.User
+            Role = UserRole.Employee
         };
 
-        await _userService.InsertUserAsync(user);
+        await _userService.CreateAsync(user);
 
-        new MainView(activeUser: user).Show();
+        await _sessionService.StartSession(activeUser: user);
+
+        new MainView().Show();
 
         (obj as LoginView)?.Close();
     }

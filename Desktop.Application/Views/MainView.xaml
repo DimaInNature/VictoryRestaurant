@@ -154,107 +154,99 @@
 
                 </Grid.Clip>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <StackPanel>
 
-                <RadioButton
-                    x:Name="HomeMenuRadioButton"
-                    Grid.Row="1"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,0,0"
-                    Panel.ZIndex="3"
-                    Click="HomeMenuRadioButton_Click"
-                    Command="{Binding ShowHomePageCommand}"
-                    Content="Главная"
-                    IsChecked="True"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="HomeMenuRadioButton"
+                        Grid.Row="1"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,0,0"
+                        Panel.ZIndex="3"
+                        Click="HomeMenuRadioButton_Click"
+                        Command="{Binding ShowHomePageCommand}"
+                        Content="Главная"
+                        IsChecked="True"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <RadioButton
-                    x:Name="FoodsMenuRadioButton"
-                    Grid.Row="2"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,5,0"
-                    HorizontalAlignment="Right"
-                    Panel.ZIndex="3"
-                    Click="FoodsMenuRadioButton_Click"
-                    Command="{Binding ShowFoodsPageCommand}"
-                    Content="Меню"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="FoodsMenuRadioButton"
+                        Grid.Row="2"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="FoodsMenuRadioButton_Click"
+                        Command="{Binding ShowFoodsPageCommand}"
+                        Content="Меню"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <RadioButton
-                    x:Name="UsersMenuRadioButton"
-                    Grid.Row="3"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,5,0"
-                    HorizontalAlignment="Right"
-                    Panel.ZIndex="3"
-                    Click="UsersMenuRadioButton_Click"
-                    Command="{Binding ShowUsersPageCommand}"
-                    Content="Пользователи"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="UsersMenuRadioButton"
+                        Grid.Row="3"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="UsersMenuRadioButton_Click"
+                        Command="{Binding ShowUsersPageCommand}"
+                        Content="Пользователи"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <RadioButton
-                    x:Name="BookingsMenuRadioButton"
-                    Grid.Row="4"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,5,0"
-                    HorizontalAlignment="Right"
-                    Panel.ZIndex="3"
-                    Click="BookingsMenuRadioButton_Click"
-                    Command="{Binding ShowBookingsPageCommand}"
-                    Content="Заказы"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="BookingsMenuRadioButton"
+                        Grid.Row="4"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="BookingsMenuRadioButton_Click"
+                        Command="{Binding ShowBookingsPageCommand}"
+                        Content="Заказы"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <RadioButton
-                    x:Name="MailSubscribersMenuRadioButton"
-                    Grid.Row="5"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,5,0"
-                    HorizontalAlignment="Right"
-                    Panel.ZIndex="3"
-                    Click="MailSubscribersMenuRadioButton_Click"
-                    Command="{Binding ShowMailSubscribersPageCommand}"
-                    Content="Подписчики"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="MailSubscribersMenuRadioButton"
+                        Grid.Row="5"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="MailSubscribersMenuRadioButton_Click"
+                        Command="{Binding ShowMailSubscribersPageCommand}"
+                        Content="Подписчики"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <RadioButton
-                    x:Name="ContactMessagesMenuRadioButton"
-                    Grid.Row="6"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,5,0"
-                    HorizontalAlignment="Right"
-                    Panel.ZIndex="3"
-                    Click="ContactMessagesMenuRadioButton_Click"
-                    Command="{Binding ShowContactMessagesPageCommand}"
-                    Content="Сообщения"
-                    Style="{DynamicResource MenuRadioButtonStyle}" />
+                    <RadioButton
+                        x:Name="ContactMessagesMenuRadioButton"
+                        Grid.Row="6"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,10,0"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="3"
+                        Click="ContactMessagesMenuRadioButton_Click"
+                        Command="{Binding ShowContactMessagesPageCommand}"
+                        Content="Сообщения"
+                        Style="{DynamicResource MenuRadioButtonStyle}" />
 
-                <Button
-                    x:Name="LogoutMenuButton"
-                    Grid.Row="7"
-                    Width="180"
-                    Height="35"
-                    Margin="10,0,0,0"
-                    Panel.ZIndex="3"
-                    Click="LogoutMenuButton_Click"
-                    CommandParameter="{Binding ElementName=ThisWindow}"
-                    Content="Выйти"
-                    Style="{DynamicResource MenuUserExitButton}" />
+                    <Button
+                        x:Name="LogoutMenuButton"
+                        Grid.Row="7"
+                        Width="180"
+                        Height="35"
+                        Margin="5,10,0,0"
+                        Panel.ZIndex="3"
+                        Click="LogoutMenuButton_Click"
+                        CommandParameter="{Binding ElementName=ThisWindow}"
+                        Content="Выйти"
+                        Style="{DynamicResource MenuUserExitButton}" />
+
+                </StackPanel>
 
             </Grid>
 
@@ -311,52 +303,52 @@
 
                         <Grid Row="1">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Orientation="Horizontal">
 
-                            <Button
-                                x:Name="UsersButton"
-                                Grid.Column="0"
-                                Margin="15,0,5,15"
-                                Click="UsersButton_Click"
-                                Command="{Binding ShowUsersPageCommand}"
-                                Content="Пользователи"
-                                FontSize="25"
-                                Style="{DynamicResource HomeButtonStyle}" />
+                                <Button
+                                    x:Name="BookingsButton"
+                                    Width="178"
+                                    Margin="15,0,10,15"
+                                    Click="BookingsButton_Click"
+                                    Command="{Binding ShowBookingsPageCommand}"
+                                    Content="Заказы"
+                                    FontSize="30"
+                                    Style="{DynamicResource HomeButtonStyle}" />
 
-                            <Button
-                                x:Name="BookingsButton"
-                                Grid.Column="1"
-                                Margin="15,0,5,15"
-                                Click="BookingsButton_Click"
-                                Command="{Binding ShowBookingsPageCommand}"
-                                Content="Заказы"
-                                FontSize="30"
-                                Style="{DynamicResource HomeButtonStyle}" />
+                                <Button
+                                    x:Name="MailSubscribersButton"
+                                    Width="178"
+                                    Margin="10,0,10,15"
+                                    Click="MailSubscribersButton_Click"
+                                    Command="{Binding ShowMailSubscribersPageCommand}"
+                                    Content="Подписчики"
+                                    FontSize="27"
+                                    Style="{DynamicResource HomeButtonStyle}" />
 
-                            <Button
-                                x:Name="MailSubscribersButton"
-                                Grid.Column="2"
-                                Margin="15,0,15,15"
-                                Click="MailSubscribersButton_Click"
-                                Command="{Binding ShowMailSubscribersPageCommand}"
-                                Content="Подписчики"
-                                FontSize="27"
-                                Style="{DynamicResource HomeButtonStyle}" />
+                                <Button
+                                    x:Name="ContactMessagesButton"
+                                    Width="178"
+                                    Margin="10,0,10,15"
+                                    Click="ContactMessagesButton_Click"
+                                    Command="{Binding ShowContactMessagesPageCommand}"
+                                    Content="Сообщения"
+                                    FontSize="27"
+                                    Style="{DynamicResource HomeButtonStyle}" />
 
-                            <Button
-                                x:Name="ContactMessagesButton"
-                                Grid.Column="3"
-                                Margin="15,0,15,15"
-                                Click="ContactMessagesButton_Click"
-                                Command="{Binding ShowContactMessagesPageCommand}"
-                                Content="Сообщения"
-                                FontSize="27"
-                                Style="{DynamicResource HomeButtonStyle}" />
+                                <Button
+                                    x:Name="UsersButton"
+                                    Width="178"
+                                    Margin="10,0,15,15"
+                                    Click="UsersButton_Click"
+                                    Command="{Binding ShowUsersPageCommand}"
+                                    Content="Пользователи"
+                                    FontSize="25"
+                                    Style="{DynamicResource HomeButtonStyle}" />
+
+                            </StackPanel>
 
                         </Grid>
 

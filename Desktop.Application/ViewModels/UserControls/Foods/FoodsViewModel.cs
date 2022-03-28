@@ -1,45 +1,8 @@
 ﻿namespace Desktop.Presentation.ViewModels.UserControls.Foods;
 
 internal sealed class FoodsViewModel
-    : BaseViewModel, IFoodsViewModel
+    : BaseMenuViewModel, IFoodsViewModel
 {
-    #region Members
-
-    #region Commands
-
-    public ICommand? ShowReadPageCommand { get; private set; }
-
-    public ICommand? ShowCreatePageCommand { get; private set; }
-
-    public ICommand? ShowUpdatePageCommand { get; private set; }
-
-    public ICommand? ShowDeletePageCommand { get; private set; }
-
-    #endregion
-
-    #region View
-
-    public object? FrameSource
-    {
-        get => _frameSource;
-        set
-        {
-            _frameSource = value;
-
-            OnPropertyChanged(nameof(FrameSource));
-        }
-    }
-
-    #endregion
-
-    #region Private
-
-    private object? _frameSource;
-
-    #endregion
-
-    #endregion
-
     public FoodsViewModel()
     {
         InitializeCommands();

@@ -1,45 +1,8 @@
 ﻿namespace Desktop.Presentation.ViewModels.UserControls.Users;
 
 internal sealed class UsersViewModel
-    : BaseViewModel, IUsersViewModel
+    : BaseMenuViewModel, IUsersViewModel
 {
-    #region Members
-
-    #region Commands
-
-    public ICommand? ShowReadPageCommand { get; private set; }
-
-    public ICommand? ShowCreatePageCommand { get; private set; }
-
-    public ICommand? ShowUpdatePageCommand { get; private set; }
-
-    public ICommand? ShowDeletePageCommand { get; private set; }
-
-    #endregion
-
-    #region View
-
-    public object? FrameSource
-    {
-        get => _frameSource;
-        set
-        {
-            _frameSource = value;
-
-            OnPropertyChanged(nameof(FrameSource));
-        }
-    }
-
-    #endregion
-
-    #region Private
-
-    private object? _frameSource;
-
-    #endregion
-
-    #endregion
-
     public UsersViewModel()
     {
         InitializeCommands();

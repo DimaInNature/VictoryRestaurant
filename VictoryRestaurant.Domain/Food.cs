@@ -1,8 +1,9 @@
-﻿using VictoryRestaurant.Enums.Food;
+﻿using VictoryRestaurant.Domain.Abstract;
+using VictoryRestaurant.Enums.Food;
 
 namespace VictoryRestaurant.Domain;
 
-public class Food
+public class Food : IDomainModel
 {
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }

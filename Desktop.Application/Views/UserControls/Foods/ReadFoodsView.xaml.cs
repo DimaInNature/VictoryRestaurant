@@ -2,11 +2,16 @@
 
 sealed partial class ReadFoodsView : UserControl
 {
+    private readonly IReadFoodsViewModel? _viewModel = (Application.Current as App)?
+        .ServiceProvider?.GetService<IReadFoodsViewModel>();
+
     public ReadFoodsView()
     {
         InitializeComponent();
 
-        DataContext = (Application.Current as App)?
-               .ServiceProvider?.GetService<IReadFoodsViewModel>();
+        if (_viewModel is null)
+            throw new NullReferenceException("ViewModel is null");
+
+        DataContext = _viewModel;
     }
 }

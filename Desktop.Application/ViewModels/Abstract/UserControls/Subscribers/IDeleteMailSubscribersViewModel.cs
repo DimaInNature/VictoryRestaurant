@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract.UserControls.Subscribers;
 
-internal interface IDeleteMailSubscribersViewModel { }
+internal interface IDeleteMailSubscribersViewModel : IBaseViewModel { }

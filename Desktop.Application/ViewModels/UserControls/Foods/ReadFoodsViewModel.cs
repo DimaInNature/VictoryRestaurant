@@ -1,52 +1,40 @@
 ﻿namespace Desktop.Presentation.ViewModels.UserControls.Foods;
 
 internal sealed class ReadFoodsViewModel
-    : BaseViewModel, IReadFoodsViewModel
+    : BaseReadViewModel<Food>, IReadFoodsViewModel
 {
-    #region Members
-
-    #region Properties
-
-    public List<Food> Foods
-    {
-        get => _foods;
-        set
-        {
-            if (value is not null)
-                _foods = value;
-
-            OnPropertyChanged(nameof(Foods));
-        }
-    }
-
-    #endregion
-
-    #region Private
-
-    private List<Food> _foods = new();
-
-    #endregion
-
-    #region Dependencies
-
     private readonly IFoodFacadeService _foodRepository;
-
-    #endregion
-
-    #endregion
 
     public ReadFoodsViewModel(IFoodFacadeService foodRepository)
     {
         _foodRepository = foodRepository;
 
-        Task.Run(function: InitializeData);
+        Task.Run(function: () => AutoUpdateData(
+           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
+           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
     }
 
     #region Other Logic
 
     private async Task InitializeData()
     {
-        Foods = await _foodRepository.GetFoodsAsync();
+        Items = await _foodRepository.GetFoodListAsync();
+    }
+
+    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
+    {
+        // First loading data
+
+        await InitializeData();
+
+        int millisecondsTimeout = secondsTimeout *= 1000;
+
+        while (isEnable)
+        {
+            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
+
+            await InitializeData();
+        }
     }
 
     #endregion

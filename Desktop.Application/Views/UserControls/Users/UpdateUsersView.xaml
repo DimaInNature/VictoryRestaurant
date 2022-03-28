@@ -8,5 +8,104 @@
     d:DesignHeight="600"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid />
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer
+            Grid.Column="0"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Disabled">
+
+            <StackPanel Orientation="Vertical">
+
+                <ListBox
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    ItemsSource="{Binding Items, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border
+                                Width="185"
+                                Height="35"
+                                Margin="10,0,10,0"
+                                Background="{DynamicResource AccentColor}"
+                                CornerRadius="10">
+
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    Foreground="{DynamicResource ItemForeground}"
+                                    Style="{DynamicResource TextBlockStyle}"
+                                    Text="{Binding Login, Mode=TwoWay}" />
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <Grid Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
+
+            <TextBox
+                Grid.Row="1"
+                Width="250"
+                Height="50"
+                HorizontalScrollBarVisibility="Auto"
+                Style="{DynamicResource ColorTextBoxStyle}"
+                Tag="Логин"
+                Text="{Binding SelectedItem.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBox
+                Grid.Row="2"
+                Width="250"
+                Height="50"
+                Style="{DynamicResource ColorTextBoxStyle}"
+                Tag="Пароль"
+                Text="{Binding SelectedItem.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <ComboBox
+                Grid.Row="3"
+                Width="250"
+                Height="50"
+                ItemsSource="{Binding RoleList}"
+                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{DynamicResource ModernComboBox}" />
+
+            <Button
+                Grid.Row="4"
+                Width="200"
+                Height="50"
+                Command="{Binding UpdateCommand}"
+                Content="Изменить"
+                Style="{DynamicResource ButtonStyle}" />
+
+        </Grid>
+
+    </Grid>
+
 </UserControl>

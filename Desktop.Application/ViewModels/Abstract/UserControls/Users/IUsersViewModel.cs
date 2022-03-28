@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract.UserControls.Users;
 
-internal interface IUsersViewModel { }
+internal interface IUsersViewModel : IBaseViewModel { }

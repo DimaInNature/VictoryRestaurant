@@ -20,6 +20,7 @@ public sealed record class UpdateUserCommandHandler
         userFromDb.Id = request.User.Id;
         userFromDb.Login = request.User.Login;
         userFromDb.Password = request.User.Password;
+        userFromDb.Role = request.User.Role;
 
         await _context.SaveChangesAsync(cancellationToken: token);
 

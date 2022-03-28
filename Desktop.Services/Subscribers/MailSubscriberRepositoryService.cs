@@ -9,8 +9,8 @@ public sealed class MailSubscriberRepositoryService : IMailSubscriberRepositoryS
         _repository = repository;
     }
 
-    public async Task<List<MailSubscriber>> GetMailSubscribersAsync() =>
-        await _repository.GetMailSubscribersAsync() ?? new();
+    public async Task<List<MailSubscriber>> GetMailSubscriberListAsync() =>
+        await _repository.GetMailSubscriberListAsync() ?? new();
 
     public async Task<MailSubscriber?> GetMailSubscriberAsync(int mailSubscriberId)
     {
@@ -19,24 +19,10 @@ public sealed class MailSubscriberRepositoryService : IMailSubscriberRepositoryS
         return await _repository.GetMailSubscriberAsync(mailSubscriberId);
     }
 
-    public async Task InsertMailSubscriberAsync(MailSubscriber mailSubscriber)
-    {
-        if (mailSubscriber is null) return;
-
-        await _repository.InsertMailSubscriberAsync(mailSubscriber);
-    }
-
-    public async Task UpdateMailSubscriberAsync(MailSubscriber mailSubscriber)
-    {
-        if (mailSubscriber is null) return;
-
-        await _repository.UpdateMailSubscriberAsync(mailSubscriber);
-    }
-
-    public async Task DeleteMailSubscriberAsync(int mailSubscriberId)
+    public async Task DeleteAsync(int mailSubscriberId)
     {
         if (mailSubscriberId < 1) return;
 
-        await _repository.DeleteMailSubscriberAsync(mailSubscriberId);
+        await _repository.DeleteAsync(mailSubscriberId);
     }
 }

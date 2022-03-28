@@ -4,11 +4,14 @@ public class ContactMessageRepository : IContactMessageRepository
 {
     private bool _disposed = false;
 
-    public async Task<List<ContactMessage>> GetContactMessagesAsync()
+    public async Task<List<ContactMessage>> GetContactMessageListAsync()
     {
         using var httpClient = new HttpClient();
+
         using var response = await httpClient.GetAsync(requestUri: "https://localhost:7059/ContactMessages");
+
         string apiResponse = await response.Content.ReadAsStringAsync();
+
         return JsonConvert.DeserializeObject<List<ContactMessage>>(value: apiResponse) ?? new();
     }
 
@@ -20,7 +23,7 @@ public class ContactMessageRepository : IContactMessageRepository
         return JsonConvert.DeserializeObject<ContactMessage>(value: apiResponse) ?? new();
     }
 
-    public async Task DeleteContactMessageAsync(int contactMessageId)
+    public async Task DeleteAsync(int contactMessageId)
     {
         using var client = new HttpClient();
 

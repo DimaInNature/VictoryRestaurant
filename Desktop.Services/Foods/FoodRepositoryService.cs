@@ -4,27 +4,40 @@ public sealed class FoodRepositoryService : IFoodRepositoryService
 {
     private readonly IFoodRepository _repository;
 
-    public FoodRepositoryService(IFoodRepository repository)
-    {
+    public FoodRepositoryService(IFoodRepository repository) =>
         _repository = repository;
+
+    public async Task<List<Food>> GetFoodListAsync() =>
+        await _repository.GetFoodListAsync() ?? new();
+
+    public async Task<List<Food>> GetFoodListAsync(FoodType type) =>
+        Enum.IsDefined(typeof(FoodType), type)
+        ? await _repository.GetFoodListAsync(type) ?? new()
+        : new();
+
+    public async Task<Food?> GetFoodAsync(FoodType type) =>
+        Enum.IsDefined(enumType: typeof(FoodType), value: type)
+        ? await _repository.GetFoodAsync(type)
+        : null;
+
+    public async Task CreateAsync(Food food)
+    {
+        if (food is null) return;
+
+        await _repository.CreateAsync(food);
     }
 
-    public async Task<List<Food>> GetFoodsAsync() =>
-        await _repository.GetFoodsAsync() ?? new();
-
-    public async Task<List<Food>> GetAllByFoodType(FoodType type)
+    public async Task UpdateAsync(Food food)
     {
-        if (Enum.IsDefined(typeof(FoodType), type) is false)
-            return new();
+        if (food is null) return;
 
-        return await _repository.GetAllByFoodType(type);
+        await _repository.UpdateAsync(food);
     }
 
-    public async Task<Food?> GetFoodByFootType(FoodType type)
+    public async Task DeleteAsync(int id)
     {
-        if (Enum.IsDefined(typeof(FoodType), type) is false)
-            return null;
+        if (id < 0) return;
 
-        return await _repository.GetFoodByFootType(type);
+        await _repository.DeleteAsync(id);
     }
 }

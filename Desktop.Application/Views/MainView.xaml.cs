@@ -2,18 +2,25 @@
 
 sealed partial class MainView : Window
 {
+    private readonly IMainViewModel? _viewModel = (Application.Current as App)?
+        .ServiceProvider?.GetService<IMainViewModel>();
+
+    private readonly UserSessionService? _sessionService = (Application.Current as App)?
+        .ServiceProvider?.GetService<UserSessionService>();
+
     public MainView()
     {
         InitializeComponent();
 
-        DataContext = (Application.Current as App)?
-                .ServiceProvider?.GetService<IMainViewModel>();
-    }
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
-    public MainView(User activeUser) : this()
-    {
-        var vm = DataContext as MainViewModel ?? new MainViewModel();
-        vm.ActiveUser = activeUser;
+        DataContext = _viewModel;
+
+        if (_sessionService?.ActiveUser?.Role is not UserRole.Admin)
+        {
+            UsersMenuRadioButton.Visibility = Visibility.Collapsed;
+            UsersButton.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void WindowDragMove(object sender, MouseButtonEventArgs e)
@@ -57,6 +64,8 @@ sealed partial class MainView : Window
 
     private void LogoutMenuButton_Click(object sender, RoutedEventArgs e)
     {
+        _sessionService?.EndSession();
+
         new LoginView().Show();
 
         Close();

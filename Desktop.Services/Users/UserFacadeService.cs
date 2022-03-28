@@ -9,8 +9,8 @@ public sealed class UserFacadeService : IUserFacadeService
         _repository = repository;
     }
 
-    public async Task<List<User>> GetUsersAsync() =>
-        await _repository.GetUsersAsync();
+    public async Task<List<User>> GetUserListAsync() =>
+        await _repository.GetUserListAsync();
 
     public async Task<User?> GetUserAsync(string login) =>
         await _repository.GetUserAsync(login);
@@ -18,12 +18,12 @@ public sealed class UserFacadeService : IUserFacadeService
     public async Task<User?> GetUserAsync(string login, string password) =>
         await _repository.GetUserAsync(login, password);
 
-    public async Task InsertUserAsync(User user) =>
-        await _repository.InsertUserAsync(user);
+    public async Task CreateAsync(User user) =>
+        await _repository.CreateAsync(user);
 
-    public async Task UpdateUserAsync(User user) =>
-        await _repository.UpdateUserAsync(user);
+    public async Task UpdateAsync(User user) =>
+        await _repository.UpdateAsync(user);
 
-    public async Task DeleteUserAsync(int userId) =>
-        await _repository.DeleteUserAsync(userId);
+    public async Task DeleteAsync(int userId) =>
+        await _repository.DeleteAsync(userId);
 }

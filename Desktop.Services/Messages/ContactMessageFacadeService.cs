@@ -9,12 +9,12 @@ public sealed class ContactMessageFacadeService : IContactMessageFacadeService
         _repository = repository;
     }
 
-    public async Task<List<ContactMessage>> GetContactMessagesAsync() =>
-        await _repository.GetContactMessagesAsync();
+    public async Task<List<ContactMessage>> GetContactMessageListAsync() =>
+        await _repository.GetContactMessageListAsync();
 
     public async Task<ContactMessage?> GetContactMessageAsync(int contactMessageId) =>
         await _repository.GetContactMessageAsync(contactMessageId);
 
-    public async Task DeleteContactMessageAsync(int bookingId) =>
-        await _repository.DeleteContactMessageAsync(bookingId);
+    public async Task DeleteAsync(int bookingId) =>
+        await _repository.DeleteAsync(bookingId);
 }

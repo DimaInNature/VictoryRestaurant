@@ -2,7 +2,7 @@
 
 public interface IContactMessageFacadeService
 {
-    Task<List<ContactMessage>> GetContactMessagesAsync();
+    Task<List<ContactMessage>> GetContactMessageListAsync();
     Task<ContactMessage?> GetContactMessageAsync(int contactMessageId);
-    Task DeleteContactMessageAsync(int bookingId);
+    Task DeleteAsync(int bookingId);
 }

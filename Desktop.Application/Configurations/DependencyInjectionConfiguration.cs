@@ -1,4 +1,6 @@
-﻿namespace Desktop.Presentation.Configurations;
+﻿using Desktop.Services;
+
+namespace Desktop.Presentation.Configurations;
 
 internal static class DependencyInjectionConfiguration
 {
@@ -31,18 +33,16 @@ internal static class DependencyInjectionConfiguration
 
         services.AddTransient<IBookingsViewModel, BookingsViewModel>();
         services.AddTransient<IReadBookingsViewModel, ReadBookingsViewModel>();
-        services.AddTransient<ICreateBookingsViewModel, CreateBookingsViewModel>();
-        services.AddTransient<IUpdateBookingsViewModel, UpdateBookingsViewModel>();
         services.AddTransient<IDeleteBookingsViewModel, DeleteBookingsViewModel>();
 
         services.AddTransient<IMailSubscribersViewModel, MailSubscribersViewModel>();
         services.AddTransient<IReadMailSubscribersViewModel, ReadMailSubscribersViewModel>();
-        services.AddTransient<ICreateMailSubscribersViewModel, CreateMailSubscribersViewModel>();
-        services.AddTransient<IUpdateMailSubscribersViewModel, UpdateMailSubscribersViewModel>();
         services.AddTransient<IDeleteMailSubscribersViewModel, DeleteMailSubscribersViewModel>();
 
         services.AddTransient<IContactMessagesViewModel, ContactMessagesViewModel>();
         services.AddTransient<IReadContactMessagesViewModel, ReadContactMessagesViewModel>();
         services.AddTransient<IDeleteContactMessagesViewModel, DeleteContactMessagesViewModel>();
+
+        services.AddSingleton<UserSessionService>();
     }
 }

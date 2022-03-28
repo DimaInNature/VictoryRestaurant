@@ -168,6 +168,13 @@ public class ApplicationContext : DbContext
         new()
         {
             Id = 2,
+            Login = "Employee",
+            Password = "Root",
+            Role = UserRole.Employee
+        },
+        new()
+        {
+            Id = 3,
             Login = "User",
             Password = "Root",
             Role = UserRole.User

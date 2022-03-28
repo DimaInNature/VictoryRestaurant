@@ -62,12 +62,6 @@ internal sealed class MainViewModel
 
     #endregion
 
-    #region Propeties
-
-    public User? ActiveUser { get; set; }
-
-    #endregion
-
     #region Private
 
     private Visibility _frameVisibility;
@@ -78,10 +72,18 @@ internal sealed class MainViewModel
 
     #endregion
 
+    #region Dependencies
+
+    private readonly UserSessionService _sessionService;
+
     #endregion
 
-    public MainViewModel()
+    #endregion
+
+    public MainViewModel(UserSessionService sessionService)
     {
+        _sessionService = sessionService;
+
         InitializeCommands();
     }
 
@@ -121,7 +123,7 @@ internal sealed class MainViewModel
         FrameSource is not BookingsView;
 
     private bool CanExecuteShowUsersPage(object obj) =>
-        FrameSource is not UsersView;
+        FrameSource is not UsersView && _sessionService?.ActiveUser?.Role is UserRole.Admin;
 
     private bool CanExecuteShowMailSubscribersPage(object obj) =>
         FrameSource is not MailSubscribersView;

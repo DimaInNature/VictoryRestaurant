@@ -6,7 +6,7 @@ public class UserRepository : IUserRepository
 {
     private bool _disposed = false;
 
-    public async Task<List<User>?> GetUsersAsync()
+    public async Task<List<User>?> GetUserListAsync()
     {
         using var httpClient = new HttpClient();
 
@@ -42,8 +42,10 @@ public class UserRepository : IUserRepository
         return JsonConvert.DeserializeObject<User>(value: apiResponse);
     }
 
-    public async Task InsertUserAsync(User user)
+    public async Task CreateAsync(User user)
     {
+        if (user is null) return;
+
         using var client = new HttpClient();
 
         string json = JsonConvert.SerializeObject(value: user);
@@ -56,8 +58,10 @@ public class UserRepository : IUserRepository
                 mediaType: "application/json"));
     }
 
-    public async Task UpdateUserAsync(User user)
+    public async Task UpdateAsync(User user)
     {
+        if (user is null) return;
+
         using var client = new HttpClient();
 
         string json = JsonConvert.SerializeObject(value: user);
@@ -70,7 +74,7 @@ public class UserRepository : IUserRepository
                 mediaType: "application/json"));
     }
 
-    public async Task DeleteUserAsync(int userId)
+    public async Task DeleteAsync(int userId)
     {
         using var client = new HttpClient();
 

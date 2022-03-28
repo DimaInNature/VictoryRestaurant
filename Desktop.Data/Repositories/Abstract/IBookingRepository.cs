@@ -2,9 +2,7 @@
 
 public interface IBookingRepository : IDisposable
 {
-    Task<List<Booking>> GetBookingsAsync();
+    Task<List<Booking>> GetBookingListAsync();
     Task<Booking> GetBookingAsync(int bookingId);
-    Task InsertBookingAsync(Booking booking);
-    Task UpdateBookingAsync(Booking booking);
-    Task DeleteBookingAsync(int bookingId);
+    Task DeleteAsync(int bookingId);
 }

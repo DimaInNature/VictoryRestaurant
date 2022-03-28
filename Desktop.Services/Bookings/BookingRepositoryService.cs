@@ -9,8 +9,8 @@ public sealed class BookingRepositoryService : IBookingRepositoryService
         _repository = repository;
     }
 
-    public async Task<List<Booking>> GetBookingsAsync() =>
-        await _repository.GetBookingsAsync() ?? new();
+    public async Task<List<Booking>> GetBookingListAsync() =>
+        await _repository.GetBookingListAsync() ?? new();
 
     public async Task<Booking?> GetBookingAsync(int bookingId)
     {
@@ -19,24 +19,10 @@ public sealed class BookingRepositoryService : IBookingRepositoryService
         return await _repository.GetBookingAsync(bookingId);
     }
 
-    public async Task InsertBookingAsync(Booking booking)
-    {
-        if (booking is null) return;
-
-        await _repository.InsertBookingAsync(booking);
-    }
-
-    public async Task UpdateBookingAsync(Booking booking)
-    {
-        if (booking is null) return;
-
-        await _repository.UpdateBookingAsync(booking);
-    }
-
-    public async Task DeleteBookingAsync(int bookingId)
+    public async Task DeleteAsync(int bookingId)
     {
         if (bookingId < 1) return;
 
-        await _repository.DeleteBookingAsync(bookingId);
+        await _repository.DeleteAsync(bookingId);
     }
 }

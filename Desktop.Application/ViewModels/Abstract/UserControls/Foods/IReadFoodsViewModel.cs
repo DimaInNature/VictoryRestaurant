@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract.UserControls.Foods;
 
-internal interface IReadFoodsViewModel { }
+internal interface IReadFoodsViewModel : IBaseViewModel { }

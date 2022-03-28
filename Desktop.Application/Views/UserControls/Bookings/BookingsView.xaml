@@ -39,24 +39,6 @@
                 Style="{DynamicResource MenuRadioButtonStyle}" />
 
             <RadioButton
-                x:Name="CreateRadioButton"
-                Height="35"
-                Margin="10,5,0,5"
-                Command="{Binding ShowCreatePageCommand}"
-                Content="Создание"
-                FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
-
-            <RadioButton
-                x:Name="UpdateRadioButton"
-                Height="35"
-                Margin="10,5,0,5"
-                Command="{Binding ShowUpdatePageCommand}"
-                Content="Изменение"
-                FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
-
-            <RadioButton
                 x:Name="DeleteRadioButton"
                 Height="35"
                 Margin="10,5,0,5"

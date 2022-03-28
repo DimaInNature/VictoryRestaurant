@@ -2,11 +2,16 @@
 
 sealed partial class ReadMailSubscribersView : UserControl
 {
+    private readonly IReadMailSubscribersViewModel? _viewModel = (Application.Current as App)?
+       .ServiceProvider?.GetService<IReadMailSubscribersViewModel>();
+
     public ReadMailSubscribersView()
     {
         InitializeComponent();
 
-        DataContext = (Application.Current as App)?
-               .ServiceProvider?.GetService<IReadMailSubscribersViewModel>();
+        if (_viewModel is null)
+            throw new NullReferenceException("ViewModel is null");
+
+        DataContext = _viewModel;
     }
 }

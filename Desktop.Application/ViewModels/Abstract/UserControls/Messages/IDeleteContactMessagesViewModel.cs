@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract.UserControls.Messages;
 
-internal interface IDeleteContactMessagesViewModel { }
+internal interface IDeleteContactMessagesViewModel : IBaseViewModel { }

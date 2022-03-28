@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract.UserControls.Messages;
 
-internal interface IReadContactMessagesViewModel { }
+internal interface IReadContactMessagesViewModel : IBaseViewModel { }

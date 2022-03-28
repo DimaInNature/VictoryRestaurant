@@ -1,41 +1,8 @@
 ﻿namespace Desktop.Presentation.ViewModels.UserControls.Messages;
 
 internal sealed class ContactMessagesViewModel
-    : BaseViewModel, IContactMessagesViewModel
+    : BaseMenuViewModel, IContactMessagesViewModel
 {
-    #region Members
-
-    #region Commands
-
-    public ICommand? ShowReadPageCommand { get; private set; }
-
-    public ICommand? ShowDeletePageCommand { get; private set; }
-
-    #endregion
-
-    #region View
-
-    public object? FrameSource
-    {
-        get => _frameSource;
-        set
-        {
-            _frameSource = value;
-
-            OnPropertyChanged(nameof(FrameSource));
-        }
-    }
-
-    #endregion
-
-    #region Private
-
-    private object? _frameSource;
-
-    #endregion
-
-    #endregion
-
     public ContactMessagesViewModel()
     {
         InitializeCommands();

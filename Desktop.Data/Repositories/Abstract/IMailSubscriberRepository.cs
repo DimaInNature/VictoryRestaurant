@@ -2,9 +2,7 @@
 
 public interface IMailSubscriberRepository : IDisposable
 {
-    Task<List<MailSubscriber>> GetMailSubscribersAsync();
+    Task<List<MailSubscriber>> GetMailSubscriberListAsync();
     Task<MailSubscriber> GetMailSubscriberAsync(int mailSubscriberId);
-    Task InsertMailSubscriberAsync(MailSubscriber mailSubscriber);
-    Task UpdateMailSubscriberAsync(MailSubscriber mailSubscriber);
-    Task DeleteMailSubscriberAsync(int mailSubscriberId);
+    Task DeleteAsync(int mailSubscriberId);
 }

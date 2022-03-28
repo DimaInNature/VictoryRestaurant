@@ -1,6 +1,8 @@
-﻿namespace VictoryRestaurant.Domain;
+﻿using VictoryRestaurant.Domain.Abstract;
 
-public class ContactMessage
+namespace VictoryRestaurant.Domain;
+
+public class ContactMessage : IDomainModel
 {
     public int Id { get; set; }
     public string Name { get; set; }

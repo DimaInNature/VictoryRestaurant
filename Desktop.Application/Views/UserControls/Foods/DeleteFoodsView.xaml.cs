@@ -2,11 +2,16 @@
 
 public partial class DeleteFoodsView : UserControl
 {
+    private readonly IDeleteFoodsViewModel? _viewModel = (Application.Current as App)?
+        .ServiceProvider?.GetService<IDeleteFoodsViewModel>();
+
     public DeleteFoodsView()
     {
         InitializeComponent();
 
-        DataContext = (Application.Current as App)?
-               .ServiceProvider?.GetService<IDeleteFoodsViewModel>();
+        if (_viewModel is null)
+            throw new NullReferenceException("ViewModel is null");
+
+        DataContext = _viewModel;
     }
 }

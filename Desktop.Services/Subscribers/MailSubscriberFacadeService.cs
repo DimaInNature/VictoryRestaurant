@@ -9,18 +9,12 @@ public sealed class MailSubscriberFacadeService : IMailSubscriberFacadeService
         _repository = repository;
     }
 
-    public async Task<List<MailSubscriber>> GetMailSubscribersAsync() =>
-        await _repository.GetMailSubscribersAsync();
+    public async Task<List<MailSubscriber>> GetMailSubscriberListAsync() =>
+        await _repository.GetMailSubscriberListAsync();
 
     public async Task<MailSubscriber?> GetMailSubscriberAsync(int mailSubscriberId) =>
         await _repository.GetMailSubscriberAsync(mailSubscriberId);
 
-    public async Task InsertMailSubscriberAsync(MailSubscriber mailSubscriber) =>
-        await _repository.InsertMailSubscriberAsync(mailSubscriber);
-
-    public async Task UpdateMailSubscriberAsync(MailSubscriber mailSubscriber) =>
-        await _repository.UpdateMailSubscriberAsync(mailSubscriber);
-
-    public async Task DeleteMailSubscriberAsync(int mailSubscriberId) =>
-        await _repository.DeleteMailSubscriberAsync(mailSubscriberId);
+    public async Task DeleteAsync(int mailSubscriberId) =>
+        await _repository.DeleteAsync(mailSubscriberId);
 }

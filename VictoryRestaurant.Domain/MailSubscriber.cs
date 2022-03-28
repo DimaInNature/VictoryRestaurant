@@ -1,6 +1,8 @@
-﻿namespace VictoryRestaurant.Domain;
+﻿using VictoryRestaurant.Domain.Abstract;
 
-public class MailSubscriber
+namespace VictoryRestaurant.Domain;
+
+public class MailSubscriber : IDomainModel
 {
     public int Id { get; set; }
     public string Mail { get; set; }

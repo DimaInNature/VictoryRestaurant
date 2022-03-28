@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VictoryRestaurant.Domain.Abstract;
 
 namespace VictoryRestaurant.Domain;
 
-public class Booking
+public class Booking : IDomainModel
 {
     public int Id { get; set; }
 

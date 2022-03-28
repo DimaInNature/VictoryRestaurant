@@ -9,8 +9,8 @@ public sealed class ContactMessageRepositoryService : IContactMessageRepositoryS
         _repository = repository;
     }
 
-    public async Task<List<ContactMessage>> GetContactMessagesAsync() =>
-        await _repository.GetContactMessagesAsync() ?? new();
+    public async Task<List<ContactMessage>> GetContactMessageListAsync() =>
+        await _repository.GetContactMessageListAsync() ?? new();
 
     public async Task<ContactMessage?> GetContactMessageAsync(int contactMessageId)
     {
@@ -19,10 +19,10 @@ public sealed class ContactMessageRepositoryService : IContactMessageRepositoryS
         return await _repository.GetContactMessageAsync(contactMessageId);
     }
 
-    public async Task DeleteContactMessageAsync(int contactMessageId)
+    public async Task DeleteAsync(int contactMessageId)
     {
         if (contactMessageId < 1) return;
 
-        await _repository.DeleteContactMessageAsync(contactMessageId);
+        await _repository.DeleteAsync(contactMessageId);
     }
 }

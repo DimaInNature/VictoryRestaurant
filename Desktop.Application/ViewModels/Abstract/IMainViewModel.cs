@@ -1,3 +1,3 @@
 ﻿namespace Desktop.Presentation.ViewModels.Abstract;
 
-internal interface IMainViewModel { }
+internal interface IMainViewModel : IBaseViewModel { }
