@@ -9,19 +9,35 @@
     
     @await Component.InvokeAsync(
         name: "PageHeading",
-        arguments: new { heading = "Наше меню", text = "Уникальный набор блюд от нашего шеф-повара. Сделано с любовью."});
+        arguments: new
+        {
+            heading = "Наше меню",
+            text = "Уникальный набор блюд от нашего шеф-повара. Сделано с любовью."
+        });
     
     @await Component.InvokeAsync(
         name: "FoodMenu",
-        arguments: new { foodType = FoodType.Breakfast, side = DisplaySide.Right});
+        arguments: new 
+        {
+            foodType = FoodType.Breakfast,
+            side = DisplaySide.Right
+        });
         
     @await Component.InvokeAsync(
         name: "FoodMenu",
-        arguments: new { foodType = FoodType.Lunch, side = DisplaySide.Left});
+        arguments: new 
+        {
+            foodType = FoodType.Lunch,
+            side = DisplaySide.Left
+        });
 
     @await Component.InvokeAsync(
          name: "FoodMenu",
-         arguments: new { foodType = FoodType.Dinner, side = DisplaySide.Right});
+         arguments: new 
+         {
+             foodType = FoodType.Dinner,
+             side = DisplaySide.Right
+         });
     
     @await Component.InvokeAsync(name: "Booking");
 

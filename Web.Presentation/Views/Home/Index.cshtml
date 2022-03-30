@@ -15,7 +15,9 @@
     
     @await Component.InvokeAsync(name: "Booking");
     
-    @await Component.InvokeAsync(name: "DownloadApp", arguments: "client.jpg");
+    @await Component.InvokeAsync(
+        name: "DownloadApp",
+        arguments: "client.jpg");
     
     @await Component.InvokeAsync(name: "FoodWeekleTop");
     

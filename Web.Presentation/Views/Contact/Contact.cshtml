@@ -9,7 +9,11 @@
     
     @await Component.InvokeAsync(
         name: "PageHeading",
-        arguments: new { heading = "Свяжитесь с нами", text = "Задайте нам Ваши вопросы и мы обязательно на них ответим."});
+        arguments: new 
+        { 
+            heading = "Свяжитесь с нами",
+            text = "Задайте нам Ваши вопросы и мы обязательно на них ответим."
+        });
     
     @await Component.InvokeAsync(name: "CreateContactMessage");
     
