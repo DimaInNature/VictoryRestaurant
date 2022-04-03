@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\bootstrap.css" />
+    <Content Remove="wwwroot\css\bootstrap.css.map" />
+    <Content Remove="wwwroot\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\css\fontAwesome.css" />
+    <Content Remove="wwwroot\css\fonts\flexslider-icon.eot" />
+    <Content Remove="wwwroot\css\fonts\flexslider-icon.svg" />
+    <Content Remove="wwwroot\css\fonts\flexslider-icon.ttf" />
+    <Content Remove="wwwroot\css\fonts\flexslider-icon.woff" />
+    <Content Remove="wwwroot\css\owl-carousel.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\css\templatemo-style.css" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.eot" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.svg" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <Content Remove="wwwroot\fonts\FontAwesome.otf" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.eot" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <Content Remove="wwwroot\img\banner-bg.jpg" />
+    <Content Remove="wwwroot\img\book-bg.jpg" />
+    <Content Remove="wwwroot\img\book_left_image.jpg" />
+    <Content Remove="wwwroot\img\breakfast_menu.jpg" />
+    <Content Remove="wwwroot\img\close.png" />
+    <Content Remove="wwwroot\img\cook_01.jpg" />
+    <Content Remove="wwwroot\img\cook_02.jpg" />
+    <Content Remove="wwwroot\img\cook_breakfast.png" />
+    <Content Remove="wwwroot\img\cook_dessert.png" />
+    <Content Remove="wwwroot\img\cook_dinner.png" />
+    <Content Remove="wwwroot\img\cook_lunch.png" />
+    <Content Remove="wwwroot\img\dinner_menu.jpg" />
+    <Content Remove="wwwroot\img\error_food.jpg" />
+    <Content Remove="wwwroot\img\heading-bg.jpg" />
+    <Content Remove="wwwroot\img\loading.gif" />
+    <Content Remove="wwwroot\img\lunch_menu.jpg" />
+    <Content Remove="wwwroot\img\next.png" />
+    <Content Remove="wwwroot\img\prev.png" />
+    <Content Remove="wwwroot\img\signup-bg.jpg" />
+    <Content Remove="wwwroot\js\main.js" />
+    <Content Remove="wwwroot\js\plugins.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\bootstrap.css.map" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\fontAwesome.css" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.eot" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.svg" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.ttf" />
+    <None Include="wwwroot\css\fonts\flexslider-icon.woff" />
+    <None Include="wwwroot\css\owl-carousel.css" />
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\css\templatemo-style.css" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\img\banner-bg.jpg" />
+    <None Include="wwwroot\img\book-bg.jpg" />
+    <None Include="wwwroot\img\book_left_image.jpg" />
+    <None Include="wwwroot\img\breakfast_menu.jpg" />
+    <None Include="wwwroot\img\close.png" />
+    <None Include="wwwroot\img\cook_01.jpg" />
+    <None Include="wwwroot\img\cook_02.jpg" />
+    <None Include="wwwroot\img\cook_breakfast.png" />
+    <None Include="wwwroot\img\cook_dessert.png" />
+    <None Include="wwwroot\img\cook_dinner.png" />
+    <None Include="wwwroot\img\cook_lunch.png" />
+    <None Include="wwwroot\img\dinner_menu.jpg" />
+    <None Include="wwwroot\img\error_food.jpg" />
+    <None Include="wwwroot\img\heading-bg.jpg" />
+    <None Include="wwwroot\img\loading.gif" />
+    <None Include="wwwroot\img\lunch_menu.jpg" />
+    <None Include="wwwroot\img\next.png" />
+    <None Include="wwwroot\img\prev.png" />
+    <None Include="wwwroot\img\signup-bg.jpg" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\plugins.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Application.Web\Victory.Application.Web.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>
