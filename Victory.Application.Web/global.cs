@@ -1,0 +1,16 @@
+﻿global using MediatR;
+global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.Logging;
+global using Victory.Application.General.Client.Features.Bookings;
+global using Victory.Application.General.Client.Features.Foods;
+global using Victory.Application.General.Client.Features.Messages;
+global using Victory.Application.General.Client.Features.Subscribers;
+global using Victory.Application.General.Client.Features.Users;
+global using Victory.Application.Web.Interfaces.Cache;
+global using Victory.Application.Web.Interfaces.Data.Bookings;
+global using Victory.Application.Web.Interfaces.Data.Foods;
+global using Victory.Application.Web.Interfaces.Data.Messages;
+global using Victory.Application.Web.Interfaces.Data.Subscribers;
+global using Victory.Application.Web.Interfaces.Data.Users;
+global using Victory.Domain.Models;
+global using Victory.Infra.Core.Enums;

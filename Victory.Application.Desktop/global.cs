@@ -1,0 +1,13 @@
+﻿global using MediatR;
+global using Victory.Application.Desktop.Interfaces.Data.Bookings;
+global using Victory.Application.Desktop.Interfaces.Data.Foods;
+global using Victory.Application.Desktop.Interfaces.Data.Messages;
+global using Victory.Application.Desktop.Interfaces.Data.Subscribers;
+global using Victory.Application.Desktop.Interfaces.Data.Users;
+global using Victory.Application.General.Client.Features.Bookings;
+global using Victory.Application.General.Client.Features.Foods;
+global using Victory.Application.General.Client.Features.Messages;
+global using Victory.Application.General.Client.Features.Subscribers;
+global using Victory.Application.General.Client.Features.Users;
+global using Victory.Domain.Models;
+global using Victory.Infra.Core.Enums;

@@ -13,10 +13,12 @@ sealed partial class FoodsView : UserControl
             throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
+
+        SetFrame(source: new ReadFoodsView());
     }
 
     private void ViewRadioButton_Click(object sender, RoutedEventArgs e) =>
-          SetFrame(source: new ReadFoodsView());
+        SetFrame(source: new ReadFoodsView());
 
     private void CreateRadioButton_Click(object sender, RoutedEventArgs e) =>
         SetFrame(source: new CreateFoodsView());

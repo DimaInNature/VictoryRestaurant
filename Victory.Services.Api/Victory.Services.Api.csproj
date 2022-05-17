@@ -26,7 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.Services\Victory.Application.Services.csproj" />
+    <ProjectReference Include="..\Victory.Application.Api.Interfaces\Victory.Application.Api.Interfaces.csproj" />
+    <ProjectReference Include="..\Victory.Application.Api\Victory.Application.Api.csproj" />
     <ProjectReference Include="..\Victory.Infra.Data\Victory.Infra.Data.csproj" />
   </ItemGroup>
 

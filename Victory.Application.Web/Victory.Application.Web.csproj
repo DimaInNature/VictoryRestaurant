@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.Features\Victory.Application.Features.csproj" />
+    <ProjectReference Include="..\Victory.Application.General.Client.Features\Victory.Application.General.Client.Features.csproj" />
+    <ProjectReference Include="..\Victory.Application.Web.Interfaces\Victory.Application.Web.Interfaces.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
   </ItemGroup>
 

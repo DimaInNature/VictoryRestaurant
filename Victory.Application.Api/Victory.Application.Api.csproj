@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Application.Api.Features\Victory.Application.Api.Features.csproj" />
+    <ProjectReference Include="..\Victory.Application.Api.Interfaces\Victory.Application.Api.Interfaces.csproj" />
+    <ProjectReference Include="..\Victory.Infra.Data\Victory.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
