@@ -76,7 +76,7 @@
                 Width="250"
                 Height="50"
                 HorizontalScrollBarVisibility="Auto"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Логин"
                 Text="{Binding SelectedItem.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -84,7 +84,7 @@
                 Grid.Row="2"
                 Width="250"
                 Height="50"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Пароль"
                 Text="{Binding SelectedItem.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -94,15 +94,14 @@
                 Height="50"
                 ItemsSource="{Binding RoleList}"
                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Style="{DynamicResource ModernComboBox}" />
+                Style="{StaticResource ModernComboBox}" />
 
             <Button
                 Grid.Row="4"
                 Width="200"
                 Height="50"
                 Command="{Binding UpdateCommand}"
-                Content="Изменить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Изменить" />
 
         </Grid>
 

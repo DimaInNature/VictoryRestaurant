@@ -76,7 +76,7 @@
                 Width="300"
                 Height="70"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Название"
                 Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -86,7 +86,7 @@
                 Height="100"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Описание"
                 Text="{Binding SelectedItem.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -95,7 +95,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Стоимость"
                 Text="{Binding SelectedItem.CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -104,7 +104,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Тип"
                 Text="{Binding SelectedItem.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -113,8 +113,7 @@
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Удалить" />
 
         </Grid>
 

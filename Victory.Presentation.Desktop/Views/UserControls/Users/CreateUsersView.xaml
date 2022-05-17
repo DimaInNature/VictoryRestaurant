@@ -26,7 +26,7 @@
             Width="250"
             Height="50"
             HorizontalScrollBarVisibility="Auto"
-            Style="{DynamicResource ColorTextBoxStyle}"
+            Style="{StaticResource ColorTextBoxStyle}"
             Tag="Логин"
             Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -34,7 +34,7 @@
             Grid.Row="2"
             Width="250"
             Height="50"
-            Style="{DynamicResource ColorTextBoxStyle}"
+            Style="{StaticResource ColorTextBoxStyle}"
             Tag="Пароль"
             Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -51,8 +51,7 @@
             Width="200"
             Height="50"
             Command="{Binding CreateCommand}"
-            Content="Создать"
-            Style="{DynamicResource ButtonStyle}" />
+            Content="Создать" />
 
     </Grid>
 

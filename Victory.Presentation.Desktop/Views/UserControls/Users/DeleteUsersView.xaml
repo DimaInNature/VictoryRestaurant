@@ -77,7 +77,7 @@
                 Height="50"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Логин"
                 Text="{Binding SelectedItem.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -86,7 +86,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Пароль"
                 Text="{Binding SelectedItem.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -95,7 +95,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Роль"
                 Text="{Binding SelectedItem.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -104,8 +104,7 @@
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Удалить" />
 
         </Grid>
 

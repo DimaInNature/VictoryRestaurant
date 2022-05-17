@@ -2,19 +2,74 @@
 
     <!--#region Resources-->
 
-    <FontFamily x:Key="FontFamily">/Victory.Presentation.Desktop;component/Content/Font/ProximaNova/#Proxima Nova Th</FontFamily>
+    <FontFamily x:Key="FontFamily">Roboto Medium</FontFamily>
 
     <Brush x:Key="Foreground">Black</Brush>
 
     <Brush x:Key="ItemForeground">White</Brush>
 
-    <Brush x:Key="AccentColor">#805A3B</Brush>
+    <Brush x:Key="AccentColor">#f2745f</Brush>
 
     <Brush x:Key="SecondaryColor">#FD974F</Brush>
 
     <Brush x:Key="MouseOverColor">#C60000</Brush>
 
     <Brush x:Key="ThirdRateColor">#FEF2E4</Brush>
+
+    <!--#endregion-->
+
+    <!--#region Base styles-->
+
+    <!--#region TextBlock-->
+
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Button-->
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource AccentColor}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        ClipToBounds="False"
+                        CornerRadius="5">
+
+                        <Grid>
+
+                            <Rectangle
+                                Fill="{TemplateBinding Background}"
+                                RadiusX="5"
+                                RadiusY="5" />
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Text="{TemplateBinding Content}" />
+
+                        </Grid>
+
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
 
     <!--#endregion-->
 
@@ -335,16 +390,6 @@
 
     <!--#endregion-->
 
-    <!--#region TextBlock-->
-
-    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
-        <Setter Property="IsHitTestVisible" Value="False" />
-    </Style>
-
-    <!--#endregion-->
-
     <!--#region Button-->
 
     <!--#region Transparent-->
@@ -409,68 +454,6 @@
             </EventTrigger>
             <EventTrigger RoutedEvent="Button.MouseLeave">
                 <BeginStoryboard Storyboard="{DynamicResource TransparentButtonMouseLeave}" />
-            </EventTrigger>
-        </Style.Triggers>
-    </Style>
-
-    <!--#endregion-->
-
-    <!--#region Classic-->
-
-    <Style x:Key="ButtonStyle" TargetType="Button">
-
-        <Setter Property="Background" Value="{StaticResource AccentColor}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
-        <Setter Property="Foreground" Value="{StaticResource ItemForeground}" />
-        <Setter Property="FontSize" Value="17" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="MinWidth" Value="0" />
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-
-                    <Grid>
-                        <Rectangle
-                            Fill="{TemplateBinding Background}"
-                            RadiusX="5"
-                            RadiusY="5" />
-                        <Rectangle
-                            Width="{TemplateBinding MinWidth}"
-                            HorizontalAlignment="Left"
-                            RadiusX="5"
-                            RadiusY="5">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <LinearGradientBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
-                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
-                                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
-                                            <TranslateTransform />
-                                        </TransformGroup>
-                                    </LinearGradientBrush.RelativeTransform>
-                                    <GradientStop Offset="1" Color="#FD974F" />
-                                    <GradientStop Color="#805A3B" />
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <ContentPresenter
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{TemplateBinding Content}" />
-                    </Grid>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <EventTrigger RoutedEvent="Button.MouseEnter">
-                <BeginStoryboard Storyboard="{DynamicResource ButtonMouseEnter}" />
-            </EventTrigger>
-            <EventTrigger RoutedEvent="Button.MouseLeave">
-                <BeginStoryboard Storyboard="{DynamicResource ButtonMouseLeave}" />
             </EventTrigger>
         </Style.Triggers>
     </Style>
@@ -707,8 +690,40 @@
         <Setter Property="Background" Value="{DynamicResource ThirdRateColor}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
         <Setter Property="Foreground" Value="{StaticResource AccentColor}" />
-
+      
     </Style>
+
+    <Storyboard x:Key="HomeButtonMouseEnterAnimation">
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#C60000" />
+        </ColorAnimationUsingKeyFrames>
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#C60000" />
+        </ColorAnimationUsingKeyFrames>
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
+        </ColorAnimationUsingKeyFrames>
+
+    </Storyboard>
+
+    <Storyboard x:Key="HomeButtonMouseLeaveAnimation">
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#f2745f" />
+        </ColorAnimationUsingKeyFrames>
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
+        </ColorAnimationUsingKeyFrames>
+
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#f2745f" />
+        </ColorAnimationUsingKeyFrames>
+
+    </Storyboard>
 
     <Style
         x:Key="HomeButtonStyle"
@@ -721,7 +736,7 @@
                     <Border
                         Name="Border"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderBrush="{StaticResource AccentColor}"
                         BorderThickness="1"
                         CornerRadius="10">
 
@@ -811,7 +826,7 @@
                             <TranslateTransform />
                         </TransformGroup>
                     </LinearGradientBrush.RelativeTransform>
-                    <GradientStop Offset="1" Color="#805A3B" />
+                    <GradientStop Offset="1" Color="#213339" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -1196,71 +1211,6 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
-
-    <!--#endregion-->
-
-    <!--#region Classic-->
-
-    <Storyboard x:Key="ButtonMouseEnter">
-
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
-        </DoubleAnimationUsingKeyFrames>
-
-    </Storyboard>
-
-    <Storyboard x:Key="ButtonMouseLeave">
-
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-
-    </Storyboard>
-
-    <!--#endregion-->
-
-    <!--#region Home-->
-
-    <Storyboard x:Key="HomeButtonMouseEnterAnimation">
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#C60000" />
-        </ColorAnimationUsingKeyFrames>
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#C60000" />
-        </ColorAnimationUsingKeyFrames>
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
-        </ColorAnimationUsingKeyFrames>
-
-    </Storyboard>
-
-    <Storyboard x:Key="HomeButtonMouseLeaveAnimation">
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#805A3B" />
-        </ColorAnimationUsingKeyFrames>
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
-        </ColorAnimationUsingKeyFrames>
-
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#805A3B" />
-        </ColorAnimationUsingKeyFrames>
-
-    </Storyboard>
-
 
     <!--#endregion-->
 

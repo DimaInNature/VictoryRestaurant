@@ -77,7 +77,7 @@
                 Height="40"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Электронная почта"
                 Text="{Binding SelectedItem.Mail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -86,8 +86,7 @@
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Удалить" />
 
         </Grid>
 

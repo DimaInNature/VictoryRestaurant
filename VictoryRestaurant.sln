@@ -51,17 +51,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Desktop
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.4 - Shared", "5.4 - Shared", "{857ECECE-44F9-4A87-9ECF-3053FBE6AB26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Infra.Shared.Downloads", "Victory.Infra.Shared.Downloads\Victory.Infra.Shared.Downloads.csproj", "{88BCDBAD-7529-4DB0-B481-70713C894ACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Infra.Shared.Downloads", "Victory.Infra.Shared.Downloads\Victory.Infra.Shared.Downloads.csproj", "{88BCDBAD-7529-4DB0-B481-70713C894ACF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.3 - Services", "3.3 - Services", "{81226D5B-FC2D-44DA-86E6-D95DDA8F4BBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Services", "Victory.Application.Services\Victory.Application.Services.csproj", "{5C5B6058-BC6D-4C9F-ADA0-E1F6C13EA315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Services", "Victory.Application.Services\Victory.Application.Services.csproj", "{5C5B6058-BC6D-4C9F-ADA0-E1F6C13EA315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Services.Features", "Victory.Application.Services.Features\Victory.Application.Services.Features.csproj", "{A994B798-1ED3-432B-8ED1-417C89C68D6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Services.Features", "Victory.Application.Services.Features\Victory.Application.Services.Features.csproj", "{A994B798-1ED3-432B-8ED1-417C89C68D6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.3.1 - Desktop", "5.3.1 - Desktop", "{13BFC9A1-81FC-4851-B581-09175681A606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Infra.Core.Desktop", "Victory.Infra.Core.Desktop\Victory.Infra.Core.Desktop.csproj", "{03DF6B91-290C-4757-8E01-CBEC66D6F22A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Infra.Core.Desktop", "Victory.Infra.Core.Desktop\Victory.Infra.Core.Desktop.csproj", "{03DF6B91-290C-4757-8E01-CBEC66D6F22A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Web.Interfaces", "Victory.Application.Web.Interfaces\Victory.Application.Web.Interfaces.csproj", "{D39DEE91-BC54-4AB0-B034-FDAC5032D002}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{03DF6B91-290C-4757-8E01-CBEC66D6F22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03DF6B91-290C-4757-8E01-CBEC66D6F22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03DF6B91-290C-4757-8E01-CBEC66D6F22A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D39DEE91-BC54-4AB0-B034-FDAC5032D002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D39DEE91-BC54-4AB0-B034-FDAC5032D002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D39DEE91-BC54-4AB0-B034-FDAC5032D002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D39DEE91-BC54-4AB0-B034-FDAC5032D002}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +165,7 @@ Global
 		{A994B798-1ED3-432B-8ED1-417C89C68D6A} = {81226D5B-FC2D-44DA-86E6-D95DDA8F4BBB}
 		{13BFC9A1-81FC-4851-B581-09175681A606} = {E4DE0E0D-E3A7-4F0A-BB2B-1E815B4262F9}
 		{03DF6B91-290C-4757-8E01-CBEC66D6F22A} = {13BFC9A1-81FC-4851-B581-09175681A606}
+		{D39DEE91-BC54-4AB0-B034-FDAC5032D002} = {98DA5756-A6F1-4AA5-868B-E523D0E6E000}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB852FAF-4DD3-4243-AA55-0361ED92A603}

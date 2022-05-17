@@ -109,8 +109,7 @@
                 Width="200"
                 Height="50"
                 Command="{Binding UpdateCommand}"
-                Content="Изменить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Изменить" />
 
         </Grid>
 

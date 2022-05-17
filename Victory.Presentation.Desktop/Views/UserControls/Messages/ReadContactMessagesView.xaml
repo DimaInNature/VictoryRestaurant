@@ -76,7 +76,7 @@
                 Width="300"
                 Height="70"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Имя"
                 Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -86,7 +86,7 @@
                 Height="100"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Сообщение"
                 Text="{Binding SelectedItem.Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -95,7 +95,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Телефон"
                 Text="{Binding SelectedItem.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -104,7 +104,7 @@
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
+                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Электронная почта"
                 Text="{Binding SelectedItem.Mail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 

@@ -25,7 +25,7 @@
             Grid.Row="1"
             Width="300"
             Height="70"
-            Style="{DynamicResource ColorTextBoxStyle}"
+            Style="{StaticResource ColorTextBoxStyle}"
             Tag="Название"
             Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -34,7 +34,7 @@
             Width="350"
             Height="100"
             HorizontalScrollBarVisibility="Auto"
-            Style="{DynamicResource ColorTextBoxStyle}"
+            Style="{StaticResource ColorTextBoxStyle}"
             Tag="Описание"
             Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -42,7 +42,7 @@
             Grid.Row="3"
             Width="250"
             Height="50"
-            Style="{DynamicResource ColorTextBoxStyle}"
+            Style="{StaticResource ColorTextBoxStyle}"
             Tag="Стоимость"
             Text="{Binding CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -52,15 +52,14 @@
             Width="250"
             Height="50"
             SelectedItem="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Style="{DynamicResource ModernComboBox}" />
+            Style="{StaticResource ModernComboBox}" />
 
         <Button
             Grid.Row="5"
             Width="200"
             Height="50"
             Command="{Binding CreateCommand}"
-            Content="Создать"
-            Style="{DynamicResource ButtonStyle}" />
+            Content="Создать" />
 
     </Grid>
 

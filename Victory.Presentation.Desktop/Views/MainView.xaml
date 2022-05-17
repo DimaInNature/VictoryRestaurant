@@ -83,7 +83,7 @@
     <Border
         CornerRadius="20"
         MouseDown="WindowDragMove"
-        Style="{DynamicResource BorderStyle}">
+        Style="{StaticResource BorderStyle}">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -115,7 +115,7 @@
                         Height="45"
                         Margin="20,5,0,0"
                         HorizontalAlignment="Left"
-                        Style="{DynamicResource MenuButtonShow}"
+                        Style="{StaticResource MenuButtonShow}"
                         Visibility="Visible" />
 
                 </Grid>
@@ -128,7 +128,7 @@
                     Margin="0,0,20,0"
                     HorizontalAlignment="Right"
                     Click="CloseApplicationButton_Click"
-                    Style="{DynamicResource ControlButtonCloseStyle}"
+                    Style="{StaticResource ControlButtonCloseStyle}"
                     Visibility="Visible" />
 
             </Grid>
@@ -166,7 +166,7 @@
                         Command="{Binding ShowHomePageCommand}"
                         Content="Главная"
                         IsChecked="True"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <RadioButton
                         x:Name="FoodsMenuRadioButton"
@@ -179,7 +179,7 @@
                         Click="FoodsMenuRadioButton_Click"
                         Command="{Binding ShowFoodsPageCommand}"
                         Content="Меню"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <RadioButton
                         x:Name="UsersMenuRadioButton"
@@ -192,7 +192,7 @@
                         Click="UsersMenuRadioButton_Click"
                         Command="{Binding ShowUsersPageCommand}"
                         Content="Пользователи"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <RadioButton
                         x:Name="BookingsMenuRadioButton"
@@ -205,7 +205,7 @@
                         Click="BookingsMenuRadioButton_Click"
                         Command="{Binding ShowBookingsPageCommand}"
                         Content="Заказы"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <RadioButton
                         x:Name="MailSubscribersMenuRadioButton"
@@ -218,7 +218,7 @@
                         Click="MailSubscribersMenuRadioButton_Click"
                         Command="{Binding ShowMailSubscribersPageCommand}"
                         Content="Подписчики"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <RadioButton
                         x:Name="ContactMessagesMenuRadioButton"
@@ -231,7 +231,7 @@
                         Click="ContactMessagesMenuRadioButton_Click"
                         Command="{Binding ShowContactMessagesPageCommand}"
                         Content="Сообщения"
-                        Style="{DynamicResource MenuRadioButtonStyle}" />
+                        Style="{StaticResource MenuRadioButtonStyle}" />
 
                     <Button
                         x:Name="LogoutMenuButton"
@@ -243,7 +243,7 @@
                         Click="LogoutMenuButton_Click"
                         CommandParameter="{Binding ElementName=ThisWindow}"
                         Content="Выйти"
-                        Style="{DynamicResource MenuUserExitButton}" />
+                        Style="{StaticResource MenuUserExitButton}" />
 
                 </StackPanel>
 
@@ -256,7 +256,7 @@
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Panel.ZIndex="1"
-                Background="{DynamicResource AccentColor}"
+                Background="{StaticResource AccentColor}"
                 CornerRadius="20"
                 IsHitTestVisible="False"
                 Opacity="0.2"
@@ -270,7 +270,7 @@
                 Margin="200,-20,0,0"
                 HorizontalAlignment="Left"
                 Panel.ZIndex="1"
-                Style="{DynamicResource MenuButtonClose}"
+                Style="{StaticResource MenuButtonClose}"
                 Visibility="Collapsed" />
 
             <!--#endregion-->
@@ -280,7 +280,7 @@
                 <Border
                     Name="WorkAreaBorder"
                     Panel.ZIndex="-1"
-                    Background="{DynamicResource ThirdRateColor}"
+                    Background="{StaticResource ThirdRateColor}"
                     CornerRadius="20">
 
                     <Grid Visibility="{Binding MenuIsVisible, Mode=TwoWay}">
@@ -298,7 +298,7 @@
                             Command="{Binding ShowFoodsPageCommand}"
                             Content="Меню"
                             FontSize="70"
-                            Style="{DynamicResource HomeButtonStyle}" />
+                            Style="{StaticResource HomeButtonStyle}" />
 
                         <Grid Row="1">
 
@@ -315,7 +315,7 @@
                                     Command="{Binding ShowBookingsPageCommand}"
                                     Content="Заказы"
                                     FontSize="30"
-                                    Style="{DynamicResource HomeButtonStyle}" />
+                                    Style="{StaticResource HomeButtonStyle}" />
 
                                 <Button
                                     x:Name="MailSubscribersButton"
@@ -325,7 +325,7 @@
                                     Command="{Binding ShowMailSubscribersPageCommand}"
                                     Content="Подписчики"
                                     FontSize="27"
-                                    Style="{DynamicResource HomeButtonStyle}" />
+                                    Style="{StaticResource HomeButtonStyle}" />
 
                                 <Button
                                     x:Name="ContactMessagesButton"
@@ -335,7 +335,7 @@
                                     Command="{Binding ShowContactMessagesPageCommand}"
                                     Content="Сообщения"
                                     FontSize="27"
-                                    Style="{DynamicResource HomeButtonStyle}" />
+                                    Style="{StaticResource HomeButtonStyle}" />
 
                                 <Button
                                     x:Name="UsersButton"
@@ -345,7 +345,7 @@
                                     Command="{Binding ShowUsersPageCommand}"
                                     Content="Пользователи"
                                     FontSize="25"
-                                    Style="{DynamicResource HomeButtonStyle}" />
+                                    Style="{StaticResource HomeButtonStyle}" />
 
                             </StackPanel>
 

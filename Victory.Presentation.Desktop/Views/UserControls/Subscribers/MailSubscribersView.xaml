@@ -36,7 +36,7 @@
                 Content="Просмотр"
                 FontSize="14"
                 IsChecked="True"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
             <RadioButton
                 x:Name="DeleteRadioButton"
@@ -45,7 +45,7 @@
                 Command="{Binding ShowDeletePageCommand}"
                 Content="Удаление"
                 FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
         </StackPanel>
 

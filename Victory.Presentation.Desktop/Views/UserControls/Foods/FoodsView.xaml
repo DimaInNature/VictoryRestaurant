@@ -36,7 +36,7 @@
                 Content="Просмотр"
                 FontSize="14"
                 IsChecked="True"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
             <RadioButton
                 x:Name="CreateRadioButton"
@@ -45,7 +45,7 @@
                 Command="{Binding ShowCreatePageCommand}"
                 Content="Создание"
                 FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
             <RadioButton
                 x:Name="UpdateRadioButton"
@@ -54,7 +54,7 @@
                 Command="{Binding ShowUpdatePageCommand}"
                 Content="Изменение"
                 FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
             <RadioButton
                 x:Name="DeleteRadioButton"
@@ -63,7 +63,7 @@
                 Command="{Binding ShowDeletePageCommand}"
                 Content="Удаление"
                 FontSize="14"
-                Style="{DynamicResource MenuRadioButtonStyle}" />
+                Style="{StaticResource MenuRadioButtonStyle}" />
 
         </StackPanel>
 

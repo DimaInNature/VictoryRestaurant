@@ -123,8 +123,7 @@
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Удалить" />
 
         </Grid>
 
