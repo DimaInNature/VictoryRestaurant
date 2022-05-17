@@ -13,5 +13,20 @@ public partial class MailSubscribersView : UserControl
             throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
+
+        SetFrame(source: new ReadMailSubscribersView());
+    }
+
+    private void ViewRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new ReadMailSubscribersView());
+
+    private void DeleteRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new DeleteMailSubscribersView());
+
+    private void SetFrame(ContentControl source)
+    {
+        if (source is null) throw new NullReferenceException(nameof(source));
+
+        MenuFrame.Content = source;
     }
 }

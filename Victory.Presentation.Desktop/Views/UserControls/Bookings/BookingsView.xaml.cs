@@ -13,5 +13,20 @@ sealed partial class BookingsView : UserControl
             throw new NullReferenceException("BookingsViewModel is null");
 
         DataContext = _viewModel;
+
+        SetFrame(source: new ReadBookingsView());
+    }
+
+    private void ViewRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new ReadBookingsView());
+
+    private void DeleteRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new DeleteBookingsView());
+
+    private void SetFrame(ContentControl source)
+    {
+        if (source is null) throw new NullReferenceException(nameof(source));
+
+        MenuFrame.Content = source;
     }
 }

@@ -17,8 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <Frame
+            x:Name="MenuFrame"
             Grid.Column="0"
-            Content="{Binding FrameSource, Mode=TwoWay}"
+            Content="{x:Null}"
             NavigationUIVisibility="Hidden" />
 
         <!--#region Right Menu-->
@@ -29,10 +30,10 @@
             HorizontalAlignment="Right">
 
             <RadioButton
-                x:Name="ReadRadioButton"
+                x:Name="ViewRadioButton"
                 Height="35"
                 Margin="10,5,0,5"
-                Command="{Binding ShowReadPageCommand}"
+                Click="ViewRadioButton_Click"
                 Content="Просмотр"
                 FontSize="14"
                 IsChecked="True"
@@ -42,7 +43,7 @@
                 x:Name="CreateRadioButton"
                 Height="35"
                 Margin="10,5,0,5"
-                Command="{Binding ShowCreatePageCommand}"
+                Click="CreateRadioButton_Click"
                 Content="Создание"
                 FontSize="14"
                 Style="{StaticResource MenuRadioButtonStyle}" />
@@ -51,7 +52,7 @@
                 x:Name="UpdateRadioButton"
                 Height="35"
                 Margin="10,5,0,5"
-                Command="{Binding ShowUpdatePageCommand}"
+                Click="UpdateRadioButton_Click"
                 Content="Изменение"
                 FontSize="14"
                 Style="{StaticResource MenuRadioButtonStyle}" />
@@ -60,7 +61,7 @@
                 x:Name="DeleteRadioButton"
                 Height="35"
                 Margin="10,5,0,5"
-                Command="{Binding ShowDeletePageCommand}"
+                Click="DeleteRadioButton_Click"
                 Content="Удаление"
                 FontSize="14"
                 Style="{StaticResource MenuRadioButtonStyle}" />

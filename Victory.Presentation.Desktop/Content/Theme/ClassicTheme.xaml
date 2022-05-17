@@ -690,7 +690,7 @@
         <Setter Property="Background" Value="{DynamicResource ThirdRateColor}" />
         <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
         <Setter Property="Foreground" Value="{StaticResource AccentColor}" />
-      
+
     </Style>
 
     <Storyboard x:Key="HomeButtonMouseEnterAnimation">

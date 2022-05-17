@@ -14,4 +14,23 @@ sealed partial class FoodsView : UserControl
 
         DataContext = _viewModel;
     }
+
+    private void ViewRadioButton_Click(object sender, RoutedEventArgs e) =>
+          SetFrame(source: new ReadFoodsView());
+
+    private void CreateRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new CreateFoodsView());
+
+    private void UpdateRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new UpdateFoodsView());
+
+    private void DeleteRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new DeleteFoodsView());
+
+    private void SetFrame(ContentControl source)
+    {
+        if (source is null) throw new NullReferenceException(nameof(source));
+
+        MenuFrame.Content = source;
+    }
 }
