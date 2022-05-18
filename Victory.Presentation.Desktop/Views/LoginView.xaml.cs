@@ -9,8 +9,7 @@ sealed partial class LoginView : Window
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
     }
