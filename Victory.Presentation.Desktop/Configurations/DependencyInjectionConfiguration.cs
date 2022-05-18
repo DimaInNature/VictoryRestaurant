@@ -20,6 +20,8 @@ internal static class DependencyInjectionConfiguration
 
         services.AddScoped<IContactMessageRepositoryService, ContactMessageRepositoryService>();
         services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
+
+        services.AddTransient<EmailService>();
     }
 
     public static void AddViewModelsConfiguration(this IServiceCollection services)
@@ -49,6 +51,7 @@ internal static class DependencyInjectionConfiguration
         services.AddTransient<IMailSubscribersViewModel, MailSubscribersViewModel>();
         services.AddTransient<IReadMailSubscribersViewModel, ReadMailSubscribersViewModel>();
         services.AddTransient<IDeleteMailSubscribersViewModel, DeleteMailSubscribersViewModel>();
+        services.AddTransient<ISendMailSubscribersViewModel, SendMailSubscribersViewModel>();
 
         services.AddTransient<IContactMessagesViewModel, ContactMessagesViewModel>();
         services.AddTransient<IReadContactMessagesViewModel, ReadContactMessagesViewModel>();

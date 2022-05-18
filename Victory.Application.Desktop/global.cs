@@ -1,4 +1,6 @@
-﻿global using MediatR;
+﻿global using MailKit.Net.Smtp;
+global using MediatR;
+global using MimeKit;
 global using Victory.Application.Desktop.Interfaces.Data.Bookings;
 global using Victory.Application.Desktop.Interfaces.Data.Foods;
 global using Victory.Application.Desktop.Interfaces.Data.Messages;

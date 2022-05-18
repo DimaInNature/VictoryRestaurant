@@ -22,8 +22,11 @@ internal static class ApplicationConfiguration
         }
         set
         {
-            ApplicationSettings data = new(isEnable: AutoUpdateIsEnable,
-                secondsTimeout: value);
+            ApplicationSettings data = new(
+                mailSenderUserName: MailSenderUserName,
+                secondsTimeout: value,
+                mailSenderPassword: MailSenderPassword,
+                isEnable: AutoUpdateIsEnable);
 
             SerializeObject(data);
         }
@@ -47,8 +50,67 @@ internal static class ApplicationConfiguration
         }
         set
         {
-            ApplicationSettings data = new(isEnable: value,
-                secondsTimeout: AutoUpdateSecondsTimeout);
+            ApplicationSettings data = new(
+                mailSenderUserName: MailSenderUserName,
+                secondsTimeout: AutoUpdateSecondsTimeout,
+                mailSenderPassword: MailSenderPassword,
+                isEnable: value);
+
+            SerializeObject(data);
+        }
+    }
+
+    public static string MailSenderUserName
+    {
+        get
+        {
+            string defaultValue = string.Empty;
+
+            if (File.Exists(path: ConfigurationFilePath) is false) return defaultValue;
+
+            string json = File.ReadAllText(path: ConfigurationFilePath);
+
+            var result = JsonConvert.DeserializeObject<ApplicationSettings>(value: json);
+
+            return result is not null
+                ? result.MailSenderUserName
+                : defaultValue;
+        }
+        set
+        {
+            ApplicationSettings data = new(
+                mailSenderUserName: value,
+                secondsTimeout: AutoUpdateSecondsTimeout,
+                mailSenderPassword: MailSenderPassword,
+                isEnable: AutoUpdateIsEnable);
+
+            SerializeObject(data);
+        }
+    }
+
+    public static string MailSenderPassword
+    {
+        get
+        {
+            string defaultValue = string.Empty;
+
+            if (File.Exists(path: ConfigurationFilePath) is false) return defaultValue;
+
+            string json = File.ReadAllText(path: ConfigurationFilePath);
+
+            var result = JsonConvert.DeserializeObject<ApplicationSettings>(value: json);
+
+            return result is not null
+                ? result.MailSenderPassword
+                : defaultValue;
+        }
+        set
+        {
+            ApplicationSettings data = new(
+               mailSenderUserName: MailSenderUserName,
+               secondsTimeout: AutoUpdateSecondsTimeout,
+               mailSenderPassword: value,
+               isEnable: AutoUpdateIsEnable);
 
             SerializeObject(data);
         }
@@ -72,8 +134,16 @@ internal static class ApplicationConfiguration
     {
         public bool AutoUpdateIsEnable { get; init; }
         public int AutoUpdateSecondsTimeout { get; init; }
+        public string MailSenderUserName { get; init; }
+        public string MailSenderPassword { get; init; }
 
-        public ApplicationSettings(bool isEnable, int secondsTimeout) =>
+        public ApplicationSettings(bool isEnable, int secondsTimeout,
+            string mailSenderUserName, string mailSenderPassword)
+        {
             (AutoUpdateIsEnable, AutoUpdateSecondsTimeout) = (isEnable, secondsTimeout);
+
+            (MailSenderUserName, MailSenderPassword) = (mailSenderUserName, mailSenderPassword);
+        }
+
     }
 }

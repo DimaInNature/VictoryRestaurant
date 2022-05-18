@@ -48,6 +48,15 @@
                 FontSize="14"
                 Style="{StaticResource MenuRadioButtonStyle}" />
 
+            <RadioButton
+                x:Name="SendMessageRadioButton"
+                Height="35"
+                Margin="10,5,0,5"
+                Click="SendMessageRadioButton_Click"
+                Content="Написать"
+                FontSize="14"
+                Style="{StaticResource MenuRadioButtonStyle}" />
+
         </StackPanel>
 
         <!--#endregion-->

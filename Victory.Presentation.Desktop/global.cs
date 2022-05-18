@@ -23,6 +23,7 @@ global using Victory.Application.Desktop.Interfaces.Data.Foods;
 global using Victory.Application.Desktop.Interfaces.Data.Messages;
 global using Victory.Application.Desktop.Interfaces.Data.Subscribers;
 global using Victory.Application.Desktop.Interfaces.Data.Users;
+global using Victory.Application.Desktop.Messages;
 global using Victory.Application.Desktop.Sessions;
 global using Victory.Application.General.Client.Features.Bookings;
 global using Victory.Application.General.Client.Features.Foods;

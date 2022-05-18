@@ -6,6 +6,11 @@ public static class MailSubscriberMediatRProfile
     {
         #region Queries
 
+        // Get List<MailSubscriber>
+
+        services.AddScoped<IRequest<List<MailSubscriber>?>, GetMailSubscribersListQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscribersListQuery, List<MailSubscriber>?>, GetMailSubscribersListQueryHandler>();
+
         // Get MailSubscriber by Id
 
         services.AddScoped<IRequest<MailSubscriber?>, GetMailSubscriberByIdQuery>();

@@ -23,6 +23,9 @@ public partial class MailSubscribersView : UserControl
     private void DeleteRadioButton_Click(object sender, RoutedEventArgs e) =>
         SetFrame(source: new DeleteMailSubscribersView());
 
+    private void SendMessageRadioButton_Click(object sender, RoutedEventArgs e) =>
+        SetFrame(source: new SendMailSubscribersView());
+
     private void SetFrame(ContentControl source)
     {
         if (source is null) throw new NullReferenceException(nameof(source));
