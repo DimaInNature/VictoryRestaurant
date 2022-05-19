@@ -5,6 +5,9 @@ sealed partial class FoodsView : UserControl
     private readonly IFoodsViewModel? _viewModel = (System.Windows.Application.Current as App)?
         .ServiceProvider?.GetService<IFoodsViewModel>();
 
+    private readonly UserSessionService? _sessionService = (System.Windows.Application.Current as App)?
+       .ServiceProvider?.GetService<UserSessionService>();
+
     public FoodsView()
     {
         InitializeComponent();
@@ -15,6 +18,12 @@ sealed partial class FoodsView : UserControl
         DataContext = _viewModel;
 
         SetFrame(source: new ReadFoodsView());
+
+        if (_sessionService?.ActiveUser?.Role is not UserRole.Admin)
+        {
+            UpdateRadioButton.Visibility = Visibility.Collapsed;
+            DeleteRadioButton.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void ViewRadioButton_Click(object sender, RoutedEventArgs e) =>

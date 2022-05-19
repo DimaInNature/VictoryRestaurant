@@ -20,6 +20,12 @@ sealed partial class MainView : Window
         {
             UsersMenuRadioButton.Visibility = Visibility.Collapsed;
             UsersButton.Visibility = Visibility.Collapsed;
+            MailSubscribersButton.Visibility = Visibility.Collapsed;
+            MailSubscribersMenuRadioButton.Visibility = Visibility.Collapsed;
+            ContactMessagesButton.Visibility = Visibility.Collapsed;
+            ContactMessagesMenuRadioButton.Visibility = Visibility.Collapsed;
+            BookingsButton.Width = 775;
+            BookingsButton.FontSize = 70;
         }
     }
 
