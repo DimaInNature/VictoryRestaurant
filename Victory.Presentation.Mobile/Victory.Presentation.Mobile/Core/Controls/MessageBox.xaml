@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="Victory.Presentation.Mobile.Core.Controls.MessageBox"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <Grid HeightRequest="170" VerticalOptions="End">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Frame
+            Grid.RowSpan="2"
+            Padding="20,0"
+            BackgroundColor="White"
+            CornerRadius="30"
+            HeightRequest="170"
+            VerticalOptions="End">
+
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="10"
+                    VerticalOptions="Center">
+
+                    <Label
+                        x:Name="TitleLabel"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Text="Title"
+                        TextColor="#f2745f" />
+
+                    <Label
+                        x:Name="ContentLabel"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        Text="Content"
+                        TextColor="#f2745f" />
+
+                </StackLayout>
+
+            </Grid>
+
+        </Frame>
+
+        <Button
+            Grid.Row="1"
+            BackgroundColor="#f2745f"
+            Clicked="ContinueButton_Clicked"
+            HeightRequest="45"
+            Text="Продолжить"
+            TextColor="White" />
+
+    </Grid>
+
+</rg:PopupPage>

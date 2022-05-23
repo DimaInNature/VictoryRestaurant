@@ -8,7 +8,7 @@ public sealed record class GetContactMessageByIdQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: $"https://localhost:7059/Bookings/{request.Id}",
+            requestUri: $"http://localhost:7059/Bookings/{request.Id}",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

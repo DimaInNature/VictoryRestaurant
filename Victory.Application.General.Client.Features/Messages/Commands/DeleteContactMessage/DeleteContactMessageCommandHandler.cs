@@ -10,7 +10,7 @@ public sealed record class DeleteContactMessageCommandHandler
         string json = JsonConvert.SerializeObject(value: request.Id);
 
         await client.DeleteAsync(
-            requestUri: $"https://localhost:7059/ContactMessages/{request.Id}",
+            requestUri: $"http://localhost:7059/ContactMessages/{request.Id}",
             cancellationToken: token);
 
         return Unit.Value;

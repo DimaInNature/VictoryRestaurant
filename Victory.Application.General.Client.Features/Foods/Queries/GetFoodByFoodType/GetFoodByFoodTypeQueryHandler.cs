@@ -8,7 +8,7 @@ public sealed record class GetFoodByFoodTypeQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: $"https://localhost:7059/Foods/Type/{request.FoodType}",
+            requestUri: $"http://localhost:7059/Foods/Type/{request.FoodType}",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

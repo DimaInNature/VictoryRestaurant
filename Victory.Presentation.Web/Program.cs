@@ -42,7 +42,7 @@ void RegisterServices(IServiceCollection services)
 
 void Configure(IApplicationBuilder app)
 {
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
 
     app.UseResponseCompression();
 

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Victory.Presentation.Mobile.Views.MainView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="*, 2*, Auto">
+
+        <BoxView Grid.RowSpan="3">
+            <BoxView.Background>
+                <LinearGradientBrush>
+                    <GradientStopCollection>
+                        <GradientStop Offset="0" Color="#161616" />
+                        <GradientStop Offset="1" Color="#30343F" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <SwipeView
+            x:Name="MainSwipeView"
+            Grid.RowSpan="3"
+            BackgroundColor="Transparent"
+            SwipeEnded="SwipeEnded"
+            SwipeStarted="SwipeStarted">
+
+            <SwipeView.LeftItems>
+
+                <SwipeItems>
+
+                    <SwipeItemView>
+                        <Grid>
+
+                            <StackLayout
+                                Padding="35"
+                                BindableLayout.ItemsSource="{Binding MyMenu}"
+                                Spacing="20"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="150">
+                                <BindableLayout.ItemTemplate>
+
+                                    <DataTemplate>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CloseSwipe" />
+                                            </StackLayout.GestureRecognizers>
+
+                                            <Button
+                                                BackgroundColor="#F2745f"
+                                                Clicked="CloseSwipe"
+                                                Command="{Binding MenuCommand}"
+                                                CornerRadius="23"
+                                                FontAttributes="Bold"
+                                                FontSize="12"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Name}"
+                                                TextColor="White"
+                                                VerticalOptions="Center"
+                                                WidthRequest="140" />
+
+                                        </StackLayout>
+
+                                    </DataTemplate>
+
+                                </BindableLayout.ItemTemplate>
+
+                            </StackLayout>
+
+                        </Grid>
+
+                    </SwipeItemView>
+
+                </SwipeItems>
+
+            </SwipeView.LeftItems>
+
+            <Grid x:Name="swipeContent">
+
+                <pv:PancakeView x:Name="pancake" BackgroundColor="White">
+
+                    <Grid RowDefinitions="*, 2*, Auto">
+
+                        <BoxView Grid.RowSpan="3">
+                            <BoxView.Background>
+                                <LinearGradientBrush>
+                                    <GradientStopCollection>
+                                        <GradientStop Offset="0" Color="#161616" />
+                                        <GradientStop Offset="1" Color="#30343F" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+
+                        <Grid>
+
+                            <Path
+                                Aspect="Fill"
+                                Data="M0,0H375V262.033s-9.025,4.813-55.426-10.71-70.141-83.047-130.3-83.22-83.544,67.7-130.893,83.22S0,262.033,0,262.033Z"
+                                Fill="#F2745f" />
+
+                            <Image
+                                Margin="25"
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Source="menu.png"
+                                VerticalOptions="Start"
+                                WidthRequest="20" />
+
+                        </Grid>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Margin="0,-140,0,0"
+                            HorizontalOptions="Center"
+                            Spacing="30">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CloseSwipe" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Grid
+                                HeightRequest="210"
+                                HorizontalOptions="Center"
+                                WidthRequest="210">
+
+                                <Ellipse
+                                    Aspect="Fill"
+                                    Stroke="White"
+                                    StrokeThickness="2" />
+
+                                <Image
+                                    x:Name="BannerImg"
+                                    HeightRequest="195"
+                                    HorizontalOptions="Center"
+                                    Source="IMG02.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="195" />
+
+                            </Grid>
+
+                            <StackLayout HorizontalOptions="Center" Spacing="15">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CloseSwipe" />
+                                </StackLayout.GestureRecognizers>
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    Text="Ресторан Victory"
+                                    TextColor="White" />
+
+                                <Label
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Только самые вкусные и изысканные блюда со всей Азии."
+                                    TextColor="White" />
+
+                                <Button
+                                    BackgroundColor="#F2745f"
+                                    Command="{Binding BookingCommand}"
+                                    CornerRadius="23"
+                                    FontSize="10"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Center"
+                                    Text="Забронировать столик"
+                                    TextColor="White"
+                                    WidthRequest="170" />
+
+                                <Button
+                                    BackgroundColor="#F2745f"
+                                    Command="{Binding MenuCommand}"
+                                    CornerRadius="23"
+                                    FontSize="10"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Center"
+                                    Text="Посмотреть меню"
+                                    TextColor="White"
+                                    WidthRequest="170" />
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="2"
+                            Margin="25,0,0,25"
+                            Spacing="10">
+
+                            <Label
+                                FontSize="14"
+                                Opacity="0.5"
+                                Text="Мы вкусно готовим:"
+                                TextColor="White" />
+
+                            <ScrollView HorizontalScrollBarVisibility="Never" Orientation="Horizontal">
+                                <StackLayout
+                                    BindableLayout.ItemsSource="{Binding Picks}"
+                                    Orientation="Horizontal"
+                                    Spacing="30">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnDefinitions="Auto, Auto" ColumnSpacing="15">
+                                                <Rectangle
+                                                    Fill="#A5A5A5"
+                                                    HeightRequest="40"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="87" />
+                                                <Image
+                                                    HeightRequest="75"
+                                                    HorizontalOptions="Center"
+                                                    Source="{Binding Image}"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="75" />
+                                                <StackLayout
+                                                    Grid.Column="1"
+                                                    Spacing="5"
+                                                    WidthRequest="115">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        Text="{Binding Title}"
+                                                        TextColor="White" />
+                                                    <Label
+                                                        FontSize="10"
+                                                        Text="{Binding Description}"
+                                                        TextColor="White" />
+                                                </StackLayout>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+
+                    </Grid>
+                </pv:PancakeView>
+            </Grid>
+        </SwipeView>
+
+    </Grid>
+
+</ContentPage>

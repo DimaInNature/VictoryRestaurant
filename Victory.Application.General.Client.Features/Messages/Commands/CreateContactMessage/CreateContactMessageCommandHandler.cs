@@ -10,7 +10,7 @@ public sealed record class CreateContactMessageCommandHandler
         string json = JsonConvert.SerializeObject(value: request.ContactMessage);
 
         await client.PostAsync(
-            requestUri: "https://localhost:7059/ContactMessages",
+            requestUri: "http://localhost:7059/ContactMessages",
             content: new StringContent(
                 content: json,
                 encoding: Encoding.UTF8,

@@ -12,7 +12,7 @@ public sealed record class CreateFoodCommandHandler
         string json = JsonConvert.SerializeObject(value: request.Food);
 
         await client.PostAsync(
-            requestUri: "https://localhost:7059/Foods",
+            requestUri: "http://localhost:7059/Foods",
             content: new StringContent(
                 content: json,
                 encoding: Encoding.UTF8,

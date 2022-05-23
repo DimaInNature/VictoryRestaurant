@@ -12,7 +12,7 @@ public sealed record class DeleteFoodCommandHandler
         string json = JsonConvert.SerializeObject(value: request.Id);
 
         await client.DeleteAsync(
-           requestUri: $"https://localhost:7059/Foods/{request.Id}",
+           requestUri: $"http://localhost:7059/Foods/{request.Id}",
            cancellationToken: token);
 
         return Unit.Value;

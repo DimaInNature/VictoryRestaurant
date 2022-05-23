@@ -8,7 +8,7 @@ public sealed record class GetUserListQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: "https://localhost:7059/Users",
+            requestUri: "http://localhost:7059/Users",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

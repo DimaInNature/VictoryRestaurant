@@ -55,19 +55,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Web.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Desktop.Interfaces", "Victory.Application.Desktop.Interfaces\Victory.Application.Desktop.Interfaces.csproj", "{C685E1DB-551A-4FA7-AE33-6D33FEF163D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Api", "Victory.Application.Api\Victory.Application.Api.csproj", "{66DE361B-CBF4-4090-ADA7-78C59CFE70EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Api", "Victory.Application.Api\Victory.Application.Api.csproj", "{66DE361B-CBF4-4090-ADA7-78C59CFE70EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Api.Interfaces", "Victory.Application.Api.Interfaces\Victory.Application.Api.Interfaces.csproj", "{D01B0EDC-9558-4E6A-A6BB-C26C17D66F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Api.Interfaces", "Victory.Application.Api.Interfaces\Victory.Application.Api.Interfaces.csproj", "{D01B0EDC-9558-4E6A-A6BB-C26C17D66F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.Api.Features", "Victory.Application.Api.Features\Victory.Application.Api.Features.csproj", "{BD4EC582-9908-4AAA-8CEB-4AD4930D7703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.Api.Features", "Victory.Application.Api.Features\Victory.Application.Api.Features.csproj", "{BD4EC582-9908-4AAA-8CEB-4AD4930D7703}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4 - General", "3.4 - General", "{85394E93-C73F-41F9-B063-2417B1663D23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4.1 - Client", "3.4.1 - Client", "{52EE16F8-185C-45A4-A43C-B146B1AE94A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.General.Client.Features", "Victory.Application.General.Client.Features\Victory.Application.General.Client.Features.csproj", "{BC62920F-E747-4418-BD3E-EDAAA0C1B70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.General.Client.Features", "Victory.Application.General.Client.Features\Victory.Application.General.Client.Features.csproj", "{BC62920F-E747-4418-BD3E-EDAAA0C1B70C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4.2 - Server", "3.4.2 - Server", "{7732706D-EBBD-4071-AC1F-486505AC4780}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3 - Mobile", "1.3 - Mobile", "{988CF9BF-F16B-402A-BC18-7B7EE9450E2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Presentation.Mobile.Android", "Victory.Presentation.Mobile\Victory.Presentation.Mobile.Android\Victory.Presentation.Mobile.Android.csproj", "{9348F78B-0BB7-419F-B304-A25348D4C25B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Presentation.Mobile", "Victory.Presentation.Mobile\Victory.Presentation.Mobile\Victory.Presentation.Mobile.csproj", "{4BF2B5D3-7E22-4B02-B938-80087CFEE57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +149,16 @@ Global
 		{BC62920F-E747-4418-BD3E-EDAAA0C1B70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC62920F-E747-4418-BD3E-EDAAA0C1B70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC62920F-E747-4418-BD3E-EDAAA0C1B70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9348F78B-0BB7-419F-B304-A25348D4C25B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4BF2B5D3-7E22-4B02-B938-80087CFEE57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF2B5D3-7E22-4B02-B938-80087CFEE57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF2B5D3-7E22-4B02-B938-80087CFEE57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF2B5D3-7E22-4B02-B938-80087CFEE57D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +192,9 @@ Global
 		{52EE16F8-185C-45A4-A43C-B146B1AE94A2} = {85394E93-C73F-41F9-B063-2417B1663D23}
 		{BC62920F-E747-4418-BD3E-EDAAA0C1B70C} = {52EE16F8-185C-45A4-A43C-B146B1AE94A2}
 		{7732706D-EBBD-4071-AC1F-486505AC4780} = {85394E93-C73F-41F9-B063-2417B1663D23}
+		{988CF9BF-F16B-402A-BC18-7B7EE9450E2A} = {DEF8D0E2-BBFC-4CEF-8BA4-28A7A05447A9}
+		{9348F78B-0BB7-419F-B304-A25348D4C25B} = {988CF9BF-F16B-402A-BC18-7B7EE9450E2A}
+		{4BF2B5D3-7E22-4B02-B938-80087CFEE57D} = {988CF9BF-F16B-402A-BC18-7B7EE9450E2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB852FAF-4DD3-4243-AA55-0361ED92A603}

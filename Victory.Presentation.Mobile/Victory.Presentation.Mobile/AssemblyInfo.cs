@@ -1,0 +1,1 @@
+[assembly: XamarinXaml.XamlCompilation(XamarinXaml.XamlCompilationOptions.Compile)]

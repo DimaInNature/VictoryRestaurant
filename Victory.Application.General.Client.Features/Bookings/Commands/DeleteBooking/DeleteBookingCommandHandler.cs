@@ -10,7 +10,7 @@ public sealed record class DeleteBookingCommandHandler
         string json = JsonConvert.SerializeObject(value: request.Id);
 
         await client.DeleteAsync(
-            requestUri: $"https://localhost:7059/Bookings/{request.Id}",
+            requestUri: $"http://localhost:7059/Bookings/{request.Id}",
             cancellationToken: token);
 
         return Unit.Value;

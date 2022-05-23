@@ -8,7 +8,7 @@ public sealed record class GetUserByLoginQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: $"https://localhost:7059/Users/{request.Login}",
+            requestUri: $"http://localhost:7059/Users/{request.Login}",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

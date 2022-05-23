@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Victory.Presentation.Mobile.Views.MenuView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding LoadCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <Grid
+        toolkit:StateLayout.AnimateStateChanges="True"
+        toolkit:StateLayout.CurrentState="{Binding MainState, Mode=TwoWay}"
+        RowDefinitions="130, *">
+        <BoxView Grid.RowSpan="2">
+            <BoxView.Background>
+                <LinearGradientBrush>
+                    <GradientStopCollection>
+                        <GradientStop Offset="0" Color="#161616" />
+                        <GradientStop Offset="1" Color="#30343F" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <CarouselView
+            Grid.Row="1"
+            Margin="0,0,0,20"
+            ItemsSource="{Binding MenuList}"
+            PeekAreaInsets="80"
+            PositionChanged="CarouselPositionChanged">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid
+                        HeightRequest="450"
+                        HorizontalOptions="Center"
+                        WidthRequest="212">
+
+                        <Grid
+                            Margin="10,70"
+                            HorizontalOptions="Center"
+                            RowDefinitions="*,*,*"
+                            WidthRequest="175">
+
+                            <BoxView
+                                Grid.RowSpan="3"
+                                BackgroundColor="White"
+                                CornerRadius="25" />
+
+                            <StackLayout
+                                Grid.Row="1"
+                                Padding="30"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextColor="Black" />
+
+                                <Label
+                                    FontSize="14"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Description}"
+                                    TextColor="Black" />
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding CostInUSD, StringFormat='{}{0:$0.00}'}"
+                                    TextColor="#f2745f" />
+
+                            </StackLayout>
+
+                        </Grid>
+
+                        <Grid
+                            HeightRequest="210"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"
+                            WidthRequest="200">
+
+                            <Ellipse
+                                Aspect="Fill"
+                                Stroke="#f2745f"
+                                StrokeThickness="2" />
+
+                            <Frame
+                                Margin="20"
+                                Padding="0"
+                                CornerRadius="100"
+                                HeightRequest="200"
+                                IsClippedToBounds="True"
+                                WidthRequest="200">
+
+                                <Image
+                                    x:Name="MenuImg"
+                                    Margin="-10"
+                                    Aspect="AspectFill"
+                                    HeightRequest="200"
+                                    Source="{Binding ImagePath}"
+                                    WidthRequest="200" />
+
+                            </Frame>
+
+                        </Grid>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <Grid>
+
+            <Path
+                Aspect="Fill"
+                Data="M0,0H375V129.651s-9.025,2.382-55.426-5.3-70.141-41.09-130.3-41.176-83.544,33.5-130.893,41.176S0,129.651,0,129.651Z"
+                Fill="#f2745f" />
+
+            <StackLayout
+                Margin="25"
+                Orientation="Horizontal"
+                Spacing="20"
+                VerticalOptions="Start">
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding BackCommand}"
+                    HeightRequest="20"
+                    HorizontalOptions="Start"
+                    Source="back.png"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Наше меню"
+                    TextColor="White"
+                    VerticalOptions="Start" />
+
+            </StackLayout>
+        </Grid>
+
+        <toolkit:StateLayout.StateViews>
+
+            <toolkit:StateView
+                BackgroundColor="#30343F"
+                StateKey="Loading"
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+                    <ActivityIndicator IsRunning="{Binding MainState, Mode=TwoWay}" Color="#f2745f" />
+
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="Загрузка..."
+                        TextColor="#f2745f" />
+
+                </StackLayout>
+            </toolkit:StateView>
+
+            <toolkit:StateView
+                BackgroundColor="#30343F"
+                StateKey="Empty"
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+                    <ActivityIndicator IsRunning="{Binding MainState, Mode=TwoWay}" Color="#f2745f" />
+
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="Похоже проблемы с соединением..."
+                        TextColor="#f2745f" />
+
+                    <Button
+                        BackgroundColor="#F2745f"
+                        Command="{Binding UpdateCommand}"
+                        CornerRadius="23"
+                        FontSize="10"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        Text="Попробовать ещё раз!"
+                        TextColor="White"
+                        WidthRequest="170" />
+
+                </StackLayout>
+            </toolkit:StateView>
+
+        </toolkit:StateLayout.StateViews>
+
+
+    </Grid>
+
+</ContentPage>

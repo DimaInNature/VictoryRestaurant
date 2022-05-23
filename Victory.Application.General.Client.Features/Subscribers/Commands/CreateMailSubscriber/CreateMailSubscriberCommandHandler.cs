@@ -10,7 +10,7 @@ public sealed record class CreateMailSubscriberCommandHandler
         string json = JsonConvert.SerializeObject(value: request.MailSubscriber);
 
         await client.PostAsync(
-            requestUri: "https://localhost:7059/MailSubscribers",
+            requestUri: "http://localhost:7059/MailSubscribers",
             content: new StringContent(
                 content: json,
                 encoding: Encoding.UTF8,

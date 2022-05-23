@@ -8,7 +8,7 @@ public sealed record class GetUserByLoginAndPasswordQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: $"https://localhost:7059/Users/Login/{request.Login}/Password/{request.Password}",
+            requestUri: $"http://localhost:7059/Users/Login/{request.Login}/Password/{request.Password}",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

@@ -8,7 +8,7 @@ public sealed record class GetBookingListQueryHandler
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: "https://localhost:7059/Bookings",
+            requestUri: "http://localhost:7059/Bookings",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

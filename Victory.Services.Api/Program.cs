@@ -40,7 +40,7 @@ void RegisterServices(IServiceCollection services)
 
 void Configure(WebApplication app)
 {
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
 
     app.UseCors(cors =>
     {

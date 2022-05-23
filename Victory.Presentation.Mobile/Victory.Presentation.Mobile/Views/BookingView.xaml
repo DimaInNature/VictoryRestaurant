@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Victory.Presentation.Mobile.Views.BookingView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="130, *">
+        <BoxView Grid.RowSpan="2">
+            <BoxView.Background>
+                <LinearGradientBrush>
+                    <GradientStopCollection>
+                        <GradientStop Offset="0" Color="#161616" />
+                        <GradientStop Offset="1" Color="#30343F" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <Grid>
+
+            <Path
+                Aspect="Fill"
+                Data="M0,0H375V129.651s-9.025,2.382-55.426-5.3-70.141-41.09-130.3-41.176-83.544,33.5-130.893,41.176S0,129.651,0,129.651Z"
+                Fill="#f2745f" />
+
+            <StackLayout
+                Margin="25"
+                Orientation="Horizontal"
+                Spacing="20"
+                VerticalOptions="Start">
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding BackCommand}"
+                    HeightRequest="20"
+                    HorizontalOptions="Start"
+                    Source="back.png"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Бронирование места"
+                    TextColor="White"
+                    VerticalOptions="Start" />
+
+            </StackLayout>
+
+        </Grid>
+
+        <StackLayout Grid.Row="1" Spacing="20">
+
+            <Entry
+                x:Name="BookingClientNameEntry"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Placeholder="Ваше имя"
+                PlaceholderColor="White"
+                Style="{DynamicResource BaseEntryStyle}"
+                Text="{Binding ClientName, Mode=TwoWay}"
+                VerticalOptions="Center"
+                WidthRequest="170" />
+
+            <Entry
+                x:Name="BookingClientPhoneEntry"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Placeholder="Телефон"
+                PlaceholderColor="White"
+                Style="{DynamicResource BaseEntryStyle}"
+                Text="{Binding ClientPhone, Mode=TwoWay}"
+                VerticalOptions="Center"
+                WidthRequest="170" />
+
+            <Picker
+                x:Name="BookingDayPicker"
+                Title="Выберите день"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                SelectedItem="{Binding SelectedDay, Mode=TwoWay}"
+                TextColor="White"
+                TitleColor="White"
+                WidthRequest="170" />
+
+            <Picker
+                x:Name="BookingTimePicker"
+                Title="Выберите время"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                SelectedItem="{Binding SelectedTime, Mode=TwoWay}"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center"
+                WidthRequest="170" />
+
+            <Picker
+                x:Name="BookingPersonCountPicker"
+                Title="Сколько людей?"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                SelectedItem="{Binding SelectedPersonCount, Mode=TwoWay}"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center"
+                WidthRequest="170" />
+
+            <Button
+                BackgroundColor="#F2745f"
+                Command="{Binding CreateBookingCommand, Mode=TwoWay}"
+                CornerRadius="23"
+                FontSize="10"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                IsEnabled="{Binding AllPropertiesIsValid, Mode=TwoWay}"
+                Text="Сделать заказ"
+                TextColor="White"
+                VerticalOptions="Center"
+                WidthRequest="170" />
+
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>
