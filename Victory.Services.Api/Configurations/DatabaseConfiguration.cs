@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations;
+﻿namespace Victory.Services.API.Configurations;
 
 public static class DatabaseConfiguration
 {
@@ -8,6 +8,11 @@ public static class DatabaseConfiguration
 
         services.AddDbContext<ApplicationContext>(options =>
         {
+            // Enable Lazy Loading
+            options.UseLazyLoadingProxies();
+
+            // Set Connection String
+
             options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
         });
     }

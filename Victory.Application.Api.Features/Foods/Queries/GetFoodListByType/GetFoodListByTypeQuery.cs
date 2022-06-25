@@ -1,10 +1,10 @@
-﻿namespace Victory.Application.Api.Features.Foods;
+﻿namespace Victory.Application.API.Features.Foods;
 
 public sealed record class GetFoodListByTypeQuery : IRequest<List<FoodEntity>?>
 {
-    public FoodType Type { get; }
+    public string Type { get; } = string.Empty;
 
-    public GetFoodListByTypeQuery(FoodType type) => Type = type;
+    public GetFoodListByTypeQuery(string type) => Type = type;
 
     public GetFoodListByTypeQuery() { }
 }

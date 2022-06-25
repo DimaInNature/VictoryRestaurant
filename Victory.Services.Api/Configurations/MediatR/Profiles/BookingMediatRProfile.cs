@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations.MediatR.Profiles;
+﻿namespace Victory.Services.API.Configurations.MediatR.Profiles;
 
 public static class BookingMediatRProfile
 {
@@ -6,15 +6,20 @@ public static class BookingMediatRProfile
     {
         #region Queries
 
-        // Get BookingEntity by Id
+        // Get Booking by Id
 
-        services.AddScoped<IRequest<BookingEntity?>, GetBookingByIdQuery>();
-        services.AddScoped<IRequestHandler<GetBookingByIdQuery, BookingEntity?>, GetBookingByIdQueryHandler>();
+        services.AddScoped<IRequest<Booking?>, GetBookingByIdQuery>();
+        services.AddScoped<IRequestHandler<GetBookingByIdQuery, Booking?>, GetBookingByIdQueryHandler>();
 
-        // Get List<BookingEntity>
+        // Get Booking.Table by Id
 
-        services.AddScoped<IRequest<List<BookingEntity>?>, GetBookingListQuery>();
-        services.AddScoped<IRequestHandler<GetBookingListQuery, List<BookingEntity>?>, GetBookingListQueryHandler>();
+        services.AddScoped<IRequest<Table?>, GetBookingTableByIdQuery>();
+        services.AddScoped<IRequestHandler<GetBookingTableByIdQuery, Table?>, GetBookingTableByIdQueryHandler>();
+
+        // Get List<Booking>
+
+        services.AddScoped<IRequest<List<Booking>?>, GetBookingListQuery>();
+        services.AddScoped<IRequestHandler<GetBookingListQuery, List<Booking>?>, GetBookingListQueryHandler>();
 
         #endregion
 

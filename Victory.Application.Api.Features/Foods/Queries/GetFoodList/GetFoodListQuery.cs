@@ -1,3 +1,3 @@
-﻿namespace Victory.Application.Api.Features.Foods;
+﻿namespace Victory.Application.API.Features.Foods;
 
 public record class GetFoodListQuery : IRequest<List<FoodEntity>?> { }

@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations;
+﻿namespace Victory.Services.API.Configurations;
 
 public static class CacheConfiguration
 {

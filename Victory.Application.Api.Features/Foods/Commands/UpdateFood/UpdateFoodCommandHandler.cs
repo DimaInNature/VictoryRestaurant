@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Foods;
+﻿namespace Victory.Application.API.Features.Foods;
 
 public sealed record class UpdateFoodCommandHandler
     : IRequestHandler<UpdateFoodCommand>
@@ -11,18 +11,18 @@ public sealed record class UpdateFoodCommandHandler
     {
         if (request.Food is null) return Unit.Value;
 
-        var entity = await _context.Foods.FindAsync(
+        var entityFromDb = await _context.Foods.FindAsync(
             keyValues: new object[] { request.Food.Id },
             cancellationToken: token);
 
-        if (entity is null) return Unit.Value;
+        if (entityFromDb is null) return Unit.Value;
 
-        entity.Id = request.Food.Id;
-        entity.Type = request.Food.Type;
-        entity.ImagePath = request.Food.ImagePath;
-        entity.Name = request.Food.Name;
-        entity.CostInUSD = request.Food.CostInUSD;
-        entity.Description = request.Food.Description;
+        entityFromDb.Id = request.Food.Id;
+        entityFromDb.FoodTypeId = request.Food.FoodTypeId;
+        entityFromDb.ImagePath = request.Food.ImagePath;
+        entityFromDb.Name = request.Food.Name;
+        entityFromDb.CostInUSD = request.Food.CostInUSD;
+        entityFromDb.Description = request.Food.Description;
 
         await _context.SaveChangesAsync(cancellationToken: token);
 

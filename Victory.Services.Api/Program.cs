@@ -4,10 +4,6 @@ RegisterServices(services: builder.Services);
 
 var app = builder.Build();
 
-// Register All Api's
-app.Services.GetServices<IApi>().ToList()
-    .ForEach(x => x?.Register(app));
-
 Configure(app: app);
 
 app.Run();
@@ -15,9 +11,6 @@ app.Run();
 void RegisterServices(IServiceCollection services)
 {
     services.AddCors();
-
-    // Minimal API
-    services.AddEndpointsApiExplorer();
 
     // Setting DBContext
     services.AddDatabaseConfiguration(builder);
@@ -31,16 +24,15 @@ void RegisterServices(IServiceCollection services)
     // .NET Native DI Abstraction
     services.AddDependencyInjectionConfiguration();
 
-    // API
-    services.AddAPIConfiguration();
-
     // MediatR
     services.AddMediatRConfiguration();
+
+    services.AddControllers();
 }
 
 void Configure(WebApplication app)
 {
-    //app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 
     app.UseCors(cors =>
     {
@@ -50,6 +42,8 @@ void Configure(WebApplication app)
     });
 
     app.UseStaticFiles();
+
+    app.MapControllers();
 
     app.UseSwaggerSetup();
 }

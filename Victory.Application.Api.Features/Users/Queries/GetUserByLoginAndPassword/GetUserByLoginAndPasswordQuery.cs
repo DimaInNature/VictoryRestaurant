@@ -1,8 +1,9 @@
-﻿namespace Victory.Application.Api.Features.Users;
+﻿namespace Victory.Application.API.Features.Users;
 
 public sealed record class GetUserByLoginAndPasswordQuery : IRequest<UserEntity>
 {
     public string? Login { get; }
+
     public string? Password { get; }
 
     public GetUserByLoginAndPasswordQuery(string login, string password) =>

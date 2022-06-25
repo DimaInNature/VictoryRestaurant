@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Cache.Bookings;
+﻿namespace Victory.Application.API.Cache.Bookings;
 
 public class BookingMemoryCacheService : ICacheService<BookingEntity>
 {

@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Data.Users;
+﻿namespace Victory.Application.API.Data.Users;
 
 public class UserRepositoryService : IUserRepositoryService
 {

@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Interfaces.Data.Users;
+﻿namespace Victory.Application.API.Interfaces.Data.Users;
 
 public interface IUserFacadeService
 {

@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Data.Foods;
+﻿namespace Victory.Application.API.Data.Foods;
 
 public class FoodFacadeService : IFoodFacadeService
 {
@@ -15,8 +15,8 @@ public class FoodFacadeService : IFoodFacadeService
     public async Task<List<FoodEntity>> GetFoodListAsync(string name) =>
         await _repository.GetFoodListAsync(name: name) ?? new();
 
-    public async Task<List<FoodEntity>> GetFoodListAsync(FoodType type) =>
-        await _repository.GetFoodListAsync(type: type) ?? new();
+    public async Task<List<FoodEntity>> GetFoodListByTypeAsync(string type) =>
+        await _repository.GetFoodListByTypeAsync(type: type) ?? new();
 
     public async Task<FoodEntity?> GetFoodAsync(int id)
     {
@@ -28,7 +28,7 @@ public class FoodFacadeService : IFoodFacadeService
         return food is null ? null : _cache.Set(key: id, value: food);
     }
 
-    public async Task<FoodEntity?> GetFoodAsync(FoodType type)
+    public async Task<FoodEntity?> GetFoodAsync(string type)
     {
         FoodEntity? food = await _repository.GetFoodAsync(type);
 

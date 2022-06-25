@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Cache.Foods;
+﻿namespace Victory.Application.API.Cache.Foods;
 
 public class FoodMemoryCacheService : ICacheService<FoodEntity>
 {

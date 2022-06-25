@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations.MediatR.Profiles;
+﻿namespace Victory.Services.API.Configurations.MediatR.Profiles;
 
 public static class ContactMessageMediatRProfile
 {
@@ -6,15 +6,15 @@ public static class ContactMessageMediatRProfile
     {
         #region Queries
 
-        // Get ContactMessagEntity by Id
+        // Get ContactMessage by Id
 
-        services.AddScoped<IRequest<ContactMessageEntity?>, GetContactMessageByIdQuery>();
-        services.AddScoped<IRequestHandler<GetContactMessageByIdQuery, ContactMessageEntity?>, GetContactMessageByIdQueryHandler>();
+        services.AddScoped<IRequest<ContactMessage?>, GetContactMessageByIdQuery>();
+        services.AddScoped<IRequestHandler<GetContactMessageByIdQuery, ContactMessage?>, GetContactMessageByIdQueryHandler>();
 
-        // Get List<ContactMessageEntity>
+        // Get List<ContactMessage>
 
-        services.AddScoped<IRequest<List<ContactMessageEntity>?>, GetContactMessageListQuery>();
-        services.AddScoped<IRequestHandler<GetContactMessageListQuery, List<ContactMessageEntity>?>, GetContactMessageListQueryHandler>();
+        services.AddScoped<IRequest<List<ContactMessage>?>, GetContactMessageListQuery>();
+        services.AddScoped<IRequestHandler<GetContactMessageListQuery, List<ContactMessage>?>, GetContactMessageListQueryHandler>();
 
         #endregion
 

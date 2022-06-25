@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations.MediatR.Profiles;
+﻿namespace Victory.Services.API.Configurations.MediatR.Profiles;
 
 public static class UserMediatRProfile
 {
@@ -6,25 +6,25 @@ public static class UserMediatRProfile
     {
         #region Queries
 
-        // Get UserEntity by Id
+        // Get User by Id
 
-        services.AddScoped<IRequest<UserEntity?>, GetUserByIdQuery>();
-        services.AddScoped<IRequestHandler<GetUserByIdQuery, UserEntity?>, GetUserByIdQueryHandler>();
+        services.AddScoped<IRequest<User?>, GetUserByIdQuery>();
+        services.AddScoped<IRequestHandler<GetUserByIdQuery, User?>, GetUserByIdQueryHandler>();
 
-        // Get UserEntity by Login
+        // Get User by Login
 
-        services.AddScoped<IRequest<UserEntity?>, GetUserByLoginQuery>();
-        services.AddScoped<IRequestHandler<GetUserByLoginQuery, UserEntity?>, GetUserByLoginQueryHandler>();
+        services.AddScoped<IRequest<User?>, GetUserByLoginQuery>();
+        services.AddScoped<IRequestHandler<GetUserByLoginQuery, User?>, GetUserByLoginQueryHandler>();
 
-        // Get UserEntity by Login And Password
+        // Get User by Login And Password
 
-        services.AddScoped<IRequest<UserEntity?>, GetUserByLoginAndPasswordQuery>();
-        services.AddScoped<IRequestHandler<GetUserByLoginAndPasswordQuery, UserEntity?>, GetUserByLoginAndPasswordQueryHandler>();
+        services.AddScoped<IRequest<User?>, GetUserByLoginAndPasswordQuery>();
+        services.AddScoped<IRequestHandler<GetUserByLoginAndPasswordQuery, User?>, GetUserByLoginAndPasswordQueryHandler>();
 
-        // Get List<UserEntity>
+        // Get List<User>
 
-        services.AddScoped<IRequest<List<UserEntity>?>, GetUserListQuery>();
-        services.AddScoped<IRequestHandler<GetUserListQuery, List<UserEntity>?>, GetUserListQueryHandler>();
+        services.AddScoped<IRequest<List<User>?>, GetUserListQuery>();
+        services.AddScoped<IRequestHandler<GetUserListQuery, List<User>?>, GetUserListQueryHandler>();
 
         #endregion
 

@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations.MediatR.Profiles;
+﻿namespace Victory.Services.API.Configurations.MediatR.Profiles;
 
 public static class MailSubscriberMediatRProfile
 {
@@ -6,15 +6,15 @@ public static class MailSubscriberMediatRProfile
     {
         #region Queries
 
-        // Get MailSubscriberEntity by Id
+        // Get MailSubscriber by Id
 
-        services.AddScoped<IRequest<MailSubscriberEntity?>, GetMailSubscriberByIdQuery>();
-        services.AddScoped<IRequestHandler<GetMailSubscriberByIdQuery, MailSubscriberEntity?>, GetMailSubscriberByIdQueryHandler>();
+        services.AddScoped<IRequest<MailSubscriber?>, GetMailSubscriberByIdQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscriberByIdQuery, MailSubscriber?>, GetMailSubscriberByIdQueryHandler>();
 
-        // Get List<MailSubscriberEntity>
+        // Get List<MailSubscriber>
 
-        services.AddScoped<IRequest<List<MailSubscriberEntity>?>, GetMailSubscriberListQuery>();
-        services.AddScoped<IRequestHandler<GetMailSubscriberListQuery, List<MailSubscriberEntity>?>, GetMailSubscriberListQueryHandler>();
+        services.AddScoped<IRequest<List<MailSubscriber>?>, GetMailSubscriberListQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscriberListQuery, List<MailSubscriber>?>, GetMailSubscriberListQueryHandler>();
 
         #endregion
 

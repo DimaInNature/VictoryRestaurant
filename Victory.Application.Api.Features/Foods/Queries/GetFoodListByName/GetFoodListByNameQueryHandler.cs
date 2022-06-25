@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Foods;
+﻿namespace Victory.Application.API.Features.Foods;
 
 public sealed record class GetFoodListByNameQueryHandler
     : IRequestHandler<GetFoodListByNameQuery, List<FoodEntity>?>

@@ -9,27 +9,39 @@ public class ApplicationContext : DbContext
     }
 
     public DbSet<FoodEntity> Foods => Set<FoodEntity>();
+    public DbSet<FoodTypeEntity> FoodTypes => Set<FoodTypeEntity>();
     public DbSet<BookingEntity> Bookings => Set<BookingEntity>();
+    public DbSet<TableEntity> Tables => Set<TableEntity>();
     public DbSet<ContactMessageEntity> ContactMessages => Set<ContactMessageEntity>();
     public DbSet<MailSubscriberEntity> MailSubscribers => Set<MailSubscriberEntity>();
     public DbSet<UserEntity> Users => Set<UserEntity>();
+    public DbSet<UserRoleEntity> UserRoles => Set<UserRoleEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<FoodEntity>().HasIndex(food => food.Id).IsUnique();
-        modelBuilder.Entity<FoodEntity>().HasData(GetFoods());
+        modelBuilder.Entity<FoodEntity>().HasIndex(indexExpression: food => food.Id).IsUnique();
+        modelBuilder.Entity<FoodEntity>().HasData(data: GetFoods());
 
-        modelBuilder.Entity<BookingEntity>().HasIndex(booking => booking.Id).IsUnique();
-        modelBuilder.Entity<BookingEntity>().HasData(GetBookings());
+        modelBuilder.Entity<FoodTypeEntity>().HasIndex(indexExpression: foodType => foodType.Id).IsUnique();
+        modelBuilder.Entity<FoodTypeEntity>().HasData(data: GetFoodTypes());
 
-        modelBuilder.Entity<ContactMessageEntity>().HasIndex(contactMessage => contactMessage.Id).IsUnique();
-        modelBuilder.Entity<ContactMessageEntity>().HasData(GetContactMessages());
+        modelBuilder.Entity<BookingEntity>().HasIndex(indexExpression: booking => booking.Id).IsUnique();
+        modelBuilder.Entity<BookingEntity>().HasData(data: GetBookings());
 
-        modelBuilder.Entity<MailSubscriberEntity>().HasIndex(mailSubscriber => mailSubscriber.Id).IsUnique();
-        modelBuilder.Entity<MailSubscriberEntity>().HasData(GetMailSubscribers());
+        modelBuilder.Entity<TableEntity>().HasIndex(indexExpression: table => table.Id).IsUnique();
+        modelBuilder.Entity<TableEntity>().HasData(data: GetTables());
 
-        modelBuilder.Entity<UserEntity>().HasIndex(user => user.Id).IsUnique();
-        modelBuilder.Entity<UserEntity>().HasData(GetUsers());
+        modelBuilder.Entity<ContactMessageEntity>().HasIndex(indexExpression: contactMessage => contactMessage.Id).IsUnique();
+        modelBuilder.Entity<ContactMessageEntity>().HasData(data: GetContactMessages());
+
+        modelBuilder.Entity<MailSubscriberEntity>().HasIndex(indexExpression: mailSubscriber => mailSubscriber.Id).IsUnique();
+        modelBuilder.Entity<MailSubscriberEntity>().HasData(data: GetMailSubscribers());
+
+        modelBuilder.Entity<UserEntity>().HasIndex(indexExpression: user => user.Id).IsUnique();
+        modelBuilder.Entity<UserEntity>().HasData(data: GetUsers());
+
+        modelBuilder.Entity<UserRoleEntity>().HasIndex(indexExpression: userRole => userRole.Id).IsUnique();
+        modelBuilder.Entity<UserRoleEntity>().HasData(data: GetUserRoles());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -45,6 +57,7 @@ public class ApplicationContext : DbContext
         {
 
             #region Breakfast
+
             new()
             {
                 Id = 1,
@@ -52,7 +65,7 @@ public class ApplicationContext : DbContext
                 Name = "Kale Chips Art Party",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 4.50,
-                Type = FoodType.Breakfast,
+                FoodTypeId = 2,
                 ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
             new()
@@ -62,7 +75,7 @@ public class ApplicationContext : DbContext
                 Name = "Drink Vinegar Prism",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 7.25,
-                Type = FoodType.Breakfast,
+                FoodTypeId = 2,
                 ImagePath = "https://localhost:7059/img/foods/lunch_item.jpg"
             },
             new()
@@ -72,7 +85,7 @@ public class ApplicationContext : DbContext
                 Name = "Taiyaki Gastro Tousled",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.50,
-                Type = FoodType.Breakfast,
+                FoodTypeId = 2,
                 ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
 
@@ -87,7 +100,7 @@ public class ApplicationContext : DbContext
                 Name = "Mumble Ditch Corn",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 6.50,
-                Type = FoodType.Lunch,
+                FoodTypeId = 3,
                 ImagePath = "https://localhost:7059/img/foods/lunch_item.jpg"
             },
             new()
@@ -97,7 +110,7 @@ public class ApplicationContext : DbContext
                 Name = "Wayfare Lomo Core",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 11.75,
-                Type = FoodType.Lunch,
+                FoodTypeId = 3,
                 ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
             new()
@@ -107,7 +120,7 @@ public class ApplicationContext : DbContext
                 Name = "Taiyaki Gastro Tousled",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.50,
-                Type = FoodType.Lunch,
+                FoodTypeId = 3,
                 ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             },
 
@@ -122,7 +135,7 @@ public class ApplicationContext : DbContext
                 Name = "Meal Apples Almonds",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 8.25,
-                Type = FoodType.Dinner,
+                FoodTypeId = 4,
                 ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
             new()
@@ -132,7 +145,7 @@ public class ApplicationContext : DbContext
                 Name = "Ditch Corn Art",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 12.50,
-                Type = FoodType.Dinner,
+                FoodTypeId = 4,
                 ImagePath = "https://localhost:7059/img/foods/dinner_item.jpg"
             },
             new()
@@ -142,7 +155,7 @@ public class ApplicationContext : DbContext
                 Name = "Kale Chips Art Party",
                 Description = "Dreamcatcher squid ennui cliche chicharros\n nes echo small batch jean shorts hexagon\n street art knausgaard wolf...",
                 CostInUSD = 16.00,
-                Type = FoodType.Dinner,
+                FoodTypeId = 4,
                 ImagePath = "https://localhost:7059/img/foods/breakfast_item.jpg"
             }
 
@@ -150,7 +163,50 @@ public class ApplicationContext : DbContext
         };
     }
 
+    private List<FoodTypeEntity> GetFoodTypes() =>
+        new()
+        {
+            new()
+            {
+                Id = 1,
+                Name = "Неизвестный"
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Breakfast"
+            },
+            new()
+            {
+                Id=3,
+                Name = "Lunch"
+            },
+            new()
+            {
+                Id = 4,
+                Name = "Dinner"
+            }
+        };
+
     private List<BookingEntity> GetBookings() => new();
+
+    private List<TableEntity> GetTables() => new()
+    {
+        new()
+        {
+            Id = 1,
+            Number = 1,
+            Status = "Free",
+            BookingId = null
+        },
+         new()
+        {
+            Id = 2,
+            Number = 2,
+            Status = "Free",
+            BookingId = null
+        }
+    };
 
     private List<ContactMessageEntity> GetContactMessages() => new();
 
@@ -163,21 +219,40 @@ public class ApplicationContext : DbContext
             Id = 1,
             Login = "Admin",
             Password = "Root",
-            Role = UserRole.Admin
+            UserRoleId = 2
         },
         new()
         {
             Id = 2,
             Login = "Employee",
             Password = "Root",
-            Role = UserRole.Employee
+            UserRoleId = 3
         },
         new()
         {
             Id = 3,
             Login = "User",
             Password = "Root",
-            Role = UserRole.User
+            UserRoleId = 3
+        }
+    };
+
+    private List<UserRoleEntity> GetUserRoles() => new()
+    {
+        new()
+        {
+            Id = 1,
+            Name = "None"
+        },
+        new()
+        {
+            Id = 2,
+            Name = "Admin"
+        },
+        new()
+        {
+            Id = 3,
+            Name = "Employee"
         }
     };
 }

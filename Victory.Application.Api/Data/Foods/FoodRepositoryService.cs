@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Data.Foods;
+﻿namespace Victory.Application.API.Data.Foods;
 
 public class FoodRepositoryService : IFoodRepositoryService
 {
@@ -15,10 +15,10 @@ public class FoodRepositoryService : IFoodRepositoryService
     public async Task<List<FoodEntity>?> GetFoodListAsync(string name) =>
         await _mediator.Send(request: new GetFoodListByNameQuery(name));
 
-    public async Task<List<FoodEntity>?> GetFoodListAsync(FoodType type) =>
+    public async Task<List<FoodEntity>?> GetFoodListByTypeAsync(string type) =>
         await _mediator.Send(request: new GetFoodListByTypeQuery(type));
 
-    public async Task<FoodEntity?> GetFoodAsync(FoodType type) =>
+    public async Task<FoodEntity?> GetFoodAsync(string type) =>
         await _mediator.Send(request: new GetFoodByTypeQuery(type));
 
     public async Task CreateAsync(FoodEntity entity) =>

@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Cache.Users;
+﻿namespace Victory.Application.API.Cache.Users;
 
 public class UserMemoryCacheService : ICacheService<UserEntity>
 {

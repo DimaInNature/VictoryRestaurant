@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Data.Bookings;
+﻿namespace Victory.Application.API.Data.Bookings;
 
 public class BookingRepositoryService : IBookingRepositoryService
 {
@@ -11,6 +11,9 @@ public class BookingRepositoryService : IBookingRepositoryService
 
     public async Task<BookingEntity?> GetBookingAsync(int id) =>
         await _mediator.Send(request: new GetBookingByIdQuery(id));
+
+    public async Task<TableEntity?> GetBookingTableAsync(int id) =>
+        await _mediator.Send(request: new GetBookingTableByIdQuery(id));
 
     public async Task CreateAsync(BookingEntity entity) =>
         await _mediator.Send(request: new CreateBookingCommand(entity));

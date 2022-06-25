@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Foods;
+﻿namespace Victory.Application.API.Features.Foods;
 
 public sealed class GetFoodListByTypeQueryHandler
     : IRequestHandler<GetFoodListByTypeQuery, List<FoodEntity>?>
@@ -9,6 +9,6 @@ public sealed class GetFoodListByTypeQueryHandler
 
     public async Task<List<FoodEntity>?> Handle(GetFoodListByTypeQuery request, CancellationToken token) =>
         await _context.Foods.Where(
-            predicate: food => food.Type == request.Type)
+            predicate: food => food.FoodType.Name == request.Type)
         .ToListAsync(cancellationToken: token);
 }

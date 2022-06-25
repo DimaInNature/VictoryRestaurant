@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Bookings;
+﻿namespace Victory.Application.API.Features.Bookings;
 
 public class UpdateBookingCommandHandler
     : IRequestHandler<UpdateBookingCommand>
@@ -22,7 +22,7 @@ public class UpdateBookingCommandHandler
         entity.Phone = request.Booking.Phone;
         entity.PersonCount = request.Booking.PersonCount;
         entity.Time = request.Booking.Time;
-        entity.DayOfWeek = request.Booking.DayOfWeek;
+        entity.Date = request.Booking.Date;
 
         await _context.SaveChangesAsync(cancellationToken: token);
 

@@ -3,10 +3,18 @@
 public class Food : IDomainModel
 {
     public int Id { get; set; }
+
     public DateTime CreatedDate { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public double CostInUSD { get; set; }
-    public string ImagePath { get; set; }
-    public FoodType Type { get; set; }
+
+    public string Name { get; set; } = string.Empty;
+
+    public string Description { get; set; } = string.Empty;
+
+    public double CostInUSD { get; set; } = 0;
+
+    public string? ImagePath { get; set; } = string.Empty;
+
+    public virtual FoodType? FoodType { get; set; }
+
+    public int? FoodTypeId { get; set; }
 }

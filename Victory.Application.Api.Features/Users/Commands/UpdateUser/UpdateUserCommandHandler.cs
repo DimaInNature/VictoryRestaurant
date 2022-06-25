@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Users;
+﻿namespace Victory.Application.API.Features.Users;
 
 public sealed record class UpdateUserCommandHandler
     : IRequestHandler<UpdateUserCommand>
@@ -11,16 +11,16 @@ public sealed record class UpdateUserCommandHandler
     {
         if (request.User is null) return Unit.Value;
 
-        var userFromDb = await _context.Users.FindAsync(
+        var entityFromDb = await _context.Users.FindAsync(
             keyValues: new object[] { request.User.Id },
             cancellationToken: token);
 
-        if (userFromDb is null) return Unit.Value;
+        if (entityFromDb is null) return Unit.Value;
 
-        userFromDb.Id = request.User.Id;
-        userFromDb.Login = request.User.Login;
-        userFromDb.Password = request.User.Password;
-        userFromDb.Role = request.User.Role;
+        entityFromDb.Id = request.User.Id;
+        entityFromDb.Login = request.User.Login;
+        entityFromDb.Password = request.User.Password;
+        entityFromDb.UserRoleId = request.User.UserRoleId;
 
         await _context.SaveChangesAsync(cancellationToken: token);
 

@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations.MediatR;
+﻿namespace Victory.Services.API.Configurations.MediatR;
 
 public static class MediatRConfiguration
 {
@@ -10,6 +10,8 @@ public static class MediatRConfiguration
 
         services.AddFoodMediatRProfile();
 
+        services.AddFoodTypeMediatRProfile();
+
         services.AddBookingMediatRProfile();
 
         services.AddContactMessageMediatRProfile();
@@ -17,5 +19,9 @@ public static class MediatRConfiguration
         services.AddMailSubscriberMediatRProfile();
 
         services.AddUserMediatRProfile();
+
+        services.AddUserRoleMediatRProfile();
+
+        services.AddTableMediatRProfile();
     }
 }

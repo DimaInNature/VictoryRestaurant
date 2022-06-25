@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.Api.Configurations;
+﻿namespace Victory.Services.API.Configurations;
 
 public static class DependencyInjectionConfiguration
 {
@@ -7,6 +7,10 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
         services.AddTransient<ICacheService<FoodEntity>, FoodMemoryCacheService>();
         services.AddTransient<IFoodFacadeService, FoodFacadeService>();
+
+        services.AddTransient<IFoodTypeRepositoryService, FoodTypeRepositoryService>();
+        services.AddTransient<ICacheService<FoodTypeEntity>, FoodTypeMemoryCacheService>();
+        services.AddTransient<IFoodTypeFacadeService, FoodTypeFacadeService>();
 
         services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
         services.AddTransient<ICacheService<BookingEntity>, BookingMemoryCacheService>();
@@ -23,5 +27,13 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<IUserRepositoryService, UserRepositoryService>();
         services.AddTransient<ICacheService<UserEntity>, UserMemoryCacheService>();
         services.AddTransient<IUserFacadeService, UserFacadeService>();
+
+        services.AddTransient<IUserRoleRepositoryService, UserRoleRepositoryService>();
+        services.AddTransient<ICacheService<UserRoleEntity>, UserRoleMemoryCacheService>();
+        services.AddTransient<IUserRoleFacadeService, UserRoleFacadeService>();
+
+        services.AddTransient<ITableRepositoryService, TableRepositoryService>();
+        services.AddTransient<ICacheService<TableEntity>, TableMemoryCacheService>();
+        services.AddTransient<ITableFacadeService, TableFacadeService>();
     }
 }

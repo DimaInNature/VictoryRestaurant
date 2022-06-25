@@ -1,4 +1,4 @@
-﻿namespace Victory.Application.Api.Features.Bookings;
+﻿namespace Victory.Application.API.Features.Bookings;
 
 public class CreateBookingCommandHandler
     : IRequestHandler<CreateBookingCommand>

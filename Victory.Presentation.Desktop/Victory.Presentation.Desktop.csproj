@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -60,7 +60,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Victory.Application.Desktop\Victory.Application.Desktop.csproj" />
     <ProjectReference Include="..\Victory.Infra.Core.Desktop\Victory.Infra.Core.Desktop.csproj" />
-    <ProjectReference Include="..\Victory.Infra.Core.Util\Victory.Infra.Core.Util.csproj" />
   </ItemGroup>
 
   <ItemGroup>
