@@ -2,26 +2,54 @@
 
 public class BookingController : Controller
 {
-    private readonly IBookingFacadeService _bookingService;
-
-    public BookingController(IBookingFacadeService bookingService) =>
-        _bookingService = bookingService;
-
     [HttpPost("/Bookings")]
-    public async Task<IActionResult> CreateBooking(int dayOfWeek,
-        string time, string name, string phone, int personCount)
+    public async Task<IActionResult> CreateBooking(
+        [FromServices] IBookingFacadeService bookingService,
+        [FromServices] ITableFacadeService tableService,
+        DateTime date, string time, string name, string phone, int personCount)
     {
-        Booking booking = new()
+        // We get all the free tables
+
+        var freeTables = await tableService.GetTableListAsync(status: "Свободен");
+
+        // We check that there is at least one free table
+
+        if (freeTables.Count > 0)
         {
-            DayOfWeek = (DayOfWeek)dayOfWeek,
-            Time = time,
-            Name = name,
-            PersonCount = personCount,
-            Phone = phone
-        };
+            // Get first
 
-        await _bookingService.CreateAsync(booking);
+            Table? freeTable = freeTables.FirstOrDefault();
 
-        return RedirectToAction(actionName: "Index", controllerName: "Home");
+            if (freeTable is null)
+                return RedirectToAction(actionName: "InternalServerError", controllerName: "Error");
+
+            Booking? booking = new()
+            {
+                Date = date,
+                Time = time,
+                Name = name,
+                PersonCount = personCount,
+                Phone = phone
+            };
+
+            // Create booking
+
+            booking = await bookingService.CreateAsync(booking);
+
+            if (booking is null)
+                return RedirectToAction(actionName: "InternalServerError", controllerName: "Error");
+
+            // Linking the order to the table
+
+            (freeTable.BookingId, freeTable.Status) = (booking.Id, "Занят");
+
+            // Save changes
+
+            await tableService.UpdateAsync(freeTable);
+
+            return RedirectToAction(actionName: "Index", controllerName: "Home");
+        }
+
+        return RedirectToAction(actionName: "InternalServerError", controllerName: "Error");
     }
 }

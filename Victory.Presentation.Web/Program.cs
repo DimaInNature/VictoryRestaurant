@@ -1,7 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Company description
-builder.SetCompanyConfiguration();
+// Domain description
+builder.SetDomainConfiguration();
+
+// API Configuration
+builder.SetAPIConfiguration();
 
 RegisterServices(services: builder.Services);
 
@@ -42,7 +45,13 @@ void RegisterServices(IServiceCollection services)
 
 void Configure(IApplicationBuilder app)
 {
-    //app.UseHttpsRedirection();
+    // Setting up communication with the API.
+    app.UseAPIConfiguration();
+
+    // Allow errors pages
+    app.UseErrorPages();
+
+    app.UseHttpsRedirection();
 
     app.UseResponseCompression();
 

@@ -3,17 +3,20 @@
 public sealed record class DeleteFoodCommandHandler
     : IRequestHandler<DeleteFoodCommand>
 {
+    private readonly APIFeaturesConfigurationService _apiConfig;
+
+    public DeleteFoodCommandHandler(APIFeaturesConfigurationService apiConfig) =>
+        _apiConfig = apiConfig;
+
     public async Task<Unit> Handle(DeleteFoodCommand request, CancellationToken token)
     {
-        if (request.Id < 0) return Unit.Value;
-
         using var client = new HttpClient();
 
         string json = JsonConvert.SerializeObject(value: request.Id);
 
         await client.DeleteAsync(
-           requestUri: $"http://localhost:7059/Foods/{request.Id}",
-           cancellationToken: token);
+            requestUri: $"{_apiConfig.ServerUrl}/Foods/Id={request.Id}",
+            cancellationToken: token);
 
         return Unit.Value;
     }

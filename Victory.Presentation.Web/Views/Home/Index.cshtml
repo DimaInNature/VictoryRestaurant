@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>@CompanyInfoConfiguration.Name - Главная</title>
+    <title>@DomainInfoConfiguration.Name - Главная</title>
 </head>
 
 <body>
@@ -12,12 +12,6 @@
     @await Component.InvokeAsync(name: "CookDeleciousBanner");
 
     @await Component.InvokeAsync(name: "Booking");
-    
-    @await Component.InvokeAsync(
-        name: "DownloadApp",
-        arguments: "client.jpg");
-    
-    @await Component.InvokeAsync(name: "FoodWeekleTop");
     
     @await Component.InvokeAsync(name: "SignUp");
 

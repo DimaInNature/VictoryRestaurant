@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
+    <ProjectReference Include="..\Victory.Infra.Configuration.Services\Victory.Infra.Configuration.Services.csproj" />
   </ItemGroup>
 
 </Project>

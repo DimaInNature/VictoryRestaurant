@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Food>
 
-<section class="@ViewBag.FoodTypeLower-menu">
+<section class="@ViewBag.EngFoodTypeLower-menu">
     
     <div class="container">
         
@@ -8,7 +8,7 @@
             
             <div class="col-md-10 col-md-offset-1">
                 
-                <div class="@ViewBag.FoodTypeLower-menu-content">
+                <div class="@ViewBag.EngFoodTypeLower-menu-content">
                     
                     <div class="row">
 
@@ -17,7 +17,7 @@
                             <div class="col-md-5">
                                 
                                 <div class="left-image">
-                                    <img src="@Url.Content($@"~/img/{@ViewBag.FoodTypeLower}_menu.jpg")" alt="Food"/> 
+                                    <img src="@Url.Content($@"~/img/{@ViewBag.EngFoodTypeLower}_menu.jpg")" alt="Food"/> 
                                 </div>
                                 
                             </div>
@@ -27,7 +27,7 @@
 
                             <h2>На @ViewBag.FoodTypeMessage</h2>
                             
-                            <div id="owl-@ViewBag.FoodTypeLower" class="owl-carousel owl-theme">
+                            <div id="owl-@ViewBag.EngFoodTypeLower" class="owl-carousel owl-theme">
                                 
                                 @foreach(var food in Model)
                                 {
@@ -61,7 +61,7 @@
                                <div class="col-md-5">
                                    
                                    <div class="left-image">
-                                       <img src="@Url.Content($@"~/img/{@ViewBag.FoodTypeLower}_menu.jpg")" alt="Food"/>   
+                                       <img src="@Url.Content($@"~/img/{@ViewBag.EngFoodTypeLower}_menu.jpg")" alt="Food"/>   
                                    </div>
                                    
                                </div>

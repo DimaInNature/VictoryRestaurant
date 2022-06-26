@@ -30,5 +30,12 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<UserRepositoryServiceLoggerDecorator>();
         services.AddTransient<ICacheService<User>, UserMemoryCacheService>();
         services.AddTransient<IUserFacadeService, UserFacadeService>();
+
+        services.AddTransient<ITableRepositoryService, TableRepositoryService>();
+        services.AddTransient<TableRepositoryServiceLoggerDecorator>();
+        services.AddTransient<ICacheService<Table>, TableMemoryCacheService>();
+        services.AddTransient<ITableFacadeService, TableFacadeService>();
+
+        services.AddSingleton<APIFeaturesConfigurationService>();
     }
 }

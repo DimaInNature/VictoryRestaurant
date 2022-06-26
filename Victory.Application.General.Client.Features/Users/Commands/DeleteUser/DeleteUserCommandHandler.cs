@@ -3,6 +3,11 @@
 public sealed record class DeleteUserCommandHandler
     : IRequestHandler<DeleteUserCommand>
 {
+    private readonly APIFeaturesConfigurationService _apiConfig;
+
+    public DeleteUserCommandHandler(APIFeaturesConfigurationService apiConfig) =>
+        _apiConfig = apiConfig;
+
     public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken token)
     {
         using var client = new HttpClient();
@@ -10,7 +15,7 @@ public sealed record class DeleteUserCommandHandler
         string json = JsonConvert.SerializeObject(value: request.Id);
 
         await client.DeleteAsync(
-            requestUri: $"http://localhost:7059/Users/{request.Id}",
+            requestUri: $"{_apiConfig.ServerUrl}/Users/Id={request.Id}",
             cancellationToken: token);
 
         return Unit.Value;

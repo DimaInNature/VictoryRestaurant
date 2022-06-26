@@ -1,8 +1,8 @@
 ﻿namespace Victory.Presentation.Web.Models;
 
-public class ErrorViewModel
+public class ErrorModel
 {
-    public string? RequestId { get; set; }
+    public bool ShowRequestId;
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    public int RequestId;
 }

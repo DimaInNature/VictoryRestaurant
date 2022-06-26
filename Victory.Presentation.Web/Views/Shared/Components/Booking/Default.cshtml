@@ -1,90 +1,122 @@
 ﻿@model Booking
 
 <section id="book-table">
-
-    <div class="container">
+    
+    <div class="container mt-5">
         
-        <div class="row">
+        <div class="row d-flex justify-content-center align-items-center">
             
             <div class="col-md-12">
-                <div class="heading">
-                    <h2>Закажите столик прямо сейчас</h2>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-md-offset-2 col-sm-12">
-                <div class="left-image">
-                    <img src="@Url.Content("~/img/book_left_image.jpg")" alt="" /> 
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-12">
-                <div class="right-info">
-                    <h4>Бронирование</h4>
-                    
-                    <form asp-action="CreateBooking" asp-controller="Booking">
-                        
-                        <div class="row">
-                            
-                            <div class="col-md-6">
-                                
-                                <select asp-for=DayOfWeek asp-items="Html.GetEnumSelectList<DayOfWeek>()" required="">
-                                    <option value="">Выберите день</option>
-                                </select>
-                                
-                            </div>
-                            
-                            <div class="col-md-6">
-
-                                <select asp-for=Time required="">
-                                    <option value="">Выберите время</option>
-                                    <option value="10:00">10:00</option>
-                                    <option value="12:00">12:00</option>
-                                    <option value="14:00">14:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="18:00">18:00</option>
-                                    <option value="20:00">20:00</option>
-                                    <option value="22:00">22:00</option>
-                                </select>
-                                
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <input class="form-control" placeholder="Ваше имя" asp-for=Name required=""> 
-                            </div>
-
-                            <div class="col-md-6">
-                                <input class="form-control" placeholder="Телефон" asp-for=Phone required=""> 
-                            </div>
-                            
-                            <div class="col-md-6">
-
-                                <select class="person" asp-for=PersonCount required="">
-                                    <option value="">Сколько людей?</option>
-                                    <option value="1">1 человек</option>
-                                    <option value="2">2 человека</option>
-                                    <option value="3">3 человека</option>
-                                    <option value="4">4 человека</option>
-                                    <option value="5">5 человек</option>
-                                    <option value="6">6 человек</option>
-                                </select>
-                                
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <button type="submit" id="form-submit" class="btn">Сделать заказ</button>
-                            </div>
-                            
-                        </div>
-                        
-                    </form>
-                    
-                </div>
                 
+                <form id="regForm" style="width: 60%" asp-action="CreateBooking" asp-controller="Booking" asp-antiforgery="true">
+                      
+                    @{
+                        if (ViewBag.IsExistFreeTables is false)
+                        {
+                            <h1 style="font-size-adjust: 1.5" id="register">К сожалению все столики заняты. Приходите позже.</h1>
+                            
+                            <div class="all-steps" id="all-steps"> 
+                            
+                                <span class="step"><i class="fa fa-calendar"></i></span> 
+                                <span class="step"><i class="fa fa-clock-o"></i></span>
+                                <span class="step"><i class="fa fa-users"></i></span>
+                                <span class="step"><i class="fa fa-mobile"></i></span>
+                                <span class="step"><i class="fa fa-user-circle"></i></span>
+                            
+                            </div>
+                        }
+                        else
+                        {
+                            <h1 id="register">Закажите столик прямо сейчас!</h1>
+                            
+                            <div class="all-steps" id="all-steps"> 
+                            
+                                <span class="step"><i class="fa fa-calendar"></i></span> 
+                                <span class="step"><i class="fa fa-clock-o"></i></span>
+                                <span class="step"><i class="fa fa-users"></i></span>
+                                <span class="step"><i class="fa fa-mobile"></i></span>
+                                <span class="step"><i class="fa fa-user-circle"></i></span>
+                                
+                            </div>
+                            
+                            <div class="tab">
+                            
+                                <h6>На какой день хотите осуществить запись?</h6>
+                                <p>
+                                    <input type="date" asp-for="Date" placeholder="Дата" oninput="this.className = ''" id="bookingFormDate">
+                                </p>
+                    
+                            </div>
+                            
+                            <div class="tab">
+
+                                <h6>На какое время?</h6>
+                                <p>
+                                    <input asp-for=Time  type="time" placeholder="Время" oninput="this.className = ''">
+                                </p>
+                    
+                            </div>
+
+                            <div class="tab">
+
+                                <h6>На сколько персон?</h6>
+                                <p>
+                                    <input type="number" asp-for=PersonCount placeholder="Кол-во человек" oninput="this.className = ''" id="bookingFormPersonCount">
+                                </p>
+                 
+                            </div>
+
+                            <div class="tab">
+
+                                <h6>Укажите ваш телефон.</h6>
+                                <p>
+                                    <input type="tel"  asp-for=Phone  placeholder="Телефон" oninput="this.className = ''" id="bookingFormPhone">
+                                </p>
+
+                            </div>
+
+                            <div class="tab">
+
+                                <h6>Расскажите как нам Вас называть.</h6>
+                                <p>
+                                    <input placeholder="Имя" asp-for=Name oninput="this.className = ''" >
+                                </p>
+
+                            </div>
+
+                            <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
+
+                                <h3>Почти закончили!</h3>
+                                <span>Отправьте заявку и ждите звонка!</span>
+                                <button type="submit" class="btn" style="margin-top: 5%">Заказать!</button>
+
+                            </div>
+
+                            <div style="overflow:auto;" id="nextprevious">
+                        
+                                <div style="float:right;">
+
+                                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </button> 
+
+                                    <button type="button" id="nextBtn" onclick="nextPrev(1)">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </button>
+
+                                </div>
+                        
+                            </div>
+
+                        }
+                    }
+
+                </form>
+
             </div>
-            
+
         </div>
-        
-    </div>
+
+    </div>   
     
 </section>

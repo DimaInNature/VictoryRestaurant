@@ -3,12 +3,17 @@
 public sealed record class GetUserByLoginQueryHandler
     : IRequestHandler<GetUserByLoginQuery, User?>
 {
+    private readonly APIFeaturesConfigurationService _apiConfig;
+
+    public GetUserByLoginQueryHandler(APIFeaturesConfigurationService apiConfig) =>
+        _apiConfig = apiConfig;
+
     public async Task<User?> Handle(GetUserByLoginQuery request, CancellationToken token)
     {
         using var httpClient = new HttpClient();
 
         using var response = await httpClient.GetAsync(
-            requestUri: $"http://localhost:7059/Users/{request.Login}",
+            requestUri: $"{_apiConfig.ServerUrl}/Users/{request.Login}",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);

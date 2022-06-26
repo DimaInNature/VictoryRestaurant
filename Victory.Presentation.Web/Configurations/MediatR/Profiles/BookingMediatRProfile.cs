@@ -8,8 +8,8 @@ public static class BookingMediatRProfile
 
         // Create
 
-        services.AddScoped<IRequest, CreateBookingCommand>();
-        services.AddScoped<IRequestHandler<CreateBookingCommand, Unit>, CreateBookingCommandHandler>();
+        services.AddScoped<IRequest<Booking?>, CreateBookingCommand>();
+        services.AddScoped<IRequestHandler<CreateBookingCommand, Booking?>, CreateBookingCommandHandler>();
 
         #endregion
     }

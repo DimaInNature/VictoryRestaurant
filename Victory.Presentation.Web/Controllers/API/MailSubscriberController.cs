@@ -2,20 +2,12 @@
 
 public class MailSubscriberController : Controller
 {
-    private readonly IMailSubscriberFacadeService _mailSubscriberService;
-
-    public MailSubscriberController(IMailSubscriberFacadeService mailSubscriberService) =>
-        _mailSubscriberService = mailSubscriberService;
-
     [HttpPost("/MailSubscribers")]
-    public async Task<IActionResult> CreateMailSubscriber(string mail)
+    public async Task<IActionResult> CreateMailSubscriber(
+        [FromServices] IMailSubscriberFacadeService mailSubscriberService,
+        [FromForm] MailSubscriber mailSubscriber)
     {
-        MailSubscriber mailSubscriber = new()
-        {
-            Mail = mail
-        };
-
-        await _mailSubscriberService.CreateAsync(mailSubscriber);
+        await mailSubscriberService.CreateAsync(entity: mailSubscriber);
 
         return RedirectToAction(actionName: "Index", controllerName: "Home");
     }

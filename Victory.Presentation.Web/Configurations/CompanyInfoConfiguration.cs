@@ -1,6 +1,6 @@
 ﻿namespace Victory.Presentation.Web.Configurations;
 
-public static class CompanyInfoConfiguration
+public static class DomainInfoConfiguration
 {
     public static string Name { get; private set; } = string.Empty;
 
@@ -12,14 +12,14 @@ public static class CompanyInfoConfiguration
 
     public static string DeliveryIndex { get; private set; } = string.Empty;
 
-    public static void SetCompanyConfiguration(this WebApplicationBuilder builder)
+    public static void SetDomainConfiguration(this WebApplicationBuilder builder)
     {
         if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-        Name = builder.Configuration[key: "Company:Name"];
-        Phone = builder.Configuration[key: "Company:Phone"];
-        Address = builder.Configuration[key: "Company:Address"];
-        City = builder.Configuration[key: "Company:City"];
-        DeliveryIndex = builder.Configuration[key: "Company:DeliveryIndex"];
+        Name = builder.Configuration[key: "Domain:Name"];
+        Phone = builder.Configuration[key: "Domain:Phone"];
+        Address = builder.Configuration[key: "Domain:Address"];
+        City = builder.Configuration[key: "Domain:City"];
+        DeliveryIndex = builder.Configuration[key: "Domain:DeliveryIndex"];
     }
 }

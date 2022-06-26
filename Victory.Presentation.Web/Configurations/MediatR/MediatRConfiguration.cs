@@ -17,5 +17,7 @@ public static class MediatRConfiguration
         services.AddMailSubscriberMediatRProfile();
 
         services.AddUserMediatRProfile();
+
+        services.AddTableMediatRProfile();
     }
 }

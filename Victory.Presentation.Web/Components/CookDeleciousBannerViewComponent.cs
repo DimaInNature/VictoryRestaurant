@@ -4,7 +4,7 @@ public class CookDeleciousBannerViewComponent : ViewComponent
 {
     public IViewComponentResult Invoke()
     {
-        ViewBag.Phone = CompanyInfoConfiguration.Phone;
+        ViewBag.Phone = DomainInfoConfiguration.Phone;
 
         return View();
     }

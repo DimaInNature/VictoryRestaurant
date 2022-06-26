@@ -2,7 +2,7 @@
 <html>
   
     <head>
-        <title>@CompanyInfoConfiguration.Name - Меню</title>
+        <title>@DomainInfoConfiguration.Name - Меню</title>
     </head>
 
 <body>
@@ -19,26 +19,26 @@
         name: "FoodMenu",
         arguments: new 
         {
-            foodType = FoodType.Breakfast,
+            foodType = "Завтрак",
             side = DisplaySide.Right
         });
-        
-    @await Component.InvokeAsync(
+
+         @await Component.InvokeAsync(
         name: "FoodMenu",
         arguments: new 
         {
-            foodType = FoodType.Lunch,
+            foodType = "Обед",
             side = DisplaySide.Left
         });
 
-    @await Component.InvokeAsync(
-         name: "FoodMenu",
-         arguments: new 
-         {
-             foodType = FoodType.Dinner,
-             side = DisplaySide.Right
-         });
-    
+         @await Component.InvokeAsync(
+        name: "FoodMenu",
+        arguments: new 
+        {
+            foodType = "Ужин",
+            side = DisplaySide.Right
+        });
+        
     @await Component.InvokeAsync(name: "Booking");
 
 </body>

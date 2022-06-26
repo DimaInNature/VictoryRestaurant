@@ -101,6 +101,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Victory.Application.General.Client.Services\Victory.Application.General.Client.Services.csproj" />
     <ProjectReference Include="..\Victory.Application.Web\Victory.Application.Web.csproj" />
   </ItemGroup>
 

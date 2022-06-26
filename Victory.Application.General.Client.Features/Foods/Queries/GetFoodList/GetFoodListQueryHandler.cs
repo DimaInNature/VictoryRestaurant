@@ -3,12 +3,17 @@
 public sealed record class GetFoodListQueryHandler
     : IRequestHandler<GetFoodListQuery, List<Food>?>
 {
+    private readonly APIFeaturesConfigurationService _apiConfig;
+
+    public GetFoodListQueryHandler(APIFeaturesConfigurationService apiConfig) =>
+        _apiConfig = apiConfig;
+
     public async Task<List<Food>?> Handle(GetFoodListQuery request, CancellationToken token)
     {
         using var httpClient = new HttpClient();
 
         using var response = await httpClient
-            .GetAsync(requestUri: "http://localhost:7059/Foods",
+            .GetAsync(requestUri: $"{_apiConfig.ServerUrl}/Foods",
             cancellationToken: token);
 
         string apiResponse = await response.Content.ReadAsStringAsync(cancellationToken: token);
