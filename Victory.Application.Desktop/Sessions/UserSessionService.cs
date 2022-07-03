@@ -34,8 +34,6 @@ public class UserSessionService
         ActiveUser = user;
 
         IsActive = true;
-
-        await Task.Run(() => AutoCheckSessionState(secondsTimeout: 15));
     }
 
     public void EndSession()
@@ -45,26 +43,5 @@ public class UserSessionService
         _activeUser = null;
 
         IsActive = false;
-    }
-
-    private static void CloseApplication() => Environment.Exit(exitCode: 0);
-
-    private async void AutoCheckSessionState(int secondsTimeout)
-    {
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (IsActive)
-        {
-            if (ActiveUser is null) return;
-
-            var user = await _userService.GetUserAsync(
-                login: ActiveUser.Login,
-                password: ActiveUser.Password);
-
-            if (user is null || ActiveUser.Equals(user) is false)
-                CloseApplication();
-
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-        }
     }
 }

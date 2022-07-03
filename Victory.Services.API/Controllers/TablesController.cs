@@ -10,112 +10,112 @@ public class TablesController : ControllerBase
     public TablesController(ITableFacadeService repository) => _repository = repository;
 
     /// <summary>
-    /// Получение списка всех столиков.
+    /// Get all tables.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /Tables
     ///
     /// </remarks>
-    /// <returns>Возвращает список всех столиков.</returns>
-    /// <response code="200">Возвращает список столиков.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Return all tables.</returns>
+    /// <response code="200">Tables list.</response>
+    /// <response code="404">If the tables was not found.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Table>>> GetList() =>
-        await _repository.GetTableListAsync() is IEnumerable<Table> tables
+    public async Task<ActionResult<IEnumerable<TableEntity>>> GetList() =>
+        await _repository.GetTableListAsync() is IEnumerable<TableEntity> tables
         ? Ok(value: tables)
         : NotFound();
 
     /// <summary>
-    /// Получение списка всех столиков по их номеру.
+    /// Get all tables by number.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /Tables/Number=1
     ///
     /// </remarks>
-    /// <returns>Возвращает список столиков.</returns>
-    /// <response code="200">Возвращает список столиков.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Tables list.</returns>
+    /// <response code="200">Table list.</response>
+    /// <response code="404">If the tables was not found.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet("Number={number}")]
-    public async Task<ActionResult<IEnumerable<Table>>> GetList(int number) =>
-        await _repository.GetTableListAsync(number) is IEnumerable<Table> tables
+    public async Task<ActionResult<IEnumerable<TableEntity>>> GetList(int number) =>
+        await _repository.GetTableListAsync(number) is IEnumerable<TableEntity> tables
         ? Ok(value: tables)
         : NotFound();
 
     /// <summary>
-    /// Получение списка всех столиков по их статусу.
+    /// Get all tables by status.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /Tables/Status=True
+    ///     GET /Tables/Status=Free
     ///
     /// </remarks>
-    /// <returns>Возвращает список столиков.</returns>
-    /// <response code="200">Возвращает список столиков.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Tables list.</returns>
+    /// <response code="200">Tables list.</response>
+    /// <response code="404">If the tables was not found.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet("Status={status}")]
-    public async Task<ActionResult<IEnumerable<Table>>> GetList(string status) =>
-        await _repository.GetTableListAsync(status) is IEnumerable<Table> tables
+    public async Task<ActionResult<IEnumerable<TableEntity>>> GetList(string status) =>
+        await _repository.GetTableListAsync(status) is IEnumerable<TableEntity> tables
         ? Ok(value: tables)
         : NotFound();
 
     /// <summary>
-    /// Получение столика по его идентификатору.
+    /// Get table by Id.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /Tables/Id=1
     ///
     /// </remarks>
-    /// <param name="id">Идентификатор столика.</param>
-    /// <returns>Возвращает столик.</returns>
-    /// <response code="200">Возвращает найденный столик.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="id">Id.</param>
+    /// <returns>Table.</returns>
+    /// <response code="200">Table.</response>
+    /// <response code="404">If the table was not found.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet(template: "Id={id}")]
-    public async Task<ActionResult<Table>> Get(int id) =>
-        await _repository.GetTableAsync(id) is Table table
+    public async Task<ActionResult<TableEntity>> Get(int id) =>
+        await _repository.GetTableAsync(id) is TableEntity table
         ? Ok(value: table)
         : NotFound();
 
     /// <summary>
-    /// Создание столика.
+    /// Create table.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     POST /Tables
     ///     {
-    ///         "id": 0, (Автоинкремент)
+    ///         "id": 0, (auto)
     ///         "number": 1,
-    ///         "isBooked": true
+    ///         "status": "Free"
     ///     }
     ///
     /// </remarks>
-    /// <returns>Возвращает созданный столик.</returns>
-    /// <response code="201">Возвращает созданный столик.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <returns>Table.</returns>
+    /// <response code="201">Table.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost]
-    public async Task<ActionResult<Table>> Create([FromBody] Table table)
+    public async Task<ActionResult<TableEntity>> Create([FromBody] TableEntity table)
     {
         if (table is not null) await _repository.CreateAsync(entity: table);
 
@@ -123,26 +123,26 @@ public class TablesController : ControllerBase
     }
 
     /// <summary>
-    /// Изменение столика.
+    /// Update table.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     PUT /Tables
     ///     {
-    ///         "id": 1, (Id изменяемого объекта)
-    ///         "number": 2,
-    ///         "isBooked": true
+    ///         "id": 1,
+    ///         "number": 1,
+    ///         "status": "Free"
     ///     }
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно изменён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully modified..</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] Table table)
+    public async Task<ActionResult> Update([FromBody] TableEntity table)
     {
         if (table is not null) await _repository.UpdateAsync(entity: table);
 
@@ -150,16 +150,16 @@ public class TablesController : ControllerBase
     }
 
     /// <summary>
-    /// Удаление столика.
+    /// Delete table.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     DELETE /Tables/Id=1
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно удалён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully deleted.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

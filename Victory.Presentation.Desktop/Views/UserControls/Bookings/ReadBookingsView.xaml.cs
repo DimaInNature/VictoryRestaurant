@@ -2,15 +2,14 @@
 
 sealed partial class ReadBookingsView : UserControl
 {
-    private readonly IReadBookingsViewModel? _viewModel = (System.Windows.Application.Current as App)?
-       .ServiceProvider?.GetService<IReadBookingsViewModel>();
+    private readonly ReadBookingsViewModel? _viewModel = (System.Windows.Application.Current as App)?
+       .ServiceProvider?.GetService<ReadBookingsViewModel>();
 
     public ReadBookingsView()
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
     }

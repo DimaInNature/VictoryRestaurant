@@ -26,16 +26,14 @@
             Width="250"
             Height="50"
             HorizontalScrollBarVisibility="Auto"
-            Style="{StaticResource ColorTextBoxStyle}"
-            Tag="Логин"
+            Tag="Login"
             Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBox
             Grid.Row="2"
             Width="250"
             Height="50"
-            Style="{StaticResource ColorTextBoxStyle}"
-            Tag="Пароль"
+            Tag="Password"
             Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
@@ -43,15 +41,16 @@
             Grid.Row="3"
             Width="250"
             Height="50"
-            SelectedItem="{Binding Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Style="{DynamicResource ModernComboBox}" />
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding UserRoles}"
+            SelectedItem="{Binding SelectedRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button
             Grid.Row="4"
             Width="200"
             Height="50"
             Command="{Binding CreateCommand}"
-            Content="Создать" />
+            Content="Create" />
 
     </Grid>
 

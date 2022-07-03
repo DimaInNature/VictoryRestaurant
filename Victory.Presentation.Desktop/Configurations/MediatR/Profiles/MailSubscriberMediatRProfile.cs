@@ -8,8 +8,8 @@ public static class MailSubscriberMediatRProfile
 
         // Get List<MailSubscriber>
 
-        services.AddScoped<IRequest<List<MailSubscriber>?>, GetMailSubscribersListQuery>();
-        services.AddScoped<IRequestHandler<GetMailSubscribersListQuery, List<MailSubscriber>?>, GetMailSubscribersListQueryHandler>();
+        services.AddScoped<IRequest<List<MailSubscriber>?>, GetMailSubscriberListQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscriberListQuery, List<MailSubscriber>?>, GetMailSubscribersListQueryHandler>();
 
         // Get MailSubscriber by Id
 

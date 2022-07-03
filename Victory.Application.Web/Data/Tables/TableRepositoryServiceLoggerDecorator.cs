@@ -42,7 +42,7 @@ public class TableRepositoryServiceLoggerDecorator
         return result;
     }
 
-    public async Task<List<Table>> GetTableListAsync(bool status)
+    public async Task<List<Table>> GetTableListAsync(string status)
     {
         List<Table> result = new();
 
@@ -88,7 +88,7 @@ public class TableRepositoryServiceLoggerDecorator
     {
         try
         {
-            await _repository.UpdateAsync(id);
+            await _repository.UpdateAsync(entity);
         }
         catch (Exception ex)
         {

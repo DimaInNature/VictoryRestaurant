@@ -10,57 +10,57 @@ public class ContactMessagesController : ControllerBase
     public ContactMessagesController(IContactMessageFacadeService repository) => _repository = repository;
 
     /// <summary>
-    /// Получение списка всех сообщений, которые пользователи оставили в форме обратной связи.
+    /// Get all contact messages.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /ContactMessages
     ///
     /// </remarks>
-    /// <returns>Возвращает список всех сообщений.</returns>
-    /// <response code="200">Возвращает список сообщений.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Return all contact messages.</returns>
+    /// <response code="200">Contact messages list.</response>
+    /// <response code="404">If the contact messages was not found.</response>
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ContactMessage>>> GetList() =>
-        await _repository.GetContactMessageListAsync() is IEnumerable<ContactMessage> contactMessages
+    public async Task<ActionResult<IEnumerable<ContactMessageEntity>>> GetList() =>
+        await _repository.GetContactMessageListAsync() is IEnumerable<ContactMessageEntity> contactMessages
         ? Ok(value: contactMessages)
         : NotFound();
 
     /// <summary>
-    /// Получение сообщения, которые пользователь оставил в форме обратной связи по его идентификатору.
+    /// Get contact message by Id.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /ContactMessages/1
+    ///     GET /ContactMessages/Id=1
     ///
     /// </remarks>
-    /// <param name="id">Идентификатор сообщения.</param>
-    /// <returns>Возвращает сообщение.</returns>
-    /// <response code="200">Возвращает найденное сообщение.</response>
-    /// <response code="404">Если сообщение не было найдено.</response>
+    /// <param name="id">Id.</param>
+    /// <returns>Contact message.</returns>
+    /// <response code="200">Contact message.</response>
+    /// <response code="404">If the contact message was not found.</response>
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet(template: "Id={id}")]
-    public async Task<ActionResult<ContactMessage>> Get(int id) =>
-        await _repository.GetContactMessageAsync(id) is ContactMessage contactMessage
+    public async Task<ActionResult<ContactMessageEntity>> Get(int id) =>
+        await _repository.GetContactMessageAsync(id) is ContactMessageEntity contactMessage
         ? Ok(value: contactMessage)
         : NotFound();
 
     /// <summary>
-    /// Создание сообщения.
+    /// Create contact message.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     POST /ContactMessages
     ///     {
-    ///         "id": 0, (Автоинкремент)
+    ///         "id": 0, (auto)
     ///         "name": "Oleg",
     ///         "mail": "example@bk.com",
     ///         "phone": "23-45-67",
@@ -68,14 +68,14 @@ public class ContactMessagesController : ControllerBase
     ///     }
     ///
     /// </remarks>
-    /// <returns>Возвращает созданное сообщение.</returns>
-    /// <response code="201">Возвращает созданное сообщение.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <returns>Contact message.</returns>
+    /// <response code="201">Contact message.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost]
-    public async Task<ActionResult<ContactMessage>> Create([FromBody] ContactMessage contactMessage)
+    public async Task<ActionResult<ContactMessageEntity>> Create([FromBody] ContactMessageEntity contactMessage)
     {
         if (contactMessage is not null) await _repository.CreateAsync(entity: contactMessage);
 
@@ -83,14 +83,14 @@ public class ContactMessagesController : ControllerBase
     }
 
     /// <summary>
-    /// Изменение сообщения.
+    /// Update contact message.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     PUT /ContactMessages
     ///     {
-    ///         "id": 1, (Id изменяемого объекта)
+    ///         "id": 1,
     ///         "name": "Oleg",
     ///         "mail": "example@bk.com",
     ///         "phone": "23-45-67",
@@ -98,13 +98,13 @@ public class ContactMessagesController : ControllerBase
     ///     }
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно изменён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully modified.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] ContactMessage contactMessage)
+    public async Task<ActionResult> Update([FromBody] ContactMessageEntity contactMessage)
     {
         if (contactMessage is not null) await _repository.UpdateAsync(entity: contactMessage);
 
@@ -112,16 +112,16 @@ public class ContactMessagesController : ControllerBase
     }
 
     /// <summary>
-    /// Удаление сообщения.
+    /// Delete contact message.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     DELETE /ContactMessages/1
+    ///     DELETE /ContactMessages/Id=1
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно удалён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully deleted.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

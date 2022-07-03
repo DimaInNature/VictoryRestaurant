@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 
                 <div class="section-heading">
-                    <h2>Написать нам</h2>  
+                    <h2>Contact us</h2>  
                 </div>
                 
                 <form asp-action="CreateContactMessage" asp-controller="ContactMessage" asp-antiforgery="true">
@@ -17,14 +17,14 @@
                     <div class="row">
                         
                         <div class="col-md-6">
-                            <input class="form-control" asp-for=Name type="text" placeholder="Имя" required="">
-                            <input class="form-control" asp-for=Mail type="email" placeholder="Электронная почта" required="">
-                            <input class="form-control" asp-for=Phone type="text" placeholder="Телефон" required="">
+                            <input class="form-control" asp-for=Name type="text" placeholder="Name" required="">
+                            <input class="form-control" asp-for=Mail type="email" placeholder="Email" required="">
+                            <input class="form-control" asp-for=Phone type="text" placeholder="Phone" required="">
                         </div>
                         
                         <div class="col-md-6">
-                            <textarea class="form-control" asp-for=Message rows="6" placeholder="Ваше сообщение" required=""></textarea>
-                            <button type="submit" class="btn">Отправить</button>
+                            <textarea class="form-control" asp-for=Message rows="6" placeholder="Your message" required=""></textarea>
+                            <button type="submit" class="btn">Send</button>
                         </div>
                         
                     </div>
@@ -36,8 +36,8 @@
             <div class="col-md-6">
                 
                 <div class="section-heading contact-info">
-                    <h2>Информация</h2>
-                    <p>Если Вам не удалось с нами связаться. Вы можете подойти к нашему администратору по адресу:
+                    <h2>Information</h2>
+                    <p>If you have not been able to contact us. You can approach our administrator at:
                         <br><br><em>@DomainInfoConfiguration.Address, <br>@DomainInfoConfiguration.City @DomainInfoConfiguration.DeliveryIndex</em></p>   
                 </div>
                 

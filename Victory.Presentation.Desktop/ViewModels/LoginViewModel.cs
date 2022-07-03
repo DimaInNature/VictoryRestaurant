@@ -1,30 +1,38 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels;
 
-internal sealed class LoginViewModel
-    : BaseViewModel, ILoginViewModel
+internal sealed class LoginViewModel : BaseViewModel
 {
     #region Members
 
-    #region Commands
+    public bool IsConnectionStopped = false;
 
-    public ICommand? LoginCommand { get; private set; }
-
-    public ICommand? RegistrationCommand { get; private set; }
-
-    #endregion
-
-    #region Areas
-
-    #region Authorization
+    #region Properties
 
     public string EnterUserLogin
     {
         get => _enterUserLogin ?? string.Empty;
         set
         {
-            _enterUserLogin = string.IsNullOrWhiteSpace(value)
-                ? string.Empty
-                : value;
+            int maxLenght = 25;
+
+            if (value == string.Empty)
+            {
+                _enterUserLogin = null;
+
+                OnPropertyChanged(nameof(EnterUserLogin));
+
+                return;
+            }
+
+            if (value.Length > 0)
+            {
+                if (value.Length > maxLenght) return;
+
+                value = value.Replace(oldValue: " ", newValue: string.Empty);
+            }
+
+            _enterUserLogin = value;
+
             OnPropertyChanged(nameof(EnterUserLogin));
         }
     }
@@ -63,41 +71,11 @@ internal sealed class LoginViewModel
 
     #endregion
 
-    #region Registration
+    #region Commands
 
-    public string CreateUserLogin
-    {
-        get => _createUserLogin ?? string.Empty;
-        set
-        {
-            _createUserLogin = string.IsNullOrWhiteSpace(value)
-                ? string.Empty
-                : value;
-            OnPropertyChanged(nameof(CreateUserLogin));
-        }
-    }
+    public ICommand? LoginCommand { get; private set; }
 
-    public SecureString SecureRegisterPassword
-    {
-        get => _secureRegisterPassword ?? new();
-        set
-        {
-            _secureRegisterPassword = value;
-            OnPropertyChanged(nameof(SecureRegisterPassword));
-        }
-    }
-
-    public string RegisterPassword
-    {
-        get => _registerPassword ?? string.Empty;
-        set
-        {
-            _registerPassword = value;
-            IsRegisterPasswordWatermarkVisible = string.IsNullOrEmpty(_registerPassword);
-        }
-    }
-
-    #endregion
+    public ICommand? RegistrationCommand { get; private set; }
 
     #endregion
 
@@ -116,19 +94,6 @@ internal sealed class LoginViewModel
         }
     }
 
-    public bool IsRegisterPasswordWatermarkVisible
-    {
-        get => _isRegisterPasswordWatermarkVisible;
-        set
-        {
-            if (value.Equals(_isRegisterPasswordWatermarkVisible)) return;
-
-            _isRegisterPasswordWatermarkVisible = value;
-
-            OnPropertyChanged(nameof(IsRegisterPasswordWatermarkVisible));
-        }
-    }
-
     #endregion
 
     #region Private
@@ -139,21 +104,14 @@ internal sealed class LoginViewModel
 
     private string? _password;
 
-    private string? _createUserLogin;
-
-    private SecureString? _secureRegisterPassword;
-
-    private string? _registerPassword;
-
     private bool _isPasswordWatermarkVisible = true;
-
-    private bool _isRegisterPasswordWatermarkVisible = true;
 
     #endregion
 
     #region Dependencies
 
     private readonly IUserFacadeService _userService;
+
     private readonly UserSessionService _sessionService;
 
     #endregion
@@ -175,63 +133,89 @@ internal sealed class LoginViewModel
 
     private async void ExecuteLogin(object obj)
     {
-        var user = await _userService.GetUserAsync(
-            login: EnterUserLogin,
-            password: Password);
-
-        if (user is null)
+        try
         {
-            MessageBox.Show(messageBoxText: "Такого пользователя не существует.",
-                caption: "Ошибка авторизации", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+            var user = await _userService.GetUserAsync(
+                login: EnterUserLogin,
+                password: Password);
 
-            return;
+            if (user is null | string.IsNullOrWhiteSpace(value: user?.Login))
+            {
+                MessageBox.Show(messageBoxText: "User is not exist.",
+                    caption: "Authorization error", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+
+                IsConnectionStopped = true;
+
+                return;
+            }
+
+            if (user?.UserRole?.Name is not "Admin" and not "Employee")
+            {
+                MessageBox.Show(
+                    messageBoxText: "You don't have access rights.",
+                    caption: "Security system",
+                    button: MessageBoxButton.OK,
+                    icon: MessageBoxImage.Error);
+
+                IsConnectionStopped = true;
+
+                return;
+            }
+
+            await _sessionService.StartSession(activeUser: user);
+
+            new MainView().Show();
+
+            (obj as Window)?.Close();
         }
-
-        if (user.Role is UserRole.User)
+        catch
         {
             MessageBox.Show(
-                messageBoxText: "У вас нет права доступа.",
-                caption: "Система безопасности",
+                messageBoxText: "Unable to connect to the server.",
+                caption: "Connection error",
                 button: MessageBoxButton.OK,
                 icon: MessageBoxImage.Error);
-
-            return;
         }
 
-        await _sessionService.StartSession(activeUser: user);
-
-        new MainView().Show();
-
-        (obj as LoginView)?.Close();
+        IsConnectionStopped = true;
     }
 
     private async void ExecuteRegistration(object obj)
     {
-        if (await _userService.GetUserAsync(login: CreateUserLogin) is not null)
-        {
-            MessageBox.Show(
-                messageBoxText: "Пользователь уже существует.",
-                caption: "Ошибка регистрации",
-                button: MessageBoxButton.OK,
-                icon: MessageBoxImage.Error);
+        var findedUser = await _userService.GetUserAsync(login: EnterUserLogin);
 
-            return;
+        if (findedUser is not null)
+        {
+            if (string.IsNullOrWhiteSpace(findedUser.Login) is false)
+            {
+                MessageBox.Show(
+                  messageBoxText: "The user already exists.",
+                  caption: "Registration error",
+                  button: MessageBoxButton.OK,
+                  icon: MessageBoxImage.Error);
+
+                IsConnectionStopped = true;
+
+                return;
+            }
         }
 
         User user = new()
         {
-            Login = CreateUserLogin,
-            Password = RegisterPassword,
-            Role = UserRole.Employee
+            Login = EnterUserLogin,
+            Password = Password,
+            UserRoleId = 3
         };
 
         await _userService.CreateAsync(user);
 
         await _sessionService.StartSession(activeUser: user);
 
+        IsConnectionStopped = true;
+
         new MainView().Show();
 
-        (obj as LoginView)?.Close();
+        (obj as Window)?.Close();
     }
 
     #endregion
@@ -242,7 +226,7 @@ internal sealed class LoginViewModel
         StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
 
     private bool CanExecuteRegistration(object obj) =>
-        StringHelper.StrIsNotNullOrWhiteSpace(CreateUserLogin, RegisterPassword);
+        StringHelper.StrIsNotNullOrWhiteSpace(EnterUserLogin, Password);
 
     #endregion
 

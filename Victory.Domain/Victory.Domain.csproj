@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Domain.Interfaces\Victory.Domain.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

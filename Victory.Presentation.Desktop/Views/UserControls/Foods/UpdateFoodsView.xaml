@@ -11,12 +11,23 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <TextBox
+            Margin="15"
+            Tag="Search"
+            Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <ScrollViewer
+            Grid.Row="1"
             Grid.Column="0"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Disabled">
@@ -27,8 +38,8 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    ItemsSource="{Binding Items, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    ItemsSource="{Binding GeneralDataList, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedGeneralValue, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
@@ -36,16 +47,15 @@
                                 Width="185"
                                 Height="35"
                                 Margin="10,0,10,0"
-                                Background="{DynamicResource AccentColor}"
+                                Background="#f2745f"
                                 CornerRadius="10">
 
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="15"
-                                    Foreground="{DynamicResource ItemForeground}"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="{Binding Name, Mode=TwoWay}" />
+                                    Foreground="White"
+                                    Text="{Binding Name, Mode=TwoWay, StringFormat='{}Name: {0}'}" />
 
                             </Border>
 
@@ -59,7 +69,7 @@
 
         </ScrollViewer>
 
-        <Grid Column="1">
+        <Grid Grid.Row="1" Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
@@ -74,42 +84,40 @@
             <TextBox
                 Grid.Row="1"
                 Width="300"
-                Height="70"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Название"
-                Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Height="60"
+                Tag="Name"
+                Text="{Binding SelectedGeneralValue.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="2"
-                Width="350"
-                Height="100"
+                Width="330"
+                Height="90"
                 HorizontalScrollBarVisibility="Auto"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Описание"
-                Text="{Binding SelectedItem.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Description"
+                Text="{Binding SelectedGeneralValue.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="3"
                 Width="250"
                 Height="50"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Стоимость"
-                Text="{Binding SelectedItem.CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Cost In USD"
+                Text="{Binding SelectedGeneralValue.CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
 
             <ComboBox
                 Grid.Row="4"
                 Width="250"
                 Height="50"
-                ItemsSource="{Binding FoodTypes}"
-                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Style="{DynamicResource ModernComboBox}" />
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding AggregatedDataList}"
+                SelectedIndex="{Binding SelectedAggredatedValueIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedAggregatedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 Grid.Row="5"
                 Width="200"
                 Height="50"
                 Command="{Binding UpdateCommand}"
-                Content="Изменить" />
+                Content="Update" />
 
         </Grid>
 

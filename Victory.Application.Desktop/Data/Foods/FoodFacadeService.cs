@@ -4,17 +4,13 @@ public sealed class FoodFacadeService : IFoodFacadeService
 {
     private readonly IFoodRepositoryService _repository;
 
-    public FoodFacadeService(IFoodRepositoryService repository) =>
-        _repository = repository;
+    public FoodFacadeService(IFoodRepositoryService repository) => _repository = repository;
 
     public async Task<List<Food>> GetFoodListAsync() =>
         await _repository.GetFoodListAsync();
 
     public async Task<List<Food>> GetFoodListAsync(FoodType type) =>
         await _repository.GetFoodListAsync(type);
-
-    public async Task<Food?> GetFoodAsync(FoodType type) =>
-        await _repository.GetFoodAsync(type);
 
     public async Task CreateAsync(Food entity) =>
         await _repository.CreateAsync(entity);

@@ -13,7 +13,7 @@
                     @{
                         if (ViewBag.IsExistFreeTables is false)
                         {
-                            <h1 style="font-size-adjust: 1.5" id="register">К сожалению все столики заняты. Приходите позже.</h1>
+                            <h1 style="font-size-adjust: 1.5" id="register">Unfortunately, all tables are occupied. Come back later.</h1>
                             
                             <div class="all-steps" id="all-steps"> 
                             
@@ -27,7 +27,7 @@
                         }
                         else
                         {
-                            <h1 id="register">Закажите столик прямо сейчас!</h1>
+                            <h1 id="register">Book a table right now!</h1>
                             
                             <div class="all-steps" id="all-steps"> 
                             
@@ -41,54 +41,54 @@
                             
                             <div class="tab">
                             
-                                <h6>На какой день хотите осуществить запись?</h6>
+                                <h6>On what day do you want to book?</h6>
                                 <p>
-                                    <input type="date" asp-for="Date" placeholder="Дата" oninput="this.className = ''" id="bookingFormDate">
+                                    <input type="date" asp-for="Date" placeholder="Date" oninput="this.className = ''" id="bookingFormDate">
                                 </p>
                     
                             </div>
                             
                             <div class="tab">
 
-                                <h6>На какое время?</h6>
+                                <h6>What time do you want to book for</h6>
                                 <p>
-                                    <input asp-for=Time  type="time" placeholder="Время" oninput="this.className = ''">
+                                    <input asp-for=Time  type="time" placeholder="Time" oninput="this.className = ''">
                                 </p>
                     
                             </div>
 
                             <div class="tab">
 
-                                <h6>На сколько персон?</h6>
+                                <h6>Person count</h6>
                                 <p>
-                                    <input type="number" asp-for=PersonCount placeholder="Кол-во человек" oninput="this.className = ''" id="bookingFormPersonCount">
+                                    <input type="number" asp-for=PersonCount placeholder="Person count" oninput="this.className = ''" id="bookingFormPersonCount">
                                 </p>
                  
                             </div>
 
                             <div class="tab">
 
-                                <h6>Укажите ваш телефон.</h6>
+                                <h6>Your phone number.</h6>
                                 <p>
-                                    <input type="tel"  asp-for=Phone  placeholder="Телефон" oninput="this.className = ''" id="bookingFormPhone">
+                                    <input type="tel"  asp-for=Phone  placeholder="Telephone" oninput="this.className = ''" id="bookingFormPhone">
                                 </p>
 
                             </div>
 
                             <div class="tab">
 
-                                <h6>Расскажите как нам Вас называть.</h6>
+                                <h6>Your name.</h6>
                                 <p>
-                                    <input placeholder="Имя" asp-for=Name oninput="this.className = ''" >
+                                    <input placeholder="Name" asp-for=Name oninput="this.className = ''" >
                                 </p>
 
                             </div>
 
                             <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
 
-                                <h3>Почти закончили!</h3>
-                                <span>Отправьте заявку и ждите звонка!</span>
-                                <button type="submit" class="btn" style="margin-top: 5%">Заказать!</button>
+                                <h3>Almost finished!</h3>
+                                <span>Send a request and wait for the call!</span>
+                                <button type="submit" class="btn" style="margin-top: 5%">Book!</button>
 
                             </div>
 

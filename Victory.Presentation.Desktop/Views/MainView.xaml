@@ -5,367 +5,455 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Victory.Presentation.Desktop.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Name="ThisWindow"
-    Title="Victory - Главная"
+    Title="Victory - Home"
     Width="800"
     Height="600"
+    MinWidth="800"
+    MinHeight="600"
     AllowsTransparency="True"
     Background="Transparent"
-    ResizeMode="NoResize"
+    MouseLeftButtonDown="Window_MouseLeftDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.Triggers>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
+    </WindowChrome.WindowChrome>
 
-        <!--#region Left Menu-->
-
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuShowButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuOpen}" />
-        </EventTrigger>
-
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuCloseButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Home-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="HomeMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Foods-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="FoodsMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Users-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="UsersMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Bookings-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="BookingsMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Mail subscribers-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="MailSubscribersMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region Contact messages-->
-
-        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ContactMessagesMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-        </EventTrigger>
-
-        <!--#endregion-->
-
-    </Window.Triggers>
-
-    <Border
-        CornerRadius="20"
-        MouseDown="WindowDragMove"
-        Style="{StaticResource BorderStyle}">
+    <Border Background="{StaticResource BaseColorBackground}" CornerRadius="20">
 
         <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.335*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.75*" />
-                <RowDefinition Height="5*" />
+                <RowDefinition Height="0.100*" />
+                <RowDefinition />
             </Grid.RowDefinitions>
+
+            <!--#region Logo-->
+
+            <Border
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Panel.ZIndex="1"
+                Background="{StaticResource BaseColorWindow}">
+
+                <Grid Margin="5,0,0,0">
+
+                    <TextBlock
+                        Margin="0,2,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontFamily="Spectral Light"
+                        FontSize="22"
+                        FontStyle="Italic"
+                        Foreground="{StaticResource LogoBackground}"
+                        Text="Victory" />
+
+                </Grid>
+
+            </Border>
+
+            <!--#endregion-->
 
             <!--#region Menu-->
 
-            <Grid Grid.Row="0" Panel.ZIndex="2">
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <RadioButton
+                    x:Name="HomeMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="HomeButton_Click"
+                    Content="Home"
+                    FontSize="14"
+                    Foreground="#f2745f"
+                    IsChecked="True"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
 
-                <Grid Grid.Column="0">
+                <RadioButton
+                    x:Name="ViewMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="ViewButton_Click"
+                    Content="View"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="CreateMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="CreateButton_Click"
+                    Content="Create"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="UpdateMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="UpdateButton_Click"
+                    Content="Update"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="DeleteMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="DeleteButton_Click"
+                    Content="Delete"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="SMTPMailingMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="SMTPMailingMenuButton_Click"
+                    Content="SMTP Mailing"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="LogoutMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="LogoutMenuButton_Click"
+                    Content="Log Out"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region Top-->
+
+            <Grid Grid.Row="0" Grid.Column="0">
+
+                <Viewbox
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        x:Name="ActiveUserNameTextBlock"
+                        FontFamily="Spectral Light"
+                        FontStyle="Italic"
+                        FontWeight="ExtraLight" />
+                </Viewbox>
+
+
+            </Grid>
+
+            <Border Grid.Column="1" Background="{StaticResource BaseColorWindow}">
+
+                <Grid>
+
+                    <Button
+                        x:Name="RollUpButton"
+                        Margin="0,0,90,20"
+                        Click="RollUpButton_Click"
+                        Style="{StaticResource c_ControlButtonRollUpStyle}" />
+
+                    <Button
+                        x:Name="MaximazedButton"
+                        Margin="0,0,55,20"
+                        Click="MaximazedButton_Click"
+                        Style="{StaticResource c_ControlButtonMaximazedStyle}" />
+
+                    <Button
+                        x:Name="ExitButton"
+                        Margin="0,0,20,20"
+                        Click="ExitButton_Click"
+                        Style="{StaticResource c_ControlButtonCloseStyle}" />
+
+                </Grid>
+
+            </Border>
+
+            <!--#endregion-->
+
+            <!--#region Body-->
+
+            <!--#region Home-->
+
+            <Grid
+                x:Name="HomeBody"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Visibility="Visible">
+
+                <Grid
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*" />
+                        <RowDefinition Height="85*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+
+                        <Border
+                            MaxWidth="1100"
+                            MaxHeight="420"
+                            Margin="5,5,10,5"
+                            CornerRadius="10">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Viewbox
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="9"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="{StaticResource BaseFontFamily}"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Elity European Restaurant"
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="-5"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="Spectral SemiBold"
+                                        FontWeight="SemiBold"
+                                        Foreground="White"
+                                        Text="VICTORY"
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="10"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="{StaticResource BaseFontFamily}"
+                                        Foreground="White"
+                                        Text="Only the most delicious and delicious dishes from all corners of the old world."
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="5"
+                                    HorizontalAlignment="Center">
+
+                                    <Button
+                                        x:Name="MainMenuButton"
+                                        Width="300"
+                                        Height="70"
+                                        Margin="-5"
+                                        Click="MainMenuButton_Click"
+                                        Content="Menu" />
+
+                                </Viewbox>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.RowSpan="8"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Panel.ZIndex="-1"
+                                    RenderOptions.BitmapScalingMode="LowQuality"
+                                    Source="/Content/Images/Controls/Other/banner-bg.jpg"
+                                    Stretch="Fill" />
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="1"
+                        Margin="5"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*" />
+                            <RowDefinition Height="200*" />
+                        </Grid.RowDefinitions>
+
+                        <Viewbox HorizontalAlignment="Center">
+                            <TextBlock Text="Quick transition" />
+                        </Viewbox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                x:Name="OpenWebButton"
+                                Grid.Column="0"
+                                Click="OpenWebButton_Click"
+                                Content="Web"
+                                Style="{StaticResource c_WebButtonStyle}" />
+
+                            <Button
+                                x:Name="OpenAPIButton"
+                                Grid.Column="1"
+                                Click="OpenAPIButton_Click"
+                                Content="API"
+                                Style="{StaticResource c_APIButtonStyle}" />
+
+                            <Button
+                                x:Name="OpenImageCloud"
+                                Grid.Column="2"
+                                Click="OpenImageCloud_Click"
+                                Content="Image Cloud"
+                                Style="{StaticResource c_ImageCloudButtonStyle}" />
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region MainMenu-->
+
+            <Grid
+                x:Name="MainMenuBody"
+                Grid.Row="1"
+                Grid.Column="1"
+                Visibility="Collapsed">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Button
+                    x:Name="UpdateButton"
+                    Grid.Row="0"
+                    Margin="15"
+                    Click="UpdateButton_Click"
+                    Content="Update"
+                    FontSize="70" />
+
+                <Grid Row="1">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.8*" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        x:Name="LeftMenuShowButton"
+                        x:Name="CreateButton"
                         Grid.Column="0"
-                        Width="45"
-                        Height="45"
-                        Margin="20,5,0,0"
-                        HorizontalAlignment="Left"
-                        Style="{StaticResource MenuButtonShow}"
-                        Visibility="Visible" />
+                        Margin="15,0,10,15"
+                        Click="CreateButton_Click"
+                        Content="Create"
+                        FontSize="30" />
+
+                    <Button
+                        x:Name="DeleteButton"
+                        Grid.Column="1"
+                        Margin="10,0,15,15"
+                        Click="DeleteButton_Click"
+                        Content="Delete"
+                        FontSize="14" />
+
+                    <Button
+                        x:Name="ViewButton"
+                        Grid.Column="2"
+                        Margin="10,0,10,15"
+                        Click="ViewButton_Click"
+                        Content="View"
+                        FontSize="27" />
+
+                    <Button
+                        x:Name="SmtpMailingButton"
+                        Grid.Column="3"
+                        Margin="10,0,10,15"
+                        Click="SmtpMailingButton_Click"
+                        Content="SMTP Mailing"
+                        FontSize="27" />
 
                 </Grid>
 
-                <Button
-                    x:Name="CloseApplicationButton"
-                    Grid.Column="2"
-                    Width="35"
-                    Height="35"
-                    Margin="0,0,20,0"
-                    HorizontalAlignment="Right"
-                    Click="CloseApplicationButton_Click"
-                    Style="{StaticResource ControlButtonCloseStyle}"
-                    Visibility="Visible" />
-
-            </Grid>
-
-            <!--#region Left Menu-->
-
-            <Grid
-                x:Name="LeftMenu"
-                Grid.RowSpan="2"
-                Width="0"
-                HorizontalAlignment="Left"
-                Panel.ZIndex="3"
-                Background="White"
-                Row="0">
-
-                <Grid.Clip>
-
-                    <RectangleGeometry
-                        RadiusX="20"
-                        RadiusY="20"
-                        Rect="0,0,800,600" />
-
-                </Grid.Clip>
-
-                <StackPanel>
-
-                    <RadioButton
-                        x:Name="HomeMenuRadioButton"
-                        Grid.Row="1"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,0,0"
-                        Panel.ZIndex="3"
-                        Click="HomeMenuRadioButton_Click"
-                        Command="{Binding ShowHomePageCommand}"
-                        Content="Главная"
-                        IsChecked="True"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <RadioButton
-                        x:Name="FoodsMenuRadioButton"
-                        Grid.Row="2"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,10,0"
-                        HorizontalAlignment="Right"
-                        Panel.ZIndex="3"
-                        Click="FoodsMenuRadioButton_Click"
-                        Command="{Binding ShowFoodsPageCommand}"
-                        Content="Меню"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <RadioButton
-                        x:Name="UsersMenuRadioButton"
-                        Grid.Row="3"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,10,0"
-                        HorizontalAlignment="Right"
-                        Panel.ZIndex="3"
-                        Click="UsersMenuRadioButton_Click"
-                        Command="{Binding ShowUsersPageCommand}"
-                        Content="Пользователи"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <RadioButton
-                        x:Name="BookingsMenuRadioButton"
-                        Grid.Row="4"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,10,0"
-                        HorizontalAlignment="Right"
-                        Panel.ZIndex="3"
-                        Click="BookingsMenuRadioButton_Click"
-                        Command="{Binding ShowBookingsPageCommand}"
-                        Content="Заказы"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <RadioButton
-                        x:Name="MailSubscribersMenuRadioButton"
-                        Grid.Row="5"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,10,0"
-                        HorizontalAlignment="Right"
-                        Panel.ZIndex="3"
-                        Click="MailSubscribersMenuRadioButton_Click"
-                        Command="{Binding ShowMailSubscribersPageCommand}"
-                        Content="Подписчики"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <RadioButton
-                        x:Name="ContactMessagesMenuRadioButton"
-                        Grid.Row="6"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,10,0"
-                        HorizontalAlignment="Right"
-                        Panel.ZIndex="3"
-                        Click="ContactMessagesMenuRadioButton_Click"
-                        Command="{Binding ShowContactMessagesPageCommand}"
-                        Content="Сообщения"
-                        Style="{StaticResource MenuRadioButtonStyle}" />
-
-                    <Button
-                        x:Name="LogoutMenuButton"
-                        Grid.Row="7"
-                        Width="180"
-                        Height="35"
-                        Margin="5,10,0,0"
-                        Panel.ZIndex="3"
-                        Click="LogoutMenuButton_Click"
-                        CommandParameter="{Binding ElementName=ThisWindow}"
-                        Content="Выйти"
-                        Style="{StaticResource MenuUserExitButton}" />
-
-                </StackPanel>
-
             </Grid>
 
             <!--#endregion-->
 
-            <Border
-                Name="MenuBorder"
-                Grid.Row="0"
-                Grid.RowSpan="2"
-                Panel.ZIndex="1"
-                Background="{StaticResource AccentColor}"
-                CornerRadius="20"
-                IsHitTestVisible="False"
-                Opacity="0.2"
-                Visibility="Collapsed" />
-
-            <Button
-                x:Name="LeftMenuCloseButton"
-                Grid.Row="0"
-                Width="30"
-                Height="30"
-                Margin="200,-20,0,0"
-                HorizontalAlignment="Left"
-                Panel.ZIndex="1"
-                Style="{StaticResource MenuButtonClose}"
-                Visibility="Collapsed" />
-
             <!--#endregion-->
-
-            <Grid Grid.Row="1">
-
-                <Border
-                    Name="WorkAreaBorder"
-                    Panel.ZIndex="-1"
-                    Background="{StaticResource ThirdRateColor}"
-                    CornerRadius="20">
-
-                    <Grid Visibility="{Binding MenuIsVisible, Mode=TwoWay}">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1.2*" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Button
-                            x:Name="FoodsButton"
-                            Grid.Row="0"
-                            Margin="15"
-                            Click="FoodsButton_Click"
-                            Command="{Binding ShowFoodsPageCommand}"
-                            Content="Меню"
-                            FontSize="70"
-                            Style="{StaticResource HomeButtonStyle}" />
-
-                        <Grid Row="1">
-
-                            <StackPanel
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Stretch"
-                                Orientation="Horizontal">
-
-                                <Button
-                                    x:Name="BookingsButton"
-                                    Width="178"
-                                    Margin="15,0,10,15"
-                                    Click="BookingsButton_Click"
-                                    Command="{Binding ShowBookingsPageCommand}"
-                                    Content="Заказы"
-                                    FontSize="30"
-                                    Style="{StaticResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="MailSubscribersButton"
-                                    Width="178"
-                                    Margin="10,0,10,15"
-                                    Click="MailSubscribersButton_Click"
-                                    Command="{Binding ShowMailSubscribersPageCommand}"
-                                    Content="Подписчики"
-                                    FontSize="27"
-                                    Style="{StaticResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="ContactMessagesButton"
-                                    Width="178"
-                                    Margin="10,0,10,15"
-                                    Click="ContactMessagesButton_Click"
-                                    Command="{Binding ShowContactMessagesPageCommand}"
-                                    Content="Сообщения"
-                                    FontSize="27"
-                                    Style="{StaticResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="UsersButton"
-                                    Width="178"
-                                    Margin="10,0,15,15"
-                                    Click="UsersButton_Click"
-                                    Command="{Binding ShowUsersPageCommand}"
-                                    Content="Пользователи"
-                                    FontSize="25"
-                                    Style="{StaticResource HomeButtonStyle}" />
-
-                            </StackPanel>
-
-                        </Grid>
-
-                    </Grid>
-
-                </Border>
-
-            </Grid>
 
             <Frame
-                x:Name="MainFrame"
+                x:Name="MenuFrame"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="10"
-                Panel.ZIndex="0"
-                Content="{Binding FrameSource, Mode=TwoWay}"
+                Margin="0,10,25,10"
+                Content="{x:Null}"
                 NavigationUIVisibility="Hidden"
-                Visibility="{Binding FrameVisibility, Mode=TwoWay}" />
+                Visibility="Collapsed" />
 
         </Grid>
 

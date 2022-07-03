@@ -1,7 +1,6 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class DeleteFoodsViewModel
-    : BaseDeleteViewModel<Food>, IDeleteFoodsViewModel
+internal sealed class DeleteFoodsViewModel : BaseDeleteViewModel<Food>
 {
     private readonly IFoodFacadeService _foodService;
 
@@ -11,25 +10,23 @@ internal sealed class DeleteFoodsViewModel
 
         InitializeCommands();
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Command Logic
 
     protected override bool CanExecuteDeleteCommand(object obj) =>
-        SelectedItem is not null;
+        SelectedGeneralValue is not null;
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedItem is null) return;
+        if (SelectedGeneralValue is null) return;
 
-        await _foodService.DeleteAsync(SelectedItem.Id);
+        await _foodService.DeleteAsync(SelectedGeneralValue.Id);
 
         MessageBox.Show(
-           messageBoxText: "Удаление произошло успешно",
-           caption: "Успех",
+           messageBoxText: "The deletion was successful",
+           caption: "Success",
            button: MessageBoxButton.OK,
            icon: MessageBoxImage.Information);
 
@@ -42,39 +39,32 @@ internal sealed class DeleteFoodsViewModel
 
     #region Other Logic
 
+    protected override async void Find(string filter)
+    {
+        var foods = await _foodService.GetFoodListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = foods.Where(
+            predicate: food =>
+            food.Name.ToLower().Contains(value: filter) |
+            food.Description.ToLower().Contains(value: filter))
+            .ToList();
+    }
+
+    protected override void SelectGeneralValue() { }
+
+    protected async override Task UpdateData() => await InitializeData();
+
     private void InitializeCommands()
     {
         DeleteCommand = new RelayCommand(executeAction: ExecuteDeleteCommand,
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private void Clear()
-    {
-        _selectedItem = null;
-        OnPropertyChanged(nameof(SelectedItem));
-
-        _lastItemId = null;
-    }
-
     private async Task InitializeData()
     {
-        Items = await _foodService.GetFoodListAsync();
-    }
-
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
-
-        await InitializeData();
-
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
+        GeneralDataList = await _foodService.GetFoodListAsync();
     }
 
     #endregion

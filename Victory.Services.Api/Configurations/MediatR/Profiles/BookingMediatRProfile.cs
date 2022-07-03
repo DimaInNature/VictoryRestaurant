@@ -6,20 +6,20 @@ public static class BookingMediatRProfile
     {
         #region Queries
 
-        // Get Booking by Id
+        // Get BookingEntity by Id
 
-        services.AddScoped<IRequest<Booking?>, GetBookingByIdQuery>();
-        services.AddScoped<IRequestHandler<GetBookingByIdQuery, Booking?>, GetBookingByIdQueryHandler>();
+        services.AddScoped<IRequest<BookingEntity?>, GetBookingByIdQuery>();
+        services.AddScoped<IRequestHandler<GetBookingByIdQuery, BookingEntity?>, GetBookingByIdQueryHandler>();
 
-        // Get Booking.Table by Id
+        // Get BookingEntity.Table by Id
 
-        services.AddScoped<IRequest<Table?>, GetBookingTableByIdQuery>();
-        services.AddScoped<IRequestHandler<GetBookingTableByIdQuery, Table?>, GetBookingTableByIdQueryHandler>();
+        services.AddScoped<IRequest<TableEntity?>, GetBookingTableByIdQuery>();
+        services.AddScoped<IRequestHandler<GetBookingTableByIdQuery, TableEntity?>, GetBookingTableByIdQueryHandler>();
 
-        // Get List<Booking>
+        // Get List<BookingEntity>
 
-        services.AddScoped<IRequest<List<Booking>?>, GetBookingListQuery>();
-        services.AddScoped<IRequestHandler<GetBookingListQuery, List<Booking>?>, GetBookingListQueryHandler>();
+        services.AddScoped<IRequest<List<BookingEntity>?>, GetBookingListQuery>();
+        services.AddScoped<IRequestHandler<GetBookingListQuery, List<BookingEntity>?>, GetBookingListQueryHandler>();
 
         #endregion
 

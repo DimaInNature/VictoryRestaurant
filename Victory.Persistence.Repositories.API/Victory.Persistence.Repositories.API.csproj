@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Application.CQRS.API\Victory.Application.CQRS.API.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Interfaces.API\Victory.Domain.Interfaces.API.csproj" />
+    <ProjectReference Include="..\Victory.Persistence\Victory.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,21 +2,15 @@
 
 sealed partial class CreateUsersView : UserControl
 {
-    private readonly ICreateUsersViewModel? _viewModel = (System.Windows.Application.Current as App)?
-        .ServiceProvider?.GetService<ICreateUsersViewModel>();
+    private readonly CreateUsersViewModel? _viewModel = (System.Windows.Application.Current as App)?
+        .ServiceProvider?.GetService<CreateUsersViewModel>();
 
     public CreateUsersView()
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
-
-        string[] roleNames = Enum.GetNames(typeof(UserRole));
-        roleNames[0] = "Выберите роль";
-
-        (RoleListComboBox.ItemsSource, RoleListComboBox.SelectedIndex) = (roleNames, 0);
     }
 }

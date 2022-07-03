@@ -11,12 +11,23 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <TextBox
+            Margin="15"
+            Tag="Search"
+            Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <ScrollViewer
+            Grid.Row="1"
             Grid.Column="0"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Disabled">
@@ -27,8 +38,8 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    ItemsSource="{Binding Items, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    ItemsSource="{Binding GeneralDataList, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedGeneralValue, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
@@ -36,16 +47,15 @@
                                 Width="185"
                                 Height="35"
                                 Margin="10,0,10,0"
-                                Background="{DynamicResource AccentColor}"
+                                Background="#f2745f"
                                 CornerRadius="10">
 
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="15"
-                                    Foreground="{DynamicResource ItemForeground}"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="{Binding Name, Mode=TwoWay}" />
+                                    Foreground="White"
+                                    Text="{Binding Name, Mode=TwoWay, StringFormat='{}Name: {0}'}" />
 
                             </Border>
 
@@ -59,7 +69,7 @@
 
         </ScrollViewer>
 
-        <Grid Column="1">
+        <Grid Grid.Row="1" Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
@@ -74,46 +84,42 @@
             <TextBox
                 Grid.Row="1"
                 Width="300"
-                Height="70"
+                Height="60"
                 IsReadOnly="True"
-                Style="{StaticResource ColorTextBoxStyle}"
-                Tag="Название"
-                Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Name"
+                Text="{Binding SelectedGeneralValue.Name, Mode=TwoWay, StringFormat='{}Name: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="2"
-                Width="350"
-                Height="100"
+                Width="330"
+                Height="90"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{StaticResource ColorTextBoxStyle}"
-                Tag="Описание"
-                Text="{Binding SelectedItem.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Description"
+                Text="{Binding SelectedGeneralValue.Description, Mode=TwoWay, StringFormat='{}Desk: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="3"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{StaticResource ColorTextBoxStyle}"
-                Tag="Стоимость"
-                Text="{Binding SelectedItem.CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Cost in USD"
+                Text="{Binding SelectedGeneralValue.CostInUSD, Mode=TwoWay, StringFormat='{}Cost: {0}$', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="4"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{StaticResource ColorTextBoxStyle}"
-                Tag="Тип"
-                Text="{Binding SelectedItem.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Type"
+                Text="{Binding SelectedGeneralValue.FoodType.Name, Mode=TwoWay, StringFormat='{}Type: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 Grid.Row="5"
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить" />
+                Content="Delete" />
 
         </Grid>
 

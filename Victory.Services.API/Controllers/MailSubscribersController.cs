@@ -10,69 +10,69 @@ public class MailSubscribersController : ControllerBase
     public MailSubscribersController(IMailSubscriberFacadeService repository) => _repository = repository;
 
     /// <summary>
-    /// Получение списка всех подписчиков на почтовую рассылку.
+    /// Get all mail subscribers.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /MailSubscribers
     ///
     /// </remarks>
-    /// <returns>Возвращает список всех подписчиков на почтовую рассылку.</returns>
-    /// <response code="200">Возвращает список подписчиков на почтовую рассылку.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Return all mail subscribers.</returns>
+    /// <response code="200">Mail subscribers list.</response>
+    /// <response code="404">If the mail subscribers was not found.</response>
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MailSubscriber>>> GetList() =>
-        await _repository.GetMailSubscriberListAsync() is IEnumerable<MailSubscriber> mailSubscribers
+    public async Task<ActionResult<IEnumerable<MailSubscriberEntity>>> GetList() =>
+        await _repository.GetMailSubscriberListAsync() is IEnumerable<MailSubscriberEntity> mailSubscribers
         ? Ok(value: mailSubscribers)
         : NotFound();
 
     /// <summary>
-    /// Получение подписчика на почтовую рассылку по его идентификатору.
+    /// Get mail subscriber by Id
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /MailSubscribers/1
+    ///     GET /MailSubscribers/Id=1
     ///
     /// </remarks>
-    /// <param name="id">Идентификатор подписчика.</param>
-    /// <returns>Возвращает подписчика на почтовую рассылку.</returns>
-    /// <response code="200">Возвращает найденного подписчика.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="id">Id.</param>
+    /// <returns>Mail subscriber.</returns>
+    /// <response code="200">Mail subscriber.</response>
+    /// <response code="404">If the mail subscriber was not found.</response>
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet(template: "Id={id}")]
-    public async Task<ActionResult<MailSubscriber>> Get(int id) =>
-        await _repository.GetMailSubscriberAsync(id) is MailSubscriber mailSubscribers
+    public async Task<ActionResult<MailSubscriberEntity>> Get(int id) =>
+        await _repository.GetMailSubscriberAsync(id) is MailSubscriberEntity mailSubscribers
         ? Ok(value: mailSubscribers)
         : NotFound();
 
     /// <summary>
-    /// Создание подписчика на почтовую рассылку.
+    /// Create mail subscriber.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     POST /MailSubscribers
     ///     {
-    ///         "id": 0, (Автоинкремент)
+    ///         "id": 0, (auto)
     ///         "mail": "example@bk.com"
     ///     }
     ///
     /// </remarks>
-    /// <returns>Возвращает созданного подписчика.</returns>
-    /// <response code="201">Возвращает созданное сообщение.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <returns>Mail subscriber.</returns>
+    /// <response code="201">Mail subscriber.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost]
-    public async Task<ActionResult<MailSubscriber>> Create([FromBody] MailSubscriber mailSubscriber)
+    public async Task<ActionResult<MailSubscriberEntity>> Create([FromBody] MailSubscriberEntity mailSubscriber)
     {
         if (mailSubscriber is not null) await _repository.CreateAsync(entity: mailSubscriber);
 
@@ -80,25 +80,25 @@ public class MailSubscribersController : ControllerBase
     }
 
     /// <summary>
-    /// Изменение подписчика на почтовую рассылку.
+    /// Update mail subscriber.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     PUT /MailSubscribers
     ///     {
-    ///         "id": 1, (Id изменяемого объекта)
+    ///         "id": 1,
     ///         "mail": "example@bk.com"
     ///     }
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно изменён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully modified.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] MailSubscriber mailSubscriber)
+    public async Task<ActionResult> Update([FromBody] MailSubscriberEntity mailSubscriber)
     {
         if (mailSubscriber is not null) await _repository.UpdateAsync(entity: mailSubscriber);
 
@@ -106,16 +106,16 @@ public class MailSubscribersController : ControllerBase
     }
 
     /// <summary>
-    /// Удаление подписчика на почтовую рассылку.
+    /// Delete mail subscriber.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     DELETE /MailSubscribers/1
+    ///     DELETE /MailSubscribers/Id=1
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно удалён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully deleted.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

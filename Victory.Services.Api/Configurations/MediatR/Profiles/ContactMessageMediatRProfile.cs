@@ -6,15 +6,15 @@ public static class ContactMessageMediatRProfile
     {
         #region Queries
 
-        // Get ContactMessage by Id
+        // Get ContactMessageEntity by Id
 
-        services.AddScoped<IRequest<ContactMessage?>, GetContactMessageByIdQuery>();
-        services.AddScoped<IRequestHandler<GetContactMessageByIdQuery, ContactMessage?>, GetContactMessageByIdQueryHandler>();
+        services.AddScoped<IRequest<ContactMessageEntity?>, GetContactMessageByIdQuery>();
+        services.AddScoped<IRequestHandler<GetContactMessageByIdQuery, ContactMessageEntity?>, GetContactMessageByIdQueryHandler>();
 
-        // Get List<ContactMessage>
+        // Get List<ContactMessageEntity>
 
-        services.AddScoped<IRequest<List<ContactMessage>?>, GetContactMessageListQuery>();
-        services.AddScoped<IRequestHandler<GetContactMessageListQuery, List<ContactMessage>?>, GetContactMessageListQueryHandler>();
+        services.AddScoped<IRequest<List<ContactMessageEntity>?>, GetContactMessageListQuery>();
+        services.AddScoped<IRequestHandler<GetContactMessageListQuery, List<ContactMessageEntity>?>, GetContactMessageListQueryHandler>();
 
         #endregion
 

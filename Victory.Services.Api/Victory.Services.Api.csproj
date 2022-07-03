@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,10 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.API.Interfaces\Victory.Application.API.Interfaces.csproj" />
     <ProjectReference Include="..\Victory.Application.API\Victory.Application.API.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
-    <ProjectReference Include="..\Victory.Infra.Data\Victory.Infra.Data.csproj" />
+    <ProjectReference Include="..\Victory.Persistence.Repositories.API\Victory.Persistence.Repositories.API.csproj" />
   </ItemGroup>
 
 </Project>

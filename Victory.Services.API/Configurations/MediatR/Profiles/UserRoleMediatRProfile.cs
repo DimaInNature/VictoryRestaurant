@@ -6,20 +6,20 @@ public static class UserRoleMediatRProfile
     {
         #region Queries
 
-        // Get UserRole by Id
+        // Get UserRoleEntity by Id
 
-        services.AddScoped<IRequest<UserRole?>, GetUserRoleByIdQuery>();
-        services.AddScoped<IRequestHandler<GetUserRoleByIdQuery, UserRole?>, GetUserRoleByIdQueryHandler>();
+        services.AddScoped<IRequest<UserRoleEntity?>, GetUserRoleByIdQuery>();
+        services.AddScoped<IRequestHandler<GetUserRoleByIdQuery, UserRoleEntity?>, GetUserRoleByIdQueryHandler>();
 
-        // Get List<UserRole>
+        // Get List<UserRoleEntity>
 
-        services.AddScoped<IRequest<List<UserRole>?>, GetUserRoleListQuery>();
-        services.AddScoped<IRequestHandler<GetUserRoleListQuery, List<UserRole>?>, GetUserRoleListQueryHandler>();
+        services.AddScoped<IRequest<List<UserRoleEntity>?>, GetUserRoleListQuery>();
+        services.AddScoped<IRequestHandler<GetUserRoleListQuery, List<UserRoleEntity>?>, GetUserRoleListQueryHandler>();
 
-        // Get List<UserRole> by Name
+        // Get List<UserRoleEntity> by Name
 
-        services.AddScoped<IRequest<List<UserRole>?>, GetUserRoleListByNameQuery>();
-        services.AddScoped<IRequestHandler<GetUserRoleListByNameQuery, List<UserRole>?>, GetUserRoleListByNameQueryHandler>();
+        services.AddScoped<IRequest<List<UserRoleEntity>?>, GetUserRoleListByNameQuery>();
+        services.AddScoped<IRequestHandler<GetUserRoleListByNameQuery, List<UserRoleEntity>?>, GetUserRoleListByNameQueryHandler>();
 
         #endregion
 

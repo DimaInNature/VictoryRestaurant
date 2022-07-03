@@ -2,15 +2,14 @@
 
 sealed partial class UpdateUsersView : UserControl
 {
-    private readonly IUpdateUsersViewModel? _viewModel = (System.Windows.Application.Current as App)?
-        .ServiceProvider?.GetService<IUpdateUsersViewModel>();
+    private readonly UpdateUsersViewModel? _viewModel = (System.Windows.Application.Current as App)?
+        .ServiceProvider?.GetService<UpdateUsersViewModel>();
 
     public UpdateUsersView()
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
     }

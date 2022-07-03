@@ -16,11 +16,6 @@ public static class FoodMediatRProfile
         services.AddScoped<IRequest<List<Food>?>, GetFoodListByFoodTypeQuery>();
         services.AddScoped<IRequestHandler<GetFoodListByFoodTypeQuery, List<Food>?>, GetFoodListByFoodTypeQueryHandler>();
 
-        // Get Food by FoodType
-
-        services.AddScoped<IRequest<Food?>, GetFoodByFoodTypeQuery>();
-        services.AddScoped<IRequestHandler<GetFoodByFoodTypeQuery, Food?>, GetFoodByFoodTypeQueryHandler>();
-
         #endregion
     }
 }

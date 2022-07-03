@@ -2,8 +2,8 @@
 
 sealed partial class MainView : Window
 {
-    private readonly IMainViewModel? _viewModel = (System.Windows.Application.Current as App)?
-        .ServiceProvider?.GetService<IMainViewModel>();
+    private readonly MainViewModel? _viewModel = (System.Windows.Application.Current as App)?
+       .ServiceProvider?.GetService<MainViewModel>();
 
     private readonly UserSessionService? _sessionService = (System.Windows.Application.Current as App)?
         .ServiceProvider?.GetService<UserSessionService>();
@@ -16,57 +16,69 @@ sealed partial class MainView : Window
 
         DataContext = _viewModel;
 
-        if (_sessionService?.ActiveUser?.Role is not UserRole.Admin)
+        ActiveUserNameTextBlock.Text = _sessionService?.ActiveUser?.Login;
+    }
+
+    private void Window_MouseLeftDown(object sender, MouseButtonEventArgs e) => DragMove();
+
+    private void MaximazedButton_Click(object sender, RoutedEventArgs e) =>
+        WindowState = WindowState switch
         {
-            UsersMenuRadioButton.Visibility = Visibility.Collapsed;
-            UsersButton.Visibility = Visibility.Collapsed;
-            MailSubscribersButton.Visibility = Visibility.Collapsed;
-            MailSubscribersMenuRadioButton.Visibility = Visibility.Collapsed;
-            ContactMessagesButton.Visibility = Visibility.Collapsed;
-            ContactMessagesMenuRadioButton.Visibility = Visibility.Collapsed;
-            BookingsButton.Width = 775;
-            BookingsButton.FontSize = 70;
-        }
-    }
+            WindowState.Normal => WindowState.Maximized,
+            _ => WindowState.Normal,
+        };
 
-    private void WindowDragMove(object sender, MouseButtonEventArgs e)
+    private void RollUpButton_Click(object sender, RoutedEventArgs e) =>
+        WindowState = WindowState.Minimized;
+
+    private void ExitButton_Click(object sender, RoutedEventArgs e) =>
+        System.Windows.Application.Current.Shutdown();
+
+    private void HomeButton_Click(object sender, RoutedEventArgs e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-            DragMove();
+        (Title, HomeMenuButton.IsChecked) = ("Victory - Home", true);
+
+        SetBody(control: HomeBody);
     }
 
-    private void FoodsButton_Click(object sender, RoutedEventArgs e) =>
-        (FoodsMenuRadioButton.IsChecked, Title) = (true, "Victory - Меню");
+    private void ViewButton_Click(object sender, RoutedEventArgs e)
+    {
+        (Title, ViewMenuButton.IsChecked) = ("Victory - View", true);
 
-    private void UsersButton_Click(object sender, RoutedEventArgs e) =>
-        (UsersMenuRadioButton.IsChecked, Title) = (true, "Victory - Пользователи");
+        SetFrame(source: new ViewMenuView());
+    }
 
-    private void BookingsButton_Click(object sender, RoutedEventArgs e) =>
-        (BookingsMenuRadioButton.IsChecked, Title) = (true, "Victory - Заказы");
+    private void CreateButton_Click(object sender, RoutedEventArgs e)
+    {
+        (Title, CreateMenuButton.IsChecked) = ("Victory - Create", true);
 
-    private void MailSubscribersButton_Click(object sender, RoutedEventArgs e) =>
-        (MailSubscribersMenuRadioButton.IsChecked, Title) = (true, "Victory - Подписчики");
+        SetFrame(source: new CreateMenuView());
+    }
 
-    private void ContactMessagesButton_Click(object sender, RoutedEventArgs e) =>
-        (ContactMessagesMenuRadioButton.IsChecked, Title) = (true, "Victory - Сообщения");
+    private void UpdateButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_sessionService?.ActiveUser?.UserRole?.Name is not "Admin")
+        {
+            MessageBox.Show(
+                messageBoxText: "You don't have access rights",
+                caption: "Security system",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
 
-    private void HomeMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Главная";
+            return;
+        }
 
-    private void FoodsMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Меню";
+        (Title, UpdateMenuButton.IsChecked) = ("Victory - Update", true);
 
-    private void UsersMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Пользователи";
+        SetFrame(source: new UpdateMenuView());
+    }
 
-    private void BookingsMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Заказы";
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        (Title, DeleteMenuButton.IsChecked) = ("Victory - Delete", true);
 
-    private void MailSubscribersMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Подписчики";
-
-    private void ContactMessagesMenuRadioButton_Click(object sender, RoutedEventArgs e) =>
-        Title = "Victory - Сообщения";
+        SetFrame(source: new DeleteMenuView());
+    }
 
     private void LogoutMenuButton_Click(object sender, RoutedEventArgs e)
     {
@@ -77,6 +89,140 @@ sealed partial class MainView : Window
         Close();
     }
 
-    private void CloseApplicationButton_Click(object sender, RoutedEventArgs e) =>
-        System.Windows.Application.Current.Shutdown();
+    private void SmtpMailingButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_sessionService?.ActiveUser?.UserRole?.Name is not "Admin")
+        {
+            MessageBox.Show(
+                messageBoxText: "You don't have access rights",
+                caption: "Security system",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        (Title, SMTPMailingMenuButton.IsChecked) = ("Victory - Mailing", true);
+
+        SetFrame(source: new SendMailSubscribersView());
+    }
+
+    private void OpenWebButton_Click(object sender, RoutedEventArgs e)
+    {
+        string url = ApplicationConfiguration.Web.Url;
+
+        try
+        {
+            Process.Start(url);
+        }
+        catch
+        {
+            url = url.Replace(oldValue: "&", newValue: "^&");
+
+            Process.Start(startInfo: new ProcessStartInfo(fileName: url) { UseShellExecute = true });
+        }
+    }
+
+    private void OpenImageCloud_Click(object sender, RoutedEventArgs e)
+    {
+        if (_sessionService?.ActiveUser?.UserRole?.Name is not "Admin")
+        {
+            MessageBox.Show(
+                messageBoxText: "You don't have access rights",
+                caption: "Security system",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        string url = "https://cloudinary.com/console/";
+
+        try
+        {
+            Process.Start(url);
+        }
+        catch
+        {
+            url = url.Replace(oldValue: "&", newValue: "^&");
+
+            Process.Start(startInfo: new ProcessStartInfo(fileName: url) { UseShellExecute = true });
+        }
+    }
+
+    private void OpenAPIButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_sessionService?.ActiveUser?.UserRole?.Name is not "Admin")
+        {
+            MessageBox.Show(
+                messageBoxText: "You don't have access rights",
+                caption: "Security system",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        string url = $"{ApplicationConfiguration.ServerAPI.Url}/swagger/index.html";
+
+        try
+        {
+            Process.Start(url);
+        }
+        catch
+        {
+            url = url.Replace(oldValue: "&", newValue: "^&");
+
+            Process.Start(startInfo: new ProcessStartInfo(fileName: url) { UseShellExecute = true });
+        }
+    }
+
+    private void MainMenuButton_Click(object sender, RoutedEventArgs e)
+    {
+        (Title, HomeMenuButton.IsChecked) = ("Victory - Menu", true);
+
+        SetBody(control: MainMenuBody);
+    }
+
+    private void SMTPMailingMenuButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_sessionService?.ActiveUser?.UserRole?.Name is not "Admin")
+        {
+            MessageBox.Show(
+                messageBoxText: "You don't have access rights",
+                caption: "Security system",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Error);
+
+            return;
+        }
+
+        (Title, SMTPMailingMenuButton.IsChecked) = ("Victory - Mailing", true);
+
+        SetFrame(source: new SendMailSubscribersView());
+    }
+
+    private void SetFrame(ContentControl source)
+    {
+        if (source is null) throw new NullReferenceException(nameof(source));
+
+        CollapseBodies();
+
+        (MenuFrame.Visibility, MenuFrame.Content) = (Visibility.Visible, source);
+    }
+
+    private void SetBody(Panel control)
+    {
+        CollapseFrame();
+
+        CollapseBodies();
+
+        control.Visibility = Visibility.Visible;
+    }
+
+    private void CollapseBodies() =>
+        HomeBody.Visibility = MainMenuBody.Visibility = Visibility.Collapsed;
+
+    private void CollapseFrame() =>
+        (MenuFrame.Visibility, MenuFrame.Content) = (Visibility.Collapsed, null);
 }

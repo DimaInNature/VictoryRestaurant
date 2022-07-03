@@ -1,56 +1,55 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class UpdateUsersViewModel
-    : BaseUpdateViewModel<User>, IUpdateUsersViewModel
+internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 {
-    public string[] RoleList => Enum.GetNames(typeof(UserRole));
+    #region Dependencies
 
     private readonly IUserFacadeService _userService;
 
+    private readonly IUserRoleFacadeService _userRoleService;
+
     private readonly UserSessionService _sessionService;
 
-    public UpdateUsersViewModel(IUserFacadeService userService,
-        UserSessionService sessionService)
-    {
-        _userService = userService;
+    #endregion
 
-        _sessionService = sessionService;
+    public UpdateUsersViewModel(IUserFacadeService userService,
+        UserSessionService sessionService, IUserRoleFacadeService userRoleService)
+    {
+        (_userService, _userRoleService, _sessionService) = (userService, userRoleService, sessionService);
 
         InitializeCommands();
 
-        Task.Run(function: () => AutoUpdateData(
-            secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-            isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Command Logic
 
     protected override bool CanExecuteUpdateCommand(object obj) =>
-        SelectedItem is not null &&
-        StringHelper.StrIsNotNullOrWhiteSpace(SelectedItem.Login, SelectedItem.Password);
+        SelectedGeneralValue is not null && SelectedAggregatedValue is not null &&
+        StringHelper.StrIsNotNullOrWhiteSpace(SelectedGeneralValue.Login, SelectedGeneralValue.Password);
 
-    protected override async void ExecuteUpdateCommand(object obj)
+    protected async override void ExecuteUpdateCommand(object obj)
     {
-        if (SelectedItem is null || SelectedIndex is null) return;
+        if (SelectedGeneralValue is null || SelectedAggregatedValue is null) return;
 
-        if (SelectedItem.Login == _sessionService?.ActiveUser?.Login)
+        if (SelectedGeneralValue.Login == _sessionService?.ActiveUser?.Login)
         {
             MessageBox.Show(
-                messageBoxText: "Невозможно редактировать пользователя этой сессии",
-                caption: "Ошибка редактирования",
+                messageBoxText: "It is not possible to edit the user of this session",
+                caption: "Error",
                 button: MessageBoxButton.OK,
                 icon: MessageBoxImage.Error);
 
             return;
         }
 
-        SelectedItem.Role = (UserRole)SelectedIndex;
+        SelectedGeneralValue.UserRoleId = SelectedAggregatedValue.Id;
 
-        await _userService.UpdateAsync(SelectedItem);
+        await _userService.UpdateAsync(entity: SelectedGeneralValue);
 
         MessageBox.Show(
-           messageBoxText: "Изменение произошло успешно",
-           caption: "Успех",
+           messageBoxText: "The change was successful",
+           caption: "Success",
            button: MessageBoxButton.OK,
            icon: MessageBoxImage.Information);
 
@@ -63,42 +62,41 @@ internal sealed class UpdateUsersViewModel
 
     #region Other Logic
 
+    protected override void SelectGeneralValue()
+    {
+        if (SelectedGeneralValue is not null)
+        {
+            SelectedAggregatedValue = SelectedGeneralValue.UserRole;
+
+            SelectedAggredatedValueIndex = AggregatedDataList.FindIndex(match: x => x.Id == SelectedAggregatedValue?.Id);
+        }
+    }
+
+    protected override async void Find(string filter)
+    {
+        var users = await _userService.GetUserListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = users.Where(predicate:
+            user =>
+            user.Login.ToLower().Contains(value: filter))
+            .ToList();
+    }
+
+    protected override async Task UpdateData() => await InitializeData();
+
     private void InitializeCommands()
     {
         UpdateCommand = new RelayCommand(executeAction: ExecuteUpdateCommand,
             canExecuteFunc: CanExecuteUpdateCommand);
     }
 
-    private void Clear()
-    {
-        _selectedItem = null;
-        OnPropertyChanged(nameof(SelectedItem));
-
-        _selectedIndex = null;
-        OnPropertyChanged(nameof(SelectedIndex));
-
-        _lastItemId = null;
-    }
-
     private async Task InitializeData()
     {
-        Items = await _userService.GetUserListAsync();
-    }
+        GeneralDataList = await _userService.GetUserListAsync();
 
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
-
-        await InitializeData();
-
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
+        AggregatedDataList = await _userRoleService.GetUserRoleListAsync();
     }
 
     #endregion

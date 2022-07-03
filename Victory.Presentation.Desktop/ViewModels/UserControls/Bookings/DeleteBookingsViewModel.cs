@@ -1,19 +1,18 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class DeleteBookingsViewModel
-    : BaseDeleteViewModel<Booking>, IDeleteBookingsViewModel
+internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
 {
     private readonly IBookingFacadeService _bookingService;
+    private readonly ITableFacadeService _tableService;
 
-    public DeleteBookingsViewModel(IBookingFacadeService bookingService)
+    public DeleteBookingsViewModel(IBookingFacadeService bookingService,
+        ITableFacadeService tableService)
     {
-        _bookingService = bookingService;
+        (_bookingService, _tableService) = (bookingService, tableService);
 
         InitializeCommands();
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Command Logic
@@ -21,7 +20,7 @@ internal sealed class DeleteBookingsViewModel
     #region Can Execute
 
     protected override bool CanExecuteDeleteCommand(object obj) =>
-        SelectedItem is not null;
+        SelectedGeneralValue is not null;
 
     #endregion
 
@@ -29,13 +28,22 @@ internal sealed class DeleteBookingsViewModel
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedItem is null) return;
+        if (SelectedGeneralValue is null) return;
 
-        await _bookingService.DeleteAsync(SelectedItem.Id);
+        Table? table = await _bookingService.GetBookingTableAsync(id: SelectedGeneralValue.Id);
+
+        if (table is not null)
+        {
+            (table.Status, table.BookingId) = ("Free", null);
+
+            await _tableService.UpdateAsync(entity: table);
+        }
+
+        await _bookingService.DeleteAsync(SelectedGeneralValue.Id);
 
         MessageBox.Show(
-           messageBoxText: "Удаление произошло успешно",
-           caption: "Успех",
+           messageBoxText: "The deletion was successful",
+           caption: "Success",
            button: MessageBoxButton.OK,
            icon: MessageBoxImage.Information);
 
@@ -50,40 +58,31 @@ internal sealed class DeleteBookingsViewModel
 
     #region Other Logic
 
+    protected override async void Find(string filter)
+    {
+        var bookings = await _bookingService.GetBookingListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = bookings.Where(
+            predicate: booking =>
+            booking.Name.ToLower().Contains(value: filter) |
+            booking.Phone.ToLower().Contains(value: filter) |
+            booking.Time.ToLower().Contains(value: filter))
+            .ToList();
+    }
+
+    protected async override Task UpdateData() => await InitializeData();
+
     private void InitializeCommands()
     {
         DeleteCommand = new RelayCommand(executeAction: ExecuteDeleteCommand,
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private void Clear()
-    {
-        _selectedItem = null;
-        OnPropertyChanged(nameof(SelectedItem));
+    private async Task InitializeData() => GeneralDataList = await _bookingService.GetBookingListAsync();
 
-        _lastItemId = null;
-    }
-
-    private async Task InitializeData()
-    {
-        Items = await _bookingService.GetBookingListAsync();
-    }
-
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
-
-        await InitializeData();
-
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
-    }
+    protected override void SelectGeneralValue() { }
 
     #endregion
 }

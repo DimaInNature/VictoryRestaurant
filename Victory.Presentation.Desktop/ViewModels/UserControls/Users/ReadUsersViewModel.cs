@@ -1,7 +1,6 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class ReadUsersViewModel
-    : BaseReadViewModel<User>, IReadUsersViewModel
+internal sealed class ReadUsersViewModel : BaseReadViewModel<User>
 {
     private readonly IUserFacadeService _userService;
 
@@ -9,33 +8,29 @@ internal sealed class ReadUsersViewModel
     {
         _userService = userService;
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Other Logic
 
-    private async Task InitializeData()
+    protected override async void Find(string filter)
     {
-        Items = await _userService.GetUserListAsync();
+        var users = await _userService.GetUserListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = users.Where(predicate:
+            user =>
+            user.Login.ToLower().Contains(value: filter))
+            .ToList();
     }
 
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
+    protected async override Task UpdateData() => await InitializeData();
 
-        await InitializeData();
+    private async Task InitializeData() =>
+        GeneralDataList = await _userService.GetUserListAsync();
 
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
-    }
+    protected override void SelectGeneralValue() { }
 
     #endregion
 }

@@ -16,14 +16,19 @@ public static class BookingMediatRProfile
         services.AddScoped<IRequest<List<Booking>?>, GetBookingListQuery>();
         services.AddScoped<IRequestHandler<GetBookingListQuery, List<Booking>?>, GetBookingListQueryHandler>();
 
+        // Get Booking.Table by Id
+
+        services.AddScoped<IRequest<Table?>, GetBookingTableByIdQuery>();
+        services.AddScoped<IRequestHandler<GetBookingTableByIdQuery, Table?>, GetBookingTableByIdQueryHandler>();
+
         #endregion
 
         #region Commands
 
         // Create
 
-        services.AddScoped<IRequest, CreateBookingCommand>();
-        services.AddScoped<IRequestHandler<CreateBookingCommand, Unit>, CreateBookingCommandHandler>();
+        services.AddScoped<IRequest<Booking?>, CreateBookingCommand>();
+        services.AddScoped<IRequestHandler<CreateBookingCommand, Booking?>, CreateBookingCommandHandler>();
 
         // Delete by Id
 

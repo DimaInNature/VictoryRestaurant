@@ -6,15 +6,15 @@ public static class MailSubscriberMediatRProfile
     {
         #region Queries
 
-        // Get MailSubscriber by Id
+        // Get MailSubscriberEntity by Id
 
-        services.AddScoped<IRequest<MailSubscriber?>, GetMailSubscriberByIdQuery>();
-        services.AddScoped<IRequestHandler<GetMailSubscriberByIdQuery, MailSubscriber?>, GetMailSubscriberByIdQueryHandler>();
+        services.AddScoped<IRequest<MailSubscriberEntity?>, GetMailSubscriberByIdQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscriberByIdQuery, MailSubscriberEntity?>, GetMailSubscriberByIdQueryHandler>();
 
-        // Get List<MailSubscriber>
+        // Get List<MailSubscriberEntity>
 
-        services.AddScoped<IRequest<List<MailSubscriber>?>, GetMailSubscriberListQuery>();
-        services.AddScoped<IRequestHandler<GetMailSubscriberListQuery, List<MailSubscriber>?>, GetMailSubscriberListQueryHandler>();
+        services.AddScoped<IRequest<List<MailSubscriberEntity>?>, GetMailSubscriberListQuery>();
+        services.AddScoped<IRequestHandler<GetMailSubscriberListQuery, List<MailSubscriberEntity>?>, GetMailSubscriberListQueryHandler>();
 
         #endregion
 

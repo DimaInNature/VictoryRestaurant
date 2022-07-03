@@ -6,25 +6,25 @@ public static class UserMediatRProfile
     {
         #region Queries
 
-        // Get User by Id
+        // Get UserEntity by Id
 
-        services.AddScoped<IRequest<User?>, GetUserByIdQuery>();
-        services.AddScoped<IRequestHandler<GetUserByIdQuery, User?>, GetUserByIdQueryHandler>();
+        services.AddScoped<IRequest<UserEntity?>, GetUserByIdQuery>();
+        services.AddScoped<IRequestHandler<GetUserByIdQuery, UserEntity?>, GetUserByIdQueryHandler>();
 
-        // Get User by Login
+        // Get UserEntity by Login
 
-        services.AddScoped<IRequest<User?>, GetUserByLoginQuery>();
-        services.AddScoped<IRequestHandler<GetUserByLoginQuery, User?>, GetUserByLoginQueryHandler>();
+        services.AddScoped<IRequest<UserEntity?>, GetUserByLoginQuery>();
+        services.AddScoped<IRequestHandler<GetUserByLoginQuery, UserEntity?>, GetUserByLoginQueryHandler>();
 
-        // Get User by Login And Password
+        // Get UserEntity by Login And Password
 
-        services.AddScoped<IRequest<User?>, GetUserByLoginAndPasswordQuery>();
-        services.AddScoped<IRequestHandler<GetUserByLoginAndPasswordQuery, User?>, GetUserByLoginAndPasswordQueryHandler>();
+        services.AddScoped<IRequest<UserEntity?>, GetUserByLoginAndPasswordQuery>();
+        services.AddScoped<IRequestHandler<GetUserByLoginAndPasswordQuery, UserEntity?>, GetUserByLoginAndPasswordQueryHandler>();
 
-        // Get List<User>
+        // Get List<UserEntity>
 
-        services.AddScoped<IRequest<List<User>?>, GetUserListQuery>();
-        services.AddScoped<IRequestHandler<GetUserListQuery, List<User>?>, GetUserListQueryHandler>();
+        services.AddScoped<IRequest<List<UserEntity>?>, GetUserListQuery>();
+        services.AddScoped<IRequestHandler<GetUserListQuery, List<UserEntity>?>, GetUserListQueryHandler>();
 
         #endregion
 

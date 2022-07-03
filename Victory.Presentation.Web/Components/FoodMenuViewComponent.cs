@@ -8,30 +8,13 @@ public class FoodMenuViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync(string foodType, DisplaySide side)
     {
-        var foods = await _foodService.GetFoodListAsync(type: foodType);
-
-        string engFoodType = string.Empty;
-
-        switch (foodType)
-        {
-            case "Завтрак":
-                engFoodType = "Breakfast";
-                break;
-            case "Обед":
-                engFoodType = "Lunch";
-                break;
-            case "Ужин":
-                engFoodType = "Dinner";
-                break;
-            default:
-                break;
-        }
+        var foods = await _foodService.GetFoodListAsync(type: new FoodType() { Name = foodType });
 
         ViewBag.Side = side;
 
         ViewBag.FoodTypeMessage = foodType;
 
-        ViewBag.EngFoodTypeLower = engFoodType.ToLower();
+        ViewBag.EngFoodTypeLower = foodType.ToLower();
 
         return View(model: foods);
     }

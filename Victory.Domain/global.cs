@@ -1,1 +1,1 @@
-﻿global using Victory.Domain.Interfaces;
+﻿global using Victory.Domain.Interfaces.Models;

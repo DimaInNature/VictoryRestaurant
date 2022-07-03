@@ -18,48 +18,54 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
             <RowDefinition Height="0.5*" />
         </Grid.RowDefinitions>
 
         <TextBox
             Grid.Row="1"
             Width="300"
-            Height="70"
-            Style="{StaticResource ColorTextBoxStyle}"
-            Tag="Название"
+            Height="60"
+            Tag="Name"
             Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBox
             Grid.Row="2"
             Width="350"
-            Height="100"
+            Height="90"
             HorizontalScrollBarVisibility="Auto"
-            Style="{StaticResource ColorTextBoxStyle}"
-            Tag="Описание"
+            Tag="Description"
             Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBox
             Grid.Row="3"
             Width="250"
             Height="50"
-            Style="{StaticResource ColorTextBoxStyle}"
-            Tag="Стоимость"
-            Text="{Binding CostInUSD, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+            Tag="Cost in USD"
+            Text="{Binding CostInUSD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
             x:Name="TypeListComboBox"
             Grid.Row="4"
             Width="250"
             Height="50"
-            SelectedItem="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Style="{StaticResource ModernComboBox}" />
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding FoodTypes}"
+            SelectedItem="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button
             Grid.Row="5"
             Width="200"
             Height="50"
+            Command="{Binding ChoiceImageCommand}"
+            Content="Choose a image" />
+
+        <Button
+            Grid.Row="6"
+            Width="200"
+            Height="50"
             Command="{Binding CreateCommand}"
-            Content="Создать" />
+            Content="Create" />
 
     </Grid>
 

@@ -6,25 +6,25 @@ public static class TableMediatRProfile
     {
         #region Queries
 
-        // Get Table by Id
+        // Get TableEntity by Id
 
-        services.AddScoped<IRequest<Table?>, GetTableByIdQuery>();
-        services.AddScoped<IRequestHandler<GetTableByIdQuery, Table?>, GetTableByIdQueryHandler>();
+        services.AddScoped<IRequest<TableEntity?>, GetTableByIdQuery>();
+        services.AddScoped<IRequestHandler<GetTableByIdQuery, TableEntity?>, GetTableByIdQueryHandler>();
 
-        // Get List<Table>
+        // Get List<TableEntity>
 
-        services.AddScoped<IRequest<List<Table>?>, GetTableListQuery>();
-        services.AddScoped<IRequestHandler<GetTableListQuery, List<Table>?>, GetTableListQueryHandler>();
+        services.AddScoped<IRequest<List<TableEntity>?>, GetTableListQuery>();
+        services.AddScoped<IRequestHandler<GetTableListQuery, List<TableEntity>?>, GetTableListQueryHandler>();
 
-        // Get List<Table> by Number
+        // Get List<TableEntity> by Number
 
-        services.AddScoped<IRequest<List<Table>?>, GetTableListByNumberQuery>();
-        services.AddScoped<IRequestHandler<GetTableListByNumberQuery, List<Table>?>, GetTableListByNumberQueryHandler>();
+        services.AddScoped<IRequest<List<TableEntity>?>, GetTableListByNumberQuery>();
+        services.AddScoped<IRequestHandler<GetTableListByNumberQuery, List<TableEntity>?>, GetTableListByNumberQueryHandler>();
 
-        // Get List<Table> by Status (IsBooking)
+        // Get List<TableEntity> by Status (IsBooking)
 
-        services.AddScoped<IRequest<List<Table>?>, GetTableListByStatusQuery>();
-        services.AddScoped<IRequestHandler<GetTableListByStatusQuery, List<Table>?>, GetTableListByStatusQueryHandler>();
+        services.AddScoped<IRequest<List<TableEntity>?>, GetTableListByStatusQuery>();
+        services.AddScoped<IRequestHandler<GetTableListByStatusQuery, List<TableEntity>?>, GetTableListByStatusQueryHandler>();
 
         #endregion
 

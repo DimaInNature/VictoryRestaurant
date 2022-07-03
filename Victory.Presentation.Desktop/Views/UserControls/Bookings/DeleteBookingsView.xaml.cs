@@ -2,15 +2,14 @@
 
 sealed partial class DeleteBookingsView : UserControl
 {
-    private readonly IDeleteBookingsViewModel? _viewModel = (System.Windows.Application.Current as App)?
-        .ServiceProvider?.GetService<IDeleteBookingsViewModel>();
+    private readonly DeleteBookingsViewModel? _viewModel = (System.Windows.Application.Current as App)?
+        .ServiceProvider?.GetService<DeleteBookingsViewModel>();
 
     public DeleteBookingsView()
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
     }

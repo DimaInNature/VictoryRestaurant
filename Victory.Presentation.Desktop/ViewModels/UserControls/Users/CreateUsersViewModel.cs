@@ -1,7 +1,6 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class CreateUsersViewModel
-    : BaseCreateViewModel, ICreateUsersViewModel
+internal sealed class CreateUsersViewModel : BaseCreateViewModel
 {
     #region Members
 
@@ -12,7 +11,26 @@ internal sealed class CreateUsersViewModel
         get => _login ?? string.Empty;
         set
         {
+            int maxLenght = 25;
+
+            if (value == string.Empty)
+            {
+                _login = null;
+
+                OnPropertyChanged(nameof(Login));
+
+                return;
+            }
+
+            if (value.Length > 0)
+            {
+                if (value.Length > maxLenght) return;
+
+                value = value.Replace(oldValue: " ", newValue: string.Empty);
+            }
+
             _login = value;
+
             OnPropertyChanged(nameof(Login));
         }
     }
@@ -22,18 +40,49 @@ internal sealed class CreateUsersViewModel
         get => _password ?? string.Empty;
         set
         {
+            int maxLenght = 25;
+
+            if (value == string.Empty)
+            {
+                _password = null;
+
+                OnPropertyChanged(nameof(Password));
+
+                return;
+            }
+
+            if (value.Length > 0)
+            {
+                if (value.Length > maxLenght) return;
+
+                value = value.Replace(oldValue: " ", newValue: string.Empty);
+            }
+
             _password = value;
+
             OnPropertyChanged(nameof(Password));
         }
     }
 
-    public UserRole Role
+    public List<UserRole> UserRoles
     {
-        get => _role;
+        get => _userRoles ?? new();
         set
         {
-            _role = value;
-            OnPropertyChanged(nameof(Role));
+            _userRoles = value;
+
+            OnPropertyChanged(nameof(UserRoles));
+        }
+    }
+
+    public UserRole? SelectedRole
+    {
+        get => _selectedRole;
+        set
+        {
+            _selectedRole = value;
+
+            OnPropertyChanged(nameof(SelectedRole));
         }
     }
 
@@ -45,7 +94,9 @@ internal sealed class CreateUsersViewModel
 
     private string? _password;
 
-    private UserRole _role;
+    private UserRole? _selectedRole;
+
+    private List<UserRole> _userRoles = new();
 
     #endregion
 
@@ -53,37 +104,51 @@ internal sealed class CreateUsersViewModel
 
     private readonly IUserFacadeService _userService;
 
-    #endregion
+    private readonly IUserRoleFacadeService _userRoleSerivce;
 
     #endregion
 
-    public CreateUsersViewModel(IUserFacadeService userService)
+    #endregion
+
+    public CreateUsersViewModel(IUserFacadeService userService, IUserRoleFacadeService userRoleSerivce)
     {
-        _userService = userService;
+        (_userService, _userRoleSerivce) = (userService, userRoleSerivce);
 
         InitializeCommands();
+
+        Task.Run(function: () => InitializeUserRoles());
     }
 
     #region Command Logic
 
     protected override bool CanExecuteCreate(object obj) =>
-        StringHelper.StrIsNotNullOrWhiteSpace(Login, Password) &&
-        Enum.IsDefined(typeof(UserRole), Role) && Role is not UserRole.None;
+        StringHelper.StrIsNotNullOrWhiteSpace(Login, Password) && SelectedRole is not null;
 
     protected override async void ExecuteCreate(object obj)
     {
+        if (SelectedRole is null)
+        {
+            MessageBox.Show(
+                messageBoxText: "The user role was not selected",
+                caption: "Warning",
+                button: MessageBoxButton.OK,
+                icon: MessageBoxImage.Warning);
+
+            return;
+        }
+
         User user = new()
         {
             Login = Login,
             Password = Password,
-            Role = Role
+            UserRoleId = SelectedRole.Id
         };
 
         await _userService.CreateAsync(user);
 
         MessageBox.Show(
-            messageBoxText: "Добавление произошло успешно",
-            caption: "Успех",
+            messageBoxText: "The addition was successful",
+            caption: "Success",
             button: MessageBoxButton.OK,
             icon: MessageBoxImage.Information);
 
@@ -104,8 +169,11 @@ internal sealed class CreateUsersViewModel
     {
         Login = string.Empty;
         Password = string.Empty;
-        Role = default;
+        SelectedRole = null;
     }
+
+    private async Task InitializeUserRoles() =>
+        UserRoles = await _userRoleSerivce.GetUserRoleListAsync();
 
     #endregion
 }

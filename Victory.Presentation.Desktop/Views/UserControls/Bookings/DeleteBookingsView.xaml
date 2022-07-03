@@ -11,12 +11,23 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <TextBox
+            Margin="15"
+            Tag="Search"
+            Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <ScrollViewer
+            Grid.Row="1"
             Grid.Column="0"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Disabled">
@@ -27,8 +38,8 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    ItemsSource="{Binding Items, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    ItemsSource="{Binding GeneralDataList, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedGeneralValue, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
@@ -36,16 +47,15 @@
                                 Width="185"
                                 Height="35"
                                 Margin="10,0,10,0"
-                                Background="{DynamicResource AccentColor}"
+                                Background="#f2745f"
                                 CornerRadius="10">
 
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="15"
-                                    Foreground="{DynamicResource ItemForeground}"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="{Binding Phone, Mode=TwoWay}" />
+                                    Foreground="White"
+                                    Text="{Binding Phone, Mode=TwoWay, StringFormat='{}Tel: {0}'}" />
 
                             </Border>
 
@@ -59,7 +69,7 @@
 
         </ScrollViewer>
 
-        <Grid Column="1">
+        <Grid Grid.Row="1" Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
@@ -78,52 +88,47 @@
                 Height="50"
                 HorizontalScrollBarVisibility="Auto"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Имя"
-                Text="{Binding SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Name"
+                Text="{Binding SelectedGeneralValue.Name, Mode=TwoWay, StringFormat='{}Name: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="2"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Телефон"
-                Text="{Binding SelectedItem.Phone, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Telephone"
+                Text="{Binding SelectedGeneralValue.Phone, Mode=TwoWay, StringFormat='{}Tel: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="3"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Количество людей"
-                Text="{Binding SelectedItem.PersonCount, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Person count"
+                Text="{Binding SelectedGeneralValue.PersonCount, Mode=TwoWay, StringFormat='{}Person c.: {0} человек', UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="4"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="День недели"
-                Text="{Binding SelectedItem.DayOfWeek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Date"
+                Text="{Binding SelectedGeneralValue.Date, Mode=TwoWay, StringFormat='{}Date: {0:dd/MM/yyyy}', ConverterCulture=ru-Ru, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="5"
                 Width="250"
                 Height="50"
                 IsReadOnly="True"
-                Style="{DynamicResource ColorTextBoxStyle}"
-                Tag="Время"
-                Text="{Binding SelectedItem.PersonCount, Mode=TwoWay, StringFormat={}{0} $, UpdateSourceTrigger=PropertyChanged}" />
+                Tag="Time"
+                Text="{Binding SelectedGeneralValue.PersonCount, Mode=TwoWay, StringFormat='{}Time: {0}', UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 Grid.Row="6"
                 Width="200"
                 Height="50"
                 Command="{Binding DeleteCommand}"
-                Content="Удалить" />
+                Content="Remove" />
 
         </Grid>
 

@@ -1,35 +1,35 @@
 ﻿namespace Victory.Services.API.Configurations.MediatR.Profiles;
 
-public static class FoodMediatRProfile
+public static class FoodEntityMediatRProfile
 {
     public static void AddFoodMediatRProfile(this IServiceCollection services)
     {
         #region Queries
 
-        // Get Food by Id
+        // Get FoodEntity by Id
 
-        services.AddScoped<IRequest<Food?>, GetFoodByIdQuery>();
-        services.AddScoped<IRequestHandler<GetFoodByIdQuery, Food?>, GetFoodByIdQueryHandler>();
+        services.AddScoped<IRequest<FoodEntity?>, GetFoodByIdQuery>();
+        services.AddScoped<IRequestHandler<GetFoodByIdQuery, FoodEntity?>, GetFoodByIdQueryHandler>();
 
-        // Get Food by Type
+        // Get FoodEntity by Type
 
-        services.AddScoped<IRequest<Food?>, GetFoodByTypeQuery>();
-        services.AddScoped<IRequestHandler<GetFoodByTypeQuery, Food?>, GetFoodByTypeQueryHandler>();
+        services.AddScoped<IRequest<FoodEntity?>, GetFoodByTypeQuery>();
+        services.AddScoped<IRequestHandler<GetFoodByTypeQuery, FoodEntity?>, GetFoodByTypeQueryHandler>();
 
-        // Get List<Food>
+        // Get List<FoodEntity>
 
-        services.AddScoped<IRequest<List<Food>?>, GetFoodListQuery>();
-        services.AddScoped<IRequestHandler<GetFoodListQuery, List<Food>?>, GetFoodListQueryHandler>();
+        services.AddScoped<IRequest<List<FoodEntity>?>, GetFoodListQuery>();
+        services.AddScoped<IRequestHandler<GetFoodListQuery, List<FoodEntity>?>, GetFoodListQueryHandler>();
 
-        // Get List<Food> by Type
+        // Get List<FoodEntity> by Type
 
-        services.AddScoped<IRequest<List<Food>?>, GetFoodListByTypeQuery>();
-        services.AddScoped<IRequestHandler<GetFoodListByTypeQuery, List<Food>?>, GetFoodListByTypeQueryHandler>();
+        services.AddScoped<IRequest<List<FoodEntity>?>, GetFoodListByTypeQuery>();
+        services.AddScoped<IRequestHandler<GetFoodListByTypeQuery, List<FoodEntity>?>, GetFoodListByTypeQueryHandler>();
 
-        // Get List<Food> by Name
+        // Get List<FoodEntity> by Name
 
-        services.AddScoped<IRequest<List<Food>?>, GetFoodListByNameQuery>();
-        services.AddScoped<IRequestHandler<GetFoodListByNameQuery, List<Food>?>, GetFoodListByNameQueryHandler>();
+        services.AddScoped<IRequest<List<FoodEntity>?>, GetFoodListByNameQuery>();
+        services.AddScoped<IRequestHandler<GetFoodListByNameQuery, List<FoodEntity>?>, GetFoodListByNameQueryHandler>();
 
         #endregion
 

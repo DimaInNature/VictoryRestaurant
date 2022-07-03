@@ -1,40 +1,37 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class UpdateFoodsViewModel
-    : BaseUpdateViewModel<Food>, IUpdateFoodsViewModel
+internal sealed class UpdateFoodsViewModel : BaseUpdateViewModel<Food, FoodType>
 {
-    public string[] FoodTypes => Enum.GetNames(typeof(FoodType));
-
     private readonly IFoodFacadeService _foodService;
 
-    public UpdateFoodsViewModel(IFoodFacadeService foodService)
+    private readonly IFoodTypeFacadeService _foodTypeService;
+
+    public UpdateFoodsViewModel(IFoodFacadeService foodService, IFoodTypeFacadeService foodTypeService)
     {
-        _foodService = foodService;
+        (_foodService, _foodTypeService) = (foodService, foodTypeService);
 
         InitializeCommands();
 
-        Task.Run(function: () => AutoUpdateData(
-            secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-            isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Command Logic
 
     protected override bool CanExecuteUpdateCommand(object obj) =>
-        SelectedItem is not null && SelectedItem.CostInUSD > 0 &&
-        StringHelper.StrIsNotNullOrWhiteSpace(SelectedItem.Name, SelectedItem.Description);
+        SelectedGeneralValue is not null && SelectedAggregatedValue is not null && SelectedGeneralValue.CostInUSD > 0 &&
+        StringHelper.StrIsNotNullOrWhiteSpace(SelectedGeneralValue.Name, SelectedGeneralValue.Description);
 
     protected override async void ExecuteUpdateCommand(object obj)
     {
-        if (SelectedItem is null || SelectedIndex is null) return;
+        if (SelectedGeneralValue is null || SelectedAggregatedValue is null) return;
 
-        SelectedItem.Type = (FoodType)SelectedIndex;
+        SelectedGeneralValue.FoodTypeId = SelectedAggregatedValue.Id;
 
-        await _foodService.UpdateAsync(SelectedItem);
+        await _foodService.UpdateAsync(SelectedGeneralValue);
 
         MessageBox.Show(
-           messageBoxText: "Изменение произошло успешно",
-           caption: "Успех",
+           messageBoxText: "The change was successful",
+           caption: "Success",
            button: MessageBoxButton.OK,
            icon: MessageBoxImage.Information);
 
@@ -47,42 +44,42 @@ internal sealed class UpdateFoodsViewModel
 
     #region Other Logic
 
+    protected override void SelectGeneralValue()
+    {
+        if (SelectedGeneralValue is not null)
+        {
+            SelectedAggregatedValue = SelectedGeneralValue.FoodType;
+
+            SelectedAggredatedValueIndex = AggregatedDataList.FindIndex(match: x => x.Id == SelectedAggregatedValue?.Id);
+        }
+    }
+
+    protected override async void Find(string filter)
+    {
+        var foods = await _foodService.GetFoodListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = foods.Where(
+            predicate: food =>
+            food.Name.ToLower().Contains(value: filter) |
+            food.Description.ToLower().Contains(value: filter))
+            .ToList();
+    }
+
+    protected override async Task UpdateData() => await InitializeData();
+
     private void InitializeCommands()
     {
         UpdateCommand = new RelayCommand(executeAction: ExecuteUpdateCommand,
             canExecuteFunc: CanExecuteUpdateCommand);
     }
 
-    private void Clear()
-    {
-        _selectedItem = null;
-        OnPropertyChanged(nameof(SelectedItem));
-
-        _selectedIndex = null;
-        OnPropertyChanged(nameof(SelectedIndex));
-
-        _lastItemId = null;
-    }
-
     private async Task InitializeData()
     {
-        Items = await _foodService.GetFoodListAsync();
-    }
+        GeneralDataList = await _foodService.GetFoodListAsync();
 
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
-
-        await InitializeData();
-
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
+        AggregatedDataList = await _foodTypeService.GetFoodTypeListAsync();
     }
 
     #endregion

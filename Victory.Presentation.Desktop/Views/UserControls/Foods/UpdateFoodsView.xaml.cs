@@ -2,15 +2,14 @@
 
 public partial class UpdateFoodsView : UserControl
 {
-    private readonly IUpdateFoodsViewModel? _viewModel = (System.Windows.Application.Current as App)?
-       .ServiceProvider?.GetService<IUpdateFoodsViewModel>();
+    private readonly UpdateFoodsViewModel? _viewModel = (System.Windows.Application.Current as App)?
+       .ServiceProvider?.GetService<UpdateFoodsViewModel>();
 
     public UpdateFoodsView()
     {
         InitializeComponent();
 
-        if (_viewModel is null)
-            throw new NullReferenceException("ViewModel is null");
+        if (_viewModel is null) throw new NullReferenceException("ViewModel is null");
 
         DataContext = _viewModel;
     }

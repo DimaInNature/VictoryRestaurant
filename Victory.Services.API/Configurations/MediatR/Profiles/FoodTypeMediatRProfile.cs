@@ -6,20 +6,20 @@ public static class FoodTypeMediatRProfile
     {
         #region Queries
 
-        // Get FoodType by Id
+        // Get FoodTypeEntity by Id
 
-        services.AddScoped<IRequest<FoodType?>, GetFoodTypeByIdQuery>();
-        services.AddScoped<IRequestHandler<GetFoodTypeByIdQuery, FoodType?>, GetFoodTypeByIdQueryHandler>();
+        services.AddScoped<IRequest<FoodTypeEntity?>, GetFoodTypeByIdQuery>();
+        services.AddScoped<IRequestHandler<GetFoodTypeByIdQuery, FoodTypeEntity?>, GetFoodTypeByIdQueryHandler>();
 
-        // Get List<FoodType>
+        // Get List<FoodTypeEntity>
 
-        services.AddScoped<IRequest<List<FoodType>?>, GetFoodTypeListQuery>();
-        services.AddScoped<IRequestHandler<GetFoodTypeListQuery, List<FoodType>?>, GetFoodTypeListQueryHandler>();
+        services.AddScoped<IRequest<List<FoodTypeEntity>?>, GetFoodTypeListQuery>();
+        services.AddScoped<IRequestHandler<GetFoodTypeListQuery, List<FoodTypeEntity>?>, GetFoodTypeListQueryHandler>();
 
-        // Get List<FoodType> by Name
+        // Get List<FoodTypeEntity> by Name
 
-        services.AddScoped<IRequest<List<FoodType>?>, GetFoodTypeListByNameQuery>();
-        services.AddScoped<IRequestHandler<GetFoodTypeListByNameQuery, List<FoodType>?>, GetFoodTypeListByNameQueryHandler>();
+        services.AddScoped<IRequest<List<FoodTypeEntity>?>, GetFoodTypeListByNameQuery>();
+        services.AddScoped<IRequestHandler<GetFoodTypeListByNameQuery, List<FoodTypeEntity>?>, GetFoodTypeListByNameQueryHandler>();
 
         #endregion
 

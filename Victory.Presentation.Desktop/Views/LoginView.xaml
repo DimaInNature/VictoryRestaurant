@@ -2,362 +2,365 @@
     x:Class="Victory.Presentation.Desktop.Views.LoginView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:I="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Victory.Presentation.Desktop.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:parallax="clr-namespace:Victory.Presentation.Desktop.Effects"
     x:Name="ThisWindow"
-    Title="Victory - Вход"
-    Width="800"
+    Title="Victory - Welcome"
+    Width="900"
     Height="500"
+    MinWidth="800"
+    MinHeight="450"
+    AllowsTransparency="True"
     Background="Transparent"
-    ResizeMode="NoResize"
+    MouseLeftButtonDown="WindowDragMove"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <!--#region Animation-->
+    <Window.Resources>
+
+        <Storyboard x:Key="BackgroundRotation" RepeatBehavior="Forever">
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackGroundImageHolder" Storyboard.TargetProperty="(UIElement.Opacity)">
+
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:4.5" Value="0.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="1" />
+
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:9.5" Value="0.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="1" />
+
+                <EasingDoubleKeyFrame KeyTime="0:0:14" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:14.5" Value="0.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:15" Value="1" />
+
+                <EasingDoubleKeyFrame KeyTime="0:0:19" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:19.5" Value="0.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:20" Value="1" />
+
+                <EasingDoubleKeyFrame KeyTime="0:0:24" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:24.5" Value="0.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:28.5" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackGroundImageHolder" Storyboard.TargetProperty="Source">
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:4.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/second.jpg" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:9.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/third.png" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:14.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/fourth.jpg" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:19.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/fifth.jpg" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:24.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/sixth.jpg" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+                <DiscreteObjectKeyFrame KeyTime="0:0:27.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage
+                            CacheOption="OnDemand"
+                            DecodePixelHeight="700"
+                            UriSource="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/first.jpg" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+
+            </ObjectAnimationUsingKeyFrames>
+
+        </Storyboard>
+
+    </Window.Resources>
 
     <Window.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="UP">
-            <BeginStoryboard Storyboard="{DynamicResource ShowRegistrationPanel}" />
-        </EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="IN">
-            <BeginStoryboard Storyboard="{DynamicResource ShowAuthorizationPanel}" />
+
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="BackgroundRotation_BeginStoryboard" Storyboard="{StaticResource BackgroundRotation}" />
         </EventTrigger>
     </Window.Triggers>
 
-    <!--#endregion-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
+    </WindowChrome.WindowChrome>
 
-    <Grid
-        Width="800"
-        Height="500"
-        MouseDown="WindowDragMove">
+    <Border Background="Black" CornerRadius="20">
 
-        <Rectangle
-            x:Name="rectangle"
-            Width="800"
-            Height="500"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Fill="{StaticResource ThirdRateColor}">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform />
-                    <SkewTransform />
-                    <RotateTransform />
-                    <TranslateTransform />
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <Grid>
 
-        <Rectangle
-            x:Name="Panel_Slide"
-            Width="400"
-            Height="500"
-            Margin="400,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Content/Images/banner-bg.jpg" Stretch="UniformToFill" />
-            </Rectangle.Fill>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.09*" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform />
-                    <SkewTransform />
-                    <RotateTransform />
-                    <TranslateTransform />
-                </TransformGroup>
-            </Rectangle.RenderTransform>
+            <Image
+                x:Name="BackGroundImageHolder"
+                Grid.Row="1"
+                Margin="-20"
+                parallax:ParallaxEffect.IsBackground="True"
+                parallax:ParallaxEffect.Parent="{Binding ElementName=ThisWindow}"
+                parallax:ParallaxEffect.XOffset="120"
+                parallax:ParallaxEffect.YOffset="120"
+                Source="pack://application:,,,/Victory.Presentation.Desktop;component/Content/Images/Parallax/first.jpg"
+                Stretch="UniformToFill">
+                <I:Interaction.Behaviors>
+                    <parallax:ParallaxEffect />
+                </I:Interaction.Behaviors>
+            </Image>
 
-        </Rectangle>
+            <Grid Grid.Row="0" Background="{StaticResource BaseColorBackground}">
 
-        <!--#region Authorization-->
+                <TextBlock
+                    Margin="0,2,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Spectral Light"
+                    FontSize="22"
+                    FontStyle="Italic"
+                    Foreground="{StaticResource LogoBackground}"
+                    Text="Victory" />
 
-        <Grid
-            x:Name="Sin"
-            Margin="0,150,400,80"
-            Visibility="Visible">
+                <Button
+                    x:Name="RollUpButton"
+                    Margin="0,0,90,10"
+                    Click="RollUpButton_Click"
+                    Style="{StaticResource c_ControlButtonRollUpStyle}" />
 
-            <TextBlock
-                Width="400"
-                Height="40"
-                VerticalAlignment="Top"
-                FontSize="36"
-                Text="Вход"
-                TextAlignment="Center" />
+                <Button
+                    x:Name="MaximazedButton"
+                    Margin="0,0,55,10"
+                    Click="MaximazedButton_Click"
+                    Style="{StaticResource c_ControlButtonMaximazedStyle}" />
 
-            <Border
-                Width="250"
-                Height="2"
-                Margin="0,114,0,150.96"
-                Background="{StaticResource AccentColor}"
-                IsHitTestVisible="False"
-                Opacity="0.5" />
+                <Button
+                    x:Name="ExitButton"
+                    Margin="0,0,20,10"
+                    Click="ExitButton_Click"
+                    Style="{StaticResource c_ControlButtonCloseStyle}" />
 
-            <TextBox
-                x:Name="EnterLoginTextBox"
-                Width="250"
-                Height="25"
-                Margin="0,84,0,157.96"
-                HorizontalAlignment="Center"
-                Style="{StaticResource LoginTextBoxStyle}"
-                Tag="Логин"
-                Text="{Binding EnterUserLogin}" />
+            </Grid>
 
-            <PasswordBox
-                x:Name="EnterPasswordPasswordBox"
-                Width="250"
-                Height="25"
-                Margin="0,134,0,107.96"
-                HorizontalAlignment="Center"
-                PasswordChanged="EnterPasswordPasswordBox_OnPasswordChanged"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                Style="{StaticResource LoginPasswordBoxStyle}" />
+            <Grid Grid.Row="1">
 
-            <TextBox
-                x:Name="PasswordBoxWatermark"
-                Width="250"
-                Height="25"
-                Margin="0,134,0,107.96"
-                HorizontalAlignment="Center"
-                Foreground="{StaticResource ItemForeground}"
-                IsHitTestVisible="False"
-                Tag="Пароль">
-                <TextBox.Style>
-                    <Style BasedOn="{StaticResource LoginTextBoxStyle}" TargetType="TextBox">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsPasswordWatermarkVisible}" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=EnterPasswordPasswordBox, Path=IsMouseOver}" Value="True">
-                                <Setter Property="Opacity" Value="0.5" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
-            <Border
-                Width="250"
-                Height="2"
-                Margin="0,164,0,100.96"
-                Background="{StaticResource AccentColor}"
-                IsHitTestVisible="False"
-                Opacity="0.5" />
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+                        <GradientStop Color="#E5000000" />
+                        <GradientStop Offset="0.4" Color="#E5000000" />
+                        <GradientStop Offset="0.6" Color="#66000000" />
+                        <GradientStop Offset="1" />
+                    </LinearGradientBrush>
+                </Grid.Background>
 
-            <Button
-                x:Name="EnterButton"
-                Width="160"
-                Height="37"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Command="{Binding LoginCommand}"
-                CommandParameter="{Binding ElementName=ThisWindow}"
-                Content="Войти" />
+                <Grid
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    parallax:ParallaxEffect.IsBackground="True"
+                    parallax:ParallaxEffect.Parent="{Binding ElementName=ThisWindow}"
+                    parallax:ParallaxEffect.XOffset="80"
+                    parallax:ParallaxEffect.YOffset="80">
 
-        </Grid>
+                    <I:Interaction.Behaviors>
+                        <parallax:ParallaxEffect />
+                    </I:Interaction.Behaviors>
 
-        <Grid
-            x:Name="Sign_Up"
-            Margin="400,0,0,0"
-            Visibility="Visible">
-            <TextBlock
-                Width="406"
-                Height="45"
-                Margin="0,100,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="36"
-                Foreground="{StaticResource ItemForeground}"
-                Text="Victory"
-                TextAlignment="Center" />
+                    <TextBlock
+                        FontFamily="Segoe UI Light"
+                        FontSize="30"
+                        Foreground="White"
+                        TextAlignment="Center">
+                        <Run Text="Welcome to" /><LineBreak />
+                        <Run Text="the Elite European restaurant" /><LineBreak />
+                        <Run
+                            FontFamily="Spectral Light"
+                            FontStyle="Italic"
+                            Text="Victory" /><LineBreak />
+                        <Run Text="" /><LineBreak />
+                        <Run Text="Log In" /> <LineBreak />
+                        <Run Text="or register" /><LineBreak /></TextBlock>
+                </Grid>
 
-            <TextBlock
-                x:Name="textBlock"
-                Width="406"
-                Height="45"
-                Margin="0,149,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                FontSize="36"
-                Foreground="{StaticResource ItemForeground}"
-                Text="Welcome!"
-                TextAlignment="Center" />
+                <Grid Grid.Column="1">
 
-            <TextBlock
-                Width="406"
-                Height="45"
-                Margin="0,239,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                FontSize="17"
-                Foreground="{StaticResource ItemForeground}"
-                TextAlignment="Center">
-                <Run Text="Создайте нового пользователя," />
-                <LineBreak />
-                <Run Text="используя ваши персональные данные" />
-            </TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-            <Button
-                x:Name="UP"
-                Width="160"
-                Height="38"
-                Margin="0,0,0,130"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                BorderBrush="{StaticResource ItemForeground}"
-                Content="Создать"
-                Foreground="{StaticResource ItemForeground}"
-                Opacity="0.7"
-                Style="{StaticResource TransparentButtonStyle}" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-        </Grid>
+                    <TextBox
+                        x:Name="EnterLoginTextBox"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="250"
+                        Height="29"
+                        HorizontalAlignment="Center"
+                        Background="White"
+                        Opacity="0.9"
+                        Style="{StaticResource LoginTextBoxStyle}"
+                        Tag="Login"
+                        Text="{Binding EnterUserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <!--#endregion-->
+                    <Border
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="250"
+                        Height="2"
+                        VerticalAlignment="Bottom"
+                        Background="#f2745f"
+                        IsHitTestVisible="False" />
 
-        <!--#region Registration-->
+                    <PasswordBox
+                        x:Name="EnterPasswordPasswordBox"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="250"
+                        Height="29"
+                        HorizontalAlignment="Center"
+                        Opacity="0.9"
+                        PasswordChanged="EnterPasswordPasswordBox_OnPasswordChanged"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <PasswordBox.Style>
+                            <Style BasedOn="{StaticResource LoginPasswordBoxStyle}" TargetType="PasswordBox">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPasswordWatermarkVisible}" Value="False">
+                                        <Setter Property="Background" Value="White" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </PasswordBox.Style>
+                    </PasswordBox>
 
-        <Grid
-            x:Name="CreateAccount"
-            Margin="400,0,0,0"
-            Visibility="Hidden">
+                    <TextBox
+                        x:Name="PasswordBoxWatermark"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="250"
+                        Height="29"
+                        HorizontalAlignment="Center"
+                        Background="White"
+                        IsHitTestVisible="False"
+                        Opacity="0.9"
+                        Tag="Password">
+                        <TextBox.Style>
+                            <Style BasedOn="{StaticResource LoginTextBoxStyle}" TargetType="TextBox">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPasswordWatermarkVisible}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=EnterPasswordPasswordBox, Path=IsMouseOver}" Value="True">
+                                        <Setter Property="Opacity" Value="0.5" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
 
-            <TextBlock
-                Width="400"
-                Height="40"
-                Margin="0,70,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="30"
-                Text="Создайте пользователя"
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+                    <Border
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="250"
+                        Height="2"
+                        VerticalAlignment="Bottom"
+                        Background="#f2745f"
+                        IsHitTestVisible="False" />
 
-            <TextBox
-                x:Name="RegisterLoginTextBox"
-                Width="250"
-                Height="25"
-                HorizontalAlignment="Center"
-                Style="{StaticResource LoginTextBoxStyle}"
-                Tag="Логин"
-                Text="{Binding CreateUserLogin}" />
+                    <Button
+                        x:Name="EnterButton"
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="160"
+                        Height="37"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Click="EnterButton_Click"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=ThisWindow}"
+                        Content="Log In"
+                        Opacity="0.85" />
 
-            <Border
-                Width="250"
-                Height="2"
-                Margin="0,30,0,0"
-                Background="{StaticResource AccentColor}"
-                IsHitTestVisible="False"
-                Opacity="0.5" />
+                    <Button
+                        x:Name="RegisterButton"
+                        Grid.Row="8"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="210"
+                        Height="37"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Click="RegisterButton_Click"
+                        Command="{Binding RegistrationCommand}"
+                        CommandParameter="{Binding ElementName=ThisWindow}"
+                        Content="Register"
+                        Opacity="0.85" />
 
-            <PasswordBox
-                x:Name="RegisterPasswordPasswordBox"
-                Width="250"
-                Height="25"
-                Margin="0,80,0,0"
-                HorizontalAlignment="Center"
-                PasswordChanged="RegisterPasswordPasswordBox_OnPasswordChanged"
-                Style="{StaticResource LoginPasswordBoxStyle}" />
+                </Grid>
 
-            <TextBox
-                x:Name="RegisterPasswordBoxWatermark"
-                Width="250"
-                Height="25"
-                Margin="0,80,0,0"
-                HorizontalAlignment="Center"
-                IsHitTestVisible="False"
-                Tag="Пароль">
-                <TextBox.Style>
-                    <Style BasedOn="{StaticResource LoginTextBoxStyle}" TargetType="TextBox">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsRegisterPasswordWatermarkVisible}" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterPasswordPasswordBox, Path=IsMouseOver}" Value="True">
-                                <Setter Property="Opacity" Value="0.5" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
 
-            <Border
-                Width="250"
-                Height="2"
-                Margin="0,110,0,0"
-                Background="{StaticResource AccentColor}"
-                IsHitTestVisible="False"
-                Opacity="0.5" />
-
-            <Button
-                x:Name="RegisterButton"
-                Width="160"
-                Height="37"
-                Margin="0,0,0,50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Command="{Binding RegistrationCommand}"
-                CommandParameter="{Binding ElementName=ThisWindow}"
-                Content="Создать" />
+            </Grid>
 
         </Grid>
 
-        <Grid x:Name="Welcome" Visibility="Hidden">
-
-            <TextBlock
-                Width="400"
-                Height="45"
-                Margin="0,150,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="30"
-                Foreground="{StaticResource ItemForeground}"
-                Text="Попробуем войти?"
-                TextAlignment="Center" />
-
-            <TextBlock
-                Width="400"
-                Height="40"
-                Margin="0,200,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="17"
-                Foreground="{StaticResource ItemForeground}"
-                TextAlignment="Center"
-                TextWrapping="Wrap">
-                <Run Text="Войдите в систему," />
-                <LineBreak />
-                <Run Text="используя Ваш логин и пароль" />
-            </TextBlock>
-
-            <Button
-                x:Name="IN"
-                Width="160"
-                Height="38"
-                Margin="115,100,0,0"
-                HorizontalAlignment="Left"
-                BorderBrush="{StaticResource ItemForeground}"
-                Content="Войти"
-                Foreground="{StaticResource ItemForeground}"
-                Opacity="0.7"
-                Style="{StaticResource TransparentButtonStyle}" />
-
-        </Grid>
-
-        <!--#endregion-->
-
-        <Button
-            x:Name="CloseApplicationButton"
-            Width="20"
-            Height="20"
-            Margin="0,5,10,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Click="CloseApplicationButton_Click"
-            Style="{StaticResource ControlButtonCloseStyle}" />
-
-    </Grid>
+    </Border>
 
 </Window>

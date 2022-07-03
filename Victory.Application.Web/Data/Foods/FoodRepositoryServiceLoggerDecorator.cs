@@ -40,8 +40,8 @@ public class FoodRepositoryServiceLoggerDecorator
             {
                 new()
                 {
-                    Name = "Ошибка",
-                    Description = "Ошибка",
+                    Name = "Error",
+                    Description = "Error",
                     CostInUSD = 0,
                     ImagePath = "https://localhost:7129/img/error_food.jpg"
                 }

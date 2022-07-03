@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,47 +19,164 @@
 
   <ItemGroup>
     <None Remove="Content\Font\Roboto\Roboto-Medium.ttf" />
-    <None Remove="Content\Images\banner-bg.jpg" />
-    <None Remove="Content\Images\Controls\MenuControl\Default.png" />
-    <None Remove="Content\Images\Controls\MenuControl\MouseEnter.png" />
-    <None Remove="Content\Images\Controls\WindowControls\CloseLeftMenu\Default.png" />
-    <None Remove="Content\Images\Controls\WindowControls\Close\Default.png" />
-    <None Remove="Content\Images\Controls\WindowControls\Close\MouseEnter.png" />
+    <None Remove="Content\Font\Spectral\Spectral-Bold.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-BoldItalic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-ExtraBold.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-ExtraBoldItalic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-ExtraLight.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-ExtraLightItalic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-Italic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-Light.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-LightItalic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-Medium.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-MediumItalic.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-Regular.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-SemiBold.ttf" />
+    <None Remove="Content\Font\Spectral\Spectral-SemiBoldItalic.ttf" />
+    <None Remove="Content\Icons\Icon.ico" />
+    <None Remove="Content\Images\Controls\Other\banner-bg.jpg" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\Default\API.png" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\Default\Cloud.png" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\Default\Web.png" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\MouseEnter\API.png" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\MouseEnter\Cloud.png" />
+    <None Remove="Content\Images\Controls\SmallButtons\Light\MouseEnter\Web.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonClose.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonMaximazed.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonRollUp.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonCloseMouseEnter.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonMaximazedMouseEnter.png" />
+    <None Remove="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonRollUpMouseEnter.png" />
+    <None Remove="Content\Images\Parallax\fifth.jpg" />
+    <None Remove="Content\Images\Parallax\first.jpg" />
+    <None Remove="Content\Images\Parallax\fourth.jpg" />
+    <None Remove="Content\Images\Parallax\second.jpg" />
+    <None Remove="Content\Images\Parallax\sixth.jpg" />
+    <None Remove="Content\Images\Parallax\third.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Content\Font\Roboto\Roboto-Medium.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\banner-bg.jpg">
+    <Content Include="Content\Font\Spectral\Spectral-Bold.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Controls\MenuControl\Default.png">
+    <Content Include="Content\Font\Spectral\Spectral-BoldItalic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Controls\MenuControl\MouseEnter.png">
+    <Content Include="Content\Font\Spectral\Spectral-ExtraBold.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Controls\WindowControls\CloseLeftMenu\Default.png">
+    <Content Include="Content\Font\Spectral\Spectral-ExtraBoldItalic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Controls\WindowControls\Close\Default.png">
+    <Content Include="Content\Font\Spectral\Spectral-ExtraLight.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Controls\WindowControls\Close\MouseEnter.png">
+    <Content Include="Content\Font\Spectral\Spectral-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-MediumItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Font\Spectral\Spectral-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\Icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\Other\banner-bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\Default\API.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\Default\Cloud.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\Default\Web.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\MouseEnter\API.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\MouseEnter\Cloud.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\SmallButtons\Light\MouseEnter\Web.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonClose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonMaximazed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\Default\ControlButtonRollUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonCloseMouseEnter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonMaximazedMouseEnter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Controls\WindowsControlButtons\Light\MouseEnter\ControlButtonRollUpMouseEnter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\fifth.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\first.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\fourth.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\second.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\sixth.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Parallax\third.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Victory.Application.Desktop\Victory.Application.Desktop.csproj" />
-    <ProjectReference Include="..\Victory.Infra.Core.Desktop\Victory.Infra.Core.Desktop.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Core\Victory.Domain.Core.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Interfaces.Clients\Victory.Domain.Interfaces.Clients.csproj" />
+    <ProjectReference Include="..\Victory.Infra.Configuration.Services\Victory.Infra.Configuration.Services.csproj" />
+    <ProjectReference Include="..\Victory.Persistence.Repositories.Clients\Victory.Persistence.Repositories.Clients.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,5 +191,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

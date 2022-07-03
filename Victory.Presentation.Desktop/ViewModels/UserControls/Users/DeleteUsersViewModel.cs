@@ -1,50 +1,46 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class DeleteUsersViewModel
-    : BaseDeleteViewModel<User>, IDeleteUsersViewModel
+internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
 {
     private readonly IUserFacadeService _userService;
+
     private readonly UserSessionService _sessionService;
 
     public DeleteUsersViewModel(IUserFacadeService userService,
         UserSessionService sessionService)
     {
-        _userService = userService;
-
-        _sessionService = sessionService;
+        (_userService, _sessionService) = (userService, sessionService);
 
         InitializeCommands();
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Command Logic
 
     protected override bool CanExecuteDeleteCommand(object obj) =>
-        SelectedItem is not null;
+        SelectedGeneralValue is not null;
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedItem is null) return;
+        if (SelectedGeneralValue is null) return;
 
-        if (SelectedItem.Login == _sessionService?.ActiveUser?.Login)
+        if (SelectedGeneralValue.Login == _sessionService?.ActiveUser?.Login)
         {
             MessageBox.Show(
-                messageBoxText: "Невозможно удалить пользователя этой сессии",
-                caption: "Ошибка удаления",
+                messageBoxText: "It is not possible to delete a user of this session",
+                caption: "Error",
                 button: MessageBoxButton.OK,
                 icon: MessageBoxImage.Error);
 
             return;
         }
 
-        await _userService.DeleteAsync(SelectedItem.Id);
+        await _userService.DeleteAsync(SelectedGeneralValue.Id);
 
         MessageBox.Show(
-           messageBoxText: "Удаление произошло успешно",
-           caption: "Успех",
+           messageBoxText: "The deletion was successfu",
+           caption: "Success",
            button: MessageBoxButton.OK,
            icon: MessageBoxImage.Information);
 
@@ -57,40 +53,30 @@ internal sealed class DeleteUsersViewModel
 
     #region Other Logic
 
+    protected override async void Find(string filter)
+    {
+        var users = await _userService.GetUserListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = users.Where(predicate:
+            user =>
+            user.Login.ToLower().Contains(value: filter))
+            .ToList();
+    }
+
+    protected async override Task UpdateData() => await InitializeData();
+
+    protected override void SelectGeneralValue() { }
+
     private void InitializeCommands()
     {
         DeleteCommand = new RelayCommand(executeAction: ExecuteDeleteCommand,
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private void Clear()
-    {
-        _selectedItem = null;
-        OnPropertyChanged(nameof(SelectedItem));
-
-        _lastItemId = null;
-    }
-
-    private async Task InitializeData()
-    {
-        Items = await _userService.GetUserListAsync();
-    }
-
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
-
-        await InitializeData();
-
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
-    }
+    private async Task InitializeData() =>
+        GeneralDataList = await _userService.GetUserListAsync();
 
     #endregion
 }

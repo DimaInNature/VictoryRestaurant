@@ -10,116 +10,116 @@ public class UsersController : ControllerBase
     public UsersController(IUserFacadeService repository) => _repository = repository;
 
     /// <summary>
-    /// Получение списка всех пользователей.
+    /// Get all users.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /Users
     ///
     /// </remarks>
-    /// <returns>Возвращает список всех пользователей.</returns>
-    /// <response code="200">Возвращает список пользователей.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Return all users.</returns>
+    /// <response code="200">Users list.</response>
+    /// <response code="404">If the users was not found.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetList() =>
-        await _repository.GetUserListAsync() is IEnumerable<User> users
+    public async Task<ActionResult<IEnumerable<UserEntity>>> GetList() =>
+        await _repository.GetUserListAsync() is IEnumerable<UserEntity> users
         ? Ok(value: users)
         : NotFound();
 
     /// <summary>
-    /// Получение пользователя по его идентификатору.
+    /// Get user by Id.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /Users/1
+    ///     GET /Users/Id=1
     ///
     /// </remarks>
-    /// <param name="id">Идентификатор пользователя.</param>
-    /// <returns>Возвращает пользователя.</returns>
-    /// <response code="200">Возвращает найденного пользователя.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="id">Id.</param>
+    /// <returns>User.</returns>
+    /// <response code="200">User.</response>
+    /// <response code="404">If the users was not found.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-    [HttpGet(template: "Id")]
-    public async Task<ActionResult<User>> Get(int id) =>
-        await _repository.GetUserAsync(id) is User user
+    [HttpGet(template: "Id={id}")]
+    public async Task<ActionResult<UserEntity>> Get(int id) =>
+        await _repository.GetUserAsync(id) is UserEntity user
         ? Ok(value: user)
         : NotFound();
 
     /// <summary>
-    /// Получение пользователя по его Login.
+    /// Get user by Login.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /Users/Admin
+    ///     GET /Users/Login=Admin
     ///
     /// </remarks>
-    /// <param name="login">Login пользователя.</param>
-    /// <returns>Возвращает найденного пользователя.</returns>
-    /// <response code="200">Возвращает найденного пользователя.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="login">Login.</param>
+    /// <returns>User.</returns>
+    /// <response code="200">User.</response>
+    /// <response code="404">If the user was not found.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-    [HttpGet(template: "{login}")]
-    public async Task<ActionResult<User>> Get(string login) =>
-        await _repository.GetUserAsync(login) is User user
+    [HttpGet(template: "Login={login}")]
+    public async Task<ActionResult<UserEntity>> Get(string login) =>
+        await _repository.GetUserAsync(login) is UserEntity user
         ? Ok(value: user)
         : NotFound();
 
     /// <summary>
-    /// Получение пользователя по его Login и Password.
+    /// Get user by Login and Password.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /Users/Admin&#38;Password
+    ///     GET /Users/Login=Admin&#38;Password=123456
     ///
     /// </remarks>
-    /// <param name="login">Login пользователя.</param>
-    /// <param name="password">Password пользователя.</param>
-    /// <returns>Возвращает найденного пользователя.</returns>
-    /// <response code="200">Возвращает найденного пользователя.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="login">Login.</param>
+    /// <param name="password">Password.</param>
+    /// <returns>User.</returns>
+    /// <response code="200">User.</response>
+    /// <response code="404">If the user was not found.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet(template: "{login}&{password}")]
-    public async Task<ActionResult<User>> Get(string login, string password) =>
-        await _repository.GetUserAsync(login, password) is User user
+    public async Task<ActionResult<UserEntity>> Get(string login, string password) =>
+        await _repository.GetUserAsync(login, password) is UserEntity user
         ? Ok(value: user)
         : NotFound();
 
     /// <summary>
-    /// Создание пользователя.
+    /// Create user.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     POST /Users
     ///     {
-    ///         "id": 0, (Автоинкремент)
+    ///         "id": 0, (auto)
     ///         "login": "Admin",
     ///         "password": "1234",
-    ///         "role": 1
+    ///         "userRoleId": 1
     ///     }
     ///
     /// </remarks>
-    /// <returns>Возвращает созданного пользователя.</returns>
-    /// <response code="201">Возвращает созданного пользователя.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <returns>User.</returns>
+    /// <response code="201">User.</response>
+    /// <response code="400">If the user was not found.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost]
-    public async Task<ActionResult<User>> Create([FromBody] User user)
+    public async Task<ActionResult<UserEntity>> Create([FromBody] UserEntity user)
     {
         if (user is not null) await _repository.CreateAsync(entity: user);
 
@@ -127,27 +127,27 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Изменение пользователя.
+    /// Update user.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     PUT /Users
     ///     {
-    ///         "id": 1, (Id изменяемого объекта)
+    ///         "id": 1,
     ///         "login": "Admin",
     ///         "password": "1234",
-    ///         "role": 1
+    ///         "userRoleId": 1
     ///     }
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно изменён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully modified.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] User users)
+    public async Task<ActionResult> Update([FromBody] UserEntity users)
     {
         if (users is not null) await _repository.UpdateAsync(entity: users);
 
@@ -155,16 +155,16 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Удаление пользователя.
+    /// Delete user.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     DELETE /Users/Id=1
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно удалён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully deleted.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

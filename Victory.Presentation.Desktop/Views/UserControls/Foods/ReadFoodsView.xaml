@@ -11,19 +11,37 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBox
+            Margin="15"
+            Tag="Search"
+            Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <ScrollViewer
             Name="ScrollGrid"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Background="Transparent"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Hidden">
             <StackPanel>
                 <StackPanel Margin="20,0" Orientation="Vertical">
-                    <ItemsControl ItemsSource="{Binding Items, Mode=TwoWay}">
+                    <ItemsControl ItemsSource="{Binding GeneralDataList, Mode=TwoWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
 
                                 <Border
-                                    Width="270"
+                                    Width="230"
                                     Height="220"
                                     Margin="10"
                                     Background="White">
@@ -66,8 +84,16 @@
                                                 Grid.RowSpan="4"
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="4"
-                                                Source="{Binding ImagePath}"
-                                                Stretch="Fill" />
+                                                Stretch="Fill">
+                                                <Image.Source>
+
+                                                    <BitmapImage
+                                                        CacheOption="OnLoad"
+                                                        DecodePixelHeight="240"
+                                                        UriSource="{Binding ImagePath}" />
+
+                                                </Image.Source>
+                                            </Image>
 
                                             <Grid
                                                 Grid.Row="4"
@@ -81,7 +107,6 @@
                                                     FontFamily="bold"
                                                     FontSize="15"
                                                     Foreground="#f27560"
-                                                    Style="{DynamicResource TextBlockStyle}"
                                                     Text="{Binding CostInUSD, StringFormat={}${0}}" />
 
                                             </Grid>
@@ -106,13 +131,11 @@
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 FontSize="16px"
-                                                Style="{DynamicResource TextBlockStyle}"
                                                 Text="{Binding Name}" />
 
                                             <TextBlock
                                                 Grid.Row="1"
                                                 FontSize="14px"
-                                                Style="{DynamicResource TextBlockStyle}"
                                                 Text="{Binding Description}"
                                                 TextAlignment="Center"
                                                 TextWrapping="Wrap" />

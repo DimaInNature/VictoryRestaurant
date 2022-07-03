@@ -1,7 +1,6 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class ReadBookingsViewModel
-    : BaseReadViewModel<Booking>, IReadBookingsViewModel
+internal sealed class ReadBookingsViewModel : BaseReadViewModel<Booking>
 {
     private readonly IBookingFacadeService _bookingService;
 
@@ -9,33 +8,29 @@ internal sealed class ReadBookingsViewModel
     {
         _bookingService = bookingService;
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Other Logic
 
-    private async Task InitializeData()
+    protected override async void Find(string filter)
     {
-        Items = await _bookingService.GetBookingListAsync();
+        var bookings = await _bookingService.GetBookingListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = bookings.Where(predicate:
+            booking => booking.Name.Contains(value: filter) |
+            booking.Phone.Contains(value: filter) | booking.Time.Contains(value: filter))
+            .ToList();
     }
 
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
+    protected async override Task UpdateData() => await InitializeData();
 
-        await InitializeData();
+    protected override void SelectGeneralValue() { }
 
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
-    }
+    private async Task InitializeData() =>
+       GeneralDataList = await _bookingService.GetBookingListAsync();
 
     #endregion
 }

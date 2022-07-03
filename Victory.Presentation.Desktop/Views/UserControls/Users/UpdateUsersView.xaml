@@ -11,12 +11,23 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <TextBox
+            Margin="15"
+            Tag="Search"
+            Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
         <ScrollViewer
+            Grid.Row="1"
             Grid.Column="0"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Disabled">
@@ -27,8 +38,8 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    ItemsSource="{Binding Items, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    ItemsSource="{Binding GeneralDataList, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedGeneralValue, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
@@ -36,16 +47,15 @@
                                 Width="185"
                                 Height="35"
                                 Margin="10,0,10,0"
-                                Background="{DynamicResource AccentColor}"
+                                Background="#f2745f"
                                 CornerRadius="10">
 
                                 <TextBlock
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="15"
-                                    Foreground="{DynamicResource ItemForeground}"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="{Binding Login, Mode=TwoWay}" />
+                                    Foreground="White"
+                                    Text="{Binding Login, Mode=TwoWay, StringFormat='{}Login: {0}'}" />
 
                             </Border>
 
@@ -59,7 +69,7 @@
 
         </ScrollViewer>
 
-        <Grid Column="1">
+        <Grid Grid.Row="1" Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -76,32 +86,31 @@
                 Width="250"
                 Height="50"
                 HorizontalScrollBarVisibility="Auto"
-                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Логин"
-                Text="{Binding SelectedItem.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding SelectedGeneralValue.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox
                 Grid.Row="2"
                 Width="250"
                 Height="50"
-                Style="{StaticResource ColorTextBoxStyle}"
                 Tag="Пароль"
-                Text="{Binding SelectedItem.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding SelectedGeneralValue.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <ComboBox
                 Grid.Row="3"
                 Width="250"
                 Height="50"
-                ItemsSource="{Binding RoleList}"
-                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource ModernComboBox}" />
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding AggregatedDataList}"
+                SelectedIndex="{Binding SelectedAggredatedValueIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedAggregatedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 Grid.Row="4"
                 Width="200"
                 Height="50"
                 Command="{Binding UpdateCommand}"
-                Content="Изменить" />
+                Content="Update" />
 
         </Grid>
 

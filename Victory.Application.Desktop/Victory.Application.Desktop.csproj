@@ -7,14 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="3.2.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.Desktop.Interfaces\Victory.Application.Desktop.Interfaces.csproj" />
-    <ProjectReference Include="..\Victory.Application.General.Client.Features\Victory.Application.General.Client.Features.csproj" />
+    <ProjectReference Include="..\Victory.Application.CQRS.Clients\Victory.Application.CQRS.Clients.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Interfaces.Clients\Victory.Domain.Interfaces.Clients.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
+    <ProjectReference Include="..\Victory.Infra.Configuration.Services\Victory.Infra.Configuration.Services.csproj" />
   </ItemGroup>
 
 </Project>

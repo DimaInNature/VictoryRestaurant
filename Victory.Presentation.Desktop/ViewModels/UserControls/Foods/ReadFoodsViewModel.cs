@@ -1,7 +1,6 @@
 ﻿namespace Victory.Presentation.Desktop.ViewModels.UserControls;
 
-internal sealed class ReadFoodsViewModel
-    : BaseReadViewModel<Food>, IReadFoodsViewModel
+internal sealed class ReadFoodsViewModel : BaseReadViewModel<Food>
 {
     private readonly IFoodFacadeService _foodRepository;
 
@@ -9,33 +8,30 @@ internal sealed class ReadFoodsViewModel
     {
         _foodRepository = foodRepository;
 
-        Task.Run(function: () => AutoUpdateData(
-           secondsTimeout: ApplicationConfiguration.AutoUpdateSecondsTimeout,
-           isEnable: ApplicationConfiguration.AutoUpdateIsEnable));
+        Task.Run(function: () => InitializeData());
     }
 
     #region Other Logic
 
-    private async Task InitializeData()
+    protected override async void Find(string filter)
     {
-        Items = await _foodRepository.GetFoodListAsync();
+        var foods = await _foodRepository.GetFoodListAsync();
+
+        filter = filter.ToLower();
+
+        GeneralDataList = foods.Where(
+            predicate: food =>
+            food.Name.ToLower().Contains(value: filter) |
+            food.Description.ToLower().Contains(value: filter))
+            .ToList();
     }
 
-    private async Task AutoUpdateData(int secondsTimeout, bool isEnable)
-    {
-        // First loading data
+    protected async override Task UpdateData() => await InitializeData();
 
-        await InitializeData();
+    protected override void SelectGeneralValue() { }
 
-        int millisecondsTimeout = secondsTimeout *= 1000;
-
-        while (isEnable)
-        {
-            Thread.Sleep(millisecondsTimeout: millisecondsTimeout);
-
-            await InitializeData();
-        }
-    }
+    private async Task InitializeData() =>
+        GeneralDataList = await _foodRepository.GetFoodListAsync();
 
     #endregion
 }

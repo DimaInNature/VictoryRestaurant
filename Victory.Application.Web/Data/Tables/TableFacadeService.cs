@@ -11,13 +11,13 @@ public class TableFacadeService : ITableFacadeService
         (_repository, _cache) = (repository, cache);
 
     public async Task<List<Table>> GetTableListAsync() =>
-        await _repository.GetTableListAsync();
+        await _repository.GetTableListAsync() ?? new();
 
     public async Task<List<Table>> GetTableListAsync(int number) =>
-        await _repository.GetTableListAsync(number);
+        await _repository.GetTableListAsync(number) ?? new();
 
-    public async Task<List<Table>> GetTableListAsync(bool status) =>
-        await _repository.GetTableListAsync(status);
+    public async Task<List<Table>> GetTableListAsync(string status) =>
+        await _repository.GetTableListAsync(status) ?? new();
 
     public async Task<Table?> GetTableAsync(int id)
     {

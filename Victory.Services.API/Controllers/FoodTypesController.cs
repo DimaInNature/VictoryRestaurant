@@ -10,90 +10,90 @@ public class FoodTypesController : ControllerBase
     public FoodTypesController(IFoodTypeFacadeService repository) => _repository = repository;
 
     /// <summary>
-    /// Получение списка всех разновидностей блюд.
+    /// Get all food types.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     GET /FoodTypes
     ///
     /// </remarks>
-    /// <returns>Возвращает список всех разновидностей блюд.</returns>
-    /// <response code="200">Возвращает список разновидностей блюд.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Return all food types.</returns>
+    /// <response code="200">Food type list.</response>
+    /// <response code="404">If the food types was not found.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<FoodType>>> GetList() =>
-        await _repository.GetFoodTypeListAsync() is IEnumerable<FoodType> foodTypes
+    public async Task<ActionResult<IEnumerable<FoodTypeEntity>>> GetList() =>
+        await _repository.GetFoodTypeListAsync() is IEnumerable<FoodTypeEntity> foodTypes
         ? Ok(value: foodTypes)
         : NotFound();
 
     /// <summary>
-    /// Получение списка всех разновидностей блюд по их наименованию.
+    /// Get food type by Name.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /FoodTypes/Name=Полдник
+    ///     GET /FoodTypes/Name=Breakfast
     ///
     /// </remarks>
-    /// <returns>Возвращает список разновидностей блюд.</returns>
-    /// <response code="200">Возвращает список разновидностей блюд.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <returns>Food type.</returns>
+    /// <response code="200">Food type</response>
+    /// <response code="404">If the food type was not found.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet("Name={name}")]
-    public async Task<ActionResult<IEnumerable<FoodType>>> GetList(string name) =>
-        await _repository.GetFoodTypeListAsync(name) is IEnumerable<FoodType> foodTypes
+    public async Task<ActionResult<IEnumerable<FoodTypeEntity>>> GetList(string name) =>
+        await _repository.GetFoodTypeListAsync(name) is IEnumerable<FoodTypeEntity> foodTypes
         ? Ok(value: foodTypes)
         : NotFound();
 
     /// <summary>
-    /// Получение разновидности блюд по её идентификатору.
+    /// Get food type by Id.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     GET /FoodTypes/1
+    ///     GET /FoodTypes/Id=1
     ///
     /// </remarks>
-    /// <param name="id">Идентификатор разновидности блюд.</param>
-    /// <returns>Возвращает разновидность блюд.</returns>
-    /// <response code="200">Возвращает найденную разновидность блюд.</response>
-    /// <response code="404">Если ничего не было найдено.</response>
+    /// <param name="id">Id.</param>
+    /// <returns>Food type.</returns>
+    /// <response code="200">Food type.</response>
+    /// <response code="404">If the food type was not found.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
-    [HttpGet(template: "Id")]
-    public async Task<ActionResult<FoodType>> Get(int id) =>
-        await _repository.GetFoodTypeAsync(id) is FoodType foodType
+    [HttpGet(template: "Id={Id}")]
+    public async Task<ActionResult<FoodTypeEntity>> Get(int id) =>
+        await _repository.GetFoodTypeAsync(id) is FoodTypeEntity foodType
         ? Ok(value: foodType)
         : NotFound();
 
     /// <summary>
-    /// Создание разновидности блюд.
+    /// Create food type.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     POST /FoodTypes
     ///     {
-    ///         "id": 0, (Автоинкремент)
-    ///         "name": "Полдник"
+    ///         "id": 0, (auto)
+    ///         "name": "Breakfast"
     ///     }
     ///
     /// </remarks>
-    /// <returns>Возвращает созданную разновидность блюд.</returns>
-    /// <response code="201">Возвращает созданную разновидность блюд.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <returns>Food type.</returns>
+    /// <response code="201">Food type.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost]
-    public async Task<ActionResult<FoodType>> Create([FromBody] FoodType foodType)
+    public async Task<ActionResult<FoodTypeEntity>> Create([FromBody] FoodTypeEntity foodType)
     {
         if (foodType is not null) await _repository.CreateAsync(entity: foodType);
 
@@ -101,25 +101,25 @@ public class FoodTypesController : ControllerBase
     }
 
     /// <summary>
-    /// Изменение разновидности блюд.
+    /// Update food type.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
     ///     PUT /FoodTypes
     ///     {
-    ///         "id": 1, (Id изменяемого объекта)
-    ///         "name": "Полдник"
+    ///         "id": 1,
+    ///         "name": "Breakfast"
     ///     }
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно изменён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully modified.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] FoodType foodType)
+    public async Task<ActionResult> Update([FromBody] FoodTypeEntity foodType)
     {
         if (foodType is not null) await _repository.UpdateAsync(entity: foodType);
 
@@ -127,16 +127,16 @@ public class FoodTypesController : ControllerBase
     }
 
     /// <summary>
-    /// Удаление разновидности блюд.
+    /// Delete food type.
     /// </summary>
     /// <remarks>
-    /// Пример запроса:
+    /// Request example:
     ///
-    ///     DELETE /FoodTypes/1
+    ///     DELETE /FoodTypes/Id=1
     ///
     /// </remarks>
-    /// <response code="204">Объект успешно удалён.</response>
-    /// <response code="400">Если произошла ошибка.</response>
+    /// <response code="204">The object has been successfully deleted.</response>
+    /// <response code="400">If an error has occurred.</response>
     [Tags(tags: "FoodTypes")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
