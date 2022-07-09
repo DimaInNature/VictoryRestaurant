@@ -63,7 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2 - SMTP", "2.2 - SMTP", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.Core", "Victory.Domain.Core\Victory.Domain.Core.csproj", "{747249F9-2E85-426F-8659-803BBC4A65CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Core", "4.2 - Core", "{A3B50B5A-BA58-47E4-B805-9C2BC988D4F4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Core", "4.3 - Core", "{A3B50B5A-BA58-47E4-B805-9C2BC988D4F4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Persistence", "5 - Persistence", "{29A7BAB1-6732-4042-A75A-EB5F5B2509DA}"
 EndProject
@@ -83,7 +83,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.CQRS.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Services.SMTP", "Victory.Services.SMTP\Victory.Services.SMTP.csproj", "{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application.SMTP", "Victory.Application.SMTP\Victory.Application.SMTP.csproj", "{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Application.SMTP", "Victory.Application.SMTP\Victory.Application.SMTP.csproj", "{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Abstract", "4.2 - Abstract", "{21F89B82-00F9-478F-8646-CB925C9D45A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Domain.Abstract", "Victory.Domain.Abstract\Victory.Domain.Abstract.csproj", "{2C1A3B51-3EB8-4499-B501-2B35921DEA68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +181,10 @@ Global
 		{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,6 +225,8 @@ Global
 		{2B975B42-61C7-4EA8-AA01-A75CA5EAD6C8} = {742D59AC-27A8-44DF-93AA-5576329C8A12}
 		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE} = {05B4CF21-824F-4D1A-BABC-0065B8F7F17B}
 		{74C8D1E7-6AA5-43C8-A58D-57DAD9CAC492} = {1F29CEE5-AC0B-49AF-82B8-78425802AC04}
+		{21F89B82-00F9-478F-8646-CB925C9D45A5} = {FD8E8B90-0CCC-4F44-9810-00502EA47469}
+		{2C1A3B51-3EB8-4499-B501-2B35921DEA68} = {21F89B82-00F9-478F-8646-CB925C9D45A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB852FAF-4DD3-4243-AA55-0361ED92A603}

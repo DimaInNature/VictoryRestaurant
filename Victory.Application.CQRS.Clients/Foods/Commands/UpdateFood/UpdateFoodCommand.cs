@@ -1,10 +1,12 @@
 ﻿namespace Victory.Application.CQRS.Clients.Foods;
 
-public sealed record class UpdateFoodCommand : IRequest
+public sealed record class UpdateFoodCommand
+    : BaseAuthorizedFeature, IRequest
 {
     public Food? Food { get; }
 
-    public UpdateFoodCommand(Food entity) => Food = entity;
+    public UpdateFoodCommand(Food entity, string token) =>
+        (Food, Token) = (entity, token);
 
     public UpdateFoodCommand() { }
 }

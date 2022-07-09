@@ -7,9 +7,19 @@ public sealed record class GetUserByLoginAndPasswordQueryHandler
 
     public GetUserByLoginAndPasswordQueryHandler(ApplicationContext context) => _context = context;
 
-    public async Task<UserEntity?> Handle(GetUserByLoginAndPasswordQuery request, CancellationToken token) =>
-        await _context.Users.FirstOrDefaultAsync(
-            predicate: user => user.Login == request.Login &&
-            user.Password == request.Password,
+    public async Task<UserEntity?> Handle(GetUserByLoginAndPasswordQuery request, CancellationToken token)
+    {
+        UserLogin? userLogin = request.UserLogin;
+
+        if (userLogin is null || string.IsNullOrWhiteSpace(value: userLogin.Login) ||
+            string.IsNullOrWhiteSpace(value: userLogin.Password))
+            return null;
+
+        UserEntity? result = await _context.Users.FirstOrDefaultAsync(
+            predicate: user => user.Login == userLogin.Login &&
+            user.Password == userLogin.Password,
             cancellationToken: token);
+
+        return result;
+    }
 }

@@ -3,12 +3,17 @@
 internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
 {
     private readonly IBookingFacadeService _bookingService;
+
     private readonly ITableFacadeService _tableService;
 
-    public DeleteBookingsViewModel(IBookingFacadeService bookingService,
-        ITableFacadeService tableService)
+    private readonly UserSessionService _userSessionService;
+
+    public DeleteBookingsViewModel(
+        IBookingFacadeService bookingService,
+        ITableFacadeService tableService,
+        UserSessionService userSessionService)
     {
-        (_bookingService, _tableService) = (bookingService, tableService);
+        (_bookingService, _tableService, _userSessionService) = (bookingService, tableService, userSessionService);
 
         InitializeCommands();
 
@@ -28,9 +33,11 @@ internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _userSessionService.JwtToken;
 
-        Table? table = await _bookingService.GetBookingTableAsync(id: SelectedGeneralValue.Id);
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
+
+        Table? table = await _bookingService.GetBookingTableAsync(id: SelectedGeneralValue.Id, token);
 
         if (table is not null)
         {
@@ -39,7 +46,7 @@ internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
             await _tableService.UpdateAsync(entity: table);
         }
 
-        await _bookingService.DeleteAsync(SelectedGeneralValue.Id);
+        await _bookingService.DeleteAsync(SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successful",
@@ -60,7 +67,11 @@ internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
 
     protected override async void Find(string filter)
     {
-        var bookings = await _bookingService.GetBookingListAsync();
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var bookings = await _bookingService.GetBookingListAsync(token);
 
         filter = filter.ToLower();
 
@@ -80,7 +91,14 @@ internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private async Task InitializeData() => GeneralDataList = await _bookingService.GetBookingListAsync();
+    private async Task InitializeData()
+    {
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _bookingService.GetBookingListAsync(token);
+    }
 
     protected override void SelectGeneralValue() { }
 

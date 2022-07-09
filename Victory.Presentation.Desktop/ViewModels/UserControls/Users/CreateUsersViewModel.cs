@@ -106,13 +106,18 @@ internal sealed class CreateUsersViewModel : BaseCreateViewModel
 
     private readonly IUserRoleFacadeService _userRoleSerivce;
 
-    #endregion
+    private readonly UserSessionService _userSessionService;
 
     #endregion
 
-    public CreateUsersViewModel(IUserFacadeService userService, IUserRoleFacadeService userRoleSerivce)
+    #endregion
+
+    public CreateUsersViewModel(
+        IUserFacadeService userService,
+        IUserRoleFacadeService userRoleSerivce,
+        UserSessionService userSessionService)
     {
-        (_userService, _userRoleSerivce) = (userService, userRoleSerivce);
+        (_userService, _userRoleSerivce, _userSessionService) = (userService, userRoleSerivce, userSessionService);
 
         InitializeCommands();
 
@@ -172,8 +177,14 @@ internal sealed class CreateUsersViewModel : BaseCreateViewModel
         SelectedRole = null;
     }
 
-    private async Task InitializeUserRoles() =>
-        UserRoles = await _userRoleSerivce.GetUserRoleListAsync();
+    private async Task InitializeUserRoles()
+    {
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        UserRoles = await _userRoleSerivce.GetUserRoleListAsync(token);
+    }
 
     #endregion
 }

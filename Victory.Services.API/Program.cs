@@ -10,6 +10,9 @@ app.Run();
 
 void RegisterServices(IServiceCollection services)
 {
+    // Jwt Auth
+    services.AddAuthentication(builder);
+
     services.AddCors();
 
     // Setting DBContext
@@ -42,6 +45,10 @@ void Configure(WebApplication app)
     });
 
     app.UseStaticFiles();
+
+    app.UseAuthentication();
+
+    app.UseAuthorization();
 
     app.MapControllers();
 

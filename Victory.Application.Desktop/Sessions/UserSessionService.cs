@@ -2,9 +2,18 @@
 
 public class UserSessionService
 {
+    public string? JwtToken { get; private set; } = null;
+
+    public bool IsActive { get; private set; } = false;
+
     private readonly IUserFacadeService _userService;
 
-    public UserSessionService(IUserFacadeService userService) => _userService = userService;
+    private readonly JWTAuthorizationService _authorizationService;
+
+    public UserSessionService(
+        IUserFacadeService userService,
+        JWTAuthorizationService authorizationService) =>
+        (_userService, _authorizationService) = (userService, authorizationService);
 
     public User? ActiveUser
     {
@@ -19,19 +28,21 @@ public class UserSessionService
 
     private User? _activeUser;
 
-    public bool IsActive { get; private set; } = false;
-
     public async Task StartSession(User activeUser)
     {
         if (IsActive) return;
 
-        var user = await _userService.GetUserAsync(
-            login: activeUser.Login,
-            password: activeUser.Password);
+        UserLogin userLogin = new(login: activeUser.Login, password: activeUser.Password);
+
+        var user = await _userService.GetUserAsync(userLogin);
 
         ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         ActiveUser = user;
+
+        JwtToken = await _authorizationService.Authorize(userLogin);
+
+        ArgumentNullException.ThrowIfNull(argument: JwtToken, paramName: nameof(JwtToken));
 
         IsActive = true;
     }
@@ -41,6 +52,8 @@ public class UserSessionService
         if (IsActive is false) return;
 
         _activeUser = null;
+
+        JwtToken = null;
 
         IsActive = false;
     }

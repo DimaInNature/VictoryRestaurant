@@ -10,12 +10,12 @@ public class UserFacadeService : IUserFacadeService
         UserRepositoryServiceLoggerDecorator repository) =>
         (_repository, _cache) = (repository, cache);
 
-    public async Task<List<User>> GetUserListAsync() =>
-        await _repository.GetUserListAsync();
+    public async Task<List<User>> GetUserListAsync(string token) =>
+        await _repository.GetUserListAsync(token);
 
-    public async Task<User?> GetUserAsync(string login)
+    public async Task<User?> GetUserAsync(string login, string token)
     {
-        var entity = await _repository.GetUserAsync(login);
+        var entity = await _repository.GetUserAsync(login, token);
 
         if (entity is null) return null;
 
@@ -24,9 +24,9 @@ public class UserFacadeService : IUserFacadeService
         return entity;
     }
 
-    public async Task<User?> GetUserAsync(string login, string password)
+    public async Task<User?> GetUserAsync(UserLogin userLogin)
     {
-        var entity = await _repository.GetUserAsync(login, password);
+        var entity = await _repository.GetUserAsync(userLogin);
 
         if (entity is null) return null;
 
@@ -35,25 +35,25 @@ public class UserFacadeService : IUserFacadeService
         return entity;
     }
 
-    public async Task CreateAsync(User entity)
+    public async Task<User?> CreateAsync(User entity)
     {
-        if (entity is null) return;
+        if (entity is null) return null;
 
         await _repository.CreateAsync(entity);
 
+        return _cache.Set(key: entity.Id, value: entity);
+    }
+
+    public async Task UpdateAsync(User entity, string token)
+    {
+        await _repository.UpdateAsync(entity, token);
+
         _cache.Set(key: entity.Id, value: entity);
     }
 
-    public async Task UpdateAsync(User entity)
+    public async Task DeleteAsync(int id, string token)
     {
-        await _repository.UpdateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        await _repository.DeleteAsync(id);
+        await _repository.DeleteAsync(id, token);
 
         if (_cache.TryGet(key: id, out _))
             _cache.Remove(key: id);

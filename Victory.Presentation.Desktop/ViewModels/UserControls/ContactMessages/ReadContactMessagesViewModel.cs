@@ -4,9 +4,13 @@ internal sealed class ReadContactMessagesViewModel : BaseReadViewModel<ContactMe
 {
     private readonly IContactMessageFacadeService _messageService;
 
-    public ReadContactMessagesViewModel(IContactMessageFacadeService messageService)
+    private readonly UserSessionService _userSessionService;
+
+    public ReadContactMessagesViewModel(
+        IContactMessageFacadeService messageService,
+        UserSessionService userSessionService)
     {
-        _messageService = messageService;
+        (_messageService, _userSessionService) = (messageService, userSessionService);
 
         Task.Run(function: () => InitializeData());
     }
@@ -15,7 +19,11 @@ internal sealed class ReadContactMessagesViewModel : BaseReadViewModel<ContactMe
 
     protected override async void Find(string filter)
     {
-        var messages = await _messageService.GetContactMessageListAsync();
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var messages = await _messageService.GetContactMessageListAsync(token);
 
         filter = filter.ToLower();
 
@@ -29,8 +37,14 @@ internal sealed class ReadContactMessagesViewModel : BaseReadViewModel<ContactMe
 
     protected override void SelectGeneralValue() { }
 
-    private async Task InitializeData() =>
-        GeneralDataList = await _messageService.GetContactMessageListAsync();
+    private async Task InitializeData()
+    {
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _messageService.GetContactMessageListAsync(token);
+    }
 
     #endregion
 }

@@ -1,6 +1,7 @@
 ﻿namespace Victory.Application.CQRS.Clients.Foods;
 
-public sealed record class GetFoodListByFoodTypeQuery : IRequest<List<Food>?>
+public sealed record class GetFoodListByFoodTypeQuery
+    : BaseAnonymousFeature, IRequest<List<Food>?>
 {
     public FoodType? FoodType { get; }
 

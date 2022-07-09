@@ -5,7 +5,8 @@ public class MailSubscriberRepositoryServiceLoggerDecorator
     private readonly IMailSubscriberRepositoryService _repository;
     private readonly ILogger<MailSubscriberRepositoryServiceLoggerDecorator> _logger;
 
-    public MailSubscriberRepositoryServiceLoggerDecorator(IMailSubscriberRepositoryService repository,
+    public MailSubscriberRepositoryServiceLoggerDecorator(
+        IMailSubscriberRepositoryService repository,
         ILogger<MailSubscriberRepositoryServiceLoggerDecorator> logger) =>
         (_repository, _logger) = (repository, logger);
 
@@ -25,13 +26,13 @@ public class MailSubscriberRepositoryServiceLoggerDecorator
         return result;
     }
 
-    public async Task<MailSubscriber?> GetMailSubscriberAsync(int id)
+    public async Task<MailSubscriber?> GetMailSubscriberAsync(int id, string token)
     {
         MailSubscriber? result = null;
 
         try
         {
-            result = await _repository.GetMailSubscriberAsync(id);
+            result = await _repository.GetMailSubscriberAsync(id, token);
         }
         catch (Exception ex)
         {
@@ -53,11 +54,11 @@ public class MailSubscriberRepositoryServiceLoggerDecorator
         }
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, string token)
     {
         try
         {
-            await _repository.DeleteAsync(id);
+            await _repository.DeleteAsync(id, token);
         }
         catch (Exception ex)
         {

@@ -49,11 +49,11 @@ public class FoodRepositoryServiceLoggerDecorator
         }
     }
 
-    public async Task CreateAsync(Food entity)
+    public async Task CreateAsync(Food entity, string token)
     {
         try
         {
-            await _repository.CreateAsync(entity);
+            await _repository.CreateAsync(entity, token);
         }
         catch (Exception ex)
         {
@@ -61,11 +61,11 @@ public class FoodRepositoryServiceLoggerDecorator
         }
     }
 
-    public async Task UpdateAsync(Food entity)
+    public async Task UpdateAsync(Food entity, string token)
     {
         try
         {
-            await _repository.UpdateAsync(entity);
+            await _repository.UpdateAsync(entity, token);
         }
         catch (Exception ex)
         {
@@ -73,11 +73,11 @@ public class FoodRepositoryServiceLoggerDecorator
         }
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, string token)
     {
         try
         {
-            await _repository.DeleteAsync(id);
+            await _repository.DeleteAsync(id, token);
         }
         catch (Exception ex)
         {

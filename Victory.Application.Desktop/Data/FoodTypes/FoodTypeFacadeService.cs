@@ -7,8 +7,8 @@ public class FoodTypeFacadeService : IFoodTypeFacadeService
     public FoodTypeFacadeService(IFoodTypeRepositoryService repository) =>
         _repository = repository;
 
-    public async Task<FoodType?> GetFoodTypeAsync(int id) =>
-        await _repository.GetFoodTypeAsync(id);
+    public async Task<FoodType?> GetFoodTypeAsync(int id, string token) =>
+        await _repository.GetFoodTypeAsync(id, token);
 
     public async Task<List<FoodType>> GetFoodTypeListAsync() =>
         await _repository.GetFoodTypeListAsync() ?? new();

@@ -39,6 +39,8 @@ internal static class DependencyInjectionConfiguration
         services.AddSingleton<APIFeaturesConfigurationService>();
 
         services.AddSingleton<SMTPConfigurationService>();
+
+        services.AddTransient<JWTAuthorizationService>();
     }
 
     public static void AddViewModelsConfiguration(this IServiceCollection services)

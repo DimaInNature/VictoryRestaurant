@@ -21,6 +21,7 @@ public class UsersController : ControllerBase
     /// <returns>Return all users.</returns>
     /// <response code="200">Users list.</response>
     /// <response code="404">If the users was not found.</response>
+    [Authorize]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -43,6 +44,7 @@ public class UsersController : ControllerBase
     /// <returns>User.</returns>
     /// <response code="200">User.</response>
     /// <response code="404">If the users was not found.</response>
+    [Authorize]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -65,6 +67,7 @@ public class UsersController : ControllerBase
     /// <returns>User.</returns>
     /// <response code="200">User.</response>
     /// <response code="404">If the user was not found.</response>
+    [Authorize]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -83,19 +86,24 @@ public class UsersController : ControllerBase
     ///     GET /Users/Login=Admin&#38;Password=123456
     ///
     /// </remarks>
-    /// <param name="login">Login.</param>
-    /// <param name="password">Password.</param>
     /// <returns>User.</returns>
     /// <response code="200">User.</response>
     /// <response code="404">If the user was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
     [HttpGet(template: "{login}&{password}")]
-    public async Task<ActionResult<UserEntity>> Get(string login, string password) =>
-        await _repository.GetUserAsync(login, password) is UserEntity user
+    public async Task<ActionResult<UserEntity>?> Get([FromHeader] UserLogin? userLogin)
+    {
+        if (userLogin is null) return null;
+
+        var result = await _repository.GetUserAsync(userLogin);
+
+        return result is UserEntity user
         ? Ok(value: user)
         : NotFound();
+    }
 
     /// <summary>
     /// Create user.
@@ -115,6 +123,7 @@ public class UsersController : ControllerBase
     /// <returns>User.</returns>
     /// <response code="201">User.</response>
     /// <response code="400">If the user was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -123,7 +132,7 @@ public class UsersController : ControllerBase
     {
         if (user is not null) await _repository.CreateAsync(entity: user);
 
-        return Ok();
+        return CreatedAtAction(nameof(Get), new { id = user?.Id }, user);
     }
 
     /// <summary>
@@ -143,6 +152,7 @@ public class UsersController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -165,6 +175,7 @@ public class UsersController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Users")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

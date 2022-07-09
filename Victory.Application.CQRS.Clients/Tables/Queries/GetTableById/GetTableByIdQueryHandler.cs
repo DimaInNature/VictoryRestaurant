@@ -10,7 +10,14 @@ public sealed record class GetTableByIdQueryHandler
 
     public async Task<Table?> Handle(GetTableByIdQuery request, CancellationToken token)
     {
+        if (string.IsNullOrWhiteSpace(value: request.Token)) return new();
+
         using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         using var response = await httpClient.GetAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Tables/Id={request.Id}",

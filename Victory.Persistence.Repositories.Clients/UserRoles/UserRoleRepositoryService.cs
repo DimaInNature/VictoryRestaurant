@@ -6,9 +6,9 @@ public class UserRoleRepositoryService : IUserRoleRepositoryService
 
     public UserRoleRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<UserRole?> GetUserRoleAsync(int id) =>
-        await _mediator.Send(request: new GetUserRoleByIdQuery());
+    public async Task<UserRole?> GetUserRoleAsync(int id, string token) =>
+        await _mediator.Send(request: new GetUserRoleByIdQuery(id, token));
 
-    public async Task<List<UserRole>?> GetUserRoleListAsync() =>
-        await _mediator.Send(request: new GetUserRoleListQuery());
+    public async Task<List<UserRole>?> GetUserRoleListAsync(string token) =>
+        await _mediator.Send(request: new GetUserRoleListQuery(token));
 }

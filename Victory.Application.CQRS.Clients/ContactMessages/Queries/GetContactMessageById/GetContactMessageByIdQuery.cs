@@ -1,10 +1,12 @@
 ﻿namespace Victory.Application.CQRS.Clients.ContactMessages;
 
-public sealed record class GetContactMessageByIdQuery : IRequest<ContactMessage>
+public sealed record class GetContactMessageByIdQuery
+    : BaseAuthorizedFeature, IRequest<ContactMessage>
 {
     public int Id { get; }
 
-    public GetContactMessageByIdQuery(int id) => Id = id;
+    public GetContactMessageByIdQuery(int id, string token) =>
+        (Id, Token) = (id, token);
 
     public GetContactMessageByIdQuery() { }
 }

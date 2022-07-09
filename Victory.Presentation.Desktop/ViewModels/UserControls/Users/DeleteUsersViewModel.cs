@@ -6,7 +6,8 @@ internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
 
     private readonly UserSessionService _sessionService;
 
-    public DeleteUsersViewModel(IUserFacadeService userService,
+    public DeleteUsersViewModel(
+        IUserFacadeService userService,
         UserSessionService sessionService)
     {
         (_userService, _sessionService) = (userService, sessionService);
@@ -23,7 +24,9 @@ internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _sessionService.JwtToken;
+
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
 
         if (SelectedGeneralValue.Login == _sessionService?.ActiveUser?.Login)
         {
@@ -36,7 +39,7 @@ internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
             return;
         }
 
-        await _userService.DeleteAsync(SelectedGeneralValue.Id);
+        await _userService.DeleteAsync(id: SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successfu",
@@ -55,7 +58,11 @@ internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
 
     protected override async void Find(string filter)
     {
-        var users = await _userService.GetUserListAsync();
+        string? token = _sessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var users = await _userService.GetUserListAsync(token);
 
         filter = filter.ToLower();
 
@@ -75,8 +82,14 @@ internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private async Task InitializeData() =>
-        GeneralDataList = await _userService.GetUserListAsync();
+    private async Task InitializeData()
+    {
+        string? token = _sessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _userService.GetUserListAsync(token);
+    }
 
     #endregion
 }

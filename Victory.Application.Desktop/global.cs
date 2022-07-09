@@ -1,7 +1,10 @@
 ﻿global using CloudinaryDotNet;
 global using MediatR;
+global using Victory.Application.CQRS.Clients.Authorizations;
 global using Victory.Application.CQRS.Clients.Integrations.CloudinaryImages;
 global using Victory.Application.CQRS.Clients.Integrations.SMTP;
+global using Victory.Application.Desktop.Authorizations.JWT;
+global using Victory.Domain.Authorization;
 global using Victory.Domain.Interfaces.Clients.Data.Bookings;
 global using Victory.Domain.Interfaces.Clients.Data.ContactMessages;
 global using Victory.Domain.Interfaces.Clients.Data.Foods;

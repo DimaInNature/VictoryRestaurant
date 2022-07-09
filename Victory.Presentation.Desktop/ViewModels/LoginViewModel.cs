@@ -133,60 +133,55 @@ internal sealed class LoginViewModel : BaseViewModel
 
     private async void ExecuteLogin(object obj)
     {
-        try
+        var user = await _userService
+            .GetUserAsync(userLogin: new UserLogin(EnterUserLogin, Password));
+
+        if (user is null | string.IsNullOrWhiteSpace(value: user?.Login))
         {
-            var user = await _userService.GetUserAsync(
-                login: EnterUserLogin,
-                password: Password);
+            MessageBox.Show(messageBoxText: "User is not exist.",
+                caption: "Authorization error", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
 
-            if (user is null | string.IsNullOrWhiteSpace(value: user?.Login))
-            {
-                MessageBox.Show(messageBoxText: "User is not exist.",
-                    caption: "Authorization error", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+            IsConnectionStopped = true;
 
-                IsConnectionStopped = true;
-
-                return;
-            }
-
-            if (user?.UserRole?.Name is not "Admin" and not "Employee")
-            {
-                MessageBox.Show(
-                    messageBoxText: "You don't have access rights.",
-                    caption: "Security system",
-                    button: MessageBoxButton.OK,
-                    icon: MessageBoxImage.Error);
-
-                IsConnectionStopped = true;
-
-                return;
-            }
-
-            await _sessionService.StartSession(activeUser: user);
-
-            new MainView().Show();
-
-            (obj as Window)?.Close();
+            return;
         }
-        catch
+
+        if (user?.UserRole?.Name is not "Admin" and not "Employee")
         {
             MessageBox.Show(
-                messageBoxText: "Unable to connect to the server.",
-                caption: "Connection error",
+                messageBoxText: "You don't have access rights.",
+                caption: "Security system",
                 button: MessageBoxButton.OK,
                 icon: MessageBoxImage.Error);
+
+            IsConnectionStopped = true;
+
+            return;
         }
+
+        await _sessionService.StartSession(activeUser: user);
+
+        new MainView().Show();
+
+        (obj as Window)?.Close();
 
         IsConnectionStopped = true;
     }
 
     private async void ExecuteRegistration(object obj)
     {
-        var findedUser = await _userService.GetUserAsync(login: EnterUserLogin);
-
-        if (findedUser is not null)
+        User user = new()
         {
-            if (string.IsNullOrWhiteSpace(findedUser.Login) is false)
+            Login = EnterUserLogin,
+            Password = Password,
+            UserRoleId = 3
+        };
+
+        User? createdUser = await _userService.CreateAsync(user);
+
+        if (createdUser is null)
+        {
+            if (string.IsNullOrWhiteSpace(createdUser?.Login) is false)
             {
                 MessageBox.Show(
                   messageBoxText: "The user already exists.",
@@ -195,21 +190,12 @@ internal sealed class LoginViewModel : BaseViewModel
                   icon: MessageBoxImage.Error);
 
                 IsConnectionStopped = true;
-
-                return;
             }
+
+            return;
         }
 
-        User user = new()
-        {
-            Login = EnterUserLogin,
-            Password = Password,
-            UserRoleId = 3
-        };
-
-        await _userService.CreateAsync(user);
-
-        await _sessionService.StartSession(activeUser: user);
+        await _sessionService.StartSession(activeUser: createdUser);
 
         IsConnectionStopped = true;
 

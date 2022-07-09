@@ -1,5 +1,6 @@
 ﻿global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Logging;
+global using Victory.Domain.Authorization;
 global using Victory.Domain.Interfaces.Clients.Cache;
 global using Victory.Domain.Interfaces.Clients.Data.Bookings;
 global using Victory.Domain.Interfaces.Clients.Data.ContactMessages;

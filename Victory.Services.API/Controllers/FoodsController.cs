@@ -21,6 +21,7 @@ public class FoodsController : ControllerBase
     /// <returns>Return all foods.</returns>
     /// <response code="200">Foods list.</response>
     /// <response code="404">If the foods was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -42,6 +43,7 @@ public class FoodsController : ControllerBase
     /// <returns>Foods list.</returns>
     /// <response code="200">Foods list.</response>
     /// <response code="404">If the foods was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -64,6 +66,7 @@ public class FoodsController : ControllerBase
     /// <returns>Food.</returns>
     /// <response code="200">Food.</response>
     /// <response code="404">If the food was not found.</response>
+    [Authorize]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -94,6 +97,7 @@ public class FoodsController : ControllerBase
     /// <returns>Food.</returns>
     /// <response code="201">Food.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -125,6 +129,7 @@ public class FoodsController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -147,6 +152,7 @@ public class FoodsController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Foods")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

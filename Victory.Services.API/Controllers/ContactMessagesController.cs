@@ -21,6 +21,7 @@ public class ContactMessagesController : ControllerBase
     /// <returns>Return all contact messages.</returns>
     /// <response code="200">Contact messages list.</response>
     /// <response code="404">If the contact messages was not found.</response>
+    [Authorize]
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -43,6 +44,7 @@ public class ContactMessagesController : ControllerBase
     /// <returns>Contact message.</returns>
     /// <response code="200">Contact message.</response>
     /// <response code="404">If the contact message was not found.</response>
+    [Authorize]
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -71,6 +73,7 @@ public class ContactMessagesController : ControllerBase
     /// <returns>Contact message.</returns>
     /// <response code="201">Contact message.</response>
     /// <response code="400">If an error has occurred.</response>
+    [AllowAnonymous]
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -100,6 +103,7 @@ public class ContactMessagesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -122,6 +126,7 @@ public class ContactMessagesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "ContactMessages")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

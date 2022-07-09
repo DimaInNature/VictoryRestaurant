@@ -2,8 +2,8 @@
 
 public interface IContactMessageRepositoryService
 {
-    Task<List<ContactMessage>> GetContactMessageListAsync();
-    Task<ContactMessage?> GetContactMessageAsync(int id);
+    Task<List<ContactMessage>> GetContactMessageListAsync(string token);
+    Task<ContactMessage?> GetContactMessageAsync(int id, string token);
     Task CreateAsync(ContactMessage entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(int id, string token);
 }

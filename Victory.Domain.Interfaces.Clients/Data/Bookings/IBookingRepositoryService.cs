@@ -2,9 +2,9 @@
 
 public interface IBookingRepositoryService
 {
-    Task<List<Booking>> GetBookingListAsync();
-    Task<Booking?> GetBookingAsync(int id);
-    Task<Table?> GetBookingTableAsync(int id);
+    Task<List<Booking>> GetBookingListAsync(string token);
+    Task<Booking?> GetBookingAsync(int id, string token);
+    Task<Table?> GetBookingTableAsync(int id, string token);
     Task<Booking?> CreateAsync(Booking entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(int id, string token);
 }

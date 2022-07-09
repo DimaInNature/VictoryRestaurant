@@ -4,9 +4,13 @@ internal sealed class DeleteContactMessagesViewModel : BaseDeleteViewModel<Conta
 {
     private readonly IContactMessageFacadeService _messageService;
 
-    public DeleteContactMessagesViewModel(IContactMessageFacadeService messageService)
+    private readonly UserSessionService _userSessionService;
+
+    public DeleteContactMessagesViewModel(
+        IContactMessageFacadeService messageService,
+        UserSessionService userSessionService)
     {
-        _messageService = messageService;
+        (_messageService, _userSessionService) = (messageService, userSessionService);
 
         InitializeCommands();
 
@@ -20,9 +24,11 @@ internal sealed class DeleteContactMessagesViewModel : BaseDeleteViewModel<Conta
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _userSessionService.JwtToken;
 
-        await _messageService.DeleteAsync(SelectedGeneralValue.Id);
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
+
+        await _messageService.DeleteAsync(id: SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successful",
@@ -41,7 +47,11 @@ internal sealed class DeleteContactMessagesViewModel : BaseDeleteViewModel<Conta
 
     protected override async void Find(string filter)
     {
-        var messages = await _messageService.GetContactMessageListAsync();
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var messages = await _messageService.GetContactMessageListAsync(token);
 
         filter = filter.ToLower();
 
@@ -63,7 +73,11 @@ internal sealed class DeleteContactMessagesViewModel : BaseDeleteViewModel<Conta
 
     private async Task InitializeData()
     {
-        GeneralDataList = await _messageService.GetContactMessageListAsync();
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _messageService.GetContactMessageListAsync(token);
     }
     #endregion
 }

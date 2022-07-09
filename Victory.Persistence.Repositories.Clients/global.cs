@@ -7,6 +7,7 @@ global using Victory.Application.CQRS.Clients.MailSubscribers;
 global using Victory.Application.CQRS.Clients.Tables;
 global using Victory.Application.CQRS.Clients.UserRoles;
 global using Victory.Application.CQRS.Clients.Users;
+global using Victory.Domain.Authorization;
 global using Victory.Domain.Interfaces.Clients.Data.Bookings;
 global using Victory.Domain.Interfaces.Clients.Data.ContactMessages;
 global using Victory.Domain.Interfaces.Clients.Data.Foods;

@@ -6,15 +6,15 @@ public sealed class ContactMessageRepositoryService : IContactMessageRepositoryS
 
     public ContactMessageRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<List<ContactMessage>> GetContactMessageListAsync() =>
-        await _mediator.Send(request: new GetContactMessageListQuery()) ?? new();
+    public async Task<List<ContactMessage>> GetContactMessageListAsync(string token) =>
+        await _mediator.Send(request: new GetContactMessageListQuery(token)) ?? new();
 
-    public async Task<ContactMessage?> GetContactMessageAsync(int id) =>
-        await _mediator.Send(request: new GetContactMessageByIdQuery(id));
+    public async Task<ContactMessage?> GetContactMessageAsync(int id, string token) =>
+        await _mediator.Send(request: new GetContactMessageByIdQuery(id, token));
 
     public async Task CreateAsync(ContactMessage entity) =>
         await _mediator.Send(request: new CreateContactMessageCommand(entity));
 
-    public async Task DeleteAsync(int id) =>
-        await _mediator.Send(request: new DeleteContactMessageCommand(id));
+    public async Task DeleteAsync(int id, string token) =>
+        await _mediator.Send(request: new DeleteContactMessageCommand(id, token));
 }

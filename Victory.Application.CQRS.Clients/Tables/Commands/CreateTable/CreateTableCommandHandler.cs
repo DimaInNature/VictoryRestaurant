@@ -10,11 +10,18 @@ public sealed record class CreateTableCommandHandler
 
     public async Task<Unit> Handle(CreateTableCommand request, CancellationToken token)
     {
-        using var client = new HttpClient();
+        if (string.IsNullOrWhiteSpace(value: request.Token)) return Unit.Value;
+
+        using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         string json = JsonConvert.SerializeObject(value: request.Table);
 
-        await client.PostAsync(
+        await httpClient.PostAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Tables",
             content: new StringContent(
                 content: json,

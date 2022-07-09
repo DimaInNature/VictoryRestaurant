@@ -1,6 +1,7 @@
 ﻿namespace Victory.Application.CQRS.Clients.Tables;
 
-public sealed record class UpdateTableCommand : IRequest
+public sealed record class UpdateTableCommand
+    : BaseAnonymousFeature, IRequest
 {
     public Table? Table { get; }
 

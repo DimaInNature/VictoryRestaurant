@@ -6,9 +6,14 @@ internal sealed class UpdateFoodsViewModel : BaseUpdateViewModel<Food, FoodType>
 
     private readonly IFoodTypeFacadeService _foodTypeService;
 
-    public UpdateFoodsViewModel(IFoodFacadeService foodService, IFoodTypeFacadeService foodTypeService)
+    private readonly UserSessionService _userSessionService;
+
+    public UpdateFoodsViewModel(
+        IFoodFacadeService foodService,
+        IFoodTypeFacadeService foodTypeService,
+        UserSessionService userSessionService)
     {
-        (_foodService, _foodTypeService) = (foodService, foodTypeService);
+        (_foodService, _foodTypeService, _userSessionService) = (foodService, foodTypeService, userSessionService);
 
         InitializeCommands();
 
@@ -23,11 +28,14 @@ internal sealed class UpdateFoodsViewModel : BaseUpdateViewModel<Food, FoodType>
 
     protected override async void ExecuteUpdateCommand(object obj)
     {
-        if (SelectedGeneralValue is null || SelectedAggregatedValue is null) return;
+        string? token = _userSessionService.JwtToken;
+
+        if (SelectedGeneralValue is null || SelectedAggregatedValue is null ||
+            string.IsNullOrWhiteSpace(value: token)) return;
 
         SelectedGeneralValue.FoodTypeId = SelectedAggregatedValue.Id;
 
-        await _foodService.UpdateAsync(SelectedGeneralValue);
+        await _foodService.UpdateAsync(entity: SelectedGeneralValue, token);
 
         MessageBox.Show(
            messageBoxText: "The change was successful",

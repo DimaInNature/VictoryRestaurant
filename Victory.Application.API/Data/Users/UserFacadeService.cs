@@ -19,9 +19,9 @@ public class UserFacadeService : IUserFacadeService
         return entity is null ? null : _cache.Set(key: entity.Id, value: entity);
     }
 
-    public async Task<UserEntity?> GetUserAsync(string login, string password)
+    public async Task<UserEntity?> GetUserAsync(UserLogin userLogin)
     {
-        var entity = await _repository.GetUserAsync(login, password);
+        var entity = await _repository.GetUserAsync(userLogin);
 
         return entity is null ? null : _cache.Set(key: entity.Id, value: entity);
     }

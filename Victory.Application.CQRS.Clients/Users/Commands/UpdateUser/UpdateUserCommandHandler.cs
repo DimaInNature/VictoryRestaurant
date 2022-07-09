@@ -10,13 +10,19 @@ public sealed record class UpdateUserCommandHandler
 
     public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken token)
     {
-        if (request.User is null) return Unit.Value;
+        if (request.User is null || string.IsNullOrWhiteSpace(value: request.Token))
+            return Unit.Value;
 
-        using var client = new HttpClient();
+        using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         string json = JsonConvert.SerializeObject(value: request.User);
 
-        await client.PutAsync(
+        await httpClient.PutAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Users",
             content: new StringContent(
                 content: json,

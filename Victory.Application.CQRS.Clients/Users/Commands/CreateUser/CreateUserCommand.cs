@@ -1,6 +1,7 @@
 ﻿namespace Victory.Application.CQRS.Clients.Users;
 
-public sealed record class CreateUserCommand : IRequest
+public sealed record class CreateUserCommand
+    : BaseAnonymousFeature, IRequest<User?>
 {
     public User? User { get; }
 

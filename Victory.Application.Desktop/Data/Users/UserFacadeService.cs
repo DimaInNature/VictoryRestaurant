@@ -7,21 +7,21 @@ public sealed class UserFacadeService : IUserFacadeService
     public UserFacadeService(IUserRepositoryService repository) =>
         _repository = repository;
 
-    public async Task<List<User>> GetUserListAsync() =>
-        await _repository.GetUserListAsync();
+    public async Task<List<User>> GetUserListAsync(string token) =>
+        await _repository.GetUserListAsync(token);
 
-    public async Task<User?> GetUserAsync(string login) =>
-        await _repository.GetUserAsync(login);
+    public async Task<User?> GetUserAsync(string login, string token) =>
+        await _repository.GetUserAsync(login, token);
 
-    public async Task<User?> GetUserAsync(string login, string password) =>
-        await _repository.GetUserAsync(login, password);
+    public async Task<User?> GetUserAsync(UserLogin userLogin) =>
+        await _repository.GetUserAsync(userLogin);
 
-    public async Task CreateAsync(User entity) =>
+    public async Task<User?> CreateAsync(User entity) =>
         await _repository.CreateAsync(entity);
 
-    public async Task UpdateAsync(User entity) =>
-        await _repository.UpdateAsync(entity);
+    public async Task UpdateAsync(User entity, string token) =>
+        await _repository.UpdateAsync(entity, token);
 
-    public async Task DeleteAsync(int id) =>
-        await _repository.DeleteAsync(id);
+    public async Task DeleteAsync(int id, string token) =>
+        await _repository.DeleteAsync(id, token);
 }

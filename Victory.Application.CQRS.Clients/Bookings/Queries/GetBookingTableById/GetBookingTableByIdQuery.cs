@@ -1,10 +1,12 @@
 ﻿namespace Victory.Application.CQRS.Clients.Bookings;
 
-public sealed record class GetBookingTableByIdQuery : IRequest<Table?>
+public sealed record class GetBookingTableByIdQuery
+    : BaseAuthorizedFeature, IRequest<Table?>
 {
     public int Id { get; }
 
-    public GetBookingTableByIdQuery(int id) => Id = id;
+    public GetBookingTableByIdQuery(int id, string token) =>
+        (Id, Token) = (id, token);
 
     public GetBookingTableByIdQuery() { }
 }

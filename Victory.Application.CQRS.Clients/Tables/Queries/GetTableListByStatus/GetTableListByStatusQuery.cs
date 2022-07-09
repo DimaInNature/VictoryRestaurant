@@ -1,8 +1,9 @@
 ﻿namespace Victory.Application.CQRS.Clients.Tables;
 
-public sealed record class GetTableListByStatusQuery : IRequest<List<Table>>
+public sealed record class GetTableListByStatusQuery
+    : BaseAnonymousFeature, IRequest<List<Table>>
 {
-    public string Status { get; }
+    public string? Status { get; }
 
     public GetTableListByStatusQuery(string status) => Status = status;
 

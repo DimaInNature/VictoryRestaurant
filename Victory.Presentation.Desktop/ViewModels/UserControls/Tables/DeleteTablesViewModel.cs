@@ -4,9 +4,13 @@ internal sealed class DeleteTablesViewModel : BaseDeleteViewModel<Table>
 {
     private readonly ITableFacadeService _tableRepository;
 
-    public DeleteTablesViewModel(ITableFacadeService tableRepository)
+    private readonly UserSessionService _userSessionService;
+
+    public DeleteTablesViewModel(
+        ITableFacadeService tableRepository,
+        UserSessionService userSessionService)
     {
-        _tableRepository = tableRepository;
+        (_tableRepository, _userSessionService) = (tableRepository, userSessionService);
 
         InitializeCommands();
 
@@ -20,9 +24,11 @@ internal sealed class DeleteTablesViewModel : BaseDeleteViewModel<Table>
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _userSessionService.JwtToken;
 
-        await _tableRepository.DeleteAsync(SelectedGeneralValue.Id);
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
+
+        await _tableRepository.DeleteAsync(id: SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successful",

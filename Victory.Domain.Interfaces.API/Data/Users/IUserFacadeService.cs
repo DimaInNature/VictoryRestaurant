@@ -5,7 +5,7 @@ public interface IUserFacadeService
     Task<List<UserEntity>> GetUserListAsync();
     Task<UserEntity?> GetUserAsync(int id);
     Task<UserEntity?> GetUserAsync(string login);
-    Task<UserEntity?> GetUserAsync(string login, string password);
+    Task<UserEntity?> GetUserAsync(UserLogin userLogin);
     Task CreateAsync(UserEntity entity);
     Task UpdateAsync(UserEntity entity);
     Task DeleteAsync(int id);

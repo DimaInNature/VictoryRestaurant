@@ -146,14 +146,20 @@ internal sealed class CreateFoodsViewModel : BaseCreateViewModel
 
     private readonly ImageUploaderService _imageUploader;
 
-    #endregion
+    private readonly UserSessionService _userSessionService;
 
     #endregion
 
-    public CreateFoodsViewModel(IFoodFacadeService foodService,
-        ImageUploaderService imageUploader, IFoodTypeFacadeService foodTypeService)
+    #endregion
+
+    public CreateFoodsViewModel(
+        IFoodFacadeService foodService,
+        ImageUploaderService imageUploader,
+        IFoodTypeFacadeService foodTypeService,
+        UserSessionService userSessionService)
     {
-        (_foodService, _imageUploader, _foodTypeService) = (foodService, imageUploader, foodTypeService);
+        (_foodService, _imageUploader, _foodTypeService, _userSessionService) =
+            (foodService, imageUploader, foodTypeService, userSessionService);
 
         InitializeCommands();
 
@@ -170,7 +176,10 @@ internal sealed class CreateFoodsViewModel : BaseCreateViewModel
 
     protected override async void ExecuteCreate(object obj)
     {
-        if (string.IsNullOrWhiteSpace(_imagePath) || SelectedType is null) return;
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(_imagePath) || SelectedType is null ||
+            string.IsNullOrWhiteSpace(value: token)) return;
 
         var foods = await _foodService.GetFoodListAsync();
 
@@ -205,7 +214,7 @@ internal sealed class CreateFoodsViewModel : BaseCreateViewModel
             ImagePath = imageURL ?? string.Empty
         };
 
-        await _foodService.CreateAsync(food);
+        await _foodService.CreateAsync(entity: food, token);
 
         MessageBox.Show(
             messageBoxText: "The addition was successful",

@@ -4,9 +4,13 @@ internal class ReadMailSubscribersViewModel : BaseReadViewModel<MailSubscriber>
 {
     private readonly IMailSubscriberFacadeService _subscriberService;
 
-    public ReadMailSubscribersViewModel(IMailSubscriberFacadeService subscriberService)
+    private readonly UserSessionService _userSessionService;
+
+    public ReadMailSubscribersViewModel(
+        IMailSubscriberFacadeService subscriberService,
+        UserSessionService userSessionService)
     {
-        _subscriberService = subscriberService;
+        (_subscriberService, _userSessionService) = (subscriberService, userSessionService);
 
         Task.Run(function: () => InitializeData());
     }
@@ -29,8 +33,10 @@ internal class ReadMailSubscribersViewModel : BaseReadViewModel<MailSubscriber>
 
     protected override void SelectGeneralValue() { }
 
-    private async Task InitializeData() =>
+    private async Task InitializeData()
+    {
         GeneralDataList = await _subscriberService.GetMailSubscriberListAsync();
+    }
 
     #endregion
 }

@@ -10,14 +10,14 @@ public class ContactMessageFacadeService : IContactMessageFacadeService
         ContactMessageRepositoryServiceLoggerDecorator repository) =>
         (_repository, _cache) = (repository, cache);
 
-    public async Task<List<ContactMessage>> GetContactMessageListAsync() =>
-        await _repository.GetContactMessageListAsync() ?? new();
+    public async Task<List<ContactMessage>> GetContactMessageListAsync(string token) =>
+        await _repository.GetContactMessageListAsync(token) ?? new();
 
-    public async Task<ContactMessage?> GetContactMessageAsync(int id)
+    public async Task<ContactMessage?> GetContactMessageAsync(int id, string token)
     {
         if (_cache.TryGet(id, out var entity)) return entity;
 
-        entity = await _repository.GetContactMessageAsync(id);
+        entity = await _repository.GetContactMessageAsync(id, token);
 
         return entity is null ? null : _cache.Set(key: id, value: entity);
     }
@@ -31,9 +31,9 @@ public class ContactMessageFacadeService : IContactMessageFacadeService
         _cache.Set(key: entity.Id, value: entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, string token)
     {
-        await _repository.DeleteAsync(id);
+        await _repository.DeleteAsync(id, token);
 
         if (_cache.TryGet(key: id, out _))
             _cache.Remove(key: id);

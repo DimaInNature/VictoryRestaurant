@@ -1,1 +1,2 @@
-﻿global using Victory.Domain.Models;
+﻿global using Victory.Domain.Authorization;
+global using Victory.Domain.Models;

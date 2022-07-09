@@ -4,9 +4,13 @@ internal sealed class ReadBookingsViewModel : BaseReadViewModel<Booking>
 {
     private readonly IBookingFacadeService _bookingService;
 
-    public ReadBookingsViewModel(IBookingFacadeService bookingService)
+    private readonly UserSessionService _userSessionService;
+
+    public ReadBookingsViewModel(
+        IBookingFacadeService bookingService,
+        UserSessionService userSessionService)
     {
-        _bookingService = bookingService;
+        (_bookingService, _userSessionService) = (bookingService, userSessionService);
 
         Task.Run(function: () => InitializeData());
     }
@@ -15,7 +19,11 @@ internal sealed class ReadBookingsViewModel : BaseReadViewModel<Booking>
 
     protected override async void Find(string filter)
     {
-        var bookings = await _bookingService.GetBookingListAsync();
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var bookings = await _bookingService.GetBookingListAsync(token);
 
         filter = filter.ToLower();
 
@@ -29,8 +37,14 @@ internal sealed class ReadBookingsViewModel : BaseReadViewModel<Booking>
 
     protected override void SelectGeneralValue() { }
 
-    private async Task InitializeData() =>
-       GeneralDataList = await _bookingService.GetBookingListAsync();
+    private async Task InitializeData()
+    {
+        string? token = _userSessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _bookingService.GetBookingListAsync(token);
+    }
 
     #endregion
 }

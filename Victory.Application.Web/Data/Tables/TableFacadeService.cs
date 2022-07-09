@@ -19,9 +19,9 @@ public class TableFacadeService : ITableFacadeService
     public async Task<List<Table>> GetTableListAsync(string status) =>
         await _repository.GetTableListAsync(status) ?? new();
 
-    public async Task<Table?> GetTableAsync(int id)
+    public async Task<Table?> GetTableAsync(int id, string token)
     {
-        var entity = await _repository.GetTableAsync(id);
+        var entity = await _repository.GetTableAsync(id, token);
 
         if (entity is null) return null;
 
@@ -30,11 +30,11 @@ public class TableFacadeService : ITableFacadeService
         return entity;
     }
 
-    public async Task CreateAsync(Table entity)
+    public async Task CreateAsync(Table entity, string token)
     {
         if (entity is null) return;
 
-        await _repository.CreateAsync(entity);
+        await _repository.CreateAsync(entity, token);
 
         _cache.Set(key: entity.Id, value: entity);
     }
@@ -46,9 +46,9 @@ public class TableFacadeService : ITableFacadeService
         _cache.Set(key: entity.Id, value: entity);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, string token)
     {
-        await _repository.DeleteAsync(id);
+        await _repository.DeleteAsync(id, token);
 
         if (_cache.TryGet(key: id, out _))
             _cache.Remove(key: id);

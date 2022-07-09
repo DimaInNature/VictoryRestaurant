@@ -1,6 +1,7 @@
 ﻿namespace Victory.Application.CQRS.Clients.ContactMessages;
 
-public sealed record class CreateContactMessageCommand : IRequest
+public sealed record class CreateContactMessageCommand
+    : BaseAnonymousFeature, IRequest
 {
     public ContactMessage? ContactMessage { get; }
 

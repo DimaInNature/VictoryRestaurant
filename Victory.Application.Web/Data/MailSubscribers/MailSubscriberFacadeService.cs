@@ -15,7 +15,7 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
         throw new NotImplementedException();
     }
 
-    public Task<MailSubscriber?> GetMailSubscriberAsync(int id)
+    public Task<MailSubscriber?> GetMailSubscriberAsync(int id, string token)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
         _cache.Set(key: entity.Id, value: entity);
     }
 
-    public Task DeleteAsync(int id)
+    public Task DeleteAsync(int id, string token)
     {
         throw new NotImplementedException();
     }

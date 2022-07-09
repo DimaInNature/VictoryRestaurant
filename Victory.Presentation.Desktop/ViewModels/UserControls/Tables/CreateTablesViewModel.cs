@@ -36,13 +36,17 @@ internal sealed class CreateTablesViewModel : BaseCreateViewModel
 
     private readonly ITableFacadeService _tableRepository;
 
-    #endregion
+    private readonly UserSessionService _userSessionService;
 
     #endregion
 
-    public CreateTablesViewModel(ITableFacadeService tableRepository)
+    #endregion
+
+    public CreateTablesViewModel(
+        ITableFacadeService tableRepository,
+        UserSessionService userSessionService)
     {
-        _tableRepository = tableRepository;
+        (_tableRepository, _userSessionService) = (tableRepository, userSessionService);
 
         InitializeCommands();
     }
@@ -53,7 +57,9 @@ internal sealed class CreateTablesViewModel : BaseCreateViewModel
 
     protected override async void ExecuteCreate(object obj)
     {
-        if (Number is null || Number < 1) return;
+        string? token = _userSessionService.JwtToken;
+
+        if (Number is null || Number < 1 || string.IsNullOrWhiteSpace(value: token)) return;
 
         var tables = await _tableRepository.GetTableListAsync(number: (int)Number);
 
@@ -75,7 +81,7 @@ internal sealed class CreateTablesViewModel : BaseCreateViewModel
             BookingId = default
         };
 
-        await _tableRepository.CreateAsync(entity: table);
+        await _tableRepository.CreateAsync(entity: table, token);
 
         MessageBox.Show(
             messageBoxText: "The addition was successful",

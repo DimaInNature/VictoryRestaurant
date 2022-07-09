@@ -27,8 +27,8 @@ public static class UserMediatRProfile
 
         // Create
 
-        services.AddScoped<IRequest, CreateUserCommand>();
-        services.AddScoped<IRequestHandler<CreateUserCommand, Unit>, CreateUserCommandHandler>();
+        services.AddScoped<IRequest<User?>, CreateUserCommand>();
+        services.AddScoped<IRequestHandler<CreateUserCommand, User?>, CreateUserCommandHandler>();
 
         // Update by Id
 

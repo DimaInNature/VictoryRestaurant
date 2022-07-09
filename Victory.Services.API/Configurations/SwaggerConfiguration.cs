@@ -4,7 +4,7 @@ public static class SwaggerConfiguration
 {
     public static void AddSwaggerConfiguration(this IServiceCollection services)
     {
-        services.AddSwaggerGen(c =>
+        services.AddSwaggerGen(setupAction: c =>
         {
             c.SwaggerDoc(name: "v1", info: new OpenApiInfo
             {
@@ -17,7 +17,36 @@ public static class SwaggerConfiguration
                     Email = "dimainnature@yandex.ru",
                     Url = new Uri(uriString: "https://github.com/DimaInNature")
                 }
+            });
 
+            c.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
+            {
+                Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+
+            c.AddSecurityRequirement(securityRequirement: new OpenApiSecurityRequirement()
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        },
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+                    },
+
+                    new List<string>()
+                }
             });
 
             string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

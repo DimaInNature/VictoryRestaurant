@@ -1,12 +1,11 @@
 ﻿namespace Victory.Application.CQRS.Clients.Users;
 
-public sealed record class GetUserByLoginAndPasswordQuery : IRequest<User?>
+public sealed record class GetUserByLoginAndPasswordQuery
+    : BaseAnonymousFeature, IRequest<User?>
 {
-    public string? Login { get; }
+    public UserLogin? UserLogin { get; }
 
-    public string? Password { get; }
-
-    public GetUserByLoginAndPasswordQuery(string login, string password) => (Login, Password) = (login, password);
+    public GetUserByLoginAndPasswordQuery(UserLogin userLogin) => UserLogin = userLogin;
 
     public GetUserByLoginAndPasswordQuery() { }
 }

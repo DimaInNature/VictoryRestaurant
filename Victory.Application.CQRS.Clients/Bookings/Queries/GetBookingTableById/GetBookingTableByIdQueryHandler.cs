@@ -10,7 +10,14 @@ public sealed record class GetBookingTableByIdQueryHandler
 
     public async Task<Table?> Handle(GetBookingTableByIdQuery request, CancellationToken token)
     {
+        if (string.IsNullOrWhiteSpace(value: request.Token)) return null;
+
         using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         using var response = await httpClient.GetAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Bookings/Id={request.Id}/Table",

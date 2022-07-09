@@ -10,12 +10,12 @@ public sealed class MailSubscriberFacadeService : IMailSubscriberFacadeService
     public async Task<List<MailSubscriber>> GetMailSubscriberListAsync() =>
         await _repository.GetMailSubscriberListAsync();
 
-    public async Task<MailSubscriber?> GetMailSubscriberAsync(int id) =>
-        await _repository.GetMailSubscriberAsync(id);
+    public async Task<MailSubscriber?> GetMailSubscriberAsync(int id, string token) =>
+        await _repository.GetMailSubscriberAsync(id, token);
 
     public async Task CreateAsync(MailSubscriber entity) =>
         await _repository.CreateAsync(entity);
 
-    public async Task DeleteAsync(int id) =>
-        await _repository.DeleteAsync(id);
+    public async Task DeleteAsync(int id, string token) =>
+        await _repository.DeleteAsync(id, token);
 }

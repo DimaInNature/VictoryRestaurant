@@ -21,6 +21,7 @@ public class MailSubscribersController : ControllerBase
     /// <returns>Return all mail subscribers.</returns>
     /// <response code="200">Mail subscribers list.</response>
     /// <response code="404">If the mail subscribers was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -43,6 +44,7 @@ public class MailSubscribersController : ControllerBase
     /// <returns>Mail subscriber.</returns>
     /// <response code="200">Mail subscriber.</response>
     /// <response code="404">If the mail subscriber was not found.</response>
+    [Authorize]
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -68,6 +70,7 @@ public class MailSubscribersController : ControllerBase
     /// <returns>Mail subscriber.</returns>
     /// <response code="201">Mail subscriber.</response>
     /// <response code="400">If an error has occurred.</response>
+    [AllowAnonymous]
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -94,6 +97,7 @@ public class MailSubscribersController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -116,6 +120,7 @@ public class MailSubscribersController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "MailSubscribers")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

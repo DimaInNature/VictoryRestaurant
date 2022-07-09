@@ -21,6 +21,7 @@ public class UserRolesController : ControllerBase
     /// <returns>Return all user roles.</returns>
     /// <response code="200">User role list.</response>
     /// <response code="404">If the user roles was not found.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -42,6 +43,7 @@ public class UserRolesController : ControllerBase
     /// <returns>User roles list.</returns>
     /// <response code="200">User roles list.</response>
     /// <response code="404">If the user roles was not found.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -64,6 +66,7 @@ public class UserRolesController : ControllerBase
     /// <returns>User role.</returns>
     /// <response code="200">User role.</response>
     /// <response code="404">If the user role was not found.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -89,6 +92,7 @@ public class UserRolesController : ControllerBase
     /// <returns>User role.</returns>
     /// <response code="201">User role.</response>
     /// <response code="400">If the user role was not found.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -115,6 +119,7 @@ public class UserRolesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -137,6 +142,7 @@ public class UserRolesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "UserRoles")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

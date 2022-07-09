@@ -7,15 +7,15 @@ public sealed class ContactMessageFacadeService : IContactMessageFacadeService
     public ContactMessageFacadeService(IContactMessageRepositoryService repository) =>
         _repository = repository;
 
-    public async Task<List<ContactMessage>> GetContactMessageListAsync() =>
-        await _repository.GetContactMessageListAsync();
+    public async Task<List<ContactMessage>> GetContactMessageListAsync(string token) =>
+        await _repository.GetContactMessageListAsync(token);
 
-    public async Task<ContactMessage?> GetContactMessageAsync(int id) =>
-        await _repository.GetContactMessageAsync(id);
+    public async Task<ContactMessage?> GetContactMessageAsync(int id, string token) =>
+        await _repository.GetContactMessageAsync(id, token);
 
     public async Task CreateAsync(ContactMessage entity) =>
        await _repository.CreateAsync(entity);
 
-    public async Task DeleteAsync(int id) =>
-        await _repository.DeleteAsync(id);
+    public async Task DeleteAsync(int id, string token) =>
+        await _repository.DeleteAsync(id, token);
 }

@@ -1,1 +1,2 @@
-﻿global using Victory.Persistence.Entities;
+﻿global using Victory.Domain.Authorization;
+global using Victory.Persistence.Entities;

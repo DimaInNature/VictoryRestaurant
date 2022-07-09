@@ -3,5 +3,5 @@
 public interface IFoodTypeRepositoryService
 {
     Task<List<FoodType>?> GetFoodTypeListAsync();
-    Task<FoodType?> GetFoodTypeAsync(int id);
+    Task<FoodType?> GetFoodTypeAsync(int id, string token);
 }

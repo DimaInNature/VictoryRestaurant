@@ -10,11 +10,11 @@ public sealed record class CreateBookingCommandHandler
 
     public async Task<Booking?> Handle(CreateBookingCommand request, CancellationToken token)
     {
-        using var client = new HttpClient();
+        using var httpClient = new HttpClient();
 
         string json = JsonConvert.SerializeObject(value: request.Booking);
 
-        using var response = await client.PostAsync(
+        using var response = await httpClient.PostAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Bookings",
             content: new StringContent(
                 content: json,

@@ -10,7 +10,14 @@ public sealed record class GetFoodTypeByIdQueryHandler
 
     public async Task<FoodType?> Handle(GetFoodTypeByIdQuery request, CancellationToken token)
     {
+        if (request.Token is null) return null;
+
         using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         using var response = await httpClient.GetAsync(
             requestUri: $"{_apiConfig.ServerUrl}/FoodTypes/Id={request.Id}",

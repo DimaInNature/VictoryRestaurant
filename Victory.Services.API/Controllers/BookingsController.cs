@@ -21,6 +21,7 @@ public class BookingsController : ControllerBase
     /// <returns>Return all bookings.</returns>
     /// <response code="200">Bookings list.</response>
     /// <response code="404">Not found.</response>
+    [Authorize]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -43,6 +44,7 @@ public class BookingsController : ControllerBase
     /// <returns>Booking</returns>
     /// <response code="200">Booking</response>
     /// <response code="404">If the booking was not found.</response>
+    [Authorize]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -65,6 +67,7 @@ public class BookingsController : ControllerBase
     /// <returns>Booking</returns>
     /// <response code="200">Booking.</response>
     /// <response code="404">If the booking was not found.</response>
+    [Authorize]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -94,6 +97,7 @@ public class BookingsController : ControllerBase
     /// <returns>Return created booking.</returns>
     /// <response code="201">Booking.</response>
     /// <response code="400">If an error has occurred</response>
+    [AllowAnonymous]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -124,6 +128,7 @@ public class BookingsController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -146,6 +151,7 @@ public class BookingsController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred</response>
+    [Authorize]
     [Tags(tags: "Bookings")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

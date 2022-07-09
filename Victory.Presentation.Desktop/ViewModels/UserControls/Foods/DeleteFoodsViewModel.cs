@@ -4,9 +4,13 @@ internal sealed class DeleteFoodsViewModel : BaseDeleteViewModel<Food>
 {
     private readonly IFoodFacadeService _foodService;
 
-    public DeleteFoodsViewModel(IFoodFacadeService foodService)
+    private readonly UserSessionService _userSessionService;
+
+    public DeleteFoodsViewModel(
+        IFoodFacadeService foodService,
+        UserSessionService userSessionService)
     {
-        _foodService = foodService;
+        (_foodService, _userSessionService) = (foodService, userSessionService);
 
         InitializeCommands();
 
@@ -20,9 +24,11 @@ internal sealed class DeleteFoodsViewModel : BaseDeleteViewModel<Food>
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _userSessionService.JwtToken;
 
-        await _foodService.DeleteAsync(SelectedGeneralValue.Id);
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
+
+        await _foodService.DeleteAsync(id: SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successful",

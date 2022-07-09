@@ -4,9 +4,13 @@ internal sealed class DeleteMailSubscribersViewModel : BaseDeleteViewModel<MailS
 {
     private readonly IMailSubscriberFacadeService _subscriberService;
 
-    public DeleteMailSubscribersViewModel(IMailSubscriberFacadeService subscriberService)
+    private readonly UserSessionService _userSessionService;
+
+    public DeleteMailSubscribersViewModel(
+        IMailSubscriberFacadeService subscriberService,
+        UserSessionService userSessionService)
     {
-        _subscriberService = subscriberService;
+        (_subscriberService, _userSessionService) = (subscriberService, userSessionService);
 
         InitializeCommands();
 
@@ -20,9 +24,11 @@ internal sealed class DeleteMailSubscribersViewModel : BaseDeleteViewModel<MailS
 
     protected override async void ExecuteDeleteCommand(object obj)
     {
-        if (SelectedGeneralValue is null) return;
+        string? token = _userSessionService.JwtToken;
 
-        await _subscriberService.DeleteAsync(SelectedGeneralValue.Id);
+        if (SelectedGeneralValue is null || string.IsNullOrWhiteSpace(value: token)) return;
+
+        await _subscriberService.DeleteAsync(id: SelectedGeneralValue.Id, token);
 
         MessageBox.Show(
            messageBoxText: "The deletion was successful",
@@ -61,8 +67,10 @@ internal sealed class DeleteMailSubscribersViewModel : BaseDeleteViewModel<MailS
             canExecuteFunc: CanExecuteDeleteCommand);
     }
 
-    private async Task InitializeData() =>
+    private async Task InitializeData()
+    {
         GeneralDataList = await _subscriberService.GetMailSubscriberListAsync();
+    }
 
     #endregion
 }

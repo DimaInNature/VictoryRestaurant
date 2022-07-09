@@ -6,8 +6,8 @@ public class TableRepositoryService : ITableRepositoryService
 
     public TableRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<Table?> GetTableAsync(int id) =>
-        await _mediator.Send(request: new GetTableByIdQuery(id));
+    public async Task<Table?> GetTableAsync(int id, string token) =>
+        await _mediator.Send(request: new GetTableByIdQuery(id, token));
 
     public async Task<List<Table>> GetTableListAsync() =>
         await _mediator.Send(request: new GetTableListQuery()) ?? new();
@@ -18,12 +18,12 @@ public class TableRepositoryService : ITableRepositoryService
     public async Task<List<Table>> GetTableListAsync(string status) =>
         await _mediator.Send(request: new GetTableListByStatusQuery(status)) ?? new();
 
-    public async Task CreateAsync(Table entity) =>
-        await _mediator.Send(request: new CreateTableCommand(entity));
+    public async Task CreateAsync(Table entity, string token) =>
+        await _mediator.Send(request: new CreateTableCommand(entity, token));
 
     public async Task UpdateAsync(Table entity) =>
         await _mediator.Send(request: new UpdateTableCommand(entity));
 
-    public async Task DeleteAsync(int id) =>
-        await _mediator.Send(request: new DeleteTableCommand(id));
+    public async Task DeleteAsync(int id, string token) =>
+        await _mediator.Send(request: new DeleteTableCommand(id, token));
 }

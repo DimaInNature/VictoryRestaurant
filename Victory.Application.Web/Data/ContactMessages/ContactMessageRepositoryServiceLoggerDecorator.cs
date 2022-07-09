@@ -10,13 +10,13 @@ public class ContactMessageRepositoryServiceLoggerDecorator
         ILogger<ContactMessageRepositoryServiceLoggerDecorator> logger) =>
         (_repository, _logger) = (repository, logger);
 
-    public async Task<List<ContactMessage>> GetContactMessageListAsync()
+    public async Task<List<ContactMessage>> GetContactMessageListAsync(string token)
     {
         List<ContactMessage> result = new();
 
         try
         {
-            result = await _repository.GetContactMessageListAsync();
+            result = await _repository.GetContactMessageListAsync(token);
         }
         catch (Exception ex)
         {
@@ -26,13 +26,13 @@ public class ContactMessageRepositoryServiceLoggerDecorator
         return result;
     }
 
-    public async Task<ContactMessage?> GetContactMessageAsync(int id)
+    public async Task<ContactMessage?> GetContactMessageAsync(int id, string token)
     {
         ContactMessage? result = null;
 
         try
         {
-            result = await _repository.GetContactMessageAsync(id);
+            result = await _repository.GetContactMessageAsync(id, token);
         }
         catch (Exception ex)
         {
@@ -54,11 +54,11 @@ public class ContactMessageRepositoryServiceLoggerDecorator
         }
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id, string token)
     {
         try
         {
-            await _repository.DeleteAsync(id);
+            await _repository.DeleteAsync(id, token);
         }
         catch (Exception ex)
         {

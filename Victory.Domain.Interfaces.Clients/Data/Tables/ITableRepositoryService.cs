@@ -5,8 +5,8 @@ public interface ITableRepositoryService
     Task<List<Table>> GetTableListAsync();
     Task<List<Table>> GetTableListAsync(int number);
     Task<List<Table>> GetTableListAsync(string status);
-    Task<Table?> GetTableAsync(int id);
-    Task CreateAsync(Table entity);
+    Task<Table?> GetTableAsync(int id, string token);
+    Task CreateAsync(Table entity, string token);
     Task UpdateAsync(Table entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(int id, string token);
 }

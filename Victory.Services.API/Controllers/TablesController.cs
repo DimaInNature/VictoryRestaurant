@@ -21,6 +21,7 @@ public class TablesController : ControllerBase
     /// <returns>Return all tables.</returns>
     /// <response code="200">Tables list.</response>
     /// <response code="404">If the tables was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -42,6 +43,7 @@ public class TablesController : ControllerBase
     /// <returns>Tables list.</returns>
     /// <response code="200">Table list.</response>
     /// <response code="404">If the tables was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -63,6 +65,7 @@ public class TablesController : ControllerBase
     /// <returns>Tables list.</returns>
     /// <response code="200">Tables list.</response>
     /// <response code="404">If the tables was not found.</response>
+    [AllowAnonymous]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -85,6 +88,7 @@ public class TablesController : ControllerBase
     /// <returns>Table.</returns>
     /// <response code="200">Table.</response>
     /// <response code="404">If the table was not found.</response>
+    [Authorize]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
@@ -111,6 +115,7 @@ public class TablesController : ControllerBase
     /// <returns>Table.</returns>
     /// <response code="201">Table.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -138,6 +143,7 @@ public class TablesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully modified..</response>
     /// <response code="400">If an error has occurred.</response>
+    [AllowAnonymous]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -160,6 +166,7 @@ public class TablesController : ControllerBase
     /// </remarks>
     /// <response code="204">The object has been successfully deleted.</response>
     /// <response code="400">If an error has occurred.</response>
+    [Authorize]
     [Tags(tags: "Tables")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]

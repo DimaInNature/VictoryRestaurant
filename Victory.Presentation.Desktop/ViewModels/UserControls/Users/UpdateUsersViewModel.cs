@@ -30,7 +30,10 @@ internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 
     protected async override void ExecuteUpdateCommand(object obj)
     {
-        if (SelectedGeneralValue is null || SelectedAggregatedValue is null) return;
+        string? token = _sessionService.JwtToken;
+
+        if (SelectedGeneralValue is null || SelectedAggregatedValue is null ||
+            string.IsNullOrWhiteSpace(value: token)) return;
 
         if (SelectedGeneralValue.Login == _sessionService?.ActiveUser?.Login)
         {
@@ -45,7 +48,7 @@ internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 
         SelectedGeneralValue.UserRoleId = SelectedAggregatedValue.Id;
 
-        await _userService.UpdateAsync(entity: SelectedGeneralValue);
+        await _userService.UpdateAsync(entity: SelectedGeneralValue, token);
 
         MessageBox.Show(
            messageBoxText: "The change was successful",
@@ -74,7 +77,11 @@ internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 
     protected override async void Find(string filter)
     {
-        var users = await _userService.GetUserListAsync();
+        string? token = _sessionService.JwtToken;
+
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        var users = await _userService.GetUserListAsync(token);
 
         filter = filter.ToLower();
 
@@ -94,9 +101,13 @@ internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 
     private async Task InitializeData()
     {
-        GeneralDataList = await _userService.GetUserListAsync();
+        string? token = _sessionService.JwtToken;
 
-        AggregatedDataList = await _userRoleService.GetUserRoleListAsync();
+        if (string.IsNullOrWhiteSpace(value: token)) return;
+
+        GeneralDataList = await _userService.GetUserListAsync(token);
+
+        AggregatedDataList = await _userRoleService.GetUserRoleListAsync(token);
     }
 
     #endregion

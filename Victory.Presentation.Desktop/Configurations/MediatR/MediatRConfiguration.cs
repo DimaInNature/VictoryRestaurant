@@ -27,5 +27,7 @@ public static class MediatRConfiguration
         services.AddTableMediatRProfile();
 
         services.AddSmtpApiMediatRProfile();
+
+        services.AddUserAuthorizationMediatRProfile();
     }
 }

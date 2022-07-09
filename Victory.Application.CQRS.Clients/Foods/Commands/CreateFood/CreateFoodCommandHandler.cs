@@ -10,13 +10,19 @@ public sealed record class CreateFoodCommandHandler
 
     public async Task<Unit> Handle(CreateFoodCommand request, CancellationToken token)
     {
-        if (request.Food is null) return Unit.Value;
+        if (request.Food is null || string.IsNullOrWhiteSpace(value: request.Token))
+            return Unit.Value;
 
-        using var client = new HttpClient();
+        using var httpClient = new HttpClient();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                scheme: "Bearer",
+                parameter: request.Token);
 
         string json = JsonConvert.SerializeObject(value: request.Food);
 
-        await client.PostAsync(
+        await httpClient.PostAsync(
             requestUri: $"{_apiConfig.ServerUrl}/Foods",
             content: new StringContent(
                 content: json,

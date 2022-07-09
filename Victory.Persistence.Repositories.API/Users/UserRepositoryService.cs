@@ -15,8 +15,8 @@ public class UserRepositoryService : IUserRepositoryService
     public async Task<UserEntity?> GetUserAsync(string login) =>
          await _mediator.Send(request: new GetUserByLoginQuery(login));
 
-    public async Task<UserEntity?> GetUserAsync(string login, string password) =>
-        await _mediator.Send(request: new GetUserByLoginAndPasswordQuery(login, password));
+    public async Task<UserEntity?> GetUserAsync(UserLogin userLogin) =>
+        await _mediator.Send(request: new GetUserByLoginAndPasswordQuery(userLogin));
 
     public async Task CreateAsync(UserEntity entity) =>
          await _mediator.Send(request: new CreateUserCommand(entity));

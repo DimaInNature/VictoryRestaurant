@@ -6,8 +6,8 @@ public class FoodTypeRepositoryService : IFoodTypeRepositoryService
 
     public FoodTypeRepositoryService(IMediator mediator) => _mediator = mediator;
 
-    public async Task<FoodType?> GetFoodTypeAsync(int id) =>
-        await _mediator.Send(request: new GetFoodTypeByIdQuery());
+    public async Task<FoodType?> GetFoodTypeAsync(int id, string token) =>
+        await _mediator.Send(request: new GetFoodTypeByIdQuery(id, token));
 
     public async Task<List<FoodType>?> GetFoodTypeListAsync() =>
         await _mediator.Send(request: new GetFoodTypeListQuery());
