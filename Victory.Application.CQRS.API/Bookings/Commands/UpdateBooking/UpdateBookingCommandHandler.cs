@@ -11,20 +11,15 @@ public class UpdateBookingCommandHandler
     {
         if (request.Booking is null) return Unit.Value;
 
-        var entity = await _context.Bookings.FindAsync(
-            keyValues: new object[] { request.Booking.Id },
-            cancellationToken: token);
+        _context.Bookings.Attach(entity: request.Booking);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.Booking).State = EntityState.Modified;
 
-        entity.Id = request.Booking.Id;
-        entity.Name = request.Booking.Name;
-        entity.Phone = request.Booking.Phone;
-        entity.PersonCount = request.Booking.PersonCount;
-        entity.Time = request.Booking.Time;
-        entity.Date = request.Booking.Date;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

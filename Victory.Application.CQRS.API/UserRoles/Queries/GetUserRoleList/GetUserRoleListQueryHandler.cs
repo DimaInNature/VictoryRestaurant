@@ -8,5 +8,5 @@ public sealed record class GetUserRoleListQueryHandler
     public GetUserRoleListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<UserRoleEntity>?> Handle(GetUserRoleListQuery request, CancellationToken token) =>
-        await _context.UserRoles.ToListAsync(cancellationToken: token);
+        await _context.UserRoles.AsNoTracking().ToListAsync(cancellationToken: token);
 }

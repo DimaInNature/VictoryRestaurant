@@ -6,7 +6,7 @@ public static class DatabaseConfiguration
     {
         if (builder is null) throw new ArgumentNullException(nameof(builder));
 
-        services.AddDbContext<ApplicationContext>(options =>
+        services.AddDbContextPool<ApplicationContext>(options =>
         {
             // Enable Lazy Loading
             options.UseLazyLoadingProxies();

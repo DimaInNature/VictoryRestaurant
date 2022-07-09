@@ -8,5 +8,5 @@ public sealed record class GetContactMessageListQueryHandler
     public GetContactMessageListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<ContactMessageEntity>?> Handle(GetContactMessageListQuery request, CancellationToken token) =>
-        await _context.ContactMessages.ToListAsync(cancellationToken: token);
+        await _context.ContactMessages.AsNoTracking().ToListAsync(cancellationToken: token);
 }

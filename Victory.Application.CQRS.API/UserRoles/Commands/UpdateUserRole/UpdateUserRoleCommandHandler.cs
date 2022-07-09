@@ -11,16 +11,15 @@ public sealed record class UpdateUserRoleCommandHandler
     {
         if (request.UserRole is null) return Unit.Value;
 
-        var entity = await _context.UserRoles.FindAsync(
-            keyValues: new object[] { request.UserRole.Id },
-            cancellationToken: token);
+        _context.UserRoles.Attach(entity: request.UserRole);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.UserRole).State = EntityState.Modified;
 
-        entity.Id = request.UserRole.Id;
-        entity.Name = request.UserRole.Name;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

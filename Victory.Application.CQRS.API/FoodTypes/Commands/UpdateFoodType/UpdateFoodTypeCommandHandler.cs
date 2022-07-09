@@ -11,16 +11,15 @@ public sealed record class UpdateFoodTypeCommandHandler
     {
         if (request.FoodType is null) return Unit.Value;
 
-        var entity = await _context.FoodTypes.FindAsync(
-            keyValues: new object[] { request.FoodType.Id },
-            cancellationToken: token);
+        _context.FoodTypes.Attach(entity: request.FoodType);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.FoodType).State = EntityState.Modified;
 
-        entity.Id = request.FoodType.Id;
-        entity.Name = request.FoodType.Name;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

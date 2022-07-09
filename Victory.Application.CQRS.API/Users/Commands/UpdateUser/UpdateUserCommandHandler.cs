@@ -11,18 +11,15 @@ public sealed record class UpdateUserCommandHandler
     {
         if (request.User is null) return Unit.Value;
 
-        var entityFromDb = await _context.Users.FindAsync(
-            keyValues: new object[] { request.User.Id },
-            cancellationToken: token);
+        _context.Users.Attach(entity: request.User);
 
-        if (entityFromDb is null) return Unit.Value;
+        _context.Entry(entity: request.User).State = EntityState.Modified;
 
-        entityFromDb.Id = request.User.Id;
-        entityFromDb.Login = request.User.Login;
-        entityFromDb.Password = request.User.Password;
-        entityFromDb.UserRoleId = request.User.UserRoleId;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

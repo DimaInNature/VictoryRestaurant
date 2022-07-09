@@ -11,16 +11,15 @@ public sealed record class UpdateMailSubscriberCommandHandler
     {
         if (request.MailSubscriber is null) return Unit.Value;
 
-        var entity = await _context.MailSubscribers.FindAsync(
-            keyValues: new object[] { request.MailSubscriber.Id },
-            cancellationToken: token);
+        _context.MailSubscribers.Attach(entity: request.MailSubscriber);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.MailSubscriber).State = EntityState.Modified;
 
-        entity.Id = request.MailSubscriber.Id;
-        entity.Mail = request.MailSubscriber.Mail;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

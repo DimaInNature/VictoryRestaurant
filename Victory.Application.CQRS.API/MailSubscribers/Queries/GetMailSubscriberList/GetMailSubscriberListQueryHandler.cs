@@ -8,5 +8,5 @@ public sealed record class GetMailSubscriberListQueryHandler
     public GetMailSubscriberListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<MailSubscriberEntity>?> Handle(GetMailSubscriberListQuery request, CancellationToken token) =>
-        await _context.MailSubscribers.ToListAsync(cancellationToken: token);
+        await _context.MailSubscribers.AsNoTracking().ToListAsync(cancellationToken: token);
 }

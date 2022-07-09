@@ -11,20 +11,15 @@ public sealed record class UpdateFoodCommandHandler
     {
         if (request.Food is null) return Unit.Value;
 
-        var entityFromDb = await _context.Foods.FindAsync(
-            keyValues: new object[] { request.Food.Id },
-            cancellationToken: token);
+        _context.Foods.Attach(entity: request.Food);
 
-        if (entityFromDb is null) return Unit.Value;
+        _context.Entry(entity: request.Food).State = EntityState.Modified;
 
-        entityFromDb.Id = request.Food.Id;
-        entityFromDb.FoodTypeId = request.Food.FoodTypeId;
-        entityFromDb.ImagePath = request.Food.ImagePath;
-        entityFromDb.Name = request.Food.Name;
-        entityFromDb.CostInUSD = request.Food.CostInUSD;
-        entityFromDb.Description = request.Food.Description;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

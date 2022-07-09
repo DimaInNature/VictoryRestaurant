@@ -8,7 +8,7 @@ public sealed record class GetUserRoleByIdQueryHandler
     public GetUserRoleByIdQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<UserRoleEntity?> Handle(GetUserRoleByIdQuery request, CancellationToken token) =>
-        await _context.UserRoles.FindAsync(
-            keyValues: new object[] { request.Id },
+        await _context.UserRoles.AsNoTracking()
+        .FirstOrDefaultAsync(predicate: userRole => userRole.Id == request.Id,
             cancellationToken: token);
 }

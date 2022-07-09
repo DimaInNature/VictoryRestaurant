@@ -8,7 +8,7 @@ public sealed record class GetFoodTypeByIdQueryHandler
     public GetFoodTypeByIdQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<FoodTypeEntity?> Handle(GetFoodTypeByIdQuery request, CancellationToken token) =>
-        await _context.FoodTypes.FindAsync(
-            keyValues: new object[] { request.Id },
+        await _context.FoodTypes.AsNoTracking()
+        .FirstOrDefaultAsync(predicate: foodType => foodType.Id == request.Id,
             cancellationToken: token);
 }

@@ -11,18 +11,15 @@ public sealed record class UpdateTableCommandHandler
     {
         if (request.Table is null) return Unit.Value;
 
-        var entity = await _context.Tables.FindAsync(
-            keyValues: new object[] { request.Table.Id },
-            cancellationToken: token);
+        _context.Tables.Attach(entity: request.Table);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.Table).State = EntityState.Modified;
 
-        entity.Id = request.Table.Id;
-        entity.Number = request.Table.Number;
-        entity.Status = request.Table.Status;
-        entity.BookingId = request.Table.BookingId;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

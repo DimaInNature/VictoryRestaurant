@@ -11,19 +11,15 @@ public sealed record class UpdateContactMessageCommandHandler
     {
         if (request.ContactMessage is null) return Unit.Value;
 
-        var entity = await _context.ContactMessages.FindAsync(
-            keyValues: new object[] { request.ContactMessage.Id },
-            cancellationToken: token);
+        _context.ContactMessages.Attach(entity: request.ContactMessage);
 
-        if (entity is null) return Unit.Value;
+        _context.Entry(entity: request.ContactMessage).State = EntityState.Modified;
 
-        entity.Id = request.ContactMessage.Id;
-        entity.Phone = request.ContactMessage.Phone;
-        entity.Message = request.ContactMessage.Message;
-        entity.Mail = request.ContactMessage.Mail;
-        entity.Name = request.ContactMessage.Name;
-
-        await _context.SaveChangesAsync(cancellationToken: token);
+        try
+        {
+            await _context.SaveChangesAsync(cancellationToken: token);
+        }
+        catch { }
 
         return Unit.Value;
     }

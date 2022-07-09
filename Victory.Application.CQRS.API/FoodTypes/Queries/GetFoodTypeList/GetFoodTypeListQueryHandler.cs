@@ -8,5 +8,5 @@ public sealed record class GetFoodTypeListQueryHandler
     public GetFoodTypeListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<FoodTypeEntity>?> Handle(GetFoodTypeListQuery request, CancellationToken token) =>
-        await _context.FoodTypes.ToListAsync(cancellationToken: token);
+        await _context.FoodTypes.AsNoTracking().ToListAsync(cancellationToken: token);
 }

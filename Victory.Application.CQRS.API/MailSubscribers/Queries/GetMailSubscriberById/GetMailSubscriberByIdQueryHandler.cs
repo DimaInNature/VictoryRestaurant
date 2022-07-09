@@ -8,7 +8,7 @@ public sealed record class GetMailSubscriberByIdQueryHandler
     public GetMailSubscriberByIdQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<MailSubscriberEntity?> Handle(GetMailSubscriberByIdQuery request, CancellationToken token) =>
-        await _context.MailSubscribers.FindAsync(
-            keyValues: new object[] { request.Id },
+        await _context.MailSubscribers.AsNoTracking()
+        .FirstOrDefaultAsync(predicate: mailSubscriber => mailSubscriber.Id == request.Id,
             cancellationToken: token);
 }

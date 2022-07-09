@@ -8,7 +8,7 @@ public sealed record class GetContactMessageByIdQueryHandler
     public GetContactMessageByIdQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<ContactMessageEntity?> Handle(GetContactMessageByIdQuery request, CancellationToken token) =>
-        await _context.ContactMessages.FindAsync(
-            keyValues: new object[] { request.Id },
+        await _context.ContactMessages.AsNoTracking()
+        .FirstOrDefaultAsync(predicate: contactMessage => contactMessage.Id == request.Id,
             cancellationToken: token);
 }
