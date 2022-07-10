@@ -26,7 +26,7 @@ If you liked my work - give a :star: ))
 - CloudinaryDotNet
 - MailKit
 - Newtonsoft.Json
-- Memory Caching (Redis is planned)
+- In Memory & Redis Caching
 
 ## Architecture:
 
