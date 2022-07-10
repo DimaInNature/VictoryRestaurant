@@ -2,7 +2,10 @@
 
 public class UserFacadeService : IUserFacadeService
 {
+    private const string NameForCaching = "User";
+
     private readonly IUserRepositoryService _repository;
+
     private readonly ICacheService<UserEntity> _cache;
 
     public UserFacadeService(ICacheService<UserEntity> cache,
@@ -14,25 +17,39 @@ public class UserFacadeService : IUserFacadeService
 
     public async Task<UserEntity?> GetUserAsync(string login)
     {
-        var entity = await _repository.GetUserAsync(login);
+        UserEntity? entity = await _repository.GetUserAsync(login);
 
-        return entity is null ? null : _cache.Set(key: entity.Id, value: entity);
+        if (entity is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
+
+        return entity;
     }
 
     public async Task<UserEntity?> GetUserAsync(UserLogin userLogin)
     {
-        var entity = await _repository.GetUserAsync(userLogin);
+        UserEntity? entity = await _repository.GetUserAsync(userLogin);
 
-        return entity is null ? null : _cache.Set(key: entity.Id, value: entity);
+        if (entity is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
+
+        return entity;
     }
 
     public async Task<UserEntity?> GetUserAsync(int id)
     {
-        if (_cache.TryGet(id, out var entity)) return entity;
+        UserEntity? entityFromCache = await _cache.GetAsync(key: $"{NameForCaching}_{id}");
 
-        entity = await _repository.GetUserAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return entity is null ? null : _cache.Set(key: id, value: entity);
+        UserEntity? entityFromDb = await _repository.GetUserAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task CreateAsync(UserEntity entity)
@@ -40,24 +57,21 @@ public class UserFacadeService : IUserFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(UserEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
 
-        _cache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_cache.TryGet(key: id, out _))
-            _cache.Remove(key: id);
+        await _cache.RemoveAsync(key: $"{NameForCaching}_{id}");
     }
 }

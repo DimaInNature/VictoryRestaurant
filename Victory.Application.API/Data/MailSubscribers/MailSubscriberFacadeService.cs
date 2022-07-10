@@ -2,7 +2,10 @@
 
 public class MailSubscriberFacadeService : IMailSubscriberFacadeService
 {
+    private const string NameForCaching = "MailSubscriber";
+
     private readonly IMailSubscriberRepositoryService _repository;
+
     private readonly ICacheService<MailSubscriberEntity> _cache;
 
     public MailSubscriberFacadeService(IMailSubscriberRepositoryService repository,
@@ -14,11 +17,17 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
 
     public async Task<MailSubscriberEntity?> GetMailSubscriberAsync(int id)
     {
-        if (_cache.TryGet(id, out var entity)) return entity;
+        MailSubscriberEntity? entityFromCache = await _cache.GetAsync(key: $"{NameForCaching}_{id}");
 
-        entity = await _repository.GetMailSubscriberAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return entity is null ? null : _cache.Set(key: id, value: entity);
+        MailSubscriberEntity? entityFromDb = await _repository.GetMailSubscriberAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task CreateAsync(MailSubscriberEntity entity)
@@ -26,24 +35,21 @@ public class MailSubscriberFacadeService : IMailSubscriberFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(MailSubscriberEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
 
-        _cache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_cache.TryGet(key: id, out _))
-            _cache.Remove(key: id);
+        await _cache.RemoveAsync(key: $"{NameForCaching}_{id}");
     }
 }

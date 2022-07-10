@@ -2,7 +2,10 @@
 
 public class UserRoleFacadeService : IUserRoleFacadeService
 {
+    private const string NameForCaching = "UserRole";
+
     private readonly IUserRoleRepositoryService _repository;
+
     private readonly ICacheService<UserRoleEntity> _cache;
 
     public UserRoleFacadeService(IUserRoleRepositoryService repository,
@@ -17,12 +20,17 @@ public class UserRoleFacadeService : IUserRoleFacadeService
 
     public async Task<UserRoleEntity?> GetUserRoleAsync(int id)
     {
-        if (_cache.TryGet(id, out var userRole))
-            return userRole;
+        UserRoleEntity? entityFromCache = await _cache.GetAsync(key: $"{NameForCaching}_{id}");
 
-        userRole = await _repository.GetUserRoleAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return userRole is null ? null : _cache.Set(key: id, value: userRole);
+        UserRoleEntity? entityFromDb = await _repository.GetUserRoleAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task CreateAsync(UserRoleEntity entity)
@@ -30,24 +38,21 @@ public class UserRoleFacadeService : IUserRoleFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(UserRoleEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
 
-        _cache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_cache.TryGet(key: id, out _))
-            _cache.Remove(key: id);
+        await _cache.RemoveAsync(key: $"{NameForCaching}_{id}");
     }
 }

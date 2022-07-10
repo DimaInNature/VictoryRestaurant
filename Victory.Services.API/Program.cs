@@ -27,6 +27,9 @@ void RegisterServices(IServiceCollection services)
     // .NET Native DI Abstraction
     services.AddDependencyInjectionConfiguration();
 
+    // Redis
+    services.AddRedisConfiguration(builder);
+
     // MediatR
     services.AddMediatRConfiguration();
 

@@ -2,6 +2,10 @@
 
 public class BookingFacadeService : IBookingFacadeService
 {
+    private const string NameForBookingCaching = "Booking";
+
+    private const string NameForTableCaching = "Table";
+
     private readonly IBookingRepositoryService _repository;
 
     private readonly ICacheService<BookingEntity> _bookingCache;
@@ -17,20 +21,28 @@ public class BookingFacadeService : IBookingFacadeService
 
     public async Task<BookingEntity?> GetBookingAsync(int id)
     {
-        if (_bookingCache.TryGet(id, out var entity)) return entity;
+        BookingEntity? entityFromCache = await _bookingCache.GetAsync(key: $"{NameForBookingCaching}_{id}");
 
-        entity = await _repository.GetBookingAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return entity is null ? null : _bookingCache.Set(key: id, value: entity);
+        BookingEntity? entityFromDb = await _repository.GetBookingAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _bookingCache.SetAsync(key: $"{NameForBookingCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task<TableEntity?> GetBookingTableAsync(int id)
     {
-        if (_tableCache.TryGet(id, out var entity)) return entity;
+        TableEntity? entityFromDb = await _repository.GetBookingTableAsync(id);
 
-        entity = await _repository.GetBookingTableAsync(id);
+        if (entityFromDb is null) return null;
 
-        return entity is null ? null : _tableCache.Set(key: id, value: entity);
+        await _tableCache.SetAsync(key: $"{NameForTableCaching}_{entityFromDb.Id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task CreateAsync(BookingEntity entity)
@@ -38,24 +50,21 @@ public class BookingFacadeService : IBookingFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _bookingCache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(BookingEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _bookingCache.SetAsync(key: $"{NameForBookingCaching}_{entity.Id}", value: entity);
 
-        _bookingCache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_bookingCache.TryGet(key: id, out _))
-            _bookingCache.Remove(key: id);
+        await _bookingCache.RemoveAsync(key: $"{NameForBookingCaching}_{id}");
     }
 }

@@ -2,7 +2,10 @@
 
 public class FoodFacadeService : IFoodFacadeService
 {
+    private const string NameForCaching = "Food";
+
     private readonly IFoodRepositoryService _repository;
+
     private readonly ICacheService<FoodEntity> _cache;
 
     public FoodFacadeService(IFoodRepositoryService repository,
@@ -20,19 +23,28 @@ public class FoodFacadeService : IFoodFacadeService
 
     public async Task<FoodEntity?> GetFoodAsync(int id)
     {
-        if (_cache.TryGet(id, out var food))
-            return food;
+        FoodEntity? entityFromCache = await _cache.GetAsync(key: $"{NameForCaching}_{id}");
 
-        food = await _repository.GetFoodAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return food is null ? null : _cache.Set(key: id, value: food);
+        FoodEntity? entityFromDb = await _repository.GetFoodAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task<FoodEntity?> GetFoodAsync(string type)
     {
-        FoodEntity? food = await _repository.GetFoodAsync(type);
+        FoodEntity? entity = await _repository.GetFoodAsync(type);
 
-        return food is null ? null : _cache.Set(key: food.Id, value: food);
+        if (entity is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
+
+        return entity;
     }
 
     public async Task CreateAsync(FoodEntity entity)
@@ -40,24 +52,21 @@ public class FoodFacadeService : IFoodFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(FoodEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
 
-        _cache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_cache.TryGet(key: id, out _))
-            _cache.Remove(key: id);
+        await _cache.RemoveAsync(key: $"{NameForCaching}_{id}");
     }
 }

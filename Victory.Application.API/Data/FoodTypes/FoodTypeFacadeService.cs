@@ -2,7 +2,10 @@
 
 public class FoodTypeFacadeService : IFoodTypeFacadeService
 {
+    private const string NameForCaching = "FoodType";
+
     private readonly IFoodTypeRepositoryService _repository;
+
     private readonly ICacheService<FoodTypeEntity> _cache;
 
     public FoodTypeFacadeService(IFoodTypeRepositoryService repository,
@@ -17,12 +20,17 @@ public class FoodTypeFacadeService : IFoodTypeFacadeService
 
     public async Task<FoodTypeEntity?> GetFoodTypeAsync(int id)
     {
-        if (_cache.TryGet(id, out var FoodType))
-            return FoodType;
+        FoodTypeEntity? entityFromCache = await _cache.GetAsync(key: $"{NameForCaching}_{id}");
 
-        FoodType = await _repository.GetFoodTypeAsync(id);
+        if (entityFromCache is not null) return entityFromCache;
 
-        return FoodType is null ? null : _cache.Set(key: id, value: FoodType);
+        FoodTypeEntity? entityFromDb = await _repository.GetFoodTypeAsync(id);
+
+        if (entityFromDb is null) return null;
+
+        await _cache.SetAsync(key: $"{NameForCaching}_{id}", value: entityFromDb);
+
+        return entityFromDb;
     }
 
     public async Task CreateAsync(FoodTypeEntity entity)
@@ -30,24 +38,21 @@ public class FoodTypeFacadeService : IFoodTypeFacadeService
         if (entity is null) return;
 
         await _repository.CreateAsync(entity);
-
-        _cache.Set(key: entity.Id, value: entity);
     }
 
     public async Task UpdateAsync(FoodTypeEntity entity)
     {
         if (entity is null) return;
 
-        await _repository.UpdateAsync(entity);
+        await _cache.SetAsync(key: $"{NameForCaching}_{entity.Id}", value: entity);
 
-        _cache.Set(key: entity.Id, value: entity);
+        await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync(id);
 
-        if (_cache.TryGet(key: id, out _))
-            _cache.Remove(key: id);
+        await _cache.RemoveAsync(key: $"{NameForCaching}_{id}");
     }
 }
