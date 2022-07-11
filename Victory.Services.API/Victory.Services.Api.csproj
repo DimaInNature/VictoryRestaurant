@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Victory.Application.API\Victory.Application.API.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Features.API\Victory.Domain.Features.API.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
     <ProjectReference Include="..\Victory.Persistence.Repositories.API\Victory.Persistence.Repositories.API.csproj" />
   </ItemGroup>

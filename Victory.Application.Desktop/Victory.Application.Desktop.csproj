@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.CQRS.Clients\Victory.Application.CQRS.Clients.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Features.Consumers\Victory.Domain.Features.Consumers.csproj" />
     <ProjectReference Include="..\Victory.Domain.Interfaces.Clients\Victory.Domain.Interfaces.Clients.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
     <ProjectReference Include="..\Victory.Infra.Configuration.Services\Victory.Infra.Configuration.Services.csproj" />
