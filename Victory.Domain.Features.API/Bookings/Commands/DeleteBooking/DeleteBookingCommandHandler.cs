@@ -9,8 +9,9 @@ public sealed record class DeleteBookingCommandHandler
 
     public async Task<Unit> Handle(DeleteBookingCommand request, CancellationToken token)
     {
-        var entity = await _context.Bookings.FindAsync(
-            keyValues: new object[] { request.Id },
+        var entity = await _context.Bookings
+            .AsNoTracking()
+            .FirstOrDefaultAsync(predicate: booking => booking.Id == request.Id,
             cancellationToken: token);
 
         if (entity is null) return Unit.Value;

@@ -8,7 +8,9 @@ public sealed record class GetBookingByIdQueryHandler
     public GetBookingByIdQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<BookingEntity?> Handle(GetBookingByIdQuery request, CancellationToken token) =>
-        await _context.Bookings.FindAsync(
-            keyValues: new object[] { request.Id },
+        await _context.Bookings
+        .AsNoTracking()
+        .Include(navigationPropertyPath: b => b.Table)
+        .FirstOrDefaultAsync(predicate: booking => booking.Id == request.Id,
             cancellationToken: token);
 }

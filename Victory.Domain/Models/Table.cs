@@ -10,5 +10,5 @@ public class Table : IDomainModel
 
     public int? BookingId { get; set; }
 
-    public virtual Booking? Booking { get; set; }
+    public Booking? Booking { get; set; }
 }

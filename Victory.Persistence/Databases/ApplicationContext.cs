@@ -2,20 +2,24 @@
 
 public class ApplicationContext : DbContext
 {
-    public ApplicationContext(DbContextOptions<ApplicationContext> options)
-        : base(options)
-    {
-        Database.EnsureCreated();
-    }
-
     public DbSet<FoodEntity> Foods => Set<FoodEntity>();
+
     public DbSet<FoodTypeEntity> FoodTypes => Set<FoodTypeEntity>();
+
     public DbSet<BookingEntity> Bookings => Set<BookingEntity>();
+
     public DbSet<TableEntity> Tables => Set<TableEntity>();
+
     public DbSet<ContactMessageEntity> ContactMessages => Set<ContactMessageEntity>();
+
     public DbSet<MailSubscriberEntity> MailSubscribers => Set<MailSubscriberEntity>();
+
     public DbSet<UserEntity> Users => Set<UserEntity>();
+
     public DbSet<UserRoleEntity> UserRoles => Set<UserRoleEntity>();
+
+    public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        : base(options) => Database.EnsureCreated();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

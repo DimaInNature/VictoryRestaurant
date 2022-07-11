@@ -8,7 +8,7 @@ public class User : IDomainModel
 
     public string Password { get; set; } = string.Empty;
 
-    public virtual UserRole? UserRole { get; set; }
+    public UserRole? UserRole { get; set; }
 
     public int? UserRoleId { get; set; }
 

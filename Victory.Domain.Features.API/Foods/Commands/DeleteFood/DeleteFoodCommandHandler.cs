@@ -9,8 +9,10 @@ public sealed record class DeleteFoodCommandHandler
 
     public async Task<Unit> Handle(DeleteFoodCommand request, CancellationToken token)
     {
-        var entity = await _context.Foods.FindAsync(
-            keyValues: new object[] { request.Id },
+        var entity = await _context.Foods
+            .AsNoTracking()
+            .Include(navigationPropertyPath: f => f.FoodType)
+            .FirstOrDefaultAsync(predicate: food => food.Id == request.Id,
             cancellationToken: token);
 
         if (entity is null) return Unit.Value;

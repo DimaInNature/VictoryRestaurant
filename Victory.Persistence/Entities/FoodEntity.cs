@@ -14,7 +14,7 @@ public class FoodEntity
 
     public string ImagePath { get; set; }
 
-    public virtual FoodTypeEntity? FoodType { get; set; }
+    public FoodTypeEntity? FoodType { get; set; }
 
     public int FoodTypeId { get; set; }
 }

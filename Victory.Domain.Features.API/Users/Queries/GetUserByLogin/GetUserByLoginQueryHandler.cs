@@ -8,7 +8,8 @@ public sealed record class GetUserByLoginQueryHandler
     public GetUserByLoginQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<UserEntity?> Handle(GetUserByLoginQuery request, CancellationToken token) =>
-        await _context.Users.FirstOrDefaultAsync(
-            predicate: user => user.Login == request.Login,
+        await _context.Users.AsNoTracking()
+        .Include(u => u.UserRole)
+        .FirstOrDefaultAsync(predicate: user => user.Login == request.Login,
             cancellationToken: token);
 }

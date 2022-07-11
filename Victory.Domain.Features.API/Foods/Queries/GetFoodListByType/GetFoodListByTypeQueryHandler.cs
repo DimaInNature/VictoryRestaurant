@@ -8,7 +8,9 @@ public sealed class GetFoodListByTypeQueryHandler
     public GetFoodListByTypeQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<FoodEntity>?> Handle(GetFoodListByTypeQuery request, CancellationToken token) =>
-        await _context.Foods.Where(
-            predicate: food => food.FoodType.Name == request.Type)
+        await _context.Foods
+        .AsNoTracking()
+        .Include(navigationPropertyPath: f => f.FoodType)
+        .Where(predicate: food => food.FoodType.Name == request.Type)
         .ToListAsync(cancellationToken: token);
 }

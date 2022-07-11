@@ -14,7 +14,7 @@ public class Food : IDomainModel
 
     public string? ImagePath { get; set; } = string.Empty;
 
-    public virtual FoodType? FoodType { get; set; }
+    public FoodType? FoodType { get; set; }
 
     public int? FoodTypeId { get; set; }
 }

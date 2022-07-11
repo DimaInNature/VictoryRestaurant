@@ -8,9 +8,6 @@ public static class DatabaseConfiguration
 
         services.AddDbContextPool<ApplicationContext>(options =>
         {
-            // Enable Lazy Loading
-            options.UseLazyLoadingProxies();
-
             // Set Connection String
 
             options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));

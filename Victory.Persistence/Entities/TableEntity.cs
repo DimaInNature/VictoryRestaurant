@@ -10,5 +10,5 @@ public class TableEntity
 
     public int? BookingId { get; set; }
 
-    public virtual BookingEntity? Booking { get; set; }
+    public BookingEntity? Booking { get; set; }
 }

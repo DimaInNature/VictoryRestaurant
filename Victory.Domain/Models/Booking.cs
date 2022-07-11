@@ -14,5 +14,5 @@ public class Booking : IDomainModel
 
     public int PersonCount { get; set; }
 
-    public virtual Table? Table { get; set; }
+    public Table? Table { get; set; }
 }

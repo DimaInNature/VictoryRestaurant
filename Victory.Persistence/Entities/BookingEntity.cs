@@ -15,5 +15,5 @@ public class BookingEntity
     public int PersonCount { get; set; }
 
     [JsonIgnore]
-    public virtual TableEntity? Table { get; set; }
+    public TableEntity? Table { get; set; }
 }

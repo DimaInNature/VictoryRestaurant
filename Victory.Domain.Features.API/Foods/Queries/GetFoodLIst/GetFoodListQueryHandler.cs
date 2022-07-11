@@ -8,5 +8,8 @@ public class GetFoodListQueryHandler
     public GetFoodListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<FoodEntity>?> Handle(GetFoodListQuery request, CancellationToken token) =>
-        await _context.Foods.ToListAsync(cancellationToken: token);
+        await _context.Foods
+        .AsNoTracking()
+        .Include(navigationPropertyPath: f => f.FoodType)
+        .ToListAsync(cancellationToken: token);
 }

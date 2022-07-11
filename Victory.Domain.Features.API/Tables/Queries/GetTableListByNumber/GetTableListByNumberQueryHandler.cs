@@ -8,7 +8,9 @@ public sealed record class GetTableListByNumberQueryHandler
     public GetTableListByNumberQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<TableEntity>?> Handle(GetTableListByNumberQuery request, CancellationToken token) =>
-        await _context.Tables.Where(
-            predicate: table => table.Number == request.Number)
+        await _context.Tables
+        .AsNoTracking()
+        .Include(navigationPropertyPath: t => t.Booking)
+        .Where(predicate: table => table.Number == request.Number)
         .ToListAsync(cancellationToken: token);
 }

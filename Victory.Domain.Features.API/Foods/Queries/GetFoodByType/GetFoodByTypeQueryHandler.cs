@@ -8,7 +8,9 @@ public sealed record class GetFoodByTypeQueryHandler
     public GetFoodByTypeQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<FoodEntity?> Handle(GetFoodByTypeQuery request, CancellationToken token) =>
-        await _context.Foods.FirstOrDefaultAsync(
-            predicate: food => food.FoodType.Name == request.Type,
+        await _context.Foods
+        .AsNoTracking()
+        .Include(navigationPropertyPath: f => f.FoodType)
+        .FirstOrDefaultAsync(predicate: food => food.FoodType.Name == request.Type,
             cancellationToken: token);
 }

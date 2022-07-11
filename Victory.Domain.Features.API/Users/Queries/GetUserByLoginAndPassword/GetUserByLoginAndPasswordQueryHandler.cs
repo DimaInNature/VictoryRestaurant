@@ -15,7 +15,10 @@ public sealed record class GetUserByLoginAndPasswordQueryHandler
             string.IsNullOrWhiteSpace(value: userLogin.Password))
             return null;
 
-        UserEntity? result = await _context.Users.FirstOrDefaultAsync(
+        UserEntity? result = await _context.Users
+            .AsNoTracking()
+            .Include(navigationPropertyPath: u => u.UserRole)
+            .FirstOrDefaultAsync(
             predicate: user => user.Login == userLogin.Login &&
             user.Password == userLogin.Password,
             cancellationToken: token);

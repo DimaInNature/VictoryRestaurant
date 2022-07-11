@@ -8,5 +8,8 @@ public sealed record class GetTableListQueryHandler
     public GetTableListQueryHandler(ApplicationContext context) => _context = context;
 
     public async Task<List<TableEntity>?> Handle(GetTableListQuery request, CancellationToken token) =>
-        await _context.Tables.ToListAsync(cancellationToken: token);
+        await _context.Tables
+        .AsNoTracking()
+        .Include(navigationPropertyPath: t => t.Booking)
+        .ToListAsync(cancellationToken: token);
 }

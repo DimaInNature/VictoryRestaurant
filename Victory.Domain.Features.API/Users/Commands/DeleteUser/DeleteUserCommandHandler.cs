@@ -9,8 +9,9 @@ public sealed record class DeleteUserCommandHandler
 
     public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken token)
     {
-        var userFromDb = await _context.Users.FindAsync(
-            keyValues: new object[] { request.Id },
+        var userFromDb = await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(predicate: user => user.Id == request.Id,
             cancellationToken: token);
 
         if (userFromDb is null) return Unit.Value;
