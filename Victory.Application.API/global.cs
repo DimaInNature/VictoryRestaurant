@@ -1,5 +1,4 @@
-﻿global using Microsoft.Extensions.Caching.Memory;
-global using Newtonsoft.Json;
+﻿global using Newtonsoft.Json;
 global using StackExchange.Redis;
 global using Victory.Domain.Authorization;
 global using Victory.Domain.Interfaces.API.Cache;

@@ -103,7 +103,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Victory.Application.Web\Victory.Application.Web.csproj" />
     <ProjectReference Include="..\Victory.Domain.Features.Consumers\Victory.Domain.Features.Consumers.csproj" />
-    <ProjectReference Include="..\Victory.Persistence.Repositories.Clients\Victory.Persistence.Repositories.Clients.csproj" />
+    <ProjectReference Include="..\Victory.Persistence.Repositories.Consumers\Victory.Persistence.Repositories.Consumers.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

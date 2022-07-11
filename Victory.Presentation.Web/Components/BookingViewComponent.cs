@@ -9,7 +9,7 @@ public class BookingViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        List<Table> freeTables = await _tableService.GetTableListAsync(status: "Свободен");
+        List<Table> freeTables = await _tableService.GetTableListAsync(status: "Free");
 
         ViewBag.IsExistFreeTables = freeTables.Any();
 
