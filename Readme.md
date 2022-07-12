@@ -18,7 +18,7 @@ If you liked my work - give a :star: ))
 - Swagger UI with JWT support
 - WPF & Xaml.Behaviours
 - Xamarin & Tools
-- Entity Framework Core 6 (Lazy & Proxies)
+- Entity Framework Core 6
 - SQLite
 - Microsoft DependencyInjection
 - Scrutor
