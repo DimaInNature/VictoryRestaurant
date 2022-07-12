@@ -2,12 +2,12 @@
 
 internal class ReadMailSubscribersViewModel : BaseReadViewModel<MailSubscriber>
 {
-    private readonly IMailSubscriberFacadeService _subscriberService;
+    private readonly IMailSubscriberRepositoryService _subscriberService;
 
     private readonly UserSessionService _userSessionService;
 
     public ReadMailSubscribersViewModel(
-        IMailSubscriberFacadeService subscriberService,
+        IMailSubscriberRepositoryService subscriberService,
         UserSessionService userSessionService)
     {
         (_subscriberService, _userSessionService) = (subscriberService, userSessionService);

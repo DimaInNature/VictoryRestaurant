@@ -4,16 +4,18 @@ internal sealed class UpdateUsersViewModel : BaseUpdateViewModel<User, UserRole>
 {
     #region Dependencies
 
-    private readonly IUserFacadeService _userService;
+    private readonly IUserRepositoryService _userService;
 
-    private readonly IUserRoleFacadeService _userRoleService;
+    private readonly IUserRoleRepositoryService _userRoleService;
 
     private readonly UserSessionService _sessionService;
 
     #endregion
 
-    public UpdateUsersViewModel(IUserFacadeService userService,
-        UserSessionService sessionService, IUserRoleFacadeService userRoleService)
+    public UpdateUsersViewModel(
+        IUserRepositoryService userService,
+        UserSessionService sessionService,
+        IUserRoleRepositoryService userRoleService)
     {
         (_userService, _userRoleService, _sessionService) = (userService, userRoleService, sessionService);
 

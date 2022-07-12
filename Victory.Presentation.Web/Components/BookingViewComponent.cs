@@ -2,9 +2,9 @@
 
 public class BookingViewComponent : ViewComponent
 {
-    private readonly ITableFacadeService _tableService;
+    private readonly ITableRepositoryService _tableService;
 
-    public BookingViewComponent(ITableFacadeService tableService) =>
+    public BookingViewComponent(ITableRepositoryService tableService) =>
         _tableService = tableService;
 
     public async Task<IViewComponentResult> InvokeAsync()

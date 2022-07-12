@@ -2,12 +2,12 @@
 
 internal sealed class ReadBookingsViewModel : BaseReadViewModel<Booking>
 {
-    private readonly IBookingFacadeService _bookingService;
+    private readonly IBookingRepositoryService _bookingService;
 
     private readonly UserSessionService _userSessionService;
 
     public ReadBookingsViewModel(
-        IBookingFacadeService bookingService,
+        IBookingRepositoryService bookingService,
         UserSessionService userSessionService)
     {
         (_bookingService, _userSessionService) = (bookingService, userSessionService);

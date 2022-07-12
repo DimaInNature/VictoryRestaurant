@@ -4,7 +4,7 @@ public class MailSubscriberController : Controller
 {
     [HttpPost("/MailSubscribers")]
     public async Task<IActionResult> CreateMailSubscriber(
-        [FromServices] IMailSubscriberFacadeService mailSubscriberService,
+        [FromServices] IMailSubscriberRepositoryService mailSubscriberService,
         [FromForm] MailSubscriber mailSubscriber)
     {
         await mailSubscriberService.CreateAsync(entity: mailSubscriber);

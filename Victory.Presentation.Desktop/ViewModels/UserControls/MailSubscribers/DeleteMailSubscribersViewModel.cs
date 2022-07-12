@@ -2,12 +2,12 @@
 
 internal sealed class DeleteMailSubscribersViewModel : BaseDeleteViewModel<MailSubscriber>
 {
-    private readonly IMailSubscriberFacadeService _subscriberService;
+    private readonly IMailSubscriberRepositoryService _subscriberService;
 
     private readonly UserSessionService _userSessionService;
 
     public DeleteMailSubscribersViewModel(
-        IMailSubscriberFacadeService subscriberService,
+        IMailSubscriberRepositoryService subscriberService,
         UserSessionService userSessionService)
     {
         (_subscriberService, _userSessionService) = (subscriberService, userSessionService);

@@ -102,9 +102,9 @@ internal sealed class CreateUsersViewModel : BaseCreateViewModel
 
     #region Dependencies
 
-    private readonly IUserFacadeService _userService;
+    private readonly IUserRepositoryService _userService;
 
-    private readonly IUserRoleFacadeService _userRoleSerivce;
+    private readonly IUserRoleRepositoryService _userRoleSerivce;
 
     private readonly UserSessionService _userSessionService;
 
@@ -113,8 +113,8 @@ internal sealed class CreateUsersViewModel : BaseCreateViewModel
     #endregion
 
     public CreateUsersViewModel(
-        IUserFacadeService userService,
-        IUserRoleFacadeService userRoleSerivce,
+        IUserRepositoryService userService,
+        IUserRoleRepositoryService userRoleSerivce,
         UserSessionService userSessionService)
     {
         (_userService, _userRoleSerivce, _userSessionService) = (userService, userRoleSerivce, userSessionService);

@@ -2,9 +2,9 @@
 
 internal sealed class ReadTablesViewModel : BaseReadViewModel<Table>
 {
-    private readonly ITableFacadeService _repository;
+    private readonly ITableRepositoryService _repository;
 
-    public ReadTablesViewModel(ITableFacadeService repository)
+    public ReadTablesViewModel(ITableRepositoryService repository)
     {
         _repository = repository;
 

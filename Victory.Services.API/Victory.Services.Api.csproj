@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.21.0" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
   </ItemGroup>
@@ -31,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.API\Victory.Application.API.csproj" />
+    <ProjectReference Include="..\Victory.Domain.API\Victory.Domain.API.csproj" />
     <ProjectReference Include="..\Victory.Domain.Features.API\Victory.Domain.Features.API.csproj" />
     <ProjectReference Include="..\Victory.Domain\Victory.Domain.csproj" />
     <ProjectReference Include="..\Victory.Persistence.Repositories.API\Victory.Persistence.Repositories.API.csproj" />

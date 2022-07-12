@@ -6,35 +6,31 @@ public static class DependencyInjectionConfiguration
     {
         if (services is null) throw new ArgumentNullException(nameof(services));
 
+        services.AddTransient(serviceType: typeof(ISyncCacheService<>), implementationType: typeof(InMemoryCacheService<>));
+
         services.AddTransient<IFoodRepositoryService, FoodRepositoryService>();
-        services.AddTransient<FoodRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<Food>, FoodMemoryCacheService>();
-        services.AddTransient<IFoodFacadeService, FoodFacadeService>();
+        services.Decorate<IFoodRepositoryService, FoodRepositoryLoggingService>();
+        services.Decorate<IFoodRepositoryService, FoodRepositoryCacheService>();
 
         services.AddTransient<IBookingRepositoryService, BookingRepositoryService>();
-        services.AddTransient<BookingRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<Booking>, BookingMemoryCacheService>();
-        services.AddTransient<IBookingFacadeService, BookingFacadeService>();
+        services.Decorate<IBookingRepositoryService, BookingRepositoryLoggingService>();
+        services.Decorate<IBookingRepositoryService, BookingRepositoryCacheService>();
 
         services.AddTransient<IContactMessageRepositoryService, ContactMessageRepositoryService>();
-        services.AddTransient<ContactMessageRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<ContactMessage>, ContactMessageMemoryCacheService>();
-        services.AddTransient<IContactMessageFacadeService, ContactMessageFacadeService>();
+        services.Decorate<IContactMessageRepositoryService, ContactMessageRepositoryLoggingService>();
+        services.Decorate<IContactMessageRepositoryService, ContactMessageRepositoryCacheService>();
 
         services.AddTransient<IMailSubscriberRepositoryService, MailSubscriberRepositoryService>();
-        services.AddTransient<MailSubscriberRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<MailSubscriber>, MailSubscriberMemoryCacheService>();
-        services.AddTransient<IMailSubscriberFacadeService, MailSubscriberFacadeService>();
+        services.Decorate<IMailSubscriberRepositoryService, MailSubscriberRepositoryLoggingService>();
+        services.Decorate<IMailSubscriberRepositoryService, MailSubscriberRepositoryCacheService>();
 
         services.AddTransient<IUserRepositoryService, UserRepositoryService>();
-        services.AddTransient<UserRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<User>, UserMemoryCacheService>();
-        services.AddTransient<IUserFacadeService, UserFacadeService>();
+        services.Decorate<IUserRepositoryService, UserRepositoryLoggingService>();
+        services.Decorate<IUserRepositoryService, UserRepositoryCacheService>();
 
         services.AddTransient<ITableRepositoryService, TableRepositoryService>();
-        services.AddTransient<TableRepositoryServiceLoggerDecorator>();
-        services.AddTransient<ICacheService<Table>, TableMemoryCacheService>();
-        services.AddTransient<ITableFacadeService, TableFacadeService>();
+        services.Decorate<ITableRepositoryService, TableRepositoryLoggingService>();
+        services.Decorate<ITableRepositoryService, TableRepositoryCacheService>();
 
         services.AddSingleton<APIFeaturesConfigurationService>();
     }

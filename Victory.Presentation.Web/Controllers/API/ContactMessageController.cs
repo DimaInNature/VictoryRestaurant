@@ -4,7 +4,7 @@ public class ContactMessageController : Controller
 {
     [HttpPost("/ContactMessages")]
     public async Task<IActionResult> CreateContactMessage(
-        [FromServices] IContactMessageFacadeService contactMessageService,
+        [FromServices] IContactMessageRepositoryService contactMessageService,
         [FromForm] ContactMessage contactMessage)
     {
         await contactMessageService.CreateAsync(contactMessage);

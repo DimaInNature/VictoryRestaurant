@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class UserRolesController : ControllerBase
 {
-    private readonly IUserRoleFacadeService _repository;
+    private readonly IUserRoleRepositoryService _repository;
 
-    public UserRolesController(IUserRoleFacadeService repository) => _repository = repository;
+    public UserRolesController(IUserRoleRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all user roles.

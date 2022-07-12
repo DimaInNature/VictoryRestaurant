@@ -2,12 +2,12 @@
 
 internal sealed class ReadContactMessagesViewModel : BaseReadViewModel<ContactMessage>
 {
-    private readonly IContactMessageFacadeService _messageService;
+    private readonly IContactMessageRepositoryService _messageService;
 
     private readonly UserSessionService _userSessionService;
 
     public ReadContactMessagesViewModel(
-        IContactMessageFacadeService messageService,
+        IContactMessageRepositoryService messageService,
         UserSessionService userSessionService)
     {
         (_messageService, _userSessionService) = (messageService, userSessionService);

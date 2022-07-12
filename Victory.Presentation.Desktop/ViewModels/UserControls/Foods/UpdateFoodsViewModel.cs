@@ -2,15 +2,15 @@
 
 internal sealed class UpdateFoodsViewModel : BaseUpdateViewModel<Food, FoodType>
 {
-    private readonly IFoodFacadeService _foodService;
+    private readonly IFoodRepositoryService _foodService;
 
-    private readonly IFoodTypeFacadeService _foodTypeService;
+    private readonly IFoodTypeRepositoryService _foodTypeService;
 
     private readonly UserSessionService _userSessionService;
 
     public UpdateFoodsViewModel(
-        IFoodFacadeService foodService,
-        IFoodTypeFacadeService foodTypeService,
+        IFoodRepositoryService foodService,
+        IFoodTypeRepositoryService foodTypeService,
         UserSessionService userSessionService)
     {
         (_foodService, _foodTypeService, _userSessionService) = (foodService, foodTypeService, userSessionService);

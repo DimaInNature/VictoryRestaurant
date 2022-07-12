@@ -2,9 +2,9 @@
 
 internal sealed class ReadFoodsViewModel : BaseReadViewModel<Food>
 {
-    private readonly IFoodFacadeService _foodRepository;
+    private readonly IFoodRepositoryService _foodRepository;
 
-    public ReadFoodsViewModel(IFoodFacadeService foodRepository)
+    public ReadFoodsViewModel(IFoodRepositoryService foodRepository)
     {
         _foodRepository = foodRepository;
 

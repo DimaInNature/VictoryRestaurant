@@ -21,6 +21,7 @@ If you liked my work - give a :star: ))
 - Entity Framework Core 6 (Lazy & Proxies)
 - SQLite
 - Microsoft DependencyInjection
+- Scrutor
 - Microsoft Logger
 - MediatR
 - CloudinaryDotNet
@@ -32,6 +33,6 @@ If you liked my work - give a :star: ))
 
 - Domain Driven Design (try)
 - CQRS
-- Facades, Decorators and Repositories
+- Decorators and Repositories
 - MVVM (Xamarin & WPF)
 - MVC (API, Web, Service)

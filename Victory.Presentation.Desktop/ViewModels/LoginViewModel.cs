@@ -110,7 +110,7 @@ internal sealed class LoginViewModel : BaseViewModel
 
     #region Dependencies
 
-    private readonly IUserFacadeService _userService;
+    private readonly IUserRepositoryService _userService;
 
     private readonly UserSessionService _sessionService;
 
@@ -118,7 +118,7 @@ internal sealed class LoginViewModel : BaseViewModel
 
     #endregion
 
-    public LoginViewModel(IUserFacadeService userService,
+    public LoginViewModel(IUserRepositoryService userService,
         UserSessionService sessionService)
     {
         _userService = userService;

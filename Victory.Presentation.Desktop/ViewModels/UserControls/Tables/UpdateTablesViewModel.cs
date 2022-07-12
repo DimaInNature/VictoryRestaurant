@@ -2,9 +2,9 @@
 
 internal sealed class UpdateTablesViewModel : BaseUpdateViewModel<Table>
 {
-    private readonly ITableFacadeService _tableRepository;
+    private readonly ITableRepositoryService _tableRepository;
 
-    public UpdateTablesViewModel(ITableFacadeService tableRepository)
+    public UpdateTablesViewModel(ITableRepositoryService tableRepository)
     {
         _tableRepository = tableRepository;
 

@@ -4,13 +4,13 @@ public class BookingController : Controller
 {
     [HttpPost("/Bookings")]
     public async Task<IActionResult> CreateBooking(
-        [FromServices] IBookingFacadeService bookingService,
-        [FromServices] ITableFacadeService tableService,
+        [FromServices] IBookingRepositoryService bookingService,
+        [FromServices] ITableRepositoryService tableService,
         DateTime date, string time, string name, string phone, int personCount)
     {
         // We get all the free tables
 
-        var freeTables = await tableService.GetTableListAsync(status: "Свободен");
+        var freeTables = await tableService.GetTableListAsync(status: "Free");
 
         // We check that there is at least one free table
 

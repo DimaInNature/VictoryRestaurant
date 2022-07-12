@@ -2,15 +2,15 @@
 
 internal sealed class DeleteBookingsViewModel : BaseDeleteViewModel<Booking>
 {
-    private readonly IBookingFacadeService _bookingService;
+    private readonly IBookingRepositoryService _bookingService;
 
-    private readonly ITableFacadeService _tableService;
+    private readonly ITableRepositoryService _tableService;
 
     private readonly UserSessionService _userSessionService;
 
     public DeleteBookingsViewModel(
-        IBookingFacadeService bookingService,
-        ITableFacadeService tableService,
+        IBookingRepositoryService bookingService,
+        ITableRepositoryService tableService,
         UserSessionService userSessionService)
     {
         (_bookingService, _tableService, _userSessionService) = (bookingService, tableService, userSessionService);

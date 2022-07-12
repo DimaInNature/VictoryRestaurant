@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class ContactMessagesController : ControllerBase
 {
-    private readonly IContactMessageFacadeService _repository;
+    private readonly IContactMessageRepositoryService _repository;
 
-    public ContactMessagesController(IContactMessageFacadeService repository) => _repository = repository;
+    public ContactMessagesController(IContactMessageRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all contact messages.

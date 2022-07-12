@@ -34,7 +34,7 @@ internal sealed class CreateTablesViewModel : BaseCreateViewModel
 
     #region Dependencies
 
-    private readonly ITableFacadeService _tableRepository;
+    private readonly ITableRepositoryService _tableRepository;
 
     private readonly UserSessionService _userSessionService;
 
@@ -43,7 +43,7 @@ internal sealed class CreateTablesViewModel : BaseCreateViewModel
     #endregion
 
     public CreateTablesViewModel(
-        ITableFacadeService tableRepository,
+        ITableRepositoryService tableRepository,
         UserSessionService userSessionService)
     {
         (_tableRepository, _userSessionService) = (tableRepository, userSessionService);

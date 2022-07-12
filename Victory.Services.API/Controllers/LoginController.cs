@@ -6,11 +6,11 @@ public class LoginController : ControllerBase
 {
     private readonly IConfiguration _config;
 
-    private readonly IUserFacadeService _userFacadeService;
+    private readonly IUserRepositoryService _userFacadeService;
 
     public LoginController(
         IConfiguration config,
-        IUserFacadeService userFacadeService) =>
+        IUserRepositoryService userFacadeService) =>
         (_config, _userFacadeService) = (config, userFacadeService);
 
     [AllowAnonymous]

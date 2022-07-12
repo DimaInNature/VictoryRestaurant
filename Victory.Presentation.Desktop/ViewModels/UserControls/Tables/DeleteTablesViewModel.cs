@@ -2,12 +2,12 @@
 
 internal sealed class DeleteTablesViewModel : BaseDeleteViewModel<Table>
 {
-    private readonly ITableFacadeService _tableRepository;
+    private readonly ITableRepositoryService _tableRepository;
 
     private readonly UserSessionService _userSessionService;
 
     public DeleteTablesViewModel(
-        ITableFacadeService tableRepository,
+        ITableRepositoryService tableRepository,
         UserSessionService userSessionService)
     {
         (_tableRepository, _userSessionService) = (tableRepository, userSessionService);

@@ -2,9 +2,9 @@
 
 public class FoodMenuViewComponent : ViewComponent
 {
-    private readonly IFoodFacadeService _foodService;
+    private readonly IFoodRepositoryService _foodService;
 
-    public FoodMenuViewComponent(IFoodFacadeService foodService) => _foodService = foodService;
+    public FoodMenuViewComponent(IFoodRepositoryService foodService) => _foodService = foodService;
 
     public async Task<IViewComponentResult> InvokeAsync(string foodType, DisplaySide side)
     {

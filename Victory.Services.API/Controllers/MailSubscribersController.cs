@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class MailSubscribersController : ControllerBase
 {
-    private readonly IMailSubscriberFacadeService _repository;
+    private readonly IMailSubscriberRepositoryService _repository;
 
-    public MailSubscribersController(IMailSubscriberFacadeService repository) => _repository = repository;
+    public MailSubscribersController(IMailSubscriberRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all mail subscribers.

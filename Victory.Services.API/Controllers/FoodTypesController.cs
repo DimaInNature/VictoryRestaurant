@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class FoodTypesController : ControllerBase
 {
-    private readonly IFoodTypeFacadeService _repository;
+    private readonly IFoodTypeRepositoryService _repository;
 
-    public FoodTypesController(IFoodTypeFacadeService repository) => _repository = repository;
+    public FoodTypesController(IFoodTypeRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all food types.

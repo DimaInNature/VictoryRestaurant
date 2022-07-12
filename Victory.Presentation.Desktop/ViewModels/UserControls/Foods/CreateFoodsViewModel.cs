@@ -140,9 +140,9 @@ internal sealed class CreateFoodsViewModel : BaseCreateViewModel
 
     #region Dependencies
 
-    private readonly IFoodFacadeService _foodService;
+    private readonly IFoodRepositoryService _foodService;
 
-    private readonly IFoodTypeFacadeService _foodTypeService;
+    private readonly IFoodTypeRepositoryService _foodTypeService;
 
     private readonly ImageUploaderService _imageUploader;
 
@@ -153,9 +153,9 @@ internal sealed class CreateFoodsViewModel : BaseCreateViewModel
     #endregion
 
     public CreateFoodsViewModel(
-        IFoodFacadeService foodService,
+        IFoodRepositoryService foodService,
         ImageUploaderService imageUploader,
-        IFoodTypeFacadeService foodTypeService,
+        IFoodTypeRepositoryService foodTypeService,
         UserSessionService userSessionService)
     {
         (_foodService, _imageUploader, _foodTypeService, _userSessionService) =

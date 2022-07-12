@@ -169,10 +169,11 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Application.Desktop\Victory.Application.Desktop.csproj" />
+    <ProjectReference Include="..\Victory.Domain.Consumers\Victory.Domain.Consumers.csproj" />
     <ProjectReference Include="..\Victory.Domain.Core\Victory.Domain.Core.csproj" />
     <ProjectReference Include="..\Victory.Domain.Features.Consumers\Victory.Domain.Features.Consumers.csproj" />
     <ProjectReference Include="..\Victory.Infra.Configuration.Services\Victory.Infra.Configuration.Services.csproj" />

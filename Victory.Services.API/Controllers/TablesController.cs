@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class TablesController : ControllerBase
 {
-    private readonly ITableFacadeService _repository;
+    private readonly ITableRepositoryService _repository;
 
-    public TablesController(ITableFacadeService repository) => _repository = repository;
+    public TablesController(ITableRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all tables.

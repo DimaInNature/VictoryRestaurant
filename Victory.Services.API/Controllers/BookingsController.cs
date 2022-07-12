@@ -5,9 +5,9 @@
 [Route(template: "[controller]")]
 public class BookingsController : ControllerBase
 {
-    private readonly IBookingFacadeService _repository;
+    private readonly IBookingRepositoryService _repository;
 
-    public BookingsController(IBookingFacadeService repository) => _repository = repository;
+    public BookingsController(IBookingRepositoryService repository) => _repository = repository;
 
     /// <summary>
     /// Get all bookings.

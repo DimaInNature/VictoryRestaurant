@@ -2,12 +2,12 @@
 
 internal sealed class DeleteFoodsViewModel : BaseDeleteViewModel<Food>
 {
-    private readonly IFoodFacadeService _foodService;
+    private readonly IFoodRepositoryService _foodService;
 
     private readonly UserSessionService _userSessionService;
 
     public DeleteFoodsViewModel(
-        IFoodFacadeService foodService,
+        IFoodRepositoryService foodService,
         UserSessionService userSessionService)
     {
         (_foodService, _userSessionService) = (foodService, userSessionService);

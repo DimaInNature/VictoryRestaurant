@@ -2,12 +2,12 @@
 
 internal sealed class DeleteUsersViewModel : BaseDeleteViewModel<User>
 {
-    private readonly IUserFacadeService _userService;
+    private readonly IUserRepositoryService _userService;
 
     private readonly UserSessionService _sessionService;
 
     public DeleteUsersViewModel(
-        IUserFacadeService userService,
+        IUserRepositoryService userService,
         UserSessionService sessionService)
     {
         (_userService, _sessionService) = (userService, sessionService);
