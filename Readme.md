@@ -22,7 +22,7 @@ If you liked my work - give a :star: ))
 - SQLite
 - Microsoft DependencyInjection
 - Scrutor
-- Microsoft Logger
+- Microsoft Logger & Serilog
 - MediatR
 - CloudinaryDotNet
 - MailKit

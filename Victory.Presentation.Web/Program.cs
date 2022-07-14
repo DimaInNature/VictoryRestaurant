@@ -14,6 +14,9 @@ Configure(app: app);
 
 void RegisterServices(IServiceCollection services)
 {
+    // Logging
+    services.UseLoggingConfiguration(hostBuilder: builder.Host);
+
     services.AddControllersWithViews(options =>
     {
         options.CacheProfiles.Add(key: "Caching",

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{7D6EE83C-C523-460C-882A-03FBC171F639}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Services", "3 - Services", "{7D6EE83C-C523-460C-882A-03FBC171F639}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{FD8E8B90-0CCC-4F44-9810-00502EA47469}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{FD8E8B90-0CCC-4F44-9810-00502EA47469}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infra", "5 - Infra", "{09326AE2-C786-4F7C-B418-60DDD9377B6B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Infra", "6 - Infra", "{09326AE2-C786-4F7C-B418-60DDD9377B6B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain", "Victory.Domain\Victory.Domain.csproj", "{0138E5E5-9B66-4E86-B440-C1BF901A5E7C}"
 EndProject
@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.Core", "Vict
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4 - Core", "3.4 - Core", "{A3B50B5A-BA58-47E4-B805-9C2BC988D4F4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Persistence", "4 - Persistence", "{29A7BAB1-6732-4042-A75A-EB5F5B2509DA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Persistence", "5 - Persistence", "{29A7BAB1-6732-4042-A75A-EB5F5B2509DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Persistence", "Victory.Persistence\Victory.Persistence.csproj", "{F3FD9913-00F6-422B-AF39-ABCCF61CB7B8}"
 EndProject
@@ -78,9 +78,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Persistence.Reposit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.Interfaces.Consumers", "Victory.Domain.Interfaces.Consumers\Victory.Domain.Interfaces.Consumers.csproj", "{01D3C49C-2805-442A-935B-C2B2D2B82A0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Domain.API", "Victory.Domain.API\Victory.Domain.API.csproj", "{570C09C9-B64C-4042-8EBB-F39F8C97A2E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.API", "Victory.Domain.API\Victory.Domain.API.csproj", "{570C09C9-B64C-4042-8EBB-F39F8C97A2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Domain.Consumers", "Victory.Domain.Consumers\Victory.Domain.Consumers.csproj", "{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.Consumers", "Victory.Domain.Consumers\Victory.Domain.Consumers.csproj", "{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{BE1D4E3F-AF33-4E63-82E6-DB26A180EC67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Application", "Victory.Application\Victory.Application.csproj", "{338432CF-95B5-4E86-AE31-6BE687380ED8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,6 +174,10 @@ Global
 		{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338432CF-95B5-4E86-AE31-6BE687380ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338432CF-95B5-4E86-AE31-6BE687380ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338432CF-95B5-4E86-AE31-6BE687380ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338432CF-95B5-4E86-AE31-6BE687380ED8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,6 +219,8 @@ Global
 		{01D3C49C-2805-442A-935B-C2B2D2B82A0B} = {BCCBDB39-AED3-4989-A02C-4E7A3D17D53A}
 		{570C09C9-B64C-4042-8EBB-F39F8C97A2E1} = {FD8E8B90-0CCC-4F44-9810-00502EA47469}
 		{3C6C64AB-22F1-4D03-BB71-CFCE5F52D741} = {FD8E8B90-0CCC-4F44-9810-00502EA47469}
+		{BE1D4E3F-AF33-4E63-82E6-DB26A180EC67} = {80AC77A1-2A70-46F7-A1E3-B14FC4DA33CA}
+		{338432CF-95B5-4E86-AE31-6BE687380ED8} = {BE1D4E3F-AF33-4E63-82E6-DB26A180EC67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB852FAF-4DD3-4243-AA55-0361ED92A603}

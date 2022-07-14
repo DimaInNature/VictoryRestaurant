@@ -99,9 +99,11 @@
   <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Scrutor" Version="4.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Victory.Application\Victory.Application.csproj" />
     <ProjectReference Include="..\Victory.Domain.Consumers\Victory.Domain.Consumers.csproj" />
     <ProjectReference Include="..\Victory.Domain.Features.Consumers\Victory.Domain.Features.Consumers.csproj" />
     <ProjectReference Include="..\Victory.Persistence.Repositories.Consumers\Victory.Persistence.Repositories.Consumers.csproj" />
