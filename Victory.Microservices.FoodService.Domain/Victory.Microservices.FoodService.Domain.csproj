@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Victory.Domain.Features.API\Victory.Domain.Features.API.csproj" />
-    <ProjectReference Include="..\Victory.Domain.Interfaces.API\Victory.Domain.Interfaces.API.csproj" />
+    <ProjectReference Include="..\Victory.Microservices.FoodService.Persistence\Victory.Microservices.FoodService.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

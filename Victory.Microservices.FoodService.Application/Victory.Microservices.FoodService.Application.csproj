@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Microservices.FoodService.Domain\Victory.Microservices.FoodService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

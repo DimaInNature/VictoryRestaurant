@@ -1,0 +1,1 @@
+﻿global using Victory.Microservices.FoodService.Domain.Interfaces;
