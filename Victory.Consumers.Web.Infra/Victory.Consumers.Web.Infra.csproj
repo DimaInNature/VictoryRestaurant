@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Consumers.Web.Application\Victory.Consumers.Web.Application.csproj" />
+    <ProjectReference Include="..\Victory.Consumers.Web.Domain.Core\Victory.Consumers.Web.Domain.Core.csproj" />
+    <ProjectReference Include="..\Victory.Consumers.Web.Domain\Victory.Consumers.Web.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

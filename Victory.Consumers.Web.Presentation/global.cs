@@ -1,0 +1,12 @@
+﻿global using MediatR;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.ResponseCompression;
+global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Serilog;
+global using Serilog.Events;
+global using System.IO.Compression;
+global using Victory.Consumers.Web.Application.Behaviors;
+global using Victory.Consumers.Web.Infra.IoC;
+global using Victory.Consumers.Web.Infra.IoC.MediatR;
+global using Victory.Consumers.Web.Presentation.Configurations;

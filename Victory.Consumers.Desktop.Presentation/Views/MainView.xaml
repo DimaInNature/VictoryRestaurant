@@ -1,0 +1,462 @@
+﻿<Window
+    x:Class="Victory.Consumers.Desktop.Presentation.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Victory.Consumers.Desktop.Presentation.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Victory - Home"
+    Width="800"
+    Height="600"
+    MinWidth="800"
+    MinHeight="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseLeftButtonDown="Window_MouseLeftDown"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="10" />
+    </WindowChrome.WindowChrome>
+
+    <Border Background="{StaticResource BaseColorBackground}" CornerRadius="20">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.335*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.100*" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--#region Logo-->
+
+            <Border
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Panel.ZIndex="1"
+                Background="{StaticResource BaseColorWindow}">
+
+                <Grid Margin="5,0,0,0">
+
+                    <TextBlock
+                        Margin="0,2,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontFamily="Spectral Light"
+                        FontSize="22"
+                        FontStyle="Italic"
+                        Foreground="{StaticResource LogoBackground}"
+                        Text="Victory" />
+
+                </Grid>
+
+            </Border>
+
+            <!--#endregion-->
+
+            <!--#region Menu-->
+
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0">
+
+                <RadioButton
+                    x:Name="HomeMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="HomeButton_Click"
+                    Content="Home"
+                    FontSize="14"
+                    Foreground="#f2745f"
+                    IsChecked="True"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="ViewMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="ViewButton_Click"
+                    Content="View"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="CreateMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="CreateButton_Click"
+                    Content="Create"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="UpdateMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="UpdateButton_Click"
+                    Content="Update"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="DeleteMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="DeleteButton_Click"
+                    Content="Delete"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="SMTPMailingMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="SMTPMailingMenuButton_Click"
+                    Content="SMTP Mailing"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+                <RadioButton
+                    x:Name="LogoutMenuButton"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="LogoutMenuButton_Click"
+                    Content="Log Out"
+                    FontSize="14"
+                    Style="{StaticResource ac_MenuButtonStyle}" />
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region Top-->
+
+            <Grid Grid.Row="0" Grid.Column="0">
+
+                <Viewbox
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        x:Name="ActiveUserNameTextBlock"
+                        FontFamily="Spectral Light"
+                        FontStyle="Italic"
+                        FontWeight="ExtraLight" />
+                </Viewbox>
+
+
+            </Grid>
+
+            <Border Grid.Column="1" Background="{StaticResource BaseColorWindow}">
+
+                <Grid>
+
+                    <Button
+                        x:Name="RollUpButton"
+                        Margin="0,0,90,20"
+                        Click="RollUpButton_Click"
+                        Style="{StaticResource c_ControlButtonRollUpStyle}" />
+
+                    <Button
+                        x:Name="MaximazedButton"
+                        Margin="0,0,55,20"
+                        Click="MaximazedButton_Click"
+                        Style="{StaticResource c_ControlButtonMaximazedStyle}" />
+
+                    <Button
+                        x:Name="ExitButton"
+                        Margin="0,0,20,20"
+                        Click="ExitButton_Click"
+                        Style="{StaticResource c_ControlButtonCloseStyle}" />
+
+                </Grid>
+
+            </Border>
+
+            <!--#endregion-->
+
+            <!--#region Body-->
+
+            <!--#region Home-->
+
+            <Grid
+                x:Name="HomeBody"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Visibility="Visible">
+
+                <Grid
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*" />
+                        <RowDefinition Height="85*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+
+                        <Border
+                            MaxWidth="1100"
+                            MaxHeight="420"
+                            Margin="5,5,10,5"
+                            CornerRadius="10">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Viewbox
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="9"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="{StaticResource BaseFontFamily}"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Elity European Restaurant"
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="-5"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="Spectral SemiBold"
+                                        FontWeight="SemiBold"
+                                        Foreground="White"
+                                        Text="VICTORY"
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="10"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        FontFamily="{StaticResource BaseFontFamily}"
+                                        Foreground="White"
+                                        Text="Only the most delicious and delicious dishes from all corners of the old world."
+                                        TextWrapping="Wrap" />
+
+                                </Viewbox>
+
+                                <Viewbox
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Margin="5"
+                                    HorizontalAlignment="Center">
+
+                                    <Button
+                                        x:Name="MainMenuButton"
+                                        Width="300"
+                                        Height="70"
+                                        Margin="-5"
+                                        Click="MainMenuButton_Click"
+                                        Content="Menu" />
+
+                                </Viewbox>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.RowSpan="8"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Panel.ZIndex="-1"
+                                    RenderOptions.BitmapScalingMode="LowQuality"
+                                    Source="/Content/Images/Controls/Other/banner-bg.jpg"
+                                    Stretch="Fill" />
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="1"
+                        Margin="5"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*" />
+                            <RowDefinition Height="200*" />
+                        </Grid.RowDefinitions>
+
+                        <Viewbox HorizontalAlignment="Center">
+                            <TextBlock Text="Quick transition" />
+                        </Viewbox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                x:Name="OpenWebButton"
+                                Grid.Column="0"
+                                Click="OpenWebButton_Click"
+                                Content="Web"
+                                Style="{StaticResource c_WebButtonStyle}" />
+
+                            <Button
+                                x:Name="OpenAPIButton"
+                                Grid.Column="1"
+                                Click="OpenAPIButton_Click"
+                                Content="API"
+                                Style="{StaticResource c_APIButtonStyle}" />
+
+                            <Button
+                                x:Name="OpenImageCloud"
+                                Grid.Column="2"
+                                Click="OpenImageCloud_Click"
+                                Content="Image Cloud"
+                                Style="{StaticResource c_ImageCloudButtonStyle}" />
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region MainMenu-->
+
+            <Grid
+                x:Name="MainMenuBody"
+                Grid.Row="1"
+                Grid.Column="1"
+                Visibility="Collapsed">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Button
+                    x:Name="UpdateButton"
+                    Grid.Row="0"
+                    Margin="15"
+                    Click="UpdateButton_Click"
+                    Content="Update"
+                    FontSize="70" />
+
+                <Grid Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        x:Name="CreateButton"
+                        Grid.Column="0"
+                        Margin="15,0,10,15"
+                        Click="CreateButton_Click"
+                        Content="Create"
+                        FontSize="30" />
+
+                    <Button
+                        x:Name="DeleteButton"
+                        Grid.Column="1"
+                        Margin="10,0,15,15"
+                        Click="DeleteButton_Click"
+                        Content="Delete"
+                        FontSize="14" />
+
+                    <Button
+                        x:Name="ViewButton"
+                        Grid.Column="2"
+                        Margin="10,0,10,15"
+                        Click="ViewButton_Click"
+                        Content="View"
+                        FontSize="27" />
+
+                    <Button
+                        x:Name="SmtpMailingButton"
+                        Grid.Column="3"
+                        Margin="10,0,10,15"
+                        Click="SmtpMailingButton_Click"
+                        Content="SMTP Mailing"
+                        FontSize="27" />
+
+                </Grid>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#endregion-->
+
+            <Frame
+                x:Name="MenuFrame"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,10,25,10"
+                Content="{x:Null}"
+                NavigationUIVisibility="Hidden"
+                Visibility="Collapsed" />
+
+        </Grid>
+
+    </Border>
+
+</Window>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Victory.Consumers.Desktop.Application\Victory.Consumers.Desktop.Application.csproj" />
+    <ProjectReference Include="..\Victory.Consumers.Desktop.Domain.Core\Victory.Consumers.Desktop.Domain.Core.csproj" />
+    <ProjectReference Include="..\Victory.Consumers.Desktop.Domain\Victory.Consumers.Desktop.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

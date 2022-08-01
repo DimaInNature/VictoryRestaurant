@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Victory.Persistence.Repositories.Consumers": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52605;http://localhost:52617"
+    }
+  }
+}

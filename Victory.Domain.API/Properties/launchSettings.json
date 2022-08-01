@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Victory.Domain.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52609;http://localhost:52618"
+    }
+  }
+}

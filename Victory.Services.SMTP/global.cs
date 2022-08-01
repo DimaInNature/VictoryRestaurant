@@ -2,7 +2,6 @@
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.OpenApi.Models;
 global using System.Reflection;
-global using Victory.Application.SMTP.Data;
 global using Victory.Application.SMTP.Messages;
 global using Victory.Domain.Features.Consumers.MailSubscribers;
 global using Victory.Domain.Interfaces.Consumers.Data.MailSubscribers;
