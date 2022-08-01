@@ -43,8 +43,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Repositories", "4.1 -
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Persistence.Repositories.API", "Victory.Persistence.Repositories.API\Victory.Persistence.Repositories.API.csproj", "{56018659-470A-402E-A027-D9F1054C46C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Services.SMTP", "Victory.Services.SMTP\Victory.Services.SMTP.csproj", "{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 - Abstract", "3.2 - Abstract", "{21F89B82-00F9-478F-8646-CB925C9D45A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Domain.Abstract", "Victory.Domain.Abstract\Victory.Domain.Abstract.csproj", "{2C1A3B51-3EB8-4499-B501-2B35921DEA68}"
@@ -134,21 +132,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1.4 - Persistence", "3.1.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1.5 - Infra", "3.1.5 - Infra", "{681B2D43-4809-4A64-9AF3-8308649715AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Infra", "Victory.Microservices.SMTP.Infra\Victory.Microservices.SMTP.Infra.csproj", "{3EA9D50E-630E-43F0-89A3-0E28359EE9F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Infra", "Victory.Microservices.SMTP.Infra\Victory.Microservices.SMTP.Infra.csproj", "{3EA9D50E-630E-43F0-89A3-0E28359EE9F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Persistence", "Victory.Microservices.SMTP.Persistence\Victory.Microservices.SMTP.Persistence.csproj", "{35C85DD2-C969-43D4-8A08-EA31328836CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Persistence", "Victory.Microservices.SMTP.Persistence\Victory.Microservices.SMTP.Persistence.csproj", "{35C85DD2-C969-43D4-8A08-EA31328836CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Domain.Core", "Victory.Microservices.SMTP.Domain.Core\Victory.Microservices.SMTP.Domain.Core.csproj", "{41008143-44AA-4248-BF06-56008D61C319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Domain.Core", "Victory.Microservices.SMTP.Domain.Core\Victory.Microservices.SMTP.Domain.Core.csproj", "{41008143-44AA-4248-BF06-56008D61C319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Domain", "Victory.Microservices.SMTP.Domain\Victory.Microservices.SMTP.Domain.csproj", "{2192580F-3ACE-40D2-9346-8F22C8ACCE62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Domain", "Victory.Microservices.SMTP.Domain\Victory.Microservices.SMTP.Domain.csproj", "{2192580F-3ACE-40D2-9346-8F22C8ACCE62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Persistence", "4.1 - Persistence", "{5BEC151E-EC0B-4266-9EF7-4C25F1A3EB6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Shared.Persistence", "Victory.Shared.Persistence\Victory.Shared.Persistence.csproj", "{A26555C6-C8EB-438F-83B2-51D8173B298A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Shared.Persistence", "Victory.Shared.Persistence\Victory.Shared.Persistence.csproj", "{A26555C6-C8EB-438F-83B2-51D8173B298A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Application", "Victory.Microservices.SMTP.Application\Victory.Microservices.SMTP.Application.csproj", "{F184A545-9A01-4113-A599-9B90AB806646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Application", "Victory.Microservices.SMTP.Application\Victory.Microservices.SMTP.Application.csproj", "{F184A545-9A01-4113-A599-9B90AB806646}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victory.Microservices.SMTP.Presentation", "Victory.Microservices.SMTP.Presentation\Victory.Microservices.SMTP.Presentation.csproj", "{E83CA799-DA76-4C93-9DA0-5F8FB28DE9C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Victory.Microservices.SMTP.Presentation", "Victory.Microservices.SMTP.Presentation\Victory.Microservices.SMTP.Presentation.csproj", "{E83CA799-DA76-4C93-9DA0-5F8FB28DE9C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -198,10 +196,6 @@ Global
 		{56018659-470A-402E-A027-D9F1054C46C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56018659-470A-402E-A027-D9F1054C46C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56018659-470A-402E-A027-D9F1054C46C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C1A3B51-3EB8-4499-B501-2B35921DEA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -323,7 +317,6 @@ Global
 		{F3FD9913-00F6-422B-AF39-ABCCF61CB7B8} = {29A7BAB1-6732-4042-A75A-EB5F5B2509DA}
 		{9530DD1A-909D-42F1-BE51-6EC8BBC477FD} = {29A7BAB1-6732-4042-A75A-EB5F5B2509DA}
 		{56018659-470A-402E-A027-D9F1054C46C8} = {9530DD1A-909D-42F1-BE51-6EC8BBC477FD}
-		{4F1DA96A-DF1F-490F-BC55-3F87891DA4DE} = {233C8813-5619-4A8F-BF20-328C6A517CDB}
 		{21F89B82-00F9-478F-8646-CB925C9D45A5} = {FD8E8B90-0CCC-4F44-9810-00502EA47469}
 		{2C1A3B51-3EB8-4499-B501-2B35921DEA68} = {21F89B82-00F9-478F-8646-CB925C9D45A5}
 		{1F63CD61-6B84-49A1-BA57-D05ED18484D0} = {FD8E8B90-0CCC-4F44-9810-00502EA47469}

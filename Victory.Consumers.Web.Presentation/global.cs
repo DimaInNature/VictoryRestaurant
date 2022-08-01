@@ -7,6 +7,8 @@ global using Serilog;
 global using Serilog.Events;
 global using System.IO.Compression;
 global using Victory.Consumers.Web.Application.Behaviors;
+global using Victory.Consumers.Web.Domain.Core.Models;
+global using Victory.Consumers.Web.Domain.Interfaces.Tables;
 global using Victory.Consumers.Web.Infra.IoC;
 global using Victory.Consumers.Web.Infra.IoC.MediatR;
 global using Victory.Consumers.Web.Presentation.Configurations;

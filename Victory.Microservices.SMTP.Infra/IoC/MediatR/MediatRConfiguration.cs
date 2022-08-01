@@ -9,5 +9,7 @@ public static class MediatRConfiguration
         services.AddMediatR(assemblies: Assembly.GetExecutingAssembly());
 
         services.AddMailSubscriberMediatRProfile();
+
+        services.AddMailingMediatRProfile();
     }
 }

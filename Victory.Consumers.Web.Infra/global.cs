@@ -11,6 +11,7 @@ global using Victory.Consumers.Web.Domain.Commands.Bookings;
 global using Victory.Consumers.Web.Domain.Commands.ContactMessages;
 global using Victory.Consumers.Web.Domain.Commands.MailSubscribers;
 global using Victory.Consumers.Web.Domain.Commands.Tables;
+global using Victory.Consumers.Web.Domain.Configurations;
 global using Victory.Consumers.Web.Domain.Core.Models;
 global using Victory.Consumers.Web.Domain.Interfaces.Bookings;
 global using Victory.Consumers.Web.Domain.Interfaces.Cache;

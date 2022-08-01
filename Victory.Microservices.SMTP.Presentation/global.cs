@@ -1,3 +1,12 @@
-﻿global using Microsoft.AspNetCore.Mvc;
+﻿global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.OpenApi.Models;
+global using System.Reflection;
+global using Victory.Microservices.SMTP.Domain.Configurations;
 global using Victory.Microservices.SMTP.Domain.Core.Models;
 global using Victory.Microservices.SMTP.Domain.Interfaces;
+global using Victory.Microservices.SMTP.Infra.IoC;
+global using Victory.Microservices.SMTP.Infra.IoC.MediatR;
+global using Victory.Microservices.SMTP.Persistence.Entities;
+global using Victory.Microservices.SMTP.Persistence.IoC;
+global using Victory.Microservices.SMTP.Presentation.Configurations;

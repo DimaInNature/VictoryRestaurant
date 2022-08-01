@@ -1,4 +1,10 @@
-﻿global using MediatR;
+﻿global using MailKit.Net.Smtp;
+global using MediatR;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Logging;
+global using MimeKit;
+global using MimeKit.Text;
 global using Victory.Microservices.SMTP.Domain.Core.Models;
+global using Victory.Microservices.SMTP.Domain.Interfaces;
 global using Victory.Microservices.SMTP.Persistence.Entities;
 global using Victory.Shared.Persistence.Interfaces;

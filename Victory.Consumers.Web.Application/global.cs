@@ -1,6 +1,7 @@
 ﻿global using MediatR;
 global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Logging;
+global using Serilog;
 global using Victory.Consumers.Web.Domain.Commands.Bookings;
 global using Victory.Consumers.Web.Domain.Commands.ContactMessages;
 global using Victory.Consumers.Web.Domain.Commands.MailSubscribers;

@@ -7,5 +7,9 @@ public static class DependencyInjectionConfiguration
         ArgumentNullException.ThrowIfNull(argument: services);
 
         services.AddTransient<IGenericRepository<MailSubscriberEntity>, GenericRepository<MailSubscriberEntity>>();
+
+        services.AddTransient<IMailSubscriberService, MailSubscriberService>();
+
+        services.AddTransient<ISMTPService, SMTPService>();
     }
 }

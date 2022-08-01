@@ -2,7 +2,7 @@
 
 public sealed class SMTPDbContext : DbContext
 {
-    public DbSet<MailSubscriberEntity> ContactMessages => Set<MailSubscriberEntity>();
+    public DbSet<MailSubscriberEntity> MailSubscribers => Set<MailSubscriberEntity>();
 
     public SMTPDbContext(DbContextOptions<SMTPDbContext> options)
        : base(options) => Database.EnsureCreated();

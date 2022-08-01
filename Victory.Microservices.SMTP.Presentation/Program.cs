@@ -18,11 +18,13 @@ void RegisterServices(IServiceCollection services)
 {
     services.AddCors();
 
+    services.AddDatabaseConfiguration(configuration: builder.Configuration);
+
     // Swagger
     services.AddSwaggerConfiguration();
 
     // .NET Native DI Abstraction
-    services.AddDependencyInjectionConfiguration();
+    services.RegisterServices();
 
     // MediatR
     services.AddMediatRConfiguration();

@@ -25,7 +25,7 @@ public class MailMessagesController : ControllerBase
     /// </remarks>
     /// <response code="204">Success.</response>
     /// <response code="400">If an error has occurred.</response>
-    [Tags(tags: "Send")]
+    [Tags(tags: "Mailing")]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
     [HttpPost(template: "/Send/All")]

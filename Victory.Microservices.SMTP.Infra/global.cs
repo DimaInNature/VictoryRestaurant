@@ -1,7 +1,10 @@
 ﻿global using MediatR;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
+global using Victory.Microservices.SMTP.Application.Services;
+global using Victory.Microservices.SMTP.Domain.Commands.Mailings;
 global using Victory.Microservices.SMTP.Domain.Commands.MailSubscribers;
+global using Victory.Microservices.SMTP.Domain.Interfaces;
 global using Victory.Microservices.SMTP.Domain.Queries.MailSubscribers;
 global using Victory.Microservices.SMTP.Infra.IoC.MediatR.Profiles;
 global using Victory.Microservices.SMTP.Persistence.Entities;

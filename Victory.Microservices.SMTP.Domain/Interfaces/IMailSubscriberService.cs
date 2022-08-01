@@ -14,5 +14,5 @@ public interface IMailSubscriberService
 
     Task UpdateAsync(MailSubscriberEntity entity);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(int id);
 }

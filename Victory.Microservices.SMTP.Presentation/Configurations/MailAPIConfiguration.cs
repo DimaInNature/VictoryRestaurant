@@ -1,4 +1,4 @@
-﻿namespace Victory.Services.SMTP.Configurations;
+﻿namespace Victory.Microservices.SMTP.Presentation.Configurations;
 
 public static class MailAPIConfiguration
 {
