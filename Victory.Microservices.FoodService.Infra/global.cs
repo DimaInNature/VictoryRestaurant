@@ -1,8 +1,10 @@
 ﻿global using MediatR;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
+global using Victory.Microservices.FoodService.Application.Services;
 global using Victory.Microservices.FoodService.Domain.Commands.Foods;
 global using Victory.Microservices.FoodService.Domain.Commands.FoodTypes;
+global using Victory.Microservices.FoodService.Domain.Interfaces;
 global using Victory.Microservices.FoodService.Domain.Queries.Foods;
 global using Victory.Microservices.FoodService.Domain.Queries.FoodTypes;
 global using Victory.Microservices.FoodService.Infra.IoC.MediatR.Profiles;

@@ -9,5 +9,9 @@ public static class DependencyInjectionConfiguration
         services.AddTransient<IGenericRepository<FoodEntity>, GenericRepository<FoodEntity>>();
 
         services.AddTransient<IGenericRepository<FoodTypeEntity>, GenericRepository<FoodTypeEntity>>();
+
+        services.AddTransient<IFoodAppService, FoodAppService>();
+
+        services.AddTransient<IFoodTypeAppService, FoodTypeAppService>();
     }
 }

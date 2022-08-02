@@ -14,7 +14,9 @@ public sealed record class GetFoodByPredicateQueryHandler
         CancellationToken token) =>
         request.Predicate is null
         ? null
-        : _repository.GetFirstOrDefault(
-            predicate: user => request.Predicate(user));
+        : await _repository.GetFirstOrDefaultWithIncludeAsync(
+            predicate: user => request.Predicate(user),
+            token, 
+            includeProperties: prop => prop.FoodType);
 
 }

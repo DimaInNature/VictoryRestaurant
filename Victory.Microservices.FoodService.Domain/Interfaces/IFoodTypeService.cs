@@ -1,6 +1,6 @@
 ﻿namespace Victory.Microservices.FoodService.Domain.Interfaces;
 
-public interface IFoodTypeService
+public interface IFoodTypeAppService
 {
     Task<IEnumerable<FoodTypeEntity>> GetAllAsync();
 

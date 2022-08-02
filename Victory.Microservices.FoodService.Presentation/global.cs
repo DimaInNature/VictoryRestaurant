@@ -1,3 +1,9 @@
-﻿global using Microsoft.OpenApi.Models;
+﻿global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.OpenApi.Models;
 global using System.Reflection;
+global using Victory.Microservices.FoodService.Domain.Interfaces;
+global using Victory.Microservices.FoodService.Infra.IoC;
+global using Victory.Microservices.FoodService.Infra.IoC.MediatR;
+global using Victory.Microservices.FoodService.Persistence.Entities;
+global using Victory.Microservices.FoodService.Persistence.IoC;
 global using Victory.Microservices.FoodService.Presentation.Configurations;
